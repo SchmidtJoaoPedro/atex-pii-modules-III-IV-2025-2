@@ -5,7 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NavCode Curso Técnico</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="../atex_iii/JS/animate.js"></script>
     <style>
+        #logcontainer {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        #logcontainer.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .login-container {
             min-height: 100vh;
             display: flex;
@@ -103,7 +115,7 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="login-card">
+        <div class="login-card" id="logcontainer">
             <div class="login-header">
                 <div class="login-logo">NC</div>
                 <h1 style="margin: 0; color: #1f2937;">NavCode</h1>
@@ -134,7 +146,7 @@
         </div>
     </div>
     
-    <script src="auth.js"></script>
+    <script src="../atex_iii/JS/auth.js"></script>
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();

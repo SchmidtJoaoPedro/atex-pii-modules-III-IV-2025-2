@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - NavCode Curso Técnico</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=visibility" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=visibility_off" />
     <link rel="stylesheet" href="styles.css">
+    <script src="../atex_iii/JS/animate.js"></script>
     <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48;
+        }
+
+        #cadcontainer {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        #cadcontainer.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .register-container {
             min-height: 100vh;
             display: flex;
@@ -14,7 +39,7 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             padding: 1rem;
         }
-        
+
         .register-card {
             background: white;
             border-radius: 16px;
@@ -23,12 +48,12 @@
             max-width: 400px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        
+
         .register-header {
             text-align: center;
             margin-bottom: 2rem;
         }
-        
+
         .register-logo {
             width: 80px;
             height: 80px;
@@ -42,18 +67,18 @@
             font-size: 2rem;
             font-weight: bold;
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .form-label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
             color: #374151;
         }
-        
+
         .form-input {
             width: 100%;
             padding: 0.75rem;
@@ -63,12 +88,24 @@
             transition: border-color 0.2s;
             box-sizing: border-box;
         }
-        
+
         .form-input:focus {
             outline: none;
             border-color: #059669;
         }
-        
+
+        .form-password {
+            border-radius: 5px;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+        }
+
+        #btn-div-password {
+            display: flex;
+            justify-content: center;
+            margin-top: 3px;
+        }
+
         .register-btn {
             width: 100%;
             background: #059669;
@@ -81,135 +118,165 @@
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        
+
         .register-btn:hover {
             background: #047857;
         }
-        
+
         .register-footer {
             text-align: center;
             margin-top: 1.5rem;
             color: #6b7280;
         }
-        
+
         .register-footer a {
             color: #059669;
             text-decoration: none;
             font-weight: 600;
         }
-        
+
         .register-footer a:hover {
             text-decoration: underline;
         }
-        
-        .success-message, .error-message {
+
+        .success-message,
+        .error-message {
             padding: 0.75rem;
             border-radius: 8px;
             margin-bottom: 1rem;
             display: none;
         }
-        
+
         .success-message {
             background: #f0fdf4;
             color: #166534;
             border: 1px solid #bbf7d0;
         }
-        
+
         .error-message {
             background: #fef2f2;
             color: #dc2626;
             border: 1px solid #fecaca;
         }
-        
+
         .password-strength {
             margin-top: 0.5rem;
             font-size: 0.875rem;
         }
-        
-        .strength-weak { color: #dc2626; }
-        .strength-medium { color: #f59e0b; }
-        .strength-strong { color: #059669; }
+
+        .strength-weak {
+            color: #dc2626;
+        }
+
+        .strength-medium {
+            color: #f59e0b;
+        }
+
+        .strength-strong {
+            color: #059669;
+        }
+
+        .toggle-btn {
+            display: inline-block;
+            cursor: pointer;
+            pointer-events: auto;
+            position: absolute;
+            z-index: 100;
+            right: 40px;
+            top: 63%;
+            transform: translateY(-50%);
+            pointer-events: auto;
+            color: #c5c5c5;
+        }
     </style>
 </head>
+
 <body>
     <div class="register-container">
-        <div class="register-card">
+        <div class="register-card" id="cadcontainer">
             <div class="register-header">
                 <div class="register-logo">NC</div>
                 <h1 style="margin: 0; color: #1f2937;">Criar Conta</h1>
-                <p style="margin: 0.5rem 0 0; color: #6b7280;">NavCode Curso Técnico</p>
+                <p style="margin: 0.5rem 0 0; color: #6b7280;">NavCode - Curso Técnico</p>
             </div>
-            
+
             <div class="success-message" id="successMessage">
                 Conta criada com sucesso! Redirecionando...
             </div>
-            
+
             <div class="error-message" id="errorMessage">
                 Erro ao criar conta
             </div>
-            
+
             <form id="registerForm">
                 <div class="form-group">
                     <label class="form-label" for="email">Email</label>
                     <input type="email" id="email" class="form-input" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label" for="username">Usuário</label>
                     <input type="text" id="username" class="form-input" required minlength="3">
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label" for="password">Senha</label>
                     <input type="password" id="password" class="form-input" required minlength="6">
+                    <a href="#" class="toggle-btn" onclick="togglePassword()" id="toggle">
+                        <img id="toggle-icon" src="../atex_iii/assets/icons/blind.svg" alt="blind" width="24"
+                            height="24">
+                    </a>
+                    <div id="btn-div-password">
+                        <a class="form-password" onclick="passwordGenerator()">- Gerar senha -</a>
+                    </div>
                     <div class="password-strength" id="passwordStrength"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label" for="confirmPassword">Confirmar Senha</label>
                     <input type="password" id="confirmPassword" class="form-input" required>
                 </div>
-                
+
                 <button type="submit" class="register-btn">Criar Conta</button>
             </form>
-            
+
             <div class="register-footer">
                 <p>Já tem uma conta? <a href="login.html">Fazer Login</a></p>
             </div>
         </div>
     </div>
-    
-    <script src="auth.js"></script>
+
+    <script src="../atex_iii/JS/auth.js"></script>
     <script>
         const registerForm = document.getElementById('registerForm');
         const passwordInput = document.getElementById('password');
         const passwordStrength = document.getElementById('passwordStrength');
         const registerBtn = document.querySelector('.register-btn');
-        
+
         // Verificar força da senha
-        passwordInput.addEventListener('input', function() {
+        passwordInput.addEventListener('input', function () {
             const password = this.value;
             const strength = checkPasswordStrength(password);
-            
+
             passwordStrength.textContent = strength.text;
             passwordStrength.className = `password-strength ${strength.class}`;
         });
-        
+
         // Submissão do formulário
-        registerForm.addEventListener('submit', async function(e) {
+        registerForm.addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const email = document.getElementById('email').value;
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            
+
             registerBtn.disabled = true;
             registerBtn.textContent = 'Criando conta...';
-            
+
             try {
                 const result = await registerUser(email, username, password, confirmPassword);
-                
+
                 if (result.success) {
                     showMessage('successMessage', result.message);
                     setTimeout(() => {
@@ -226,7 +293,7 @@
                 registerBtn.textContent = 'Criar Conta';
             }
         });
-        
+
         function checkPasswordStrength(password) {
             if (password.length < 6) {
                 return { text: 'Senha muito fraca (mínimo 6 caracteres)', class: 'strength-weak' };
@@ -238,21 +305,23 @@
                 return { text: 'Senha média', class: 'strength-medium' };
             }
         }
-        
+
         function showMessage(elementId, message) {
             const element = document.getElementById(elementId);
             element.textContent = message;
             element.style.display = 'block';
-            
+
             setTimeout(() => {
                 element.style.display = 'none';
             }, 8000);
         }
-        
+
         // Verificar se já está logado
         if (localStorage.getItem('navcode_logged_in') === 'true') {
             window.location.href = 'index.html';
         }
     </script>
+    <script src="../atex_iii/JS/generator.js"></script>
 </body>
+
 </html>

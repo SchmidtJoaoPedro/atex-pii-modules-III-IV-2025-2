@@ -472,6 +472,7 @@ body {
   margin: 0 auto;
 }
 
+
 .content-section {
   display: none;
 }
@@ -861,10 +862,6 @@ body {
 
 .course-info-card.dark-mode {
   background-color: var(--dark-color-4);
-}
-
-.stat-label.dark-mode {
-  color: var(--color-2);
 }
 
 #user-darkmode-div { 

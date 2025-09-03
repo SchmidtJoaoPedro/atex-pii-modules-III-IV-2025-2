@@ -1,6 +1,9 @@
 function darkMode() {
     const themeSwitch = document.getElementById('theme-switch');
-    const darkContent = ['.main-content', '.progress-card', '.chapter-card', '.course-info-card', '.certification-info', '.stat-label', '.course-description'];
+    const darkContent = [
+        '.main-content', '.progress-card', '.chapter-card', 
+        '.course-info-card', '.certification-info'
+    ];
 
     themeSwitch.addEventListener('click', () => {
         themeSwitch.classList.toggle('active');

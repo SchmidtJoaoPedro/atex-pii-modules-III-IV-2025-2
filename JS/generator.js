@@ -1,4 +1,4 @@
-let passWord = '', generatedPassword = '', randomizator = '';
+let passWord = '', generatedPassword = '', secondGeneration = '', randomizator = '';
 const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'          //constante de caracteres
 let tamanho, newTamanho;
 
@@ -6,13 +6,19 @@ function passwordGenerator(tamanho) {                                           
     generatedPassword = '';
 
     tamanho = Math.floor(Math.random() * 16) + 1;
-    if (tamanho < 6 ||  tamanho == 6) {
-        newTamanho = Math.floor(Math.random() * 6) + 1;
+    if (tamanho <= 6) {
+        newTamanho = Math.floor(Math.random() * 6) * 2;
         tamanho = tamanho + newTamanho;
     }
     for (let i=0; i<tamanho;i++) {                                                                 //laço de repetição que percorre toda a variável caracteresUsados
         randomizator = Math.floor(Math.random()*characters.length);               //randomizador que escolhe uma posição aleatória e determina se vai ser usada ou não
         generatedPassword = generatedPassword + characters[randomizator];                                 //atribuição da posição usada para dentro da variável
+    }
+
+    if (generatedPassword.length <= 7) {
+      randomizator = Math.floor(Math.random()*characters.length);
+      secondGeneration += characters[randomizator];
+      generatedPassword += secondGeneration;
     }
     document.getElementById('password').value = generatedPassword;
 }

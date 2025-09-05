@@ -955,6 +955,8 @@ body {
 /* ===== ESTILOS DA PÁGINA DE LOGIN ===== */
 /* Container principal da página de login com layout moderno */
 .login-container {
+  gap: 20px;
+  padding: 45px;
   min-height: 100vh;
   display: flex;
   background: var(--navcode-gradient-dark);
@@ -1341,7 +1343,8 @@ body {
   flex: 1;
   background: var(--navcode-primary);
   color: white;
-  padding: 3rem;
+  padding: 1.5rem;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   position: relative;
@@ -1350,6 +1353,7 @@ body {
 
 /* Efeito de fundo na sidebar */
 .login-sidebar::before {
+  padding: 1.5rem;
   content: "";
   position: absolute;
   top: 0;
@@ -1361,9 +1365,15 @@ body {
 
 /* Conteúdo da sidebar */
 .sidebar-content {
+  border: 25px;
+  left: 20px;
   position: relative;
   z-index: 10;
   max-width: 400px;
+}
+
+.image-div-login {
+  padding: 100px;
 }
 
 /* Título da sidebar */

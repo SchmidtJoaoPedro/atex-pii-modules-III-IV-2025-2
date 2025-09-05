@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <!-- Configurações básicas da página do curso -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso Técnico de Informática - NavCode</title>
-    
+
     <!-- Importando estilos e fontes -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Importando scripts -->
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/darktheme.js"></script>
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/animate.js"></script>
 </head>
+
 <body>
+
     <!-- ===== CABEÇALHO DO CURSO ===== -->
     <header class="header">
         <div class="container">
@@ -20,21 +27,21 @@
                     <button class="back-btn" onclick="goHome()">
                         <!-- Ícone de seta para voltar -->
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 12H5"/>
-                            <path d="M12 19l-7-7 7-7"/>
+                            <path d="M19 12H5" />
+                            <path d="M12 19l-7-7 7-7" />
                         </svg>
                         Voltar ao Início
                     </button>
-                    
+
                     <!-- Logo NavCode -->
                     <div class="brand-logo">
                         <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                         </svg>
                         <span class="brand-name">NavCode</span>
                     </div>
                 </div>
-                
+
                 <!-- Título do curso -->
                 <h1>Curso Técnico de Informática</h1>
                 <p class="course-subtitle">
@@ -47,20 +54,21 @@
     <!-- ===== CONTEÚDO PRINCIPAL DO CURSO ===== -->
     <main class="main-content">
         <div class="container">
-            
+
             <!-- ===== PROGRESSO DO CURSO ===== -->
             <div class="progress-card">
                 <div class="card-header">
                     <h2 class="card-title">
                         <!-- Ícone de progresso -->
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
                         </svg>
                         Seu Progresso
                     </h2>
                     <p class="card-description">
-                        <span id="completed-chapters">0</span> de <span id="total-chapters">6</span> capítulos concluídos
+                        <span id="completed-chapters">0</span> de <span id="total-chapters">6</span> capítulos
+                        concluídos
                     </p>
                 </div>
                 <div class="card-content">
@@ -2240,22 +2248,22 @@
          * Função executada quando a página carrega
          * Verifica autenticação e carrega conteúdo do curso
          */
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('[NavCode] Inicializando curso de informática...');
-            
+
             // Verificar se usuário está logado
             if (!isUserLoggedIn()) {
                 alert('Você precisa estar logado para acessar este curso!');
                 window.location.href = 'login.html';
                 return;
             }
-            
+
             // Carregar progresso do usuário
             loadUserProgress();
-            
+
             // Carregar capítulos do curso
             loadChapters();
-            
+
             console.log('[NavCode] Curso carregado com sucesso!');
         });
 
@@ -2275,7 +2283,7 @@
                     chapterProgress: {}
                 };
             }
-            
+
             // Atualizar interface com progresso
             updateProgressDisplay();
         }
@@ -2287,12 +2295,12 @@
             const completedCount = userProgress.completedChapters.length;
             const totalChapters = courseData.totalChapters;
             const percentage = Math.round((completedCount / totalChapters) * 100);
-            
+
             // Atualizar elementos da interface
             document.getElementById('completed-chapters').textContent = completedCount;
             document.getElementById('total-chapters').textContent = totalChapters;
             document.getElementById('course-progress-percentage').textContent = percentage;
-            
+
             // Animar barra de progresso
             const progressFill = document.getElementById('course-progress-fill');
             setTimeout(() => {
@@ -2306,7 +2314,7 @@
         function loadChapters() {
             const chaptersGrid = document.getElementById('chapters-grid');
             chaptersGrid.innerHTML = '';
-            
+
             // Criar cartão para cada capítulo
             courseData.chapters.forEach((chapter, index) => {
                 const chapterCard = createChapterCard(chapter, index);
@@ -2323,15 +2331,15 @@
         function createChapterCard(chapter, index) {
             const isCompleted = userProgress.completedChapters.includes(chapter.id);
             const isLocked = index > 0 && !userProgress.completedChapters.includes(courseData.chapters[index - 1].id);
-            
+
             const card = document.createElement('div');
             card.className = `chapter-card ${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}`;
-            
+
             // Definir ação do clique
             if (!isLocked) {
                 card.onclick = () => openChapter(chapter);
             }
-            
+
             card.innerHTML = `
                 <div class="chapter-header">
                     <div class="chapter-info">
@@ -2369,7 +2377,7 @@
                     </button>
                 </div>
             `;
-            
+
             return card;
         }
 
@@ -2388,14 +2396,14 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>`;
             }
-            
+
             if (isCompleted) {
                 return `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                     <polyline points="22,4 12,14.01 9,11.01"/>
                 </svg>`;
             }
-            
+
             // Ícones específicos por capítulo
             const icons = {
                 1: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2421,7 +2429,7 @@
                     <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
                 </svg>`
             };
-            
+
             return icons[chapterId] || icons[1];
         }
 
@@ -2433,17 +2441,17 @@
         function openChapter(chapter) {
             currentChapter = chapter;
             currentExercise = 0;
-            
+
             // Esconder grid de capítulos
             document.getElementById('chapters-grid').style.display = 'none';
-            
+
             // Mostrar área de conteúdo
             const contentArea = document.getElementById('chapter-content');
             contentArea.style.display = 'block';
-            
+
             // Carregar conteúdo do capítulo
             loadChapterContent(chapter);
-            
+
             console.log(`[NavCode] Capítulo aberto: ${chapter.title}`);
         }
 
@@ -2453,7 +2461,7 @@
          */
         function loadChapterContent(chapter) {
             const contentArea = document.getElementById('chapter-content');
-            
+
             contentArea.innerHTML = `
                 <div class="chapter-content-header">
                     <button class="back-btn" onclick="backToChapters()">
@@ -2498,7 +2506,7 @@
                     </div>
                 </div>
             `;
-            
+
             // Carregar primeiro exercício
             loadExercise(0);
         }
@@ -2536,11 +2544,11 @@
             // Remover classe active de todas as abas
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-            
+
             // Ativar aba selecionada
             document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
             document.getElementById(`${tabName}-tab`).classList.add('active');
-            
+
             // Carregar conteúdo específico se necessário
             if (tabName === 'exercises') {
                 loadExercise(currentExercise);
@@ -2553,16 +2561,16 @@
          */
         function loadExercise(exerciseIndex) {
             if (!currentChapter || !currentChapter.content.exercises) return;
-            
+
             const exercises = currentChapter.content.exercises;
             const exercise = exercises[exerciseIndex];
-            
+
             if (!exercise) {
                 // Todos os exercícios concluídos
                 showExerciseCompletion();
                 return;
             }
-            
+
             const exerciseContent = document.getElementById('exercise-content');
             exerciseContent.innerHTML = `
                 <div class="exercise-header">
@@ -2604,13 +2612,13 @@
         function selectOption(optionIndex) {
             // Remover seleção anterior
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-            
+
             // Selecionar nova opção
             document.querySelectorAll('.option-btn')[optionIndex].classList.add('selected');
-            
+
             // Habilitar botão de submissão
             document.getElementById('submit-btn').disabled = false;
-            
+
             // Armazenar resposta selecionada
             window.selectedAnswer = optionIndex;
         }
@@ -2620,10 +2628,10 @@
          */
         function submitAnswer() {
             if (window.selectedAnswer === undefined) return;
-            
+
             const exercise = currentChapter.content.exercises[currentExercise];
             const isCorrect = window.selectedAnswer === exercise.correct;
-            
+
             // Mostrar feedback
             const feedbackDiv = document.getElementById('exercise-feedback');
             feedbackDiv.style.display = 'block';
@@ -2642,7 +2650,7 @@
                     ${currentExercise < currentChapter.content.exercises.length - 1 ? 'Próximo Exercício' : 'Finalizar Capítulo'}
                 </button>
             `;
-            
+
             // Desabilitar opções
             document.querySelectorAll('.option-btn').forEach(btn => btn.disabled = true);
             document.getElementById('submit-btn').style.display = 'none';
@@ -2680,12 +2688,12 @@
         function completeChapter() {
             if (!userProgress.completedChapters.includes(currentChapter.id)) {
                 userProgress.completedChapters.push(currentChapter.id);
-                
+
                 // Salvar progresso
                 localStorage.setItem('navcode_course_progress', JSON.stringify(userProgress));
-                
+
                 alert(`Capítulo "${currentChapter.title}" concluído com sucesso! 🎉`);
-                
+
                 // Voltar para lista de capítulos
                 backToChapters();
             }
@@ -2697,11 +2705,11 @@
         function backToChapters() {
             document.getElementById('chapter-content').style.display = 'none';
             document.getElementById('chapters-grid').style.display = 'grid';
-            
+
             // Recarregar capítulos para atualizar status
             loadChapters();
             updateProgressDisplay();
-            
+
             currentChapter = null;
         }
 
@@ -2727,4 +2735,5 @@
         console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Certificação');
     </script>
 </body>
+
 </html>

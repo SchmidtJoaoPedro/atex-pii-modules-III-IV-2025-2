@@ -101,6 +101,10 @@ body {
   color: var(--color-2);
 }
 
+.chapter-card.dark-mode {
+  background: #2E2E2E;
+}
+
 .reviews-card.dark-mode,
 .card-content.dark-mode,
 .card-header.dark-mode,

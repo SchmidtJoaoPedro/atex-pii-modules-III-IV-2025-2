@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <!-- Configurações básicas da página do curso -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Segurança da Informação - NavCode</title>
-    
+
     <!-- Importando estilos e fontes -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Importando scripts -->
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/darktheme.js"></script>
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/animate.js"></script>
 </head>
+
 <body>
+
     <!-- ===== CABEÇALHO DO CURSO ===== -->
     <header class="header">
         <div class="container">
@@ -20,21 +27,21 @@
                     <button class="back-btn" onclick="goHome()">
                         <!-- Ícone de seta para voltar -->
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 12H5"/>
-                            <path d="M12 19l-7-7 7-7"/>
+                            <path d="M19 12H5" />
+                            <path d="M12 19l-7-7 7-7" />
                         </svg>
                         Voltar ao Início
                     </button>
-                    
+
                     <!-- Logo NavCode -->
                     <div class="brand-logo">
                         <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                         </svg>
                         <span class="brand-name">NavCode</span>
                     </div>
                 </div>
-                
+
                 <!-- Título do curso -->
                 <h1>Segurança da Informação</h1>
                 <p class="course-subtitle">
@@ -53,7 +60,7 @@
                 <h2>Curso em Desenvolvimento</h2>
                 <p>Este curso está sendo preparado com foco na segurança digital atual.</p>
                 <p>Em breve você terá acesso a conteúdo completo sobre:</p>
-                
+
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">🛡️</div>
@@ -76,7 +83,7 @@
                         <p>Algoritmos, PKI, Certificados</p>
                     </div>
                 </div>
-                
+
                 <button class="btn btn-primary" onclick="goHome()">
                     Voltar aos Cursos Disponíveis
                 </button>
@@ -91,16 +98,16 @@
          * Função executada quando a página carrega
          * Verifica se usuário está logado
          */
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('[NavCode] Carregando curso de Segurança da Informação...');
-            
+
             // Verificar se usuário está logado
             if (!isUserLoggedIn()) {
                 alert('Você precisa estar logado para acessar este curso!');
                 window.location.href = 'login.html';
                 return;
             }
-            
+
             console.log('[NavCode] Curso de Segurança em desenvolvimento carregado!');
         });
 
@@ -120,4 +127,5 @@
         }
     </script>
 </body>
+
 </html>

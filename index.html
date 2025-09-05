@@ -19,24 +19,6 @@
 </head>
 
 <body>
-
-    <script>
-        async function checkStatusOnLoad() {
-            const response = await fetch("http://127.0.0.1:5000/status");
-            const data = await response.json();
-            console.log("Status atual:", data.status);
-        }
-
-        async function setStatusTrue() {
-            await fetch("http://127.0.0.1:5000/set-status", {
-                method: "POST"
-            });
-            console.log("Status virou true!");
-        }
-
-        window.onload = checkStatusOnLoad;
-    </script>
-
     <!-- ===== CABEÇALHO PRINCIPAL ===== -->
     <!-- Seção superior com logo, título e informações do usuário -->
     <header class="header" id="home">

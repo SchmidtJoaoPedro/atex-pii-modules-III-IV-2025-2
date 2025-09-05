@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <!-- Configurações básicas da página de login -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NavCode Plataforma de Cursos</title>
-    
+
     <!-- Importando estilos principais -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- ===== CONTAINER PRINCIPAL DE LOGIN ===== -->
     <!-- Layout centralizado com fundo gradiente moderno -->
@@ -17,84 +19,73 @@
         <!-- ===== CARTÃO DE LOGIN ===== -->
         <!-- Cartão principal com formulário de autenticação -->
         <div class="login-card">
-            
+
             <!-- ===== CABEÇALHO DO LOGIN ===== -->
             <!-- Logo e informações da marca NavCode -->
             <div class="login-header">
                 <!-- Logo NavCode com ícone de raio -->
                 <div class="login-logo">
                     <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                     </svg>
                 </div>
-                
+
                 <!-- Título e subtítulo da plataforma -->
                 <h1 class="login-title">NavCode</h1>
                 <p class="login-subtitle">Plataforma de Cursos Técnicos</p>
                 <p class="login-description">Acesse sua conta para continuar aprendendo</p>
             </div>
-            
+
             <!-- ===== MENSAGEM DE ERRO ===== -->
             <!-- Exibida quando credenciais são inválidas -->
             <div class="error-message" id="errorMessage">
                 <div class="error-icon">⚠️</div>
                 <span id="errorText">Usuário ou senha incorretos</span>
             </div>
-            
+
             <!-- ===== FORMULÁRIO DE LOGIN ===== -->
             <!-- Campos de usuário e senha com validação -->
             <form id="loginForm" class="login-form">
-                
+
                 <!-- Campo de usuário -->
                 <div class="form-group">
                     <label class="form-label" for="username">
                         <!-- Ícone de usuário -->
                         <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
                         </svg>
                         Usuário
                     </label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        class="form-input" 
-                        placeholder="Digite seu usuário"
-                        required
-                        autocomplete="username"
-                    >
+                    <input type="text" id="username" class="form-input" placeholder="Digite seu usuário" required
+                        autocomplete="username">
                 </div>
-                
+
                 <!-- Campo de senha -->
                 <div class="form-group">
                     <label class="form-label" for="password">
                         <!-- Ícone de cadeado -->
                         <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <circle cx="12" cy="16" r="1"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <circle cx="12" cy="16" r="1" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
                         Senha
                     </label>
                     <div class="password-input-wrapper">
-                        <input 
-                            type="password" 
-                            id="password" 
-                            class="form-input" 
-                            placeholder="Digite sua senha"
-                            required
-                            autocomplete="current-password"
-                        >
+                        <input type="password" id="password" class="form-input" placeholder="Digite sua senha" required
+                            autocomplete="current-password">
                         <!-- Botão para mostrar/esconder senha -->
                         <button type="button" class="password-toggle" onclick="togglePassword()">
-                            <svg id="eye-icon" class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                <circle cx="12" cy="12" r="3"/>
+                            <svg id="eye-icon" class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
                             </svg>
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Opções adicionais -->
                 <div class="form-options">
                     <!-- Checkbox para lembrar usuário -->
@@ -103,25 +94,25 @@
                         <span class="checkbox-custom"></span>
                         Lembrar de mim
                     </label>
-                    
+
                     <!-- Link para recuperar senha -->
                     <a href="#" class="forgot-password" onclick="showForgotPassword()">
                         Esqueceu a senha?
                     </a>
                 </div>
-                
+
                 <!-- Botão de login -->
                 <button type="submit" class="login-btn">
                     <!-- Ícone de entrada -->
                     <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                        <polyline points="10,17 15,12 10,7"/>
-                        <line x1="15" y1="12" x2="3" y2="12"/>
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                        <polyline points="10,17 15,12 10,7" />
+                        <line x1="15" y1="12" x2="3" y2="12" />
                     </svg>
                     Entrar na Plataforma
                 </button>
             </form>
-            
+
             <!-- ===== RODAPÉ DO LOGIN ===== -->
             <!-- Links para registro e informações adicionais -->
             <div class="login-footer">
@@ -129,19 +120,19 @@
                 <div class="divider">
                     <span>ou</span>
                 </div>
-                
+
                 <!-- Link para criar conta -->
                 <p class="register-link">
-                    Não tem uma conta? 
+                    Não tem uma conta?
                     <a href="register.html" class="register-btn">
                         Criar Conta Gratuita
                         <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14"/>
-                            <path d="M12 5l7 7-7 7"/>
+                            <path d="M5 12h14" />
+                            <path d="M12 5l7 7-7 7" />
                         </svg>
                     </a>
                 </p>
-                
+
                 <!-- Informações sobre a plataforma -->
                 <div class="platform-info">
                     <p>✨ Acesso a todos os cursos técnicos</p>
@@ -150,7 +141,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- ===== INFORMAÇÕES LATERAIS ===== -->
         <!-- Painel com estatísticas e depoimentos -->
         <div class="login-sidebar">
@@ -160,7 +151,7 @@
                 <p class="sidebar-description">
                     Desenvolva suas habilidades técnicas com a melhor plataforma de educação em tecnologia do Brasil.
                 </p>
-                
+
                 <!-- Estatísticas da plataforma -->
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -176,7 +167,7 @@
                         <div class="stat-label">Satisfação</div>
                     </div>
                 </div>
-                
+
                 <!-- Depoimento de aluno -->
                 <div class="testimonial">
                     <div class="testimonial-content">
@@ -193,11 +184,11 @@
             </div>
         </div>
     </div>
-    
+
     <!-- ===== SCRIPTS ===== -->
     <!-- Importando sistema de autenticação -->
-    <script src="auth.js"></script>
-    
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script>
+
     <!-- Script principal da página de login -->
     <script>
         // ===== MANIPULAÇÃO DO FORMULÁRIO =====
@@ -205,41 +196,41 @@
          * Event listener para submissão do formulário de login
          * Processa credenciais e redireciona em caso de sucesso
          */
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault(); // Prevenir envio padrão do formulário
-            
+
             console.log('[NavCode] Tentativa de login iniciada...');
-            
+
             // Obter valores dos campos
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const rememberMe = document.getElementById('rememberMe').checked;
-            
+
             // Validar campos obrigatórios
             if (!username || !password) {
                 showError('Por favor, preencha todos os campos!');
                 return;
             }
-            
+
             // Tentar fazer login usando sistema de autenticação
             const result = loginUser(username, password);
-            
+
             if (result.success) {
                 console.log('[NavCode] Login realizado com sucesso!');
-                
+
                 // Salvar preferência de "lembrar"
                 if (rememberMe) {
                     localStorage.setItem('navcode_remember_user', username);
                 }
-                
+
                 // Mostrar mensagem de sucesso
                 showSuccess('Login realizado com sucesso! Redirecionando...');
-                
+
                 // Redirecionar após pequeno delay
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 1500);
-                
+
             } else {
                 console.log('[NavCode] Falha no login:', result.message);
                 showError(result.message);
@@ -254,11 +245,11 @@
         function showError(message) {
             const errorDiv = document.getElementById('errorMessage');
             const errorText = document.getElementById('errorText');
-            
+
             errorText.textContent = message;
             errorDiv.style.display = 'flex';
             errorDiv.classList.add('shake'); // Animação de balanço
-            
+
             // Esconder após 4 segundos
             setTimeout(() => {
                 errorDiv.style.display = 'none';
@@ -273,12 +264,12 @@
         function showSuccess(message) {
             const errorDiv = document.getElementById('errorMessage');
             const errorText = document.getElementById('errorText');
-            
+
             // Transformar em mensagem de sucesso temporariamente
             errorDiv.className = 'success-message';
             errorText.textContent = message;
             errorDiv.style.display = 'flex';
-            
+
             // Ícone de sucesso
             errorDiv.innerHTML = `
                 <div class="success-icon">✅</div>
@@ -293,7 +284,7 @@
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const eyeIcon = document.getElementById('eye-icon');
-            
+
             if (passwordInput.type === 'password') {
                 // Mostrar senha
                 passwordInput.type = 'text';
@@ -324,16 +315,16 @@
          * Função executada quando a página carrega
          * Verifica se usuário já está logado e configura interface
          */
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('[NavCode] Inicializando página de login...');
-            
+
             // Verificar se já está logado
             if (localStorage.getItem('navcode_logged_in') === 'true') {
                 console.log('[NavCode] Usuário já logado, redirecionando...');
                 window.location.href = 'index.html';
                 return;
             }
-            
+
             // Carregar usuário lembrado, se existir
             const rememberedUser = localStorage.getItem('navcode_remember_user');
             if (rememberedUser) {
@@ -345,7 +336,7 @@
                 // Focar no campo de usuário
                 document.getElementById('username').focus();
             }
-            
+
             console.log('[NavCode] Página de login carregada com sucesso!');
         });
 
@@ -353,12 +344,12 @@
         /**
          * Adiciona atalhos de teclado para melhor experiência
          */
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             // Enter para submeter formulário (se não estiver em um botão)
             if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
                 document.getElementById('loginForm').dispatchEvent(new Event('submit'));
             }
-            
+
             // Escape para limpar mensagens de erro
             if (e.key === 'Escape') {
                 const errorDiv = document.getElementById('errorMessage');
@@ -372,4 +363,5 @@
         console.log('[NavCode] Credenciais padrão: admin/123456');
     </script>
 </body>
+
 </html>

@@ -51,6 +51,14 @@
   --navcode-gradient-primary: linear-gradient(135deg, var(--navcode-primary) 0%, var(--navcode-primary-dark) 100%);
   --navcode-gradient-success: linear-gradient(135deg, var(--navcode-success-bg) 0%, var(--navcode-primary-bg) 100%);
   --navcode-gradient-dark: linear-gradient(135deg, var(--navcode-bg-dark) 0%, var(--navcode-bg-dark-secondary) 100%);
+
+  /* Temas Escuros */
+  --navcode-dark-color-primary-1: #f9fafb; //cor do body
+  --navcode-dark-color-primary-2: #b6b6b6ff; //cor dos bagulho
+  --navcode-dark-color-1: #1C1C1C; //main color
+  --navcode-dark-color-2: #2E2E2E; //no use
+  --navcode-dark-color-3: #2c353dff;
+  --navcode-dark-color-4: #464646ff; //progress color
 }
 
 /* ===== RESET E ESTILOS BASE ===== */
@@ -67,6 +75,94 @@ body {
   line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
   color: var(--navcode-text-primary);
   background-color: var(--navcode-bg-secondary);
+}
+
+/* Dark theme settings */
+.main-content.dark-mode,
+.creators-section.dark-mode {
+  background-color: #1C1C1C;
+}
+
+.progress-text.dark-mode,
+.progress-card.dark-mode, 
+.course-info-card.dark-mode,{
+  background-color: var(--navcode-dark-color-1);
+}
+
+.creator-card.dark-mode {
+  background: #464646ff;
+}
+
+.title-avaliation.dark-mode {
+  color: #b6b6b6ff;
+}
+
+.stat-label.dark-mode {
+  color: var(--color-2);
+}
+
+.reviews-card.dark-mode,
+.card-content.dark-mode,
+.card-header.dark-mode,
+.review-textarea.dark-mode {
+  background: var(--navcode-dark-color-4);
+}
+
+.review-card.dark-mode, 
+.review-form.dark-mode {
+  background: #2E2E2E;
+}
+
+.chapter-card.dark-mode {
+  background: #464646ff;
+}
+
+#user-darkmode-div { 
+  position: relative; 
+  right: 100px; 
+  margin: 15px 45px 15px 45px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-end; 
+}
+
+.theme-toggle { 
+  display: flex;
+  align-items: center; 
+  justify-content: flex-end;
+  gap: 10px; 
+}
+
+.switch-btn {
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 0;
+}
+
+.switch-btn .slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Estado ativo */
+.switch-btn.active {
+  background-color: #4CAF50;
+}
+
+.switch-btn.active .slider {
+  transform: translateX(26px);
 }
 
 /* Container principal para centralizar conteúdo */
@@ -87,6 +183,11 @@ body {
 /* Conteúdo do cabeçalho */
 .header-content {
   text-align: left;
+}
+
+#navcode-a {
+  text-decoration: none;
+  color: var(--navcode-text-light);
 }
 
 /* Título principal do cabeçalho */
@@ -206,6 +307,18 @@ body {
   overflow: hidden;
 }
 
+.reviews-card {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.courses-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
 /* Cabeçalho dos cartões */
 .card-header {
   padding: 1.5rem 1.5rem 0;
@@ -219,6 +332,14 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+}
+
+.card-title.dark-mode {
+  margin-bottom: 0px;
+}
+
+#about-navcode {
+  margin-bottom: 0px;
 }
 
 .card-title .icon {
@@ -579,7 +700,6 @@ body {
   background: var(--navcode-bg-primary);
   padding: 4rem 0;
   margin-top: 3rem;
-  border-top: 1px solid var(--navcode-border-light);
 }
 
 /* Cabeçalho da seção */
@@ -1755,7 +1875,7 @@ body {
   background: var(--navcode-bg-dark);
   color: var(--navcode-text-light);
   padding: 3rem 0 1.5rem;
-  margin-top: 4rem;
+  margin-top: 0px;
 }
 
 /* Conteúdo do rodapé */

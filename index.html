@@ -10,12 +10,18 @@
     <!-- Importando estilos e fontes -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> <!--Fonte ROBOTO-->
+
+    <!-- Importando scripts -->
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/darktheme.js"></script>
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/animate.js"></script>
+
 </head>
 
 <body>
     <!-- ===== CABEÇALHO PRINCIPAL ===== -->
     <!-- Seção superior com logo, título e informações do usuário -->
-    <header class="header">
+    <header class="header" id="home">
         <div class="container">
             <div class="header-content">
                 <!-- Título principal com logo clicável -->
@@ -60,6 +66,13 @@
                     Aprenda desde fundamentos de hardware até segurança da informação com metodologia profissional
                     e conteúdo sempre atualizado.
                 </p>
+            </div>
+            <div class="theme-toggle">
+                <p class="text-mode">Alternar Modo </p>
+                <button type="button" id="theme-switch" class="switch-btn" onclick="darkMode()"
+                    aria-label="Alternar modo escuro">
+                    <span class="slider"></span>
+                </button>
             </div>
         </div>
     </header>
@@ -120,7 +133,7 @@
 
                     <!-- Formulário para nova avaliação (visível apenas quando logado) -->
                     <div class="review-form" id="review-form" style="display: none;">
-                        <h3>Deixe sua Avaliação</h3>
+                        <h3 class="title-avaliation">Deixe sua Avaliação</h3>
 
                         <!-- Seletor de estrelas -->
                         <div class="star-rating" id="star-rating">
@@ -163,7 +176,7 @@
             <!-- ===== INFORMAÇÕES GERAIS DA PLATAFORMA ===== -->
             <div class="course-info-card">
                 <div class="card-header">
-                    <h2 class="card-title">Sobre a NavCode</h2>
+                    <h2 class="card-title" id="about-navcode">Sobre a NavCode</h2>
                 </div>
                 <div class="card-content">
                     <!-- Estatísticas da plataforma -->
@@ -206,120 +219,125 @@
                 </div>
             </div>
         </div>
+
+        <!-- ===== SEÇÃO DE CRIADORES ===== -->
+        <!-- Rodapé com informações sobre a equipe NavCode -->
+        <section class="creators-section">
+            <div class="container" id="container-cards">
+                <!-- Título da seção com ícone -->
+                <div class="section-header">
+                    <h2 class="section-title">Nossos Criadores</h2>
+                    <p class="section-description">Conheça os profissionais experientes por trás dos nossos cursos</p>
+                </div>
+
+                <!-- Grid dos criadores com cards clicáveis -->
+                <div class="creators-grid">
+                    <!-- Criador 1: Rafael Engel Serafin -->
+                    <div class="creator-card" onclick="window.location.href='creator-rafael.html'">
+                        <div class="creator-image-wrapper">
+                            <img src="../atex-pii-modules-III-IV-2025-2/assets/party/engel_rafael.jpeg"
+                                alt="Rafael Engel Serafin" class="creator-photo">
+                        </div>
+                        <div class="creator-info">
+                            <h3 class="creator-name">Rafael Engel Serafin</h3>
+                            <p class="creator-role">Especialista em Desenvolvimento Full-Stack</p>
+                            <p class="creator-description">Expert em JavaScript, React, Node.js e arquitetura de
+                                sistemas
+                                modernos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Criador 2: Marcos Paulo Cassiano -->
+                    <div class="creator-card" onclick="window.location.href='creator-marcos.html'">
+                        <div class="creator-image-wrapper">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-marcos.jpg-y7eRD3xIsZVvPh0JqMApfXRyDJRrsF.jpeg"
+                                alt="Marcos Paulo Cassiano" class="creator-photo">
+                        </div>
+                        <div class="creator-info">
+                            <h3 class="creator-name">Marcos Paulo Cassiano</h3>
+                            <p class="creator-role">Desenvolvedor Full Stack</p>
+                            <p class="creator-description">Especialista em Python, Django, APIs REST e desenvolvimento
+                                backend.</p>
+                        </div>
+                    </div>
+
+                    <!-- Criador 3: Rebeca Costa -->
+                    <div class="creator-card" onclick="window.location.href='creator-rebeca.html'">
+                        <div class="creator-image-wrapper">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-rebeca.jpg-rkwRykefWVjM0izDaCS36f28RWY5WM.jpeg"
+                                alt="Rebeca Costa" class="creator-photo">
+                        </div>
+                        <div class="creator-info">
+                            <h3 class="creator-name">Rebeca Costa</h3>
+                            <p class="creator-role">Especialista em Redes</p>
+                            <p class="creator-description">Expert em infraestrutura de redes, segurança e administração
+                                de
+                                sistemas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Criador 4: João Pedro Schmidt -->
+                    <div class="creator-card" onclick="window.location.href='creator-joao.html'">
+                        <div class="creator-image-wrapper">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-joao.jpg-0Es4xd5GgvV1iYCMdu2WJEEy5me4TI.jpeg"
+                                alt="João Pedro Schmidt" class="creator-photo">
+                        </div>
+                        <div class="creator-info">
+                            <h3 class="creator-name">João Pedro Schmidt</h3>
+                            <p class="creator-role">Analista de Sistemas</p>
+                            <p class="creator-description">Especialista em análise de sistemas, banco de dados e
+                                otimização
+                                de performance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Criador 5: Ryan -->
+                    <div class="creator-card" onclick="window.location.href='creator-ryan.html'">
+                        <div class="creator-image-wrapper">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-Ryan.jpg-MXMsmonkRMR1vSXHaa8tCChj5bghTD.jpeg"
+                                alt="Ryan" class="creator-photo">
+                        </div>
+                        <div class="creator-info">
+                            <h3 class="creator-name">Ryan</h3>
+                            <p class="creator-role">Especialista em DevOps</p>
+                            <p class="creator-description">Expert em Docker, Kubernetes, CI/CD e infraestrutura como
+                                código.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Criador 6: Luiz Gustavo -->
+                    <div class="creator-card" onclick="window.location.href='creator-luiz.html'">
+                        <div class="creator-image-wrapper">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-luizg.jpg-IytYoY6vPHAyAVzBhl7q0SHiY46GBI.jpeg"
+                                alt="Luiz Gustavo" class="creator-photo">
+                        </div>
+                        <div class="creator-info">
+                            <h3 class="creator-name">Luiz Gustavo</h3>
+                            <p class="creator-role">Desenvolvedor Mobile</p>
+                            <p class="creator-description">Especialista em React Native, Flutter e desenvolvimento de
+                                aplicativos móveis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Criador 7: Pedro Lucas -->
+                    <div class="creator-card" id="pedro-creator-card"
+                        onclick="window.location.href='creator-pedro-lucas.html'">
+                        <div class="creator-image-wrapper">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-pedrolucas.jpg-ywazAB9GSikUVc7RgcGTLrTRjh07Ul.jpeg"
+                                alt="Pedro Lucas" class="creator-photo">
+                        </div>
+                        <div class="creator-info">
+                            <h3 class="creator-name">Pedro Lucas</h3>
+                            <p class="creator-role">Cientista de Dados</p>
+                            <p class="creator-description">Expert em Machine Learning, Python, análise de dados e
+                                inteligência artificial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-
-    <!-- ===== SEÇÃO DE CRIADORES ===== -->
-    <!-- Rodapé com informações sobre a equipe NavCode -->
-    <section class="creators-section">
-        <div class="container" id="container-cards">
-            <!-- Título da seção com ícone -->
-            <div class="section-header">
-                <h2 class="section-title">Nossos Criadores</h2>
-                <p class="section-description">Conheça os profissionais experientes por trás dos nossos cursos</p>
-            </div>
-
-            <!-- Grid dos criadores com cards clicáveis -->
-            <div class="creators-grid">
-                <!-- Criador 1: Rafael Engel Serafin -->
-                <div class="creator-card" onclick="window.location.href='creator-rafael.html'">
-                    <div class="creator-image-wrapper">
-                        <img src="../atex-pii-modules-III-IV-2025-2/assets/party/engel_rafael.jpeg"
-                            alt="Rafael Engel Serafin" class="creator-photo">
-                    </div>
-                    <div class="creator-info">
-                        <h3 class="creator-name">Rafael Engel Serafin</h3>
-                        <p class="creator-role">Especialista em Desenvolvimento Full-Stack</p>
-                        <p class="creator-description">Expert em JavaScript, React, Node.js e arquitetura de sistemas
-                            modernos.</p>
-                    </div>
-                </div>
-
-                <!-- Criador 2: Marcos Paulo Cassiano -->
-                <div class="creator-card" onclick="window.location.href='creator-marcos.html'">
-                    <div class="creator-image-wrapper">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-marcos.jpg-y7eRD3xIsZVvPh0JqMApfXRyDJRrsF.jpeg"
-                            alt="Marcos Paulo Cassiano" class="creator-photo">
-                    </div>
-                    <div class="creator-info">
-                        <h3 class="creator-name">Marcos Paulo Cassiano</h3>
-                        <p class="creator-role">Desenvolvedor Full Stack</p>
-                        <p class="creator-description">Especialista em Python, Django, APIs REST e desenvolvimento
-                            backend.</p>
-                    </div>
-                </div>
-
-                <!-- Criador 3: Rebeca Costa -->
-                <div class="creator-card" onclick="window.location.href='creator-rebeca.html'">
-                    <div class="creator-image-wrapper">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-rebeca.jpg-rkwRykefWVjM0izDaCS36f28RWY5WM.jpeg"
-                            alt="Rebeca Costa" class="creator-photo">
-                    </div>
-                    <div class="creator-info">
-                        <h3 class="creator-name">Rebeca Costa</h3>
-                        <p class="creator-role">Especialista em Redes</p>
-                        <p class="creator-description">Expert em infraestrutura de redes, segurança e administração de
-                            sistemas.</p>
-                    </div>
-                </div>
-
-                <!-- Criador 4: João Pedro Schmidt -->
-                <div class="creator-card" onclick="window.location.href='creator-joao.html'">
-                    <div class="creator-image-wrapper">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-joao.jpg-0Es4xd5GgvV1iYCMdu2WJEEy5me4TI.jpeg"
-                            alt="João Pedro Schmidt" class="creator-photo">
-                    </div>
-                    <div class="creator-info">
-                        <h3 class="creator-name">João Pedro Schmidt</h3>
-                        <p class="creator-role">Analista de Sistemas</p>
-                        <p class="creator-description">Especialista em análise de sistemas, banco de dados e otimização
-                            de performance.</p>
-                    </div>
-                </div>
-
-                <!-- Criador 5: Ryan -->
-                <div class="creator-card" onclick="window.location.href='creator-ryan.html'">
-                    <div class="creator-image-wrapper">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-Ryan.jpg-MXMsmonkRMR1vSXHaa8tCChj5bghTD.jpeg"
-                            alt="Ryan" class="creator-photo">
-                    </div>
-                    <div class="creator-info">
-                        <h3 class="creator-name">Ryan</h3>
-                        <p class="creator-role">Especialista em DevOps</p>
-                        <p class="creator-description">Expert em Docker, Kubernetes, CI/CD e infraestrutura como código.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Criador 6: Luiz Gustavo -->
-                <div class="creator-card" onclick="window.location.href='creator-luiz.html'">
-                    <div class="creator-image-wrapper">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-luizg.jpg-IytYoY6vPHAyAVzBhl7q0SHiY46GBI.jpeg"
-                            alt="Luiz Gustavo" class="creator-photo">
-                    </div>
-                    <div class="creator-info">
-                        <h3 class="creator-name">Luiz Gustavo</h3>
-                        <p class="creator-role">Desenvolvedor Mobile</p>
-                        <p class="creator-description">Especialista em React Native, Flutter e desenvolvimento de
-                            aplicativos móveis.</p>
-                    </div>
-                </div>
-
-                <!-- Criador 7: Pedro Lucas -->
-                <div class="creator-card" id="pedro-creator-card" onclick="window.location.href='creator-pedro-lucas.html'">
-                    <div class="creator-image-wrapper">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-pedrolucas.jpg-ywazAB9GSikUVc7RgcGTLrTRjh07Ul.jpeg"
-                            alt="Pedro Lucas" class="creator-photo">
-                    </div>
-                    <div class="creator-info">
-                        <h3 class="creator-name">Pedro Lucas</h3>
-                        <p class="creator-role">Cientista de Dados</p>
-                        <p class="creator-description">Expert em Machine Learning, Python, análise de dados e
-                            inteligência artificial.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ===== RODAPÉ PRINCIPAL ===== -->
     <!-- Rodapé com informações sobre a equipe NavCode -->
@@ -334,7 +352,7 @@
                                 stroke-width="2">
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                             </svg>
-                            <span class="brand-name">NavCode</span>
+                            <span class="brand-name"><a href="#home" id="navcode-a">NavCode</a></span>
                         </div>
                         <p class="footer-description">
                             Transformando carreiras através da educação em tecnologia da informação.
@@ -384,7 +402,7 @@
 
     <!-- ===== SCRIPTS ===== -->
     <!-- Importando sistema de autenticação -->
-    <script src="auth.js"></script>
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script>
 
     <!-- Script principal da página -->
     <script>

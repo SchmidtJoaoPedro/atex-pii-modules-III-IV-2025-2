@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+     Configurações básicas da página do curso 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvimento Web Full-Stack - NavCode</title>
+    
+     Importando estilos e fontes 
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+     ===== CABEÇALHO DO CURSO ===== 
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                 Navegação de volta para home 
+                <div class="course-navigation">
+                    <button class="back-btn" onclick="goHome()">
+                         Ícone de seta para voltar 
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5"/>
+                            <path d="M12 19l-7-7 7-7"/>
+                        </svg>
+                        Voltar ao Início
+                    </button>
+                    
+                     Logo NavCode 
+                    <div class="brand-logo">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                        <span class="brand-name">NavCode</span>
+                    </div>
+                </div>
+                
+                 Título do curso 
+                <h1>Desenvolvimento Web Full-Stack</h1>
+                <p class="course-subtitle">
+                    Aprenda a criar aplicações web completas do frontend ao backend
+                </p>
+            </div>
+        </div>
+    </header>
+
+     ===== CONTEÚDO PRINCIPAL DO CURSO ===== 
+    <main class="main-content">
+        <div class="container">
+            
+             ===== PROGRESSO DO CURSO ===== 
+            <div class="progress-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                         Ícone de progresso 
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        Seu Progresso
+                    </h2>
+                    <p class="card-description">
+                        <span id="completed-chapters">0</span> de <span id="total-chapters">6</span> capítulos concluídos
+                    </p>
+                </div>
+                <div class="card-content">
+                     Barra de progresso do curso 
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="course-progress-fill"></div>
+                    </div>
+                    <p class="progress-text"><span id="course-progress-percentage">0</span>% concluído</p>
+                </div>
+            </div>
+
+             ===== CAPÍTULOS DO CURSO ===== 
+            <div class="chapters-grid" id="chapters-grid">
+                 Os capítulos serão carregados dinamicamente 
+            </div>
+
+             ===== ÁREA DE CONTEÚDO DO CAPÍTULO ===== 
+            <div class="chapter-content" id="chapter-content" style="display: none;">
+                 Conteúdo será carregado dinamicamente quando capítulo for selecionado 
+            </div>
+        </div>
+    </main>
+
+     ===== SCRIPTS ===== 
+    <script src="auth.js"></script>
+    <script>
+        // ===== DADOS DO CURSO =====
+        /**
+         * Estrutura completa do curso de desenvolvimento web
+         * Cada capítulo contém teoria, exercícios e vídeos
+         */
+        const courseData = {
+            id: 2,
+            title: "Desenvolvimento Web Full-Stack",
+            totalChapters: 6,
+            chapters: [
+                {
+                    id: 1,
+                    title: "HTML5 e Estrutura Web",
+                    description: "Aprenda a estruturar páginas web com HTML5 semântico",
+                    duration: "4h 00min",
+                    exercises: 36, // Aumentado para 36 exercícios (6 por capítulo)
+                    videos: 10,
+                    completed: false,
+                    content: {
+                        theory: `
+                            <h3>🌐 Introdução ao HTML5</h3>
+                            <p>HTML (HyperText Markup Language) é a linguagem de marcação padrão para criar páginas web. O HTML5 é a versão mais recente e moderna.</p>
+                            
+                            <h4>Estrutura Básica do HTML:</h4>
+                            <ul>
+                                <li><strong>&lt;!DOCTYPE html&gt;:</strong> Declara o tipo de documento</li>
+                                <li><strong>&lt;html&gt;:</strong> Elemento raiz da página</li>
+                                <li><strong>&lt;head&gt;:</strong> Metadados da página</li>
+                                <li><strong>&lt;body&gt;:</strong> Conteúdo visível da página</li>
+                            </ul>
+                            
+                            <h4>📝 Tags Semânticas HTML5:</h4>
+                            <ul>
+                                <li>&lt;header&gt;: Cabeçalho da página ou seção</li>
+                                <li>&lt;nav&gt;: Menu de navegação</li>
+                                <li>&lt;main&gt;: Conteúdo principal</li>
+                                <li>&lt;section&gt;: Seção de conteúdo</li>
+                                <li>&lt;article&gt;: Artigo independente</li>
+                                <li>&lt;aside&gt;: Conteúdo lateral</li>
+                                <li>&lt;footer&gt;: Rodapé da página</li>
+                            </ul>
+                            
+                            <h4>🔗 Elementos Importantes:</h4>
+                            <ul>
+                                <li>Links: &lt;a href="url"&gt;</li>
+                                <li>Imagens: &lt;img src="imagem.jpg" alt="descrição"&gt;</li>
+                                <li>Listas: &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</li>
+                                <li>Formulários: &lt;form&gt;, &lt;input&gt;, &lt;button&gt;</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                question: "Qual tag HTML5 é usada para o conteúdo principal da página?",
+                                options: ["<div>", "<main>", "<content>", "<primary>"],
+                                correct: 1,
+                                explanation: "A tag <main> é semântica e representa o conteúdo principal da página."
+                            },
+                            {
+                                question: "O que significa HTML?",
+                                options: ["HyperText Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "HyperText Modern Language"],
+                                correct: 0,
+                                explanation: "HTML significa HyperText Markup Language - linguagem de marcação de hipertexto."
+                            },
+                            {
+                                question: "Qual atributo é obrigatório na tag <img>?",
+                                options: ["src", "alt", "width", "height"],
+                                correct: 0,
+                                explanation: "O atributo 'src' é obrigatório pois especifica o caminho da imagem."
+                            },
+                            {
+                                question: "Para que serve a tag <nav>?",
+                                options: ["Navegação entre páginas", "Menu de navegação", "Navegar no código", "Criar links"],
+                                correct: 1,
+                                explanation: "A tag <nav> é semântica e representa um menu de navegação da página."
+                            },
+                            {
+                                question: "Qual a diferença entre <ul> e <ol>?",
+                                options: ["Não há diferença", "<ul> é lista não ordenada, <ol> é ordenada", "<ul> é para links, <ol> para texto", "<ul> é antiga, <ol> é nova"],
+                                correct: 1,
+                                explanation: "<ul> cria listas não ordenadas (com marcadores), <ol> cria listas ordenadas (numeradas)."
+                            },
+                            {
+                                question: "O que é DOCTYPE em HTML?",
+                                options: ["Tipo de documento", "Tipo de dados", "Tipo de design", "Tipo de código"],
+                                correct: 0,
+                                explanation: "DOCTYPE declara o tipo de documento HTML para o navegador interpretar corretamente."
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 2,
+                    title: "CSS3 e Design Responsivo",
+                    description: "Estilize páginas web e crie layouts responsivos",
+                    duration: "5h 30min",
+                    exercises: 36,
+                    videos: 12,
+                    completed: false,
+                    content: {
+                        theory: `
+                            <h3>🎨 Introdução ao CSS3</h3>
+                            <p>CSS (Cascading Style Sheets) é a linguagem usada para estilizar páginas HTML, controlando cores, fontes, layouts e animações.</p>
+                            
+                            <h4>Formas de Aplicar CSS:</h4>
+                            <ul>
+                                <li><strong>Inline:</strong> style="color: red;"</li>
+                                <li><strong>Interno:</strong> &lt;style&gt; no &lt;head&gt;</li>
+                                <li><strong>Externo:</strong> arquivo .css separado</li>
+                            </ul>
+                            
+                            <h4>🎯 Seletores CSS:</h4>
+                            <ul>
+                                <li>Elemento: p { }</li>
+                                <li>Classe: .classe { }</li>
+                                <li>ID: #id { }</li>
+                                <li>Atributo: [type="text"] { }</li>
+                            </ul>
+                            
+                            <h4>📱 Design Responsivo:</h4>
+                            <ul>
+                                <li>Media queries: @media (max-width: 768px)</li>
+                                <li>Flexbox: display: flex</li>
+                                <li>Grid: display: grid</li>
+                                <li>Unidades relativas: %, em, rem, vw, vh</li>
+                            </ul>
+                            
+                            <h4>✨ Recursos CSS3:</h4>
+                            <ul>
+                                <li>Gradientes: linear-gradient(), radial-gradient()</li>
+                                <li>Sombras: box-shadow, text-shadow</li>
+                                <li>Transformações: transform, rotate, scale</li>
+                                <li>Animações: @keyframes, transition</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                question: "Qual seletor CSS tem maior especificidade?",
+                                options: ["Elemento", "Classe", "ID", "Inline"],
+                                correct: 3,
+                                explanation: "Estilos inline têm a maior especificidade, seguidos por ID, classe e elemento."
+                            },
+                            {
+                                question: "O que significa CSS?",
+                                options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System", "Code Style Syntax"],
+                                correct: 1,
+                                explanation: "CSS significa Cascading Style Sheets - folhas de estilo em cascata."
+                            },
+                            {
+                                question: "Para que serve o Flexbox?",
+                                options: ["Criar animações", "Layout flexível e alinhamento", "Adicionar cores", "Criar formulários"],
+                                correct: 1,
+                                explanation: "Flexbox facilita a criação de layouts flexíveis e o alinhamento de elementos."
+                            },
+                            {
+                                question: "Qual propriedade CSS controla o espaçamento interno?",
+                                options: ["margin", "padding", "border", "spacing"],
+                                correct: 1,
+                                explanation: "Padding controla o espaçamento interno entre o conteúdo e a borda do elemento."
+                            },
+                            {
+                                question: "O que são media queries?",
+                                options: ["Consultas de mídia para responsividade", "Consultas de banco de dados", "Consultas de imagem", "Consultas de vídeo"],
+                                correct: 0,
+                                explanation: "Media queries permitem aplicar estilos diferentes baseados no tamanho da tela e dispositivo."
+                            },
+                            {
+                                question: "Qual unidade CSS é relativa ao tamanho da fonte do elemento pai?",
+                                options: ["px", "em", "rem", "%"],
+                                correct: 1,
+                                explanation: "A unidade 'em' é relativa ao tamanho da fonte do elemento pai."
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 3,
+                    title: "JavaScript Fundamentals",
+                    description: "Programação client-side e interatividade",
+                    duration: "6h 15min",
+                    exercises: 36,
+                    videos: 15,
+                    completed: false,
+                    content: {
+                        theory: `
+                            <h3>⚡ Introdução ao JavaScript</h3>
+                            <p>JavaScript é a linguagem de programação que adiciona interatividade e dinamismo às páginas web.</p>
+                            
+                            <h4>Conceitos Básicos:</h4>
+                            <ul>
+                                <li><strong>Variáveis:</strong> let, const, var</li>
+                                <li><strong>Tipos de dados:</strong> string, number, boolean, object, array</li>
+                                <li><strong>Operadores:</strong> +, -, *, /, %, ==, ===, !=, !==</li>
+                                <li><strong>Estruturas condicionais:</strong> if, else, switch</li>
+                                <li><strong>Loops:</strong> for, while, forEach</li>
+                            </ul>
+                            
+                            <h4>🔧 Funções:</h4>
+                            <ul>
+                                <li>Declaração: function nome() { }</li>
+                                <li>Expressão: const nome = function() { }</li>
+                                <li>Arrow function: const nome = () => { }</li>
+                                <li>Parâmetros e retorno</li>
+                            </ul>
+                            
+                            <h4>🌐 DOM (Document Object Model):</h4>
+                            <ul>
+                                <li>Selecionar elementos: getElementById, querySelector</li>
+                                <li>Modificar conteúdo: innerHTML, textContent</li>
+                                <li>Modificar estilos: style, classList</li>
+                                <li>Eventos: addEventListener, onclick</li>
+                            </ul>
+                            
+                            <h4>📦 Objetos e Arrays:</h4>
+                            <ul>
+                                <li>Objetos: { propriedade: valor }</li>
+                                <li>Arrays: [item1, item2, item3]</li>
+                                <li>Métodos de array: push, pop, map, filter</li>
+                                <li>JSON: JavaScript Object Notation</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                question: "Qual é a diferença entre let e var?",
+                                options: ["Não há diferença", "let tem escopo de bloco, var tem escopo de função", "var é mais novo", "let é mais rápido"],
+                                correct: 1,
+                                explanation: "let tem escopo de bloco e não pode ser redeclarada, var tem escopo de função."
+                            },
+                            {
+                                question: "Como selecionar um elemento por ID no JavaScript?",
+                                options: ["getElement('id')", "getElementById('id')", "selectId('id')", "findId('id')"],
+                                correct: 1,
+                                explanation: "document.getElementById('id') é o método correto para selecionar por ID."
+                            },
+                            {
+                                question: "O que é uma arrow function?",
+                                options: ["Função com seta", "Sintaxe mais concisa para funções", "Função que aponta", "Função especial"],
+                                correct: 1,
+                                explanation: "Arrow functions (=>) são uma sintaxe mais concisa para escrever funções em JavaScript."
+                            },
+                            {
+                                question: "Qual método adiciona um item ao final de um array?",
+                                options: ["add()", "push()", "append()", "insert()"],
+                                correct: 1,
+                                explanation: "O método push() adiciona um ou mais elementos ao final de um array."
+                            },
+                            {
+                                question: "O que significa DOM?",
+                                options: ["Document Object Model", "Data Object Management", "Dynamic Object Method", "Document Operation Mode"],
+                                correct: 0,
+                                explanation: "DOM significa Document Object Model - modelo de objeto do documento."
+                            },
+                            {
+                                question: "Como adicionar um evento de clique a um elemento?",
+                                options: ["element.click()", "element.addEventListener('click', function)", "element.onclick()", "element.addClick()"],
+                                correct: 1,
+                                explanation: "addEventListener('click', function) é a forma moderna e recomendada de adicionar eventos."
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 4,
+                    title: "React.js e Componentes",
+                    description: "Biblioteca JavaScript para interfaces de usuário",
+                    duration: "7h 45min",
+                    exercises: 36,
+                    videos: 18,
+                    completed: false,
+                    content: {
+                        theory: `
+                            <h3>⚛️ Introdução ao React</h3>
+                            <p>React é uma biblioteca JavaScript para construir interfaces de usuário baseadas em componentes reutilizáveis.</p>
+                            
+                            <h4>Conceitos Fundamentais:</h4>
+                            <ul>
+                                <li><strong>Componentes:</strong> Blocos de construção reutilizáveis</li>
+                                <li><strong>JSX:</strong> Sintaxe que mistura JavaScript e HTML</li>
+                                <li><strong>Props:</strong> Propriedades passadas para componentes</li>
+                                <li><strong>State:</strong> Estado interno do componente</li>
+                            </ul>
+                            
+                            <h4>🎣 Hooks Principais:</h4>
+                            <ul>
+                                <li>useState: Gerenciar estado local</li>
+                                <li>useEffect: Efeitos colaterais e ciclo de vida</li>
+                                <li>useContext: Compartilhar dados entre componentes</li>
+                                <li>useReducer: Gerenciar estado complexo</li>
+                            </ul>
+                            
+                            <h4>🔄 Ciclo de Vida:</h4>
+                            <ul>
+                                <li>Montagem: componentDidMount / useEffect</li>
+                                <li>Atualização: componentDidUpdate / useEffect</li>
+                                <li>Desmontagem: componentWillUnmount / useEffect cleanup</li>
+                            </ul>
+                            
+                            <h4>📋 Boas Práticas:</h4>
+                            <ul>
+                                <li>Componentes pequenos e focados</li>
+                                <li>Props imutáveis</li>
+                                <li>Estado mínimo necessário</li>
+                                <li>Nomes descritivos para componentes</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                question: "O que é JSX no React?",
+                                options: ["JavaScript XML", "Java Syntax Extension", "JSON XML", "JavaScript Extension"],
+                                correct: 0,
+                                explanation: "JSX é JavaScript XML, uma extensão de sintaxe que permite escrever HTML dentro do JavaScript."
+                            },
+                            {
+                                question: "Como criar estado em um componente funcional?",
+                                options: ["this.state", "useState()", "setState()", "createState()"],
+                                correct: 1,
+                                explanation: "useState() é o hook usado para criar e gerenciar estado em componentes funcionais."
+                            },
+                            {
+                                question: "O que são props no React?",
+                                options: ["Propriedades passadas para componentes", "Funções do componente", "Estados internos", "Métodos do React"],
+                                correct: 0,
+                                explanation: "Props são propriedades (dados) passadas de um componente pai para um componente filho."
+                            },
+                            {
+                                question: "Quando usar useEffect?",
+                                options: ["Para criar componentes", "Para efeitos colaterais e ciclo de vida", "Para criar estado", "Para renderizar JSX"],
+                                correct: 1,
+                                explanation: "useEffect é usado para efeitos colaterais como chamadas de API, subscriptions e limpeza."
+                            },
+                            {
+                                question: "Como passar dados de pai para filho no React?",
+                                options: ["Através de props", "Através de state", "Através de hooks", "Através de context"],
+                                correct: 0,
+                                explanation: "Dados são passados de componente pai para filho através de props."
+                            },
+                            {
+                                question: "O que é um componente controlado?",
+                                options: ["Componente com estado", "Input cujo valor é controlado pelo React", "Componente com props", "Componente com useEffect"],
+                                correct: 1,
+                                explanation: "Componente controlado é um input cujo valor é controlado pelo estado do React."
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 5,
+                    title: "Node.js e Backend",
+                    description: "Desenvolvimento server-side com JavaScript",
+                    duration: "6h 30min",
+                    exercises: 36,
+                    videos: 14,
+                    completed: false,
+                    content: {
+                        theory: `
+                            <h3>🚀 Introdução ao Node.js</h3>
+                            <p>Node.js permite executar JavaScript no servidor, criando aplicações backend completas.</p>
+                            
+                            <h4>Conceitos Fundamentais:</h4>
+                            <ul>
+                                <li><strong>Runtime:</strong> Ambiente de execução JavaScript</li>
+                                <li><strong>NPM:</strong> Gerenciador de pacotes</li>
+                                <li><strong>Módulos:</strong> Sistema de importação/exportação</li>
+                                <li><strong>Event Loop:</strong> Processamento assíncrono</li>
+                            </ul>
+                            
+                            <h4>🌐 Express.js Framework:</h4>
+                            <ul>
+                                <li>Criação de servidores web</li>
+                                <li>Roteamento: GET, POST, PUT, DELETE</li>
+                                <li>Middleware: Funções intermediárias</li>
+                                <li>Tratamento de requisições e respostas</li>
+                            </ul>
+                            
+                            <h4>🔗 APIs REST:</h4>
+                            <ul>
+                                <li>Endpoints: /api/users, /api/products</li>
+                                <li>Métodos HTTP: GET, POST, PUT, DELETE</li>
+                                <li>Status codes: 200, 201, 400, 404, 500</li>
+                                <li>JSON: Formato de troca de dados</li>
+                            </ul>
+                            
+                            <h4>🗄️ Banco de Dados:</h4>
+                            <ul>
+                                <li>MongoDB: Banco NoSQL</li>
+                                <li>MySQL: Banco relacional</li>
+                                <li>Mongoose: ODM para MongoDB</li>
+                                <li>Sequelize: ORM para SQL</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                question: "O que é Node.js?",
+                                options: ["Framework JavaScript", "Runtime JavaScript para servidor", "Banco de dados", "Editor de código"],
+                                correct: 1,
+                                explanation: "Node.js é um runtime que permite executar JavaScript no servidor, fora do navegador."
+                            },
+                            {
+                                question: "O que é NPM?",
+                                options: ["Node Package Manager", "New Programming Method", "Node Project Manager", "Network Package Manager"],
+                                correct: 0,
+                                explanation: "NPM é o Node Package Manager, gerenciador de pacotes do Node.js."
+                            },
+                            {
+                                question: "Qual método HTTP é usado para criar recursos?",
+                                options: ["GET", "POST", "PUT", "DELETE"],
+                                correct: 1,
+                                explanation: "POST é usado para criar novos recursos no servidor."
+                            },
+                            {
+                                question: "O que é middleware no Express?",
+                                options: ["Banco de dados", "Função que executa entre requisição e resposta", "Tipo de rota", "Método HTTP"],
+                                correct: 1,
+                                explanation: "Middleware são funções que executam durante o ciclo de requisição-resposta."
+                            },
+                            {
+                                question: "Qual status code indica sucesso na criação?",
+                                options: ["200", "201", "400", "404"],
+                                correct: 1,
+                                explanation: "Status 201 (Created) indica que um recurso foi criado com sucesso."
+                            },
+                            {
+                                question: "O que é uma API REST?",
+                                options: ["Tipo de banco de dados", "Arquitetura para serviços web", "Framework JavaScript", "Tipo de servidor"],
+                                correct: 1,
+                                explanation: "REST é uma arquitetura para criar serviços web que usa métodos HTTP padrão."
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 6,
+                    title: "Projeto Full-Stack",
+                    description: "Desenvolva uma aplicação web completa",
+                    duration: "8h 00min",
+                    exercises: 36,
+                    videos: 16,
+                    completed: false,
+                    content: {
+                        theory: `
+                            <h3>🎯 Projeto Final: Aplicação Full-Stack</h3>
+                            <p>Neste projeto final, você criará uma aplicação web completa integrando frontend e backend.</p>
+                            
+                            <h4>Arquitetura do Projeto:</h4>
+                            <ol>
+                                <li><strong>Frontend:</strong> React.js com componentes reutilizáveis</li>
+                                <li><strong>Backend:</strong> Node.js + Express.js</li>
+                                <li><strong>Banco de Dados:</strong> MongoDB ou MySQL</li>
+                                <li><strong>API:</strong> RESTful endpoints</li>
+                                <li><strong>Deploy:</strong> Vercel (frontend) + Heroku (backend)</li>
+                            </ol>
+                            
+                            <h4>🛠️ Funcionalidades a Implementar:</h4>
+                            <ul>
+                                <li>Sistema de autenticação (login/registro)</li>
+                                <li>CRUD completo (Create, Read, Update, Delete)</li>
+                                <li>Interface responsiva e intuitiva</li>
+                                <li>Validação de dados frontend e backend</li>
+                                <li>Tratamento de erros</li>
+                                <li>Testes básicos</li>
+                            </ul>
+                            
+                            <h4>📋 Etapas de Desenvolvimento:</h4>
+                            <ol>
+                                <li>Planejamento e wireframes</li>
+                                <li>Setup do ambiente de desenvolvimento</li>
+                                <li>Criação da API backend</li>
+                                <li>Desenvolvimento do frontend</li>
+                                <li>Integração frontend-backend</li>
+                                <li>Testes e deploy</li>
+                            </ol>
+                            
+                            <h4>🏆 Certificação NavCode</h4>
+                            <p>Ao concluir este projeto, você receberá seu certificado NavCode em Desenvolvimento Web Full-Stack!</p>
+                        `,
+                        exercises: [
+                            {
+                                question: "Qual é a primeira etapa de um projeto full-stack?",
+                                options: ["Codificar imediatamente", "Planejamento e wireframes", "Escolher cores", "Fazer deploy"],
+                                correct: 1,
+                                explanation: "O planejamento e criação de wireframes são essenciais antes de começar a codificar."
+                            },
+                            {
+                                question: "O que significa CRUD?",
+                                options: ["Create Read Update Delete", "Code Run Update Deploy", "Create Render Update Design", "Copy Read Upload Download"],
+                                correct: 0,
+                                explanation: "CRUD representa as quatro operações básicas: Create, Read, Update, Delete."
+                            },
+                            {
+                                question: "Por que validar dados no frontend E backend?",
+                                options: ["Não é necessário", "Segurança e experiência do usuário", "Apenas por costume", "Para usar mais código"],
+                                correct: 1,
+                                explanation: "Validação no frontend melhora UX, no backend garante segurança e integridade dos dados."
+                            },
+                            {
+                                question: "O que é deploy?",
+                                options: ["Deletar código", "Publicar aplicação na internet", "Criar backup", "Testar código"],
+                                correct: 1,
+                                explanation: "Deploy é o processo de publicar e disponibilizar a aplicação na internet."
+                            },
+                            {
+                                question: "Por que separar frontend e backend?",
+                                options: ["Não é necessário", "Escalabilidade e manutenibilidade", "Para complicar", "Tradição"],
+                                correct: 1,
+                                explanation: "Separação permite melhor escalabilidade, manutenibilidade e reutilização de código."
+                            },
+                            {
+                                question: "O que são wireframes?",
+                                options: ["Códigos especiais", "Esboços da interface do usuário", "Tipos de erro", "Ferramentas de deploy"],
+                                correct: 1,
+                                explanation: "Wireframes são esboços que mostram a estrutura e layout da interface antes da implementação."
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+
+        // ===== VARIÁVEIS GLOBAIS =====
+        let currentChapter = null; // Capítulo atualmente selecionado
+        let currentExercise = 0;   // Exercício atual
+        let userProgress = {};     // Progresso do usuário
+
+        // ===== INICIALIZAÇÃO =====
+        /**
+         * Função executada quando a página carrega
+         * Verifica autenticação e carrega conteúdo do curso
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[NavCode] Inicializando curso de Desenvolvimento Web...');
+            
+            // Verificar se usuário está logado
+            if (!isUserLoggedIn()) {
+                alert('Você precisa estar logado para acessar este curso!');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Carregar progresso do usuário
+            loadUserProgress();
+            
+            // Carregar capítulos do curso
+            loadChapters();
+            
+            console.log('[NavCode] Curso de Web carregado com sucesso!');
+        });
+
+        // ===== FUNÇÕES DE CARREGAMENTO =====
+        /**
+         * Carrega progresso salvo do usuário
+         */
+        function loadUserProgress() {
+            const savedProgress = localStorage.getItem('navcode_web_progress');
+            if (savedProgress) {
+                userProgress = JSON.parse(savedProgress);
+            } else {
+                // Inicializar progresso vazio
+                userProgress = {
+                    courseId: courseData.id,
+                    completedChapters: [],
+                    chapterProgress: {}
+                };
+            }
+            
+            // Atualizar interface com progresso
+            updateProgressDisplay();
+        }
+
+        /**
+         * Atualiza exibição do progresso na interface
+         */
+        function updateProgressDisplay() {
+            const completedCount = userProgress.completedChapters.length;
+            const totalChapters = courseData.totalChapters;
+            const percentage = Math.round((completedCount / totalChapters) * 100);
+            
+            // Atualizar elementos da interface
+            document.getElementById('completed-chapters').textContent = completedCount;
+            document.getElementById('total-chapters').textContent = totalChapters;
+            document.getElementById('course-progress-percentage').textContent = percentage;
+            
+            // Animar barra de progresso
+            const progressFill = document.getElementById('course-progress-fill');
+            setTimeout(() => {
+                progressFill.style.width = `${percentage}%`;
+            }, 300);
+        }
+
+        /**
+         * Carrega e exibe todos os capítulos do curso
+         */
+        function loadChapters() {
+            const chaptersGrid = document.getElementById('chapters-grid');
+            chaptersGrid.innerHTML = '';
+            
+            // Criar cartão para cada capítulo
+            courseData.chapters.forEach((chapter, index) => {
+                const chapterCard = createChapterCard(chapter, index);
+                chaptersGrid.appendChild(chapterCard);
+            });
+        }
+
+        /**
+         * Cria elemento HTML para um capítulo
+         * @param {Object} chapter - Dados do capítulo
+         * @param {number} index - Índice do capítulo
+         * @returns {HTMLElement} - Elemento do cartão
+         */
+        function createChapterCard(chapter, index) {
+            const isCompleted = userProgress.completedChapters.includes(chapter.id);
+            const isLocked = index > 0 && !userProgress.completedChapters.includes(courseData.chapters[index - 1].id);
+            
+            const card = document.createElement('div');
+            card.className = `chapter-card ${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}`;
+            
+            // Definir ação do clique
+            if (!isLocked) {
+                card.onclick = () => openChapter(chapter);
+            }
+            
+            card.innerHTML = `
+                <div class="chapter-header">
+                    <div class="chapter-info">
+                        <div class="chapter-icon-wrapper">
+                            ${getChapterIcon(chapter.id, isCompleted, isLocked)}
+                        </div>
+                        <div class="chapter-details">
+                            <h3>Capítulo ${chapter.id}: ${chapter.title}</h3>
+                            <div class="chapter-duration">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                                ${chapter.duration}
+                            </div>
+                        </div>
+                    </div>
+                    ${isCompleted ? '<div class="completion-badge">✓ Concluído</div>' : ''}
+                    ${isLocked ? '<div class="lock-badge">🔒 Bloqueado</div>' : ''}
+                </div>
+                <div class="chapter-body">
+                    <p class="chapter-description">${chapter.description}</p>
+                    <div class="chapter-stats">
+                        <div class="stat">
+                            <span class="stat-number">${chapter.exercises}</span>
+                            <span class="stat-label">Exercícios</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${chapter.videos}</span>
+                            <span class="stat-label">Vídeos</span>
+                        </div>
+                    </div>
+                    <button class="chapter-button ${isLocked ? 'disabled' : 'primary'}" ${isLocked ? 'disabled' : ''}>
+                        ${isLocked ? 'Bloqueado' : isCompleted ? 'Revisar Capítulo' : 'Iniciar Capítulo'}
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        /**
+         * Retorna ícone apropriado para o capítulo
+         * @param {number} chapterId - ID do capítulo
+         * @param {boolean} isCompleted - Se está concluído
+         * @param {boolean} isLocked - Se está bloqueado
+         * @returns {string} - HTML do ícone
+         */
+        function getChapterIcon(chapterId, isCompleted, isLocked) {
+            if (isLocked) {
+                return `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <circle cx="12" cy="16" r="1"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>`;
+            }
+            
+            if (isCompleted) {
+                return `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22,4 12,14.01 9,11.01"/>
+                </svg>`;
+            }
+            
+            // Ícones específicos por capítulo
+            const icons = {
+                1: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10,9 9,9 8,9"/>
+                </svg>`,
+                2: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                    <path d="M2 2l7.586 7.586"/>
+                    <circle cx="11" cy="11" r="2"/>
+                </svg>`,
+                3: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                </svg>`,
+                4: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/>
+                    <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                    <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/>
+                    <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/>
+                    <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/>
+                    <path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/>
+                </svg>`,
+                5: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>`,
+                6: `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                </svg>`
+            };
+            
+            return icons[chapterId] || icons[1];
+        }
+
+        // ===== FUNÇÕES DE NAVEGAÇÃO =====
+        /**
+         * Abre um capítulo específico
+         * @param {Object} chapter - Dados do capítulo
+         */
+        function openChapter(chapter) {
+            currentChapter = chapter;
+            currentExercise = 0;
+            
+            // Esconder grid de capítulos
+            document.getElementById('chapters-grid').style.display = 'none';
+            
+            // Mostrar área de conteúdo
+            const contentArea = document.getElementById('chapter-content');
+            contentArea.style.display = 'block';
+            
+            // Carregar conteúdo do capítulo
+            loadChapterContent(chapter);
+            
+            console.log(`[NavCode] Capítulo aberto: ${chapter.title}`);
+        }
+
+        /**
+         * Carrega conteúdo de um capítulo
+         * @param {Object} chapter - Dados do capítulo
+         */
+        function loadChapterContent(chapter) {
+            const contentArea = document.getElementById('chapter-content');
+            
+            contentArea.innerHTML = `
+                <div class="chapter-content-header">
+                    <button class="back-btn" onclick="backToChapters()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5"/>
+                            <path d="M12 19l-7-7 7-7"/>
+                        </svg>
+                        Voltar aos Capítulos
+                    </button>
+                    <h2>Capítulo ${chapter.id}: ${chapter.title}</h2>
+                </div>
+                
+                <div class="chapter-tabs">
+                    <button class="tab-btn active" onclick="showTab('theory')">📚 Teoria</button>
+                    <button class="tab-btn" onclick="showTab('exercises')">✏️ Exercícios</button>
+                    <button class="tab-btn" onclick="showTab('videos')">🎥 Vídeos</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="theory-tab" class="tab-pane active">
+                        <div class="theory-content">
+                            ${chapter.content.theory}
+                        </div>
+                        <button class="btn btn-primary" onclick="showTab('exercises')">
+                            Continuar para Exercícios →
+                        </button>
+                    </div>
+                    
+                    <div id="exercises-tab" class="tab-pane">
+                        <div id="exercise-content">
+                             Exercícios serão carregados aqui 
+                        </div>
+                    </div>
+                    
+                    <div id="videos-tab" class="tab-pane">
+                        <div class="videos-content">
+                            <h3>🎥 Videoaulas do Capítulo</h3>
+                            <div class="videos-grid">
+                                ${generateVideosList(chapter)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Carregar primeiro exercício
+            loadExercise(0);
+        }
+
+        /**
+         * Gera lista de vídeos para o capítulo
+         * @param {Object} chapter - Dados do capítulo
+         * @returns {string} - HTML dos vídeos
+         */
+        function generateVideosList(chapter) {
+            let videosHTML = '';
+            for (let i = 1; i <= chapter.videos; i++) {
+                videosHTML += `
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5,3 19,12 5,21"/>
+                            </svg>
+                        </div>
+                        <div class="video-info">
+                            <h4>Vídeo ${i}: ${chapter.title} - Parte ${i}</h4>
+                            <p>Duração: ${Math.floor(Math.random() * 20) + 8} minutos</p>
+                        </div>
+                    </div>
+                `;
+            }
+            return videosHTML;
+        }
+
+        /**
+         * Mostra aba específica do capítulo
+         * @param {string} tabName - Nome da aba
+         */
+        function showTab(tabName) {
+            // Remover classe active de todas as abas
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            
+            // Ativar aba selecionada
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Carregar conteúdo específico se necessário
+            if (tabName === 'exercises') {
+                loadExercise(currentExercise);
+            }
+        }
+
+        /**
+         * Carrega exercício específico
+         * @param {number} exerciseIndex - Índice do exercício
+         */
+        function loadExercise(exerciseIndex) {
+            if (!currentChapter || !currentChapter.content.exercises) return;
+            
+            const exercises = currentChapter.content.exercises;
+            const exercise = exercises[exerciseIndex];
+            
+            if (!exercise) {
+                // Todos os exercícios concluídos
+                showExerciseCompletion();
+                return;
+            }
+            
+            const exerciseContent = document.getElementById('exercise-content');
+            exerciseContent.innerHTML = `
+                <div class="exercise-header">
+                    <h3>Exercício ${exerciseIndex + 1} de ${exercises.length}</h3>
+                    <div class="exercise-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${((exerciseIndex) / exercises.length) * 100}%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exercise-question">
+                    <h4>${exercise.question}</h4>
+                    <div class="exercise-options">
+                        ${exercise.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectOption(${index})">
+                                ${String.fromCharCode(65 + index)}) ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div id="exercise-feedback" class="exercise-feedback" style="display: none;">
+                     Feedback será mostrado aqui 
+                </div>
+                
+                <div class="exercise-actions">
+                    <button id="submit-btn" class="btn btn-primary" onclick="submitAnswer()" disabled>
+                        Confirmar Resposta
+                    </button>
+                </div>
+            `;
+        }
+
+        /**
+         * Seleciona uma opção no exercício
+         * @param {number} optionIndex - Índice da opção selecionada
+         */
+        function selectOption(optionIndex) {
+            // Remover seleção anterior
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            
+            // Selecionar nova opção
+            document.querySelectorAll('.option-btn')[optionIndex].classList.add('selected');
+            
+            // Habilitar botão de submissão
+            document.getElementById('submit-btn').disabled = false;
+            
+            // Armazenar resposta selecionada
+            window.selectedAnswer = optionIndex;
+        }
+
+        /**
+         * Submete resposta do exercício
+         */
+        function submitAnswer() {
+            if (window.selectedAnswer === undefined) return;
+            
+            const exercise = currentChapter.content.exercises[currentExercise];
+            const isCorrect = window.selectedAnswer === exercise.correct;
+            
+            // Mostrar feedback
+            const feedbackDiv = document.getElementById('exercise-feedback');
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = `
+                <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+                    <div class="feedback-icon">
+                        ${isCorrect ? '✅' : '❌'}
+                    </div>
+                    <div class="feedback-content">
+                        <h4>${isCorrect ? 'Correto!' : 'Incorreto'}</h4>
+                        <p>${exercise.explanation}</p>
+                        ${!isCorrect ? `<p><strong>Resposta correta:</strong> ${String.fromCharCode(65 + exercise.correct)}) ${exercise.options[exercise.correct]}</p>` : ''}
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="nextExercise()">
+                    ${currentExercise < currentChapter.content.exercises.length - 1 ? 'Próximo Exercício' : 'Finalizar Capítulo'}
+                </button>
+            `;
+            
+            // Desabilitar opções
+            document.querySelectorAll('.option-btn').forEach(btn => btn.disabled = true);
+            document.getElementById('submit-btn').style.display = 'none';
+        }
+
+        /**
+         * Avança para próximo exercício
+         */
+        function nextExercise() {
+            currentExercise++;
+            window.selectedAnswer = undefined;
+            loadExercise(currentExercise);
+        }
+
+        /**
+         * Mostra tela de conclusão dos exercícios
+         */
+        function showExerciseCompletion() {
+            const exerciseContent = document.getElementById('exercise-content');
+            exerciseContent.innerHTML = `
+                <div class="completion-screen">
+                    <div class="completion-icon">🎉</div>
+                    <h3>Parabéns!</h3>
+                    <p>Você concluiu todos os exercícios deste capítulo!</p>
+                    <button class="btn btn-primary" onclick="completeChapter()">
+                        Marcar Capítulo como Concluído
+                    </button>
+                </div>
+            `;
+        }
+
+        /**
+         * Marca capítulo como concluído
+         */
+        function completeChapter() {
+            if (!userProgress.completedChapters.includes(currentChapter.id)) {
+                userProgress.completedChapters.push(currentChapter.id);
+                
+                // Salvar progresso
+                localStorage.setItem('navcode_web_progress', JSON.stringify(userProgress));
+                
+                alert(`Capítulo "${currentChapter.title}" concluído com sucesso! 🎉`);
+                
+                // Voltar para lista de capítulos
+                backToChapters();
+            }
+        }
+
+        /**
+         * Volta para a lista de capítulos
+         */
+        function backToChapters() {
+            document.getElementById('chapter-content').style.display = 'none';
+            document.getElementById('chapters-grid').style.display = 'grid';
+            
+            // Recarregar capítulos para atualizar status
+            loadChapters();
+            updateProgressDisplay();
+            
+            currentChapter = null;
+        }
+
+        /**
+         * Volta para a página inicial
+         */
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        /**
+         * Verifica se usuário está logado
+         * @returns {boolean} - Status de login
+         */
+        function isUserLoggedIn() {
+            return localStorage.getItem('navcode_logged_in') === 'true';
+        }
+
+        // ===== LOG DE INICIALIZAÇÃO =====
+        console.log('[NavCode] Sistema de curso Web inicializado');
+        console.log('[NavCode] Capítulos disponíveis:', courseData.totalChapters);
+        console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Certificação');
+    </script>
+</body>
+</html>

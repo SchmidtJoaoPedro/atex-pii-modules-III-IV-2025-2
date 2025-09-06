@@ -91,6 +91,7 @@ body {
 
 .creator-card.dark-mode {
   background: #464646ff;
+  border-color: var(--navcode-primary);
 }
 
 .title-avaliation.dark-mode {
@@ -108,6 +109,12 @@ body {
 .creator-header.dark-mode {
   background-color: #3E3E3E;
   border-bottom: 0px;
+}
+
+.header-user-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .creator-main.dark-mode {
@@ -132,7 +139,7 @@ body {
 
 .chapter-card.completed.dark-mode,
 .certification-info.dark-mode {
-  background: #303030ff;
+  background: #363636ff;
 }
 
 .reviews-card.dark-mode,
@@ -150,6 +157,8 @@ body {
 .chapter-card.dark-mode {
   background: #464646ff;
 }
+// Fim do tema Escuro
+
 
 #user-darkmode-div { 
   position: relative; 
@@ -1815,6 +1824,7 @@ body {
 #btn-submit-review button {
   border-radius: 5px;
   padding: 3px;
+  border-color: var(--navcode-primary);
   background-color: #b6b6b6ff;
 }
 

@@ -105,6 +105,36 @@ body {
   background: #2E2E2E;
 }
 
+.creator-header.dark-mode {
+  background-color: #3E3E3E;
+  border-bottom: 0px;
+}
+
+.creator-main.dark-mode {
+  background: #3f3f3fff;
+}
+
+.contact-item.dark-mode,
+.experience-item.dark-mode,
+.skill-item.dark-mode {
+  background: #949494ff;
+}
+
+.profile-section.dark-mode {
+  background: #464646ff;
+  border: var(--navcode-primary);
+}
+
+.back-button.dark-mode {
+  background: #464646ff;
+  border-color: var(--navcode-primary);
+}
+
+.chapter-card.completed.dark-mode,
+.certification-info.dark-mode {
+  background: #303030ff;
+}
+
 .reviews-card.dark-mode,
 .card-content.dark-mode,
 .card-header.dark-mode,

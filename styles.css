@@ -2062,6 +2062,7 @@ body {
 
 .abbr {
   text-decoration: none;
+  cursor: help;
 }
 
 /* Conteúdo do rodapé */

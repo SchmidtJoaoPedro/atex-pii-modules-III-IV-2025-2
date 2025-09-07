@@ -11,12 +11,14 @@
     <link rel="icon" type="image/png" href="../atex-pii-modules-III-IV-2025-2/assets/images/favicon/favicon.png">
 
     <!-- Importando estilos e fontes -->
-    <link rel="stylesheet" href="styles.css">
+    <link class="styling-link" rel="stylesheet" href="neostyles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=settings" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> <!--Fonte ROBOTO-->
 
     <!-- Importando scripts -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/darktheme.js"></script>
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/themes.js"></script>
 
 
 </head>
@@ -25,7 +27,7 @@
     <!-- ===== CABEÇALHO PRINCIPAL ===== -->
     <!-- Seção superior com logo, título e informações do usuário -->
     <header class="header" id="home">
-        <div class="container" id="header-container"> 
+        <div class="container" id="header-container">
             <div>
                 <div class="header-content">
                     <!-- Título principal com logo clicável -->
@@ -72,13 +74,23 @@
                         Sair
                     </button>
                 </div>
-                <!--Botão de modo escuro-->
-                <div class="theme-toggle">
-                    <p class="text-mode">Alternar Modo </p>
-                    <button type="button" id="theme-switch" class="switch-btn" onclick="darkMode()"
-                        aria-label="Alternar modo escuro">
-                        <span class="slider"></span>
-                    </button>
+
+                <!--Botão de configurações-->
+                <div class="settings">
+                    <p>Mudar tema do site: </p>
+                    <a href="#" class="settings-btn" id="openModal" onclick="openSettings()"><span class="material-symbols-outlined">settings</span></a>
+                    <div class="modal" id="modal">
+                        <span id="closeModal" class="close">&times;</span>
+                        <div class="modal-content">
+                            <div class="theme-toggle">
+                                <p class="text-mode">Modo Escuro </p>
+                                <button type="button" id="theme-switch" class="switch-btn" onclick="darkMode()"
+                                    aria-label="Alternar modo">
+                                    <span class="slider"></span>
+                                </button>
+                            </div><br>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -175,9 +187,9 @@
 
                         <!-- Botão para enviar avaliação -->
                         <div id="btn-submit-review">
-                            <button class="btn btn-primary" onclick="submitReview()" id="btn-submit-review">
+                            <a class="btn btn-primary" onclick="submitReview()" id="btn-submit-review">
                                 Enviar Avaliação
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

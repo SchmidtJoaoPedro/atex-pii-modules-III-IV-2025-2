@@ -54,7 +54,7 @@
 
   /* Temas Escuros */
   --navcode-dark-primary-1: #f9fafb; //cor do body
-  --navcode-dark-primary-2: #b6b6b6ff; //cor dos bagulho
+  --navcode-dark-2: #b6b6b6ff; //cor dos bagulho
   --navcode-dark-color-1: #1C1C1C; //main color
   --navcode-dark-color-2: #2E2E2E; //no use
   --navcode-dark-color-3: #2c353dff;
@@ -77,6 +77,49 @@ body {
   background-color: var(--navcode-bg-secondary);
 }
 
+.settings {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-direction: row;
+  z-index: 10;
+}
+
+.settings-btn {
+  color: #e0e0e0ff;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 300px;
+  width: 90%;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 /* Dark theme settings */
 .main-content.dark-mode,
 .creators-section.dark-mode {
@@ -95,7 +138,7 @@ body {
 }
 
 .title-avaliation.dark-mode {
-  color: #b6b6b6ff;
+  color: #757575ff;
 }
 
 .stat-label.dark-mode {
@@ -172,8 +215,12 @@ body {
 .theme-toggle { 
   display: flex;
   align-items: center; 
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 10px; 
+}
+
+.text-mode {
+  color: #2E2E2E;
 }
 
 .switch-btn {
@@ -446,7 +493,7 @@ body {
 
 /* Cartão individual de capítulo */
 .chapter-card {
-  background: var(--navcode-bg-primary);
+  background: #464646ff;
   border-radius: 0.75rem;
   box-shadow: var(--navcode-shadow-sm);
   cursor: pointer;
@@ -627,7 +674,7 @@ body {
 
 /* Cartão individual de avaliação */
 .review-card {
-  background: var(--navcode-bg-primary);
+  background: #313131ff;
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: var(--navcode-shadow-sm);
@@ -1821,11 +1868,12 @@ body {
   justify-content: space-around;
 }
 
-#btn-submit-review button {
+#btn-submit-review a {
   border-radius: 5px;
   padding: 3px;
   border-color: var(--navcode-primary);
   background-color: #b6b6b6ff;
+  cursor: pointer;
 }
 
 /* Feedback do exercício */
@@ -1956,7 +2004,12 @@ body {
 /* Capítulo concluído */
 .chapter-card.completed {
   border: 2px solid var(--navcode-primary);
-  background: var(--navcode-primary-bg);
+  background: #383838ff;
+}
+
+.chapter-card.completed,
+.chapter-card.completed.dark-mode  {
+  transform: translateY(-5px); 
 }
 
 .chapter-card.completed .chapter-icon-wrapper {

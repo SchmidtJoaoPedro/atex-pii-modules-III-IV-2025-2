@@ -96,7 +96,7 @@
     </main>
 
     <!-- ===== SCRIPTS ===== -->
-    <script src="/JS/auth.js"></script>
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script> 
     <script>
         // ===== DADOS DO CURSO =====
         /**
@@ -2254,20 +2254,32 @@
         document.addEventListener('DOMContentLoaded', function () {
             console.log('[NavCode] Inicializando curso de informática...');
 
-            // Verificar se usuário está logado
-            if (!isUserLoggedIn()) {
-                alert('Você precisa estar logado para acessar este curso!');
-                window.location.href = 'login.html';
-                return;
+            try {
+                // Verificar se usuário está logado
+                console.log('[NavCode] Verificando login...');
+                if (!isUserLoggedIn()) {
+                    console.log('[NavCode] Usuário não logado, redirecionando...');
+                    alert('Você precisa estar logado para acessar este curso!');
+                    window.location.href = 'login.html';
+                    return;
+                }
+                console.log('[NavCode] Usuário logado!');
+
+                // Carregar progresso do usuário
+                console.log('[NavCode] Carregando progresso do usuário...');
+                loadUserProgress();
+                console.log('[NavCode] Progresso carregado!');
+
+                // Carregar capítulos do curso
+                console.log('[NavCode] Carregando capítulos...');
+                loadChapters();
+                console.log('[NavCode] Capítulos carregados!');
+
+                console.log('[NavCode] Curso carregado com sucesso!');
+            } catch (error) {
+                console.error('[NavCode] Erro durante inicialização:', error);
+                alert('Erro ao carregar o curso. Verifique o console para mais detalhes.');
             }
-
-            // Carregar progresso do usuário
-            loadUserProgress();
-
-            // Carregar capítulos do curso
-            loadChapters();
-
-            console.log('[NavCode] Curso carregado com sucesso!');
         });
 
         // ===== FUNÇÕES DE CARREGAMENTO =====
@@ -2283,12 +2295,16 @@
                 userProgress = {
                     courseId: courseData.id,
                     completedChapters: [],
-                    chapterProgress: {}
+                    chapterProgress: {},
+                    quizScores: {},
+                    examScores: {},
+                    currentChapter: 1
                 };
             }
 
             // Atualizar interface com progresso
             updateProgressDisplay();
+            return userProgress;
         }
 
         /**
@@ -2315,14 +2331,27 @@
          * Carrega e exibe todos os capítulos do curso
          */
         function loadChapters() {
+            console.log('[NavCode] Iniciando loadChapters()');
             const chaptersGrid = document.getElementById('chapters-grid');
+
+            if (!chaptersGrid) {
+                console.error('[NavCode] Elemento chapters-grid não encontrado!');
+                return;
+            }
+
+            console.log('[NavCode] Elemento chapters-grid encontrado, limpando conteúdo...');
             chaptersGrid.innerHTML = '';
+
+            console.log('[NavCode] Total de capítulos:', courseData.chapters.length);
 
             // Criar cartão para cada capítulo
             courseData.chapters.forEach((chapter, index) => {
+                console.log(`[NavCode] Criando card para capítulo ${index + 1}: ${chapter.title}`);
                 const chapterCard = createChapterCard(chapter, index);
                 chaptersGrid.appendChild(chapterCard);
             });
+
+            console.log('[NavCode] Todos os capítulos foram adicionados à grid');
         }
 
         /**
@@ -2332,8 +2361,17 @@
          * @returns {HTMLElement} - Elemento do cartão
          */
         function createChapterCard(chapter, index) {
+            console.log(`[NavCode] Criando card para capítulo ${chapter.id}: ${chapter.title}`);
+
+            if (!userProgress) {
+                console.error('[NavCode] userProgress não está definido!');
+                return null;
+            }
+
             const isCompleted = userProgress.completedChapters.includes(chapter.id);
             const isLocked = index > 0 && !userProgress.completedChapters.includes(courseData.chapters[index - 1].id);
+
+            console.log(`[NavCode] Capítulo ${chapter.id} - Concluído: ${isCompleted}, Bloqueado: ${isLocked}`);
 
             const card = document.createElement('div');
             card.className = `chapter-card ${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}`;
@@ -2481,6 +2519,8 @@
                     <button class="tab-btn active" onclick="showTab('theory')">📚 Teoria</button>
                     <button class="tab-btn" onclick="showTab('exercises')">✏️ Exercícios</button>
                     <button class="tab-btn" onclick="showTab('videos')">🎥 Vídeos</button>
+                    <button class="tab-btn" onclick="showTab('quiz')">📝 Quiz</button>
+                    <button class="tab-btn" onclick="showTab('exam')">🎯 Prova</button>
                 </div>
                 
                 <div class="tab-content">
@@ -2504,6 +2544,63 @@
                             <h3>🎥 Videoaulas do Capítulo</h3>
                             <div class="videos-grid">
                                 ${generateVideosList(chapter)}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-tab" class="tab-pane">
+                        <div class="quiz-content">
+                            <h3>📝 Quiz do Capítulo</h3>
+                            <p>Teste seus conhecimentos com 10 perguntas sobre este capítulo:</p>
+                            <div class="quiz-actions">
+                                <button class="btn btn-primary" onclick="startQuiz(${chapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 12l2 2 4-4"/>
+                                        <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                                        <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                                        <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"/>
+                                        <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"/>
+                                    </svg>
+                                    Iniciar Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="exam-tab" class="tab-pane">
+                        <div class="exam-content">
+                            <h3>🎯 Prova do Capítulo</h3>
+                            <p>Faça a prova oficial com 10 perguntas em 30 minutos:</p>
+                            <div class="exam-info">
+                                <div class="exam-details">
+                                    <div class="detail-item">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <path d="M12 6v6l4 2"/>
+                                        </svg>
+                                        <span>30 minutos</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 12l2 2 4-4"/>
+                                        </svg>
+                                        <span>10 perguntas</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                        </svg>
+                                        <span>70% para aprovação</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn btn-primary" onclick="startExam(${chapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    Iniciar Prova
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -2720,7 +2817,13 @@
          * Volta para a página inicial
          */
         function goHome() {
-            window.location.href = 'index.html';
+            console.log('[NavCode] Redirecionando para página inicial...');
+            try {
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('[NavCode] Erro ao redirecionar:', error);
+                alert('Erro ao voltar para página inicial');
+            }
         }
 
         // ===== FUNÇÕES AUXILIARES =====
@@ -2732,10 +2835,1323 @@
             return localStorage.getItem('navcode_logged_in') === 'true';
         }
 
+        // ===== SISTEMA DE QUIZ E PROVA =====
+        /**
+         * Dados dos quizzes e provas por capítulo
+         */
+        const quizData = {
+            1: { // Fundamentos de Hardware
+                quiz: [
+                    {
+                        question: "Qual componente é considerado o 'cérebro' do computador?",
+                        options: ["Memória RAM", "Processador (CPU)", "Placa-mãe", "HD"],
+                        correct: 1,
+                        explanation: "O processador (CPU) é responsável por executar todas as instruções e cálculos do computador."
+                    },
+                    {
+                        question: "Para que serve a memória RAM?",
+                        options: ["Armazenar dados permanentemente", "Fornecer energia", "Armazenar dados temporariamente", "Conectar componentes"],
+                        correct: 2,
+                        explanation: "A RAM armazena temporariamente os dados que estão sendo usados no momento pelo sistema operacional e programas."
+                    },
+                    {
+                        question: "Qual é a função principal da placa-mãe?",
+                        options: ["Processar dados", "Conectar todos os componentes", "Armazenar arquivos", "Resfriar o sistema"],
+                        correct: 1,
+                        explanation: "A placa-mãe é responsável por conectar e permitir a comunicação entre todos os componentes do computador."
+                    },
+                    {
+                        question: "Qual a diferença entre HD e SSD?",
+                        options: ["Não há diferença", "SSD é mais rápido que HD", "HD é mais rápido que SSD", "SSD só armazena temporariamente"],
+                        correct: 1,
+                        explanation: "O SSD (Solid State Drive) é mais rápido que o HD (Hard Drive) por não ter partes móveis, usando memória flash."
+                    },
+                    {
+                        question: "O que acontece se a fonte de alimentação falhar?",
+                        options: ["Apenas o HD para de funcionar", "O computador não liga", "Só a RAM é afetada", "Apenas o monitor desliga"],
+                        correct: 1,
+                        explanation: "A fonte de alimentação fornece energia para todos os componentes. Se falhar, o computador não consegue ligar."
+                    },
+                    {
+                        question: "Qual componente é responsável pelo processamento gráfico?",
+                        options: ["CPU", "RAM", "Placa de vídeo (GPU)", "HD"],
+                        correct: 2,
+                        explanation: "A placa de vídeo (GPU) é especializada no processamento de gráficos e imagens, aliviando a CPU dessa tarefa."
+                    },
+                    {
+                        question: "O que significa a sigla CPU?",
+                        options: ["Central Processing Unit", "Computer Processing Unit", "Central Program Unit", "Computer Program Unit"],
+                        correct: 0,
+                        explanation: "CPU significa Central Processing Unit (Unidade Central de Processamento)."
+                    },
+                    {
+                        question: "Qual é a função do cooler no computador?",
+                        options: ["Armazenar dados", "Resfriar o processador", "Conectar componentes", "Processar gráficos"],
+                        correct: 1,
+                        explanation: "O cooler é responsável por resfriar o processador, evitando superaquecimento."
+                    },
+                    {
+                        question: "O que é overclock?",
+                        options: ["Aumentar a velocidade do processador", "Diminuir o consumo de energia", "Aumentar a memória RAM", "Melhorar a placa de vídeo"],
+                        correct: 0,
+                        explanation: "Overclock é a técnica de aumentar a velocidade de operação do processador além da especificação padrão."
+                    },
+                    {
+                        question: "Qual componente é essencial para conectar o computador à internet?",
+                        options: ["Placa de vídeo", "Placa de rede", "Cooler", "Fonte de alimentação"],
+                        correct: 1,
+                        explanation: "A placa de rede (ou adaptador de rede) é responsável pela conexão do computador com a internet e redes locais."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Qual foi a primeira geração de computadores?",
+                        options: ["Transistores", "Válvulas eletrônicas", "Circuitos integrados", "Microprocessadores"],
+                        correct: 1,
+                        explanation: "A primeira geração (1940-1956) usava válvulas eletrônicas (tubos de vácuo)."
+                    },
+                    {
+                        question: "O que caracteriza um supercomputador?",
+                        options: ["Pequeno tamanho", "Alto poder de processamento", "Baixo consumo de energia", "Uso doméstico"],
+                        correct: 1,
+                        explanation: "Supercomputadores são caracterizados pelo alto poder de processamento, sendo os mais poderosos do mundo."
+                    },
+                    {
+                        question: "Qual é a principal vantagem dos SSDs sobre os HDs?",
+                        options: ["Maior capacidade", "Menor preço", "Maior velocidade", "Menor consumo de energia"],
+                        correct: 2,
+                        explanation: "A principal vantagem dos SSDs é a maior velocidade de leitura e gravação comparado aos HDs."
+                    },
+                    {
+                        question: "O que é multiprocessamento?",
+                        options: ["Usar múltiplos HDs", "Usar múltiplos processadores", "Usar múltiplas placas de vídeo", "Usar múltiplas fontes"],
+                        correct: 1,
+                        explanation: "Multiprocessamento é o uso de múltiplos processadores trabalhando em conjunto para aumentar o desempenho."
+                    },
+                    {
+                        question: "Qual componente é responsável pelo boot do sistema?",
+                        options: ["RAM", "HD/SSD", "BIOS/UEFI", "Placa de vídeo"],
+                        correct: 2,
+                        explanation: "O BIOS/UEFI é responsável pelo processo de inicialização (boot) do computador."
+                    },
+                    {
+                        question: "O que é cache do processador?",
+                        options: ["Memória externa", "Memória rápida integrada", "Armazenamento permanente", "Placa de vídeo"],
+                        correct: 1,
+                        explanation: "O cache é uma memória rápida integrada ao processador para armazenar dados frequentemente acessados."
+                    },
+                    {
+                        question: "Qual é a função do chipset na placa-mãe?",
+                        options: ["Processar dados", "Gerenciar comunicação entre componentes", "Armazenar dados", "Resfriar o sistema"],
+                        correct: 1,
+                        explanation: "O chipset gerencia a comunicação entre o processador e outros componentes da placa-mãe."
+                    },
+                    {
+                        question: "O que é dual-channel na memória RAM?",
+                        options: ["Usar duas memórias", "Usar duas memórias em paralelo", "Usar memória dupla", "Usar memória externa"],
+                        correct: 1,
+                        explanation: "Dual-channel é usar duas memórias RAM em paralelo para dobrar a largura de banda de dados."
+                    },
+                    {
+                        question: "Qual é a diferença entre DDR3 e DDR4?",
+                        options: ["Não há diferença", "DDR4 é mais rápida e eficiente", "DDR3 é mais rápida", "DDR4 é mais barata"],
+                        correct: 1,
+                        explanation: "DDR4 é mais rápida, eficiente energeticamente e tem maior capacidade que DDR3."
+                    },
+                    {
+                        question: "O que é thermal throttling?",
+                        options: ["Aumentar velocidade", "Reduzir velocidade por calor", "Aumentar temperatura", "Reduzir temperatura"],
+                        correct: 1,
+                        explanation: "Thermal throttling é quando o processador reduz sua velocidade para evitar superaquecimento."
+                    }
+                ]
+            },
+            2: { // Sistemas Operacionais
+                quiz: [
+                    {
+                        question: "O que é um Sistema Operacional?",
+                        options: ["Um programa de jogos", "Software que gerencia o hardware", "Um tipo de memória", "Um componente físico"],
+                        correct: 1,
+                        explanation: "O SO é o software fundamental que gerencia todos os recursos de hardware e software do computador."
+                    },
+                    {
+                        question: "Qual é a principal função do kernel?",
+                        options: ["Interface gráfica", "Gerenciar recursos do sistema", "Executar jogos", "Armazenar arquivos"],
+                        correct: 1,
+                        explanation: "O kernel é o núcleo do SO, responsável por gerenciar memória, processos e hardware."
+                    },
+                    {
+                        question: "O que é multitarefa?",
+                        options: ["Usar múltiplos mouses", "Executar vários programas simultaneamente", "Ter múltiplos HDs", "Usar várias telas"],
+                        correct: 1,
+                        explanation: "Multitarefa é a capacidade do SO de executar múltiplos programas ao mesmo tempo."
+                    },
+                    {
+                        question: "Qual SO é baseado em Unix?",
+                        options: ["Windows", "Linux", "DOS", "MacOS"],
+                        correct: 1,
+                        explanation: "Linux é baseado no sistema Unix, sendo open source e amplamente usado em servidores."
+                    },
+                    {
+                        question: "O que é swap?",
+                        options: ["Trocar de usuário", "Usar HD como RAM", "Trocar de programa", "Trocar de tela"],
+                        correct: 1,
+                        explanation: "Swap é quando o SO usa parte do HD como memória virtual quando a RAM está cheia."
+                    },
+                    {
+                        question: "Qual é a diferença entre 32-bit e 64-bit?",
+                        options: ["Velocidade", "Capacidade de endereçamento de memória", "Tamanho", "Preço"],
+                        correct: 1,
+                        explanation: "64-bit pode endereçar muito mais memória RAM que 32-bit (acima de 4GB)."
+                    },
+                    {
+                        question: "O que é um driver?",
+                        options: ["Motorista", "Software que controla hardware", "Tipo de arquivo", "Programa de jogo"],
+                        correct: 1,
+                        explanation: "Driver é um software que permite ao SO comunicar com dispositivos de hardware específicos."
+                    },
+                    {
+                        question: "O que é defragmentação?",
+                        options: ["Organizar arquivos no HD", "Limpar vírus", "Acelerar internet", "Aumentar RAM"],
+                        correct: 0,
+                        explanation: "Defragmentação reorganiza os arquivos no HD para melhorar a performance de leitura."
+                    },
+                    {
+                        question: "Qual é a função do gerenciador de processos?",
+                        options: ["Gerenciar arquivos", "Controlar execução de programas", "Gerenciar usuários", "Controlar internet"],
+                        correct: 1,
+                        explanation: "O gerenciador de processos controla a execução, prioridade e recursos dos programas em execução."
+                    },
+                    {
+                        question: "O que é interface gráfica?",
+                        options: ["Tipo de memória", "Modo visual de interação", "Tipo de processador", "Tipo de HD"],
+                        correct: 1,
+                        explanation: "Interface gráfica (GUI) permite interação visual com o computador através de janelas, ícones e menus."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Qual foi o primeiro sistema operacional comercial?",
+                        options: ["Windows", "Unix", "CP/M", "Linux"],
+                        correct: 2,
+                        explanation: "CP/M foi um dos primeiros SOs comerciais, desenvolvido na década de 1970."
+                    },
+                    {
+                        question: "O que é preempção no contexto de sistemas operacionais?",
+                        options: ["Preparar sistema", "Interromper processo em execução", "Acelerar sistema", "Desligar sistema"],
+                        correct: 1,
+                        explanation: "Preempção é a capacidade do SO de interromper um processo em execução para dar lugar a outro."
+                    },
+                    {
+                        question: "Qual é a diferença entre processo e thread?",
+                        options: ["Não há diferença", "Thread é parte de um processo", "Processo é parte de thread", "São sinônimos"],
+                        correct: 1,
+                        explanation: "Thread é uma unidade de execução dentro de um processo, compartilhando recursos com outras threads do mesmo processo."
+                    },
+                    {
+                        question: "O que é deadlock?",
+                        options: ["Sistema travado", "Processos bloqueados mutuamente", "Sistema lento", "Memória cheia"],
+                        correct: 1,
+                        explanation: "Deadlock ocorre quando dois ou mais processos ficam bloqueados esperando recursos uns dos outros."
+                    },
+                    {
+                        question: "Qual é a função do escalonador de processos?",
+                        options: ["Gerenciar arquivos", "Decidir qual processo executar", "Gerenciar memória", "Controlar hardware"],
+                        correct: 1,
+                        explanation: "O escalonador decide qual processo deve ser executado a cada momento, baseado em algoritmos de prioridade."
+                    },
+                    {
+                        question: "O que é paginação na memória virtual?",
+                        options: ["Dividir memória em páginas", "Aumentar memória", "Diminuir memória", "Trocar memória"],
+                        correct: 0,
+                        explanation: "Paginação divide a memória virtual em páginas fixas para facilitar o gerenciamento e swap."
+                    },
+                    {
+                        question: "Qual é a diferença entre FAT32 e NTFS?",
+                        options: ["Não há diferença", "NTFS é mais moderno e robusto", "FAT32 é mais moderno", "São iguais"],
+                        correct: 1,
+                        explanation: "NTFS é mais moderno, suporta arquivos maiores, permissões e recuperação de erros melhor que FAT32."
+                    },
+                    {
+                        question: "O que é sistema de arquivos?",
+                        options: ["Tipo de HD", "Método de organização de dados", "Tipo de RAM", "Tipo de processador"],
+                        correct: 1,
+                        explanation: "Sistema de arquivos é o método usado pelo SO para organizar e gerenciar arquivos no disco."
+                    },
+                    {
+                        question: "O que é kernel space vs user space?",
+                        options: ["Tipos de memória", "Modos de execução do processador", "Tipos de arquivo", "Tipos de usuário"],
+                        correct: 1,
+                        explanation: "Kernel space executa código privilegiado do SO, user space executa aplicações com restrições de acesso."
+                    },
+                    {
+                        question: "O que é interrupção de hardware?",
+                        options: ["Sistema travado", "Sinal do hardware para CPU", "Erro de sistema", "Falha de hardware"],
+                        correct: 1,
+                        explanation: "Interrupção de hardware é um sinal enviado por dispositivos para notificar a CPU sobre eventos que requerem atenção."
+                    }
+                ]
+            },
+            3: { // Redes de Computadores
+                quiz: [
+                    {
+                        question: "O que é uma rede de computadores?",
+                        options: ["Um computador muito grande", "Conexão entre dois ou mais computadores", "Um tipo de software", "Um dispositivo de armazenamento"],
+                        correct: 1,
+                        explanation: "Rede de computadores é a conexão entre dois ou mais computadores para compartilhar recursos e informações."
+                    },
+                    {
+                        question: "Qual é o protocolo mais usado na internet?",
+                        options: ["FTP", "HTTP", "TCP/IP", "SMTP"],
+                        correct: 2,
+                        explanation: "TCP/IP é o protocolo fundamental da internet, responsável pela comunicação entre dispositivos."
+                    },
+                    {
+                        question: "O que significa a sigla LAN?",
+                        options: ["Local Area Network", "Large Area Network", "Long Area Network", "Limited Area Network"],
+                        correct: 0,
+                        explanation: "LAN significa Local Area Network (Rede Local), que conecta dispositivos em uma área geográfica limitada."
+                    },
+                    {
+                        question: "Qual é a função do roteador?",
+                        options: ["Armazenar dados", "Conectar redes diferentes", "Processar informações", "Resfriar o sistema"],
+                        correct: 1,
+                        explanation: "O roteador conecta redes diferentes e encaminha dados entre elas, funcionando como um 'ponte' entre redes."
+                    },
+                    {
+                        question: "O que é um endereço IP?",
+                        options: ["Nome do computador", "Identificador único na rede", "Tipo de cabo", "Velocidade da internet"],
+                        correct: 1,
+                        explanation: "Endereço IP é um identificador único que permite localizar e comunicar com dispositivos na rede."
+                    },
+                    {
+                        question: "Qual é a diferença entre IPv4 e IPv6?",
+                        options: ["Não há diferença", "IPv6 tem mais endereços disponíveis", "IPv4 é mais rápido", "IPv6 é mais antigo"],
+                        correct: 1,
+                        explanation: "IPv6 oferece muito mais endereços disponíveis que IPv4, resolvendo o problema de esgotamento de endereços."
+                    },
+                    {
+                        question: "O que é DNS?",
+                        options: ["Tipo de cabo", "Sistema que traduz nomes em IPs", "Protocolo de segurança", "Tipo de roteador"],
+                        correct: 1,
+                        explanation: "DNS (Domain Name System) traduz nomes de domínio (como google.com) em endereços IP numéricos."
+                    },
+                    {
+                        question: "Qual é a função do switch?",
+                        options: ["Conectar redes diferentes", "Conectar dispositivos na mesma rede", "Armazenar dados", "Processar informações"],
+                        correct: 1,
+                        explanation: "O switch conecta dispositivos na mesma rede local, encaminhando dados apenas para o destinatário correto."
+                    },
+                    {
+                        question: "O que é Wi-Fi?",
+                        options: ["Tipo de cabo", "Tecnologia de rede sem fio", "Protocolo de internet", "Tipo de roteador"],
+                        correct: 1,
+                        explanation: "Wi-Fi é uma tecnologia que permite conexão à internet sem fio usando ondas de rádio."
+                    },
+                    {
+                        question: "Qual é a função do firewall?",
+                        options: ["Acelerar a internet", "Proteger a rede contra ameaças", "Conectar dispositivos", "Armazenar dados"],
+                        correct: 1,
+                        explanation: "O firewall protege a rede controlando o tráfego de dados e bloqueando ameaças externas."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Qual é a topologia de rede mais comum?",
+                        options: ["Estrela", "Anel", "Barramento", "Malha"],
+                        correct: 0,
+                        explanation: "A topologia em estrela é a mais comum, onde todos os dispositivos se conectam a um ponto central (switch/hub)."
+                    },
+                    {
+                        question: "O que é o modelo OSI?",
+                        options: ["Tipo de cabo", "Padrão de referência para redes", "Protocolo de internet", "Tipo de roteador"],
+                        correct: 1,
+                        explanation: "O modelo OSI (Open Systems Interconnection) é um padrão de referência que divide a comunicação em 7 camadas."
+                    },
+                    {
+                        question: "Qual é a função da camada de transporte no modelo OSI?",
+                        options: ["Conectar fisicamente", "Gerenciar sessões", "Garantir entrega confiável", "Criptografar dados"],
+                        correct: 2,
+                        explanation: "A camada de transporte garante a entrega confiável e ordenada dos dados entre aplicações."
+                    },
+                    {
+                        question: "O que é NAT?",
+                        options: ["Tipo de cabo", "Tecnologia que traduz IPs privados em públicos", "Protocolo de segurança", "Tipo de switch"],
+                        correct: 1,
+                        explanation: "NAT (Network Address Translation) permite que múltiplos dispositivos compartilhem um único endereço IP público."
+                    },
+                    {
+                        question: "Qual é a diferença entre hub e switch?",
+                        options: ["Não há diferença", "Switch é mais inteligente que hub", "Hub é mais rápido", "Switch é mais barato"],
+                        correct: 1,
+                        explanation: "O switch é mais inteligente, enviando dados apenas para o destinatário correto, enquanto o hub envia para todos."
+                    },
+                    {
+                        question: "O que é VLAN?",
+                        options: ["Tipo de cabo", "Rede virtual lógica", "Protocolo de internet", "Tipo de roteador"],
+                        correct: 1,
+                        explanation: "VLAN (Virtual LAN) permite criar redes virtuais logicamente separadas em uma mesma infraestrutura física."
+                    },
+                    {
+                        question: "Qual é a função do protocolo DHCP?",
+                        options: ["Conectar redes", "Atribuir IPs automaticamente", "Criptografar dados", "Armazenar informações"],
+                        correct: 1,
+                        explanation: "DHCP (Dynamic Host Configuration Protocol) atribui automaticamente endereços IP e configurações de rede aos dispositivos."
+                    },
+                    {
+                        question: "O que é QoS?",
+                        options: ["Tipo de cabo", "Controle de qualidade do serviço", "Protocolo de segurança", "Tipo de switch"],
+                        correct: 1,
+                        explanation: "QoS (Quality of Service) controla a prioridade e qualidade do tráfego de rede para diferentes tipos de dados."
+                    },
+                    {
+                        question: "Qual é a função do protocolo ARP?",
+                        options: ["Conectar redes", "Traduzir IP em MAC", "Criptografar dados", "Armazenar informações"],
+                        correct: 1,
+                        explanation: "ARP (Address Resolution Protocol) traduz endereços IP em endereços MAC para comunicação na rede local."
+                    },
+                    {
+                        question: "O que é subnetting?",
+                        options: ["Tipo de cabo", "Divisão de uma rede em sub-redes", "Protocolo de segurança", "Tipo de roteador"],
+                        correct: 1,
+                        explanation: "Subnetting é a técnica de dividir uma rede maior em sub-redes menores para melhor organização e segurança."
+                    }
+                ]
+            },
+            4: { // Programação
+                quiz: [
+                    {
+                        question: "O que é programação?",
+                        options: ["Jogar videogame", "Criar instruções para computadores", "Usar aplicativos", "Navegar na internet"],
+                        correct: 1,
+                        explanation: "Programação é o processo de criar instruções (código) para que computadores executem tarefas específicas."
+                    },
+                    {
+                        question: "Qual é a linguagem de programação mais usada?",
+                        options: ["Python", "JavaScript", "Java", "C++"],
+                        correct: 1,
+                        explanation: "JavaScript é amplamente usada para desenvolvimento web, tanto no frontend quanto no backend."
+                    },
+                    {
+                        question: "O que é uma variável?",
+                        options: ["Tipo de função", "Local para armazenar dados", "Tipo de loop", "Tipo de condição"],
+                        correct: 1,
+                        explanation: "Uma variável é um local na memória onde podemos armazenar e recuperar dados durante a execução do programa."
+                    },
+                    {
+                        question: "O que é um loop?",
+                        options: ["Tipo de variável", "Repetição de código", "Tipo de função", "Tipo de condição"],
+                        correct: 1,
+                        explanation: "Um loop permite repetir um bloco de código várias vezes, economizando tempo e linhas de código."
+                    },
+                    {
+                        question: "O que é uma função?",
+                        options: ["Tipo de variável", "Bloco de código reutilizável", "Tipo de loop", "Tipo de condição"],
+                        correct: 1,
+                        explanation: "Uma função é um bloco de código que pode ser chamado e executado quantas vezes necessário, promovendo reutilização."
+                    },
+                    {
+                        question: "O que é debugging?",
+                        options: ["Criar código", "Encontrar e corrigir erros", "Executar programa", "Documentar código"],
+                        correct: 1,
+                        explanation: "Debugging é o processo de encontrar, analisar e corrigir erros (bugs) no código de programação."
+                    },
+                    {
+                        question: "O que é um algoritmo?",
+                        options: ["Tipo de linguagem", "Sequência de passos para resolver um problema", "Tipo de variável", "Tipo de função"],
+                        correct: 1,
+                        explanation: "Um algoritmo é uma sequência lógica de passos para resolver um problema específico."
+                    },
+                    {
+                        question: "O que é HTML?",
+                        options: ["Linguagem de programação", "Linguagem de marcação", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "HTML (HyperText Markup Language) é uma linguagem de marcação usada para estruturar conteúdo web."
+                    },
+                    {
+                        question: "O que é CSS?",
+                        options: ["Linguagem de programação", "Linguagem para estilizar páginas web", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "CSS (Cascading Style Sheets) é usado para estilizar e formatar páginas web, controlando aparência e layout."
+                    },
+                    {
+                        question: "O que é um banco de dados?",
+                        options: ["Tipo de programa", "Sistema para armazenar dados organizadamente", "Tipo de servidor", "Tipo de linguagem"],
+                        correct: 1,
+                        explanation: "Um banco de dados é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Qual é a diferença entre compilação e interpretação?",
+                        options: ["Não há diferença", "Compilação traduz todo código de uma vez, interpretação linha por linha", "Interpretação é mais rápida", "Compilação é mais lenta"],
+                        correct: 1,
+                        explanation: "Compilação traduz todo o código para linguagem de máquina antes da execução, interpretação traduz linha por linha durante a execução."
+                    },
+                    {
+                        question: "O que é orientação a objetos?",
+                        options: ["Tipo de linguagem", "Paradigma que organiza código em objetos", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Orientação a objetos é um paradigma que organiza o código em objetos que contêm dados (atributos) e comportamentos (métodos)."
+                    },
+                    {
+                        question: "O que é herança em programação?",
+                        options: ["Tipo de loop", "Mecanismo onde uma classe herda características de outra", "Tipo de variável", "Tipo de função"],
+                        correct: 1,
+                        explanation: "Herança permite que uma classe (filha) herde propriedades e métodos de outra classe (pai), promovendo reutilização de código."
+                    },
+                    {
+                        question: "O que é polimorfismo?",
+                        options: ["Tipo de variável", "Capacidade de objetos responderem de formas diferentes", "Tipo de loop", "Tipo de condição"],
+                        correct: 1,
+                        explanation: "Polimorfismo permite que objetos de diferentes classes respondam ao mesmo método de formas diferentes."
+                    },
+                    {
+                        question: "O que é recursão?",
+                        options: ["Tipo de loop", "Função que chama a si mesma", "Tipo de variável", "Tipo de condição"],
+                        correct: 1,
+                        explanation: "Recursão é quando uma função chama a si mesma para resolver problemas que podem ser divididos em subproblemas similares."
+                    },
+                    {
+                        question: "O que é complexidade algorítmica?",
+                        options: ["Tipo de linguagem", "Medida de eficiência de um algoritmo", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Complexidade algorítmica mede o tempo e espaço necessários para executar um algoritmo conforme o tamanho da entrada."
+                    },
+                    {
+                        question: "O que é Git?",
+                        options: ["Linguagem de programação", "Sistema de controle de versão", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Git é um sistema de controle de versão que permite rastrear mudanças no código e colaborar com outros desenvolvedores."
+                    },
+                    {
+                        question: "O que é API?",
+                        options: ["Tipo de linguagem", "Interface que permite comunicação entre aplicações", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "API (Application Programming Interface) é uma interface que permite que diferentes aplicações se comuniquem e compartilhem dados."
+                    },
+                    {
+                        question: "O que é framework?",
+                        options: ["Tipo de linguagem", "Conjunto de ferramentas e bibliotecas para desenvolvimento", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Framework é um conjunto de ferramentas, bibliotecas e convenções que facilitam o desenvolvimento de aplicações."
+                    },
+                    {
+                        question: "O que é teste unitário?",
+                        options: ["Tipo de linguagem", "Teste de componentes individuais do código", "Tipo de banco de dados", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Teste unitário é a prática de testar componentes individuais (funções, métodos) do código para garantir que funcionem corretamente."
+                    }
+                ]
+            },
+            5: { // Segurança da Informação
+                quiz: [
+                    {
+                        question: "O que é segurança da informação?",
+                        options: ["Proteger dados contra ameaças", "Instalar antivírus", "Usar senhas fortes", "Fazer backup"],
+                        correct: 0,
+                        explanation: "Segurança da informação é a proteção de dados contra ameaças, garantindo confidencialidade, integridade e disponibilidade."
+                    },
+                    {
+                        question: "O que é um vírus de computador?",
+                        options: ["Programa útil", "Programa malicioso que se replica", "Tipo de hardware", "Tipo de rede"],
+                        correct: 1,
+                        explanation: "Vírus é um programa malicioso que se replica e pode danificar arquivos e sistemas."
+                    },
+                    {
+                        question: "O que é phishing?",
+                        options: ["Tipo de vírus", "Tentativa de roubar informações pessoais", "Tipo de firewall", "Tipo de antivírus"],
+                        correct: 1,
+                        explanation: "Phishing é uma tentativa fraudulenta de obter informações pessoais através de emails ou sites falsos."
+                    },
+                    {
+                        question: "O que é criptografia?",
+                        options: ["Tipo de vírus", "Técnica para proteger informações", "Tipo de firewall", "Tipo de antivírus"],
+                        correct: 1,
+                        explanation: "Criptografia é a técnica de codificar informações para que apenas pessoas autorizadas possam lê-las."
+                    },
+                    {
+                        question: "O que é um firewall?",
+                        options: ["Tipo de vírus", "Sistema que controla tráfego de rede", "Tipo de antivírus", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Firewall é um sistema que controla o tráfego de rede, bloqueando ameaças e permitindo apenas tráfego seguro."
+                    },
+                    {
+                        question: "O que é backup?",
+                        options: ["Tipo de vírus", "Cópia de segurança dos dados", "Tipo de firewall", "Tipo de antivírus"],
+                        correct: 1,
+                        explanation: "Backup é uma cópia de segurança dos dados importantes para recuperação em caso de perda."
+                    },
+                    {
+                        question: "O que é autenticação?",
+                        options: ["Tipo de vírus", "Processo de verificar identidade", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Autenticação é o processo de verificar se uma pessoa ou sistema é realmente quem diz ser."
+                    },
+                    {
+                        question: "O que é autorização?",
+                        options: ["Tipo de vírus", "Processo de definir permissões", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Autorização é o processo de definir quais recursos e ações uma pessoa ou sistema pode acessar."
+                    },
+                    {
+                        question: "O que é malware?",
+                        options: ["Programa útil", "Software malicioso", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Malware é qualquer software malicioso projetado para danificar, roubar ou comprometer sistemas."
+                    },
+                    {
+                        question: "O que é atualização de segurança?",
+                        options: ["Tipo de vírus", "Correção de vulnerabilidades", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Atualização de segurança corrige vulnerabilidades conhecidas em software, protegendo contra ameaças."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "O que é a tríade CIA em segurança?",
+                        options: ["Tipo de vírus", "Confidencialidade, Integridade e Disponibilidade", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "A tríade CIA representa os três pilares da segurança: Confidencialidade (dados privados), Integridade (dados íntegros) e Disponibilidade (dados acessíveis)."
+                    },
+                    {
+                        question: "O que é ataque de força bruta?",
+                        options: ["Tipo de vírus", "Tentativa de adivinhar senhas testando combinações", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Ataque de força bruta tenta descobrir senhas testando sistematicamente todas as combinações possíveis."
+                    },
+                    {
+                        question: "O que é engenharia social?",
+                        options: ["Tipo de vírus", "Manipulação psicológica para obter informações", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Engenharia social usa manipulação psicológica para convencer pessoas a revelar informações confidenciais."
+                    },
+                    {
+                        question: "O que é criptografia assimétrica?",
+                        options: ["Tipo de vírus", "Sistema com chaves públicas e privadas", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Criptografia assimétrica usa um par de chaves: uma pública (para criptografar) e uma privada (para descriptografar)."
+                    },
+                    {
+                        question: "O que é certificado digital?",
+                        options: ["Tipo de vírus", "Documento eletrônico que comprova identidade", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Certificado digital é um documento eletrônico que comprova a identidade de uma pessoa ou entidade na internet."
+                    },
+                    {
+                        question: "O que é honeypot?",
+                        options: ["Tipo de vírus", "Sistema isca para detectar ataques", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Honeypot é um sistema isca projetado para atrair e detectar ataques, ajudando a identificar ameaças."
+                    },
+                    {
+                        question: "O que é análise de vulnerabilidades?",
+                        options: ["Tipo de vírus", "Processo de identificar fraquezas em sistemas", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Análise de vulnerabilidades identifica fraquezas em sistemas que podem ser exploradas por atacantes."
+                    },
+                    {
+                        question: "O que é resposta a incidentes?",
+                        options: ["Tipo de vírus", "Processo de lidar com violações de segurança", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Resposta a incidentes é o processo estruturado de detectar, analisar e responder a violações de segurança."
+                    },
+                    {
+                        question: "O que é auditoria de segurança?",
+                        options: ["Tipo de vírus", "Avaliação sistemática de controles de segurança", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Auditoria de segurança é uma avaliação sistemática dos controles de segurança para verificar conformidade e eficácia."
+                    },
+                    {
+                        question: "O que é gestão de riscos?",
+                        options: ["Tipo de vírus", "Processo de identificar e mitigar riscos", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Gestão de riscos é o processo de identificar, avaliar e implementar medidas para reduzir riscos de segurança."
+                    }
+                ]
+            },
+            6: { // Banco de Dados
+                quiz: [
+                    {
+                        question: "O que é um banco de dados?",
+                        options: ["Tipo de programa", "Sistema organizado para armazenar dados", "Tipo de servidor", "Tipo de rede"],
+                        correct: 1,
+                        explanation: "Banco de dados é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente."
+                    },
+                    {
+                        question: "O que é SQL?",
+                        options: ["Tipo de banco", "Linguagem para consultar bancos de dados", "Tipo de servidor", "Tipo de rede"],
+                        correct: 1,
+                        explanation: "SQL (Structured Query Language) é a linguagem padrão para consultar e manipular bancos de dados relacionais."
+                    },
+                    {
+                        question: "O que é uma tabela?",
+                        options: ["Tipo de banco", "Estrutura que organiza dados em linhas e colunas", "Tipo de servidor", "Tipo de rede"],
+                        correct: 1,
+                        explanation: "Uma tabela é uma estrutura que organiza dados em linhas (registros) e colunas (campos)."
+                    },
+                    {
+                        question: "O que é uma chave primária?",
+                        options: ["Tipo de coluna", "Campo que identifica unicamente cada registro", "Tipo de tabela", "Tipo de banco"],
+                        correct: 1,
+                        explanation: "Chave primária é um campo que identifica unicamente cada registro em uma tabela."
+                    },
+                    {
+                        question: "O que é uma chave estrangeira?",
+                        options: ["Tipo de coluna", "Campo que referencia chave primária de outra tabela", "Tipo de tabela", "Tipo de banco"],
+                        correct: 1,
+                        explanation: "Chave estrangeira é um campo que referencia a chave primária de outra tabela, criando relacionamentos."
+                    },
+                    {
+                        question: "O que é normalização?",
+                        options: ["Tipo de banco", "Processo de organizar dados para reduzir redundância", "Tipo de servidor", "Tipo de rede"],
+                        correct: 1,
+                        explanation: "Normalização é o processo de organizar dados em tabelas para eliminar redundância e inconsistências."
+                    },
+                    {
+                        question: "O que é um índice?",
+                        options: ["Tipo de tabela", "Estrutura que acelera consultas", "Tipo de banco", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Índice é uma estrutura que acelera a busca de dados em tabelas, melhorando performance das consultas."
+                    },
+                    {
+                        question: "O que é transação?",
+                        options: ["Tipo de banco", "Conjunto de operações que devem ser executadas como uma unidade", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Transação é um conjunto de operações que devem ser executadas como uma unidade atômica (tudo ou nada)."
+                    },
+                    {
+                        question: "O que é ACID?",
+                        options: ["Tipo de banco", "Propriedades que garantem confiabilidade das transações", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "ACID (Atomicidade, Consistência, Isolamento, Durabilidade) são propriedades que garantem confiabilidade das transações."
+                    },
+                    {
+                        question: "O que é backup de banco de dados?",
+                        options: ["Tipo de banco", "Cópia de segurança dos dados", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Backup é uma cópia de segurança dos dados do banco para recuperação em caso de perda ou corrupção."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Qual é a diferença entre banco relacional e NoSQL?",
+                        options: ["Não há diferença", "Relacional usa tabelas, NoSQL usa documentos/grafos", "NoSQL é mais antigo", "Relacional é mais moderno"],
+                        correct: 1,
+                        explanation: "Bancos relacionais usam tabelas com relacionamentos, NoSQL usa documentos, grafos ou outros formatos flexíveis."
+                    },
+                    {
+                        question: "O que é integridade referencial?",
+                        options: ["Tipo de banco", "Garantia de consistência entre tabelas relacionadas", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Integridade referencial garante que relacionamentos entre tabelas sejam consistentes e válidos."
+                    },
+                    {
+                        question: "O que é deadlock?",
+                        options: ["Tipo de banco", "Situação onde transações ficam bloqueadas mutuamente", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Deadlock ocorre quando duas ou mais transações ficam bloqueadas esperando recursos umas das outras."
+                    },
+                    {
+                        question: "O que é view em banco de dados?",
+                        options: ["Tipo de tabela", "Consulta armazenada que simula uma tabela", "Tipo de banco", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "View é uma consulta armazenada que simula uma tabela, permitindo acesso controlado aos dados."
+                    },
+                    {
+                        question: "O que é stored procedure?",
+                        options: ["Tipo de banco", "Conjunto de comandos SQL armazenados no servidor", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Stored procedure é um conjunto de comandos SQL armazenados no servidor de banco de dados para reutilização."
+                    },
+                    {
+                        question: "O que é trigger?",
+                        options: ["Tipo de banco", "Procedimento que executa automaticamente em eventos", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Trigger é um procedimento que executa automaticamente quando ocorrem eventos específicos (INSERT, UPDATE, DELETE)."
+                    },
+                    {
+                        question: "O que é particionamento?",
+                        options: ["Tipo de banco", "Divisão de tabelas grandes em partes menores", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Particionamento divide tabelas grandes em partes menores para melhorar performance e gerenciamento."
+                    },
+                    {
+                        question: "O que é replicação?",
+                        options: ["Tipo de banco", "Cópia de dados para múltiplos servidores", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Replicação cria cópias de dados em múltiplos servidores para melhorar disponibilidade e performance."
+                    },
+                    {
+                        question: "O que é sharding?",
+                        options: ["Tipo de banco", "Divisão horizontal de dados entre servidores", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Sharding divide dados horizontalmente entre múltiplos servidores para distribuir carga e melhorar escalabilidade."
+                    },
+                    {
+                        question: "O que é data warehouse?",
+                        options: ["Tipo de banco", "Repositório centralizado para análise de dados", "Tipo de tabela", "Tipo de servidor"],
+                        correct: 1,
+                        explanation: "Data warehouse é um repositório centralizado de dados históricos otimizado para análise e relatórios."
+                    }
+                ]
+            }
+        };
+
+        let currentQuiz = null;
+        let currentExam = null;
+        let quizTimer = null;
+        let examTimer = null;
+        let examTimeLeft = 30 * 60; // 30 minutos em segundos
+
+        // ===== SISTEMA DE PROGRESSO E SALVAMENTO =====
+
+        /**
+         * Salva o progresso do usuário
+         */
+        function saveUserProgress(progress) {
+            localStorage.setItem('navcode_course_progress', JSON.stringify(progress));
+        }
+
+        /**
+         * Marca um capítulo como concluído
+         */
+        function markChapterCompleted(chapterId) {
+            const progress = loadUserProgress();
+            if (!progress.completedChapters.includes(chapterId)) {
+                progress.completedChapters.push(chapterId);
+                saveUserProgress(progress);
+                updateProgressDisplay();
+            }
+        }
+
+        /**
+         * Salva pontuação do quiz
+         */
+        function saveQuizScore(chapterId, score, percentage) {
+            const progress = loadUserProgress();
+            progress.quizScores[chapterId] = { score, percentage, completed: true };
+            saveUserProgress(progress);
+        }
+
+        /**
+         * Salva pontuação da prova
+         */
+        function saveExamScore(chapterId, score, percentage) {
+            const progress = loadUserProgress();
+            progress.examScores[chapterId] = { score, percentage, completed: true };
+            saveUserProgress(progress);
+        }
+
+        /**
+         * Verifica se o capítulo está concluído
+         */
+        function isChapterCompleted(chapterId) {
+            const progress = loadUserProgress();
+            return progress.completedChapters.includes(chapterId);
+        }
+
+        /**
+         * Vai para o próximo capítulo
+         */
+        function goToNextChapter() {
+            const progress = loadUserProgress();
+            const nextChapter = progress.currentChapter + 1;
+
+            if (nextChapter <= courseData.totalChapters) {
+                progress.currentChapter = nextChapter;
+                saveUserProgress(progress);
+                // Encontrar o capítulo pelo ID
+                const chapter = courseData.chapters.find(ch => ch.id === nextChapter);
+                if (chapter) {
+                    openChapter(chapter);
+                }
+            } else {
+                // Curso concluído
+                showCourseCompletion();
+            }
+        }
+
+        /**
+         * Mostra tela de conclusão do curso
+         */
+        function showCourseCompletion() {
+            const content = document.getElementById('chapter-content');
+            content.innerHTML = `
+                <div class="course-completion">
+                    <div class="completion-header">
+                        <div class="completion-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                                <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                                <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"/>
+                                <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"/>
+                            </svg>
+                        </div>
+                        <h2>🎉 Parabéns! Curso Concluído!</h2>
+                        <p>Você completou com sucesso o Curso Técnico de Informática!</p>
+                    </div>
+                    <div class="completion-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">${courseData.totalChapters}</div>
+                            <div class="stat-label">Capítulos Concluídos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Progresso Total</div>
+                        </div>
+                    </div>
+                    <div class="completion-actions">
+                        <button class="btn btn-primary" onclick="goHome()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9,22 9,12 15,12 15,22"/>
+                            </svg>
+                            Voltar ao Início
+                        </button>
+                        <button class="btn btn-secondary" onclick="downloadCertificate()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            Baixar Certificado
+                        </button>
+                    </div>
+                </div>
+            `;
+            content.style.display = 'block';
+        }
+
+        /**
+         * Simula download do certificado
+         */
+        function downloadCertificate() {
+            alert('Funcionalidade de certificado será implementada em breve!');
+        }
+
+        /**
+         * Inicia o quiz de um capítulo
+         */
+        function startQuiz(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Quiz não disponível para este capítulo ainda!');
+                return;
+            }
+
+            currentQuiz = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].quiz],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
+
+            showQuizInterface();
+        }
+
+        /**
+         * Inicia a prova de um capítulo
+         */
+        function startExam(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Prova não disponível para este capítulo ainda!');
+                return;
+            }
+
+            if (!confirm('A prova tem 30 minutos de duração. Deseja continuar?')) {
+                return;
+            }
+
+            currentExam = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].exam],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
+
+            examTimeLeft = 30 * 60; // Reset timer
+            showExamInterface();
+            startExamTimer();
+        }
+
+        /**
+         * Mostra a interface do quiz
+         */
+        function showQuizInterface() {
+            const content = document.getElementById('chapter-content');
+            content.innerHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>📝 Quiz - Capítulo ${currentQuiz.chapterId}</h2>
+                        <p>Responda as 10 perguntas para testar seus conhecimentos</p>
+                        <div class="quiz-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentQuiz.currentQuestion / currentQuiz.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentQuiz.currentQuestion + 1} de ${currentQuiz.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="quiz-question-container">
+                        ${renderQuizQuestion()}
+                    </div>
+                </div>
+            `;
+            content.style.display = 'block';
+        }
+
+        /**
+         * Mostra a interface da prova
+         */
+        function showExamInterface() {
+            const content = document.getElementById('chapter-content');
+            content.innerHTML = `
+                <div class="exam-container">
+                    <div class="exam-header">
+                        <h2>🎯 Prova - Capítulo ${currentExam.chapterId}</h2>
+                        <p>Responda as 10 perguntas em 30 minutos</p>
+                        <div class="exam-timer">
+                            <div class="timer-display">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                <span id="timer-text">30:00</span>
+                            </div>
+                        </div>
+                        <div class="exam-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentExam.currentQuestion / currentExam.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentExam.currentQuestion + 1} de ${currentExam.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="exam-question-container">
+                        ${renderExamQuestion()}
+                    </div>
+                </div>
+            `;
+            content.style.display = 'block';
+        }
+
+        /**
+         * Renderiza uma pergunta do quiz
+         */
+        function renderQuizQuestion() {
+            const question = currentQuiz.questions[currentQuiz.currentQuestion];
+            return `
+                <div class="question-card">
+                    <h3>${question.question}</h3>
+                    <div class="options-container">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectQuizAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-navigation">
+                        <button class="btn btn-secondary" onclick="previousQuizQuestion()" ${currentQuiz.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuizQuestion()" ${currentQuiz.answers[currentQuiz.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentQuiz.currentQuestion === currentQuiz.questions.length - 1 ? 'Finalizar Quiz' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Renderiza uma pergunta da prova
+         */
+        function renderExamQuestion() {
+            const question = currentExam.questions[currentExam.currentQuestion];
+            return `
+                <div class="question-card">
+                    <h3>${question.question}</h3>
+                    <div class="options-container">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectExamAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="exam-navigation">
+                        <button class="btn btn-secondary" onclick="previousExamQuestion()" ${currentExam.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextExamQuestion()" ${currentExam.answers[currentExam.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentExam.currentQuestion === currentExam.questions.length - 1 ? 'Finalizar Prova' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Seleciona resposta do quiz
+         */
+        function selectQuizAnswer(answerIndex) {
+            currentQuiz.answers[currentQuiz.currentQuestion] = answerIndex;
+
+            // Atualizar visual dos botões
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            // Habilitar botão próximo
+            document.querySelector('.quiz-navigation .btn-primary').disabled = false;
+        }
+
+        /**
+         * Seleciona resposta da prova
+         */
+        function selectExamAnswer(answerIndex) {
+            currentExam.answers[currentExam.currentQuestion] = answerIndex;
+
+            // Atualizar visual dos botões
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            // Habilitar botão próximo
+            document.querySelector('.exam-navigation .btn-primary').disabled = false;
+        }
+
+        /**
+         * Próxima pergunta do quiz
+         */
+        function nextQuizQuestion() {
+            if (currentQuiz.currentQuestion < currentQuiz.questions.length - 1) {
+                currentQuiz.currentQuestion++;
+                showQuizInterface();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        /**
+         * Pergunta anterior do quiz
+         */
+        function previousQuizQuestion() {
+            if (currentQuiz.currentQuestion > 0) {
+                currentQuiz.currentQuestion--;
+                showQuizInterface();
+            }
+        }
+
+        /**
+         * Próxima pergunta da prova
+         */
+        function nextExamQuestion() {
+            if (currentExam.currentQuestion < currentExam.questions.length - 1) {
+                currentExam.currentQuestion++;
+                showExamInterface();
+            } else {
+                finishExam();
+            }
+        }
+
+        /**
+         * Pergunta anterior da prova
+         */
+        function previousExamQuestion() {
+            if (currentExam.currentQuestion > 0) {
+                currentExam.currentQuestion--;
+                showExamInterface();
+            }
+        }
+
+        /**
+         * Finaliza o quiz
+         */
+        function finishQuiz() {
+            // Calcular pontuação
+            let correct = 0;
+            currentQuiz.questions.forEach((question, index) => {
+                if (currentQuiz.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            currentQuiz.score = correct;
+            const percentage = Math.round((correct / currentQuiz.questions.length) * 100);
+
+            // Salvar pontuação do quiz
+            saveQuizScore(currentQuiz.chapterId, correct, percentage);
+
+            const content = document.getElementById('chapter-content');
+            content.innerHTML = `
+                <div class="quiz-result">
+                    <div class="result-header">
+                        <h2>🎉 Quiz Concluído!</h2>
+                        <div class="score-display">
+                            <div class="score-circle ${percentage >= 70 ? 'pass' : 'fail'}">
+                                <span class="score-number">${percentage}%</span>
+                            </div>
+                            <p class="score-text">${correct} de ${currentQuiz.questions.length} perguntas corretas</p>
+                        </div>
+                    </div>
+                    <div class="result-details">
+                        <h3>📊 Resultado Detalhado</h3>
+                        <div class="questions-review">
+                            ${currentQuiz.questions.map((question, index) => {
+                const userAnswer = currentQuiz.answers[index];
+                const isCorrect = userAnswer === question.correct;
+                return `
+                                    <div class="question-review ${isCorrect ? 'correct' : 'incorrect'}">
+                                        <h4>Pergunta ${index + 1}</h4>
+                                        <p><strong>Pergunta:</strong> ${question.question}</p>
+                                        <p><strong>Sua resposta:</strong> ${question.options[userAnswer] || 'Não respondida'}</p>
+                                        <p><strong>Resposta correta:</strong> ${question.options[question.correct]}</p>
+                                        <p><strong>Explicação:</strong> ${question.explanation}</p>
+                                    </div>
+                                `;
+            }).join('')}
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="closeQuiz()">
+                            Voltar ao Capítulo
+                        </button>
+                        ${percentage >= 70 ? '<button class="btn btn-secondary" onclick="startExam(' + currentQuiz.chapterId + ')">Fazer Prova</button>' : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Finaliza a prova
+         */
+        function finishExam() {
+            clearInterval(examTimer);
+
+            // Calcular pontuação
+            let correct = 0;
+            currentExam.questions.forEach((question, index) => {
+                if (currentExam.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            currentExam.score = correct;
+            const percentage = Math.round((correct / currentExam.questions.length) * 100);
+
+            // Salvar pontuação da prova
+            saveExamScore(currentExam.chapterId, correct, percentage);
+
+            // Se aprovado, marcar capítulo como concluído
+            if (percentage >= 70) {
+                markChapterCompleted(currentExam.chapterId);
+            }
+
+            const content = document.getElementById('chapter-content');
+            content.innerHTML = `
+                <div class="exam-result">
+                    <div class="result-header">
+                        <h2>🎯 Prova Concluída!</h2>
+                        <div class="score-display">
+                            <div class="score-circle ${percentage >= 70 ? 'pass' : 'fail'}">
+                                <span class="score-number">${percentage}%</span>
+                            </div>
+                            <p class="score-text">${correct} de ${currentExam.questions.length} perguntas corretas</p>
+                        </div>
+                        ${percentage >= 70 ? '<p class="congratulations">🎉 Parabéns! Você passou na prova!</p>' : '<p class="try-again">📚 Estude mais e tente novamente!</p>'}
+                    </div>
+                    <div class="result-details">
+                        <h3>📊 Resultado Detalhado</h3>
+                        <div class="questions-review">
+                            ${currentExam.questions.map((question, index) => {
+                const userAnswer = currentExam.answers[index];
+                const isCorrect = userAnswer === question.correct;
+                return `
+                                    <div class="question-review ${isCorrect ? 'correct' : 'incorrect'}">
+                                        <h4>Pergunta ${index + 1}</h4>
+                                        <p><strong>Pergunta:</strong> ${question.question}</p>
+                                        <p><strong>Sua resposta:</strong> ${question.options[userAnswer] || 'Não respondida'}</p>
+                                        <p><strong>Resposta correta:</strong> ${question.options[question.correct]}</p>
+                                        <p><strong>Explicação:</strong> ${question.explanation}</p>
+                                    </div>
+                                `;
+            }).join('')}
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="closeExam()">
+                            Voltar ao Capítulo
+                        </button>
+                        ${percentage >= 70 ? '<button class="btn btn-success" onclick="goToNextChapter()">Próximo Capítulo →</button>' : '<button class="btn btn-secondary" onclick="startExam(' + currentExam.chapterId + ')">Tentar Novamente</button>'}
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Inicia o timer da prova
+         */
+        function startExamTimer() {
+            examTimer = setInterval(() => {
+                examTimeLeft--;
+                updateTimerDisplay();
+
+                if (examTimeLeft <= 0) {
+                    clearInterval(examTimer);
+                    alert('Tempo esgotado! A prova será finalizada automaticamente.');
+                    finishExam();
+                }
+            }, 1000);
+        }
+
+        /**
+         * Atualiza a exibição do timer
+         */
+        function updateTimerDisplay() {
+            const minutes = Math.floor(examTimeLeft / 60);
+            const seconds = examTimeLeft % 60;
+            const timerText = document.getElementById('timer-text');
+            if (timerText) {
+                timerText.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Mudar cor quando restam menos de 5 minutos
+                if (examTimeLeft <= 300) { // 5 minutos
+                    timerText.style.color = '#ff4757';
+                }
+            }
+        }
+
+        /**
+         * Fecha o quiz
+         */
+        function closeQuiz() {
+            currentQuiz = null;
+            document.getElementById('chapter-content').style.display = 'none';
+        }
+
+        /**
+         * Fecha a prova
+         */
+        function closeExam() {
+            currentExam = null;
+            if (examTimer) {
+                clearInterval(examTimer);
+            }
+            document.getElementById('chapter-content').style.display = 'none';
+        }
+
         // ===== LOG DE INICIALIZAÇÃO =====
         console.log('[NavCode] Sistema de curso inicializado');
         console.log('[NavCode] Capítulos disponíveis:', courseData.totalChapters);
-        console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Certificação');
+        console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Certificação, Quiz, Prova');
     </script>
 </body>
 

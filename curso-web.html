@@ -96,7 +96,7 @@
     </main>
 
     <!-- ===== SCRIPTS ===== -->
-    <script src="/JS/auth.js"></script>
+    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script>
     <script>
         // ===== DADOS DO CURSO =====
         /**
@@ -619,6 +619,10 @@
         let currentChapter = null; // Capítulo atualmente selecionado
         let currentExercise = 0;   // Exercício atual
         let userProgress = {};     // Progresso do usuário
+        let examQuestions = [];    // Perguntas da prova
+        let examScore = 0;         // Pontuação da prova
+        let examTimer = null;      // Temporizador da prova
+        let examTimeLeft = 1800;   // 30 minutos em segundos
 
         // ===== INICIALIZAÇÃO =====
         /**
@@ -866,6 +870,8 @@
                     <button class="tab-btn active" onclick="showTab('theory')">📚 Teoria</button>
                     <button class="tab-btn" onclick="showTab('exercises')">✏️ Exercícios</button>
                     <button class="tab-btn" onclick="showTab('videos')">🎥 Vídeos</button>
+                    <button class="tab-btn" onclick="showTab('quiz')">📝 Quiz</button>
+                    <button class="tab-btn" onclick="showTab('exam')">🎯 Prova</button>
                 </div>
                 
                 <div class="tab-content">
@@ -1114,6 +1120,173 @@
          */
         function isUserLoggedIn() {
             return localStorage.getItem('navcode_logged_in') === 'true';
+        }
+
+        // ===== FUNÇÕES DA PROVA =====
+        /**
+         * Inicia a prova com 10 perguntas aleatórias e um temporizador
+         */
+        function startExam() {
+            // Esconder outras abas e mostrar a área de exercícios
+            showTab('exercises');
+
+            // Mudar o título da aba para mostrar que é a prova
+            document.querySelector('.tab-btn.active').textContent = '🏆 Prova';
+
+            // Coletar todas as perguntas de todos os capítulos
+            let allQuestions = [];
+            courseData.chapters.forEach(chapter => {
+                allQuestions = allQuestions.concat(chapter.content.exercises);
+            });
+
+            // Selecionar 10 perguntas aleatórias
+            examQuestions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
+            examScore = 0;
+            currentExercise = 0; // Usar a mesma variável para iterar
+            examTimeLeft = 1800; // Resetar para 30 minutos
+
+            // Iniciar o temporizador
+            updateExamTimerDisplay();
+            examTimer = setInterval(updateExamTimer, 1000);
+
+            // Carregar a primeira pergunta da prova
+            loadExamQuestion();
+        }
+
+        /**
+         * Carrega a pergunta atual da prova
+         */
+        function loadExamQuestion() {
+            if (currentExercise >= examQuestions.length) {
+                // Prova concluída
+                endExam();
+                return;
+            }
+
+            const exercise = examQuestions[currentExercise];
+            const exerciseContent = document.getElementById('exercise-content');
+
+            exerciseContent.innerHTML = `
+        <div class="exercise-header">
+            <h3>Questão ${currentExercise + 1} de 10</h3>
+            <div class="exam-info">
+                <span class="exam-timer">Tempo restante: <span id="exam-timer-display"></span></span>
+            </div>
+            <div class="exercise-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${((currentExercise) / examQuestions.length) * 100}%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise-question">
+            <h4>${exercise.question}</h4>
+            <div class="exercise-options">
+                ${exercise.options.map((option, index) => `
+                    <button class="option-btn" onclick="selectOption(${index})">
+                        ${String.fromCharCode(65 + index)}) ${option}
+                    </button>
+                `).join('')}
+            </div>
+        </div>
+        
+        <div id="exercise-feedback" class="exercise-feedback" style="display: none;">
+             Feedback será mostrado aqui
+        </div>
+        
+        <div class="exercise-actions">
+            <button id="submit-btn" class="btn btn-primary" onclick="submitExamAnswer()" disabled>
+                Confirmar Resposta
+            </button>
+        </div>
+    `;
+        }
+
+        /**
+         * Atualiza o display do temporizador
+         */
+        function updateExamTimerDisplay() {
+            const minutes = Math.floor(examTimeLeft / 60);
+            const seconds = examTimeLeft % 60;
+            const timerDisplay = document.getElementById('exam-timer-display');
+            if (timerDisplay) {
+                timerDisplay.textContent = `${minutes}m ${seconds}s`;
+            }
+        }
+
+        /**
+         * Lógica do temporizador
+         */
+        function updateExamTimer() {
+            if (examTimeLeft <= 0) {
+                clearInterval(examTimer);
+                endExam(true); // Fim da prova por tempo
+                return;
+            }
+            examTimeLeft--;
+            updateExamTimerDisplay();
+        }
+
+        /**
+         * Submete a resposta da prova e avança
+         */
+        function submitExamAnswer() {
+            if (window.selectedAnswer === undefined) return;
+
+            const exercise = examQuestions[currentExercise];
+            const isCorrect = window.selectedAnswer === exercise.correct;
+
+            if (isCorrect) {
+                examScore++;
+            }
+
+            // Exibir feedback temporário e avançar para a próxima pergunta
+            const feedbackDiv = document.getElementById('exercise-feedback');
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = `
+        <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
+            <div class="feedback-icon">${isCorrect ? '✅' : '❌'}</div>
+            <div class="feedback-content">
+                <h4>${isCorrect ? 'Correto!' : 'Incorreto'}</h4>
+            </div>
+        </div>
+        `;
+
+            // Desabilitar opções e botão de submissão
+            document.querySelectorAll('.option-btn').forEach(btn => btn.disabled = true);
+            document.getElementById('submit-btn').style.display = 'none';
+
+            // Avançar para a próxima pergunta após um pequeno atraso
+            setTimeout(() => {
+                currentExercise++;
+                window.selectedAnswer = undefined;
+                loadExamQuestion();
+            }, 1500); // 1.5 segundos
+        }
+
+        /**
+         * Finaliza a prova, calcula o resultado e exibe a tela de conclusão
+         * @param {boolean} timedOut - Se a prova terminou por tempo
+         */
+        function endExam(timedOut = false) {
+            clearInterval(examTimer);
+
+            const passingScore = 7; // 70% de 10 perguntas
+            const passed = examScore >= passingScore;
+
+            const exerciseContent = document.getElementById('exercise-content');
+            exerciseContent.innerHTML = `
+        <div class="completion-screen">
+            <div class="completion-icon">${passed ? '🎉' : '😔'}</div>
+            <h3>${passed ? 'Parabéns, você foi aprovado!' : 'Que pena, você não foi aprovado.'}</h3>
+            ${timedOut ? `<p>Seu tempo acabou!</p>` : ''}
+            <p>Sua pontuação final foi: **${examScore} de 10**</p>
+            <p>Para ser aprovado, você precisa de no mínimo **${passingScore} acertos**.</p>
+            <button class="btn btn-primary" onclick="backToChapters()">
+                Voltar aos Capítulos
+            </button>
+        </div>
+        `;
         }
 
         // ===== LOG DE INICIALIZAÇÃO =====

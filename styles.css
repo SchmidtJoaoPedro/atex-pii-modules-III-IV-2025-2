@@ -476,6 +476,32 @@ body {
   width: 0%;
 }
 
+/* Quiz e Prova */
+
+.tab-content {
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.exam-info {
+  display:flex;
+}
+
+.exam-details {
+  display: flex;
+  gap: 15px;
+}
+
+.exam-actions {
+  display: flex;
+  justify-content: center;
+}
+
 /* Texto do progresso */
 .progress-text {
   font-size: 0.875rem;

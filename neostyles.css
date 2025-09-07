@@ -1932,6 +1932,7 @@ body::before {
 }
 
 .back-btn {
+  z-index: 10;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -2245,6 +2246,7 @@ body::before {
 .chapter-card.completed {
   border: 2px solid var(--navcode-primary);
   background: var(--navcode-primary-bg);
+  transform: translateY(-5px); 
 }
 
 .chapter-card.completed .chapter-icon-wrapper {
@@ -2293,6 +2295,10 @@ body::before {
   color: var(--navcode-text-light);
   padding: 3rem 0 1.5rem;
   margin-top: 4rem;
+}
+
+.abbr {
+  text-decoration: none;
 }
 
 /* Conteúdo do rodapé */

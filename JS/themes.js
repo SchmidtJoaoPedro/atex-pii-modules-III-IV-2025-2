@@ -33,7 +33,7 @@ const darkContent = [
     '.experience-item'
 ];
 
-(function setupDarkMode() {
+(function darkMode() {
 
   // altera o href do <link class="styling-link"> se existir
   function setLinkHref(theme) {

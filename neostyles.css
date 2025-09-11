@@ -1419,6 +1419,25 @@ body::before {
   transition: color 0.2s ease;
 }
 
+.toggle-btn {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 100;
+  right: 800px;
+  top: 60.45%;
+  transform: translateY(-50%);
+  pointer-events: auto;
+  color: #c5c5c5;
+}
+
+#btn-div-password {
+  display: flex;
+  justify-content: center;
+  margin-top: 3px;
+}
+
 .password-toggle:hover {
   color: var(--navcode-primary);
 }

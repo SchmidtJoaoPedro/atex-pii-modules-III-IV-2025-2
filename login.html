@@ -48,7 +48,7 @@
 
             <!-- ===== FORMULÁRIO DE LOGIN ===== -->
             <!-- Campos de usuário e senha com validação -->
-            <form id="loginForm" class="login-form">
+            <form id="loginForm" class="login-form" action="/login" method="post">
 
                 <!-- Campo de usuário -->
                 <div class="form-group">
@@ -60,7 +60,7 @@
                         </svg>
                         Usuário
                     </label>
-                    <input type="text" id="username" class="form-input" placeholder="Digite seu usuário" required
+                    <input name="username" type="text" id="username" class="form-input" placeholder="Digite seu usuário" required
                         autocomplete="username">
                 </div>
 
@@ -76,7 +76,7 @@
                         Senha
                     </label>
                     <div class="password-input-wrapper">
-                        <input type="password" id="password" class="form-input" placeholder="Digite sua senha" required
+                        <input name="password" type="password" id="password" class="form-input" placeholder="Digite sua senha" required
                             autocomplete="current-password">
                         <!-- Botão para mostrar/esconder senha -->
                         <button type="button" class="password-toggle" onclick="togglePassword()">

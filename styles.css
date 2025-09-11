@@ -89,6 +89,49 @@ body {
   color: #e0e0e0ff;
 }
 
+.theme-toggle { 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  gap: 10px; 
+}
+
+.text-mode {
+  color: #2E2E2E;
+}
+
+.switch-btn {
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 0;
+}
+
+.switch-btn .slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Estado ativo */
+.switch-btn.active {
+  background-color: #4CAF50;
+}
+
+.switch-btn.active .slider {
+  transform: translateX(26px);
+}
+
 .modal {
   display: none;
   position: fixed;

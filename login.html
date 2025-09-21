@@ -7,11 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NavCode Plataforma de Cursos</title>
 
-    <!-- Ícone de Página -->
-    <link rel="icon" type="image/png" href="../atex-pii-modules-III-IV-2025-2/assets/images/favicon/favicon.png">
-
     <!-- Importando estilos principais -->
-    <link class="styling-link" rel="stylesheet" href="neostyles.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -19,6 +16,7 @@
     <!-- ===== CONTAINER PRINCIPAL DE LOGIN ===== -->
     <!-- Layout centralizado com fundo gradiente moderno -->
     <div class="login-container">
+
         <!-- ===== CARTÃO DE LOGIN ===== -->
         <!-- Cartão principal com formulário de autenticação -->
         <div class="login-card">
@@ -34,8 +32,8 @@
                 </div>
 
                 <!-- Título e subtítulo da plataforma -->
-                <h1 class="login-title">NavCode</h1>
-                <p class="login-subtitle">Plataforma de Cursos Técnicos</p>
+                <h1 class="login-title">Bem-vindo de volta!</h1>
+                <p class="login-subtitle">NavCode - Plataforma de Cursos Técnicos</p>
                 <p class="login-description">Acesse sua conta para continuar aprendendo</p>
             </div>
 
@@ -48,7 +46,7 @@
 
             <!-- ===== FORMULÁRIO DE LOGIN ===== -->
             <!-- Campos de usuário e senha com validação -->
-            <form id="loginForm" class="login-form" action="/login" method="post">
+            <form id="loginForm" class="login-form">
 
                 <!-- Campo de usuário -->
                 <div class="form-group">
@@ -60,7 +58,7 @@
                         </svg>
                         Usuário
                     </label>
-                    <input name="username" type="text" id="username" class="form-input" placeholder="Digite seu usuário" required
+                    <input type="text" id="username" class="form-input" placeholder="Digite seu usuário" required
                         autocomplete="username">
                 </div>
 
@@ -76,7 +74,7 @@
                         Senha
                     </label>
                     <div class="password-input-wrapper">
-                        <input name="password" type="password" id="password" class="form-input" placeholder="Digite sua senha" required
+                        <input type="password" id="password" class="form-input" placeholder="Digite sua senha" required
                             autocomplete="current-password">
                         <!-- Botão para mostrar/esconder senha -->
                         <button type="button" class="password-toggle" onclick="togglePassword()">
@@ -190,7 +188,10 @@
 
     <!-- ===== SCRIPTS ===== -->
     <!-- Importando sistema de autenticação -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script>
+    <script src="auth.js"></script>
+
+    <!-- Importando sistema de temas -->
+    <script src="theme-system.js"></script>
 
     <!-- Script principal da página de login -->
     <script>
@@ -231,7 +232,7 @@
 
                 // Redirecionar após pequeno delay
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = '../atex-pii-modules-III-IV-2025-2/index.html';;
                 }, 1500);
 
             } else {
@@ -324,7 +325,7 @@
             // Verificar se já está logado
             if (localStorage.getItem('navcode_logged_in') === 'true') {
                 console.log('[NavCode] Usuário já logado, redirecionando...');
-                window.location.href = 'index.html';
+                window.location.href = '../atex-pii-modules-III-IV-2025-2/index.html';;
                 return;
             }
 
@@ -365,6 +366,69 @@
         console.log('[NavCode] Funcionalidades: Autenticação, Lembrar usuário, Recuperação de senha');
         console.log('[NavCode] Credenciais padrão: admin/123456');
     </script>
+
+    <!-- ===== RODAPÉ PADRONIZADO ===== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1: Logo e descrição -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-logo">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            <span class="brand-name">NavCode</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando carreiras através da educação em tecnologia da informação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Cursos -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Cursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
+                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Empresa -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="index.html#creators-section">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="index.html#course-info-card">Certificados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Suporte -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Linha de copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

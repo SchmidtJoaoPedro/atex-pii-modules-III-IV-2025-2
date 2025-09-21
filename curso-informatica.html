@@ -8,18 +8,19 @@
     <title>Curso Técnico de Informática - NavCode</title>
 
     <!-- Importando estilos e fontes -->
-    <link class="styling-link" rel="stylesheet" href="neostyles.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Ícone de Página -->
-    <link rel="icon" type="image/png" href="../atex-pii-modules-III-IV-2025-2/assets/images/favicon/favicon.png">
-
-    <!-- Importando scripts -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/themes.js"></script>
-
 </head>
 
 <body>
+    <!-- ===== BOTÃO DE ALTERNÂNCIA DE TEMA ===== -->
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+    </button>
 
     <!-- ===== CABEÇALHO DO CURSO ===== -->
     <header class="header">
@@ -27,7 +28,7 @@
             <div class="header-content">
                 <!-- Navegação de volta para home -->
                 <div class="course-navigation">
-                    <button class="back-btn" onclick="goHome()">
+                    <button type="button" class="back-btn" onclick="goHome()">
                         <!-- Ícone de seta para voltar -->
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M19 12H5" />
@@ -96,7 +97,7 @@
     </main>
 
     <!-- ===== SCRIPTS ===== -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script> 
+    <script src="auth.js"></script>
     <script>
         // ===== DADOS DO CURSO =====
         /**
@@ -2819,7 +2820,7 @@
         function goHome() {
             console.log('[NavCode] Redirecionando para página inicial...');
             try {
-                window.location.href = 'index.html';
+                window.location.href = '../atex-pii-modules-III-IV-2025-2/index.html';;
             } catch (error) {
                 console.error('[NavCode] Erro ao redirecionar:', error);
                 alert('Erro ao voltar para página inicial');
@@ -3703,7 +3704,7 @@
                         </div>
                     </div>
                     <div class="completion-actions">
-                        <button class="btn btn-primary" onclick="goHome()">
+                        <button type="button" class="btn btn-primary" onclick="goHome()">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                                 <polyline points="9,22 9,12 15,12 15,22"/>
@@ -4153,6 +4154,9 @@
         console.log('[NavCode] Capítulos disponíveis:', courseData.totalChapters);
         console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Certificação, Quiz, Prova');
     </script>
+
+    <!-- Importando sistema de temas -->
+    <script src="theme-system.js"></script>
 </body>
 
 </html>

@@ -7,55 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NavCode - Plataforma de Cursos Técnicos</title>
 
-    <!-- Ícone de Página -->
-    <link rel="icon" type="image/png" href="../atex-pii-modules-III-IV-2025-2/assets/images/favicon/favicon.png">
-
     <!-- Importando estilos e fontes -->
-    <link class="styling-link" rel="stylesheet" href="neostyles.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=settings" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> <!--Fonte ROBOTO-->
-
-    <!-- Importando scripts -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/themes.js"></script>
 </head>
 
 <body>
+    <!-- ===== BOTÃO DE ALTERNÂNCIA DE TEMA ===== -->
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+    </button>
+
     <!-- ===== CABEÇALHO PRINCIPAL ===== -->
     <!-- Seção superior com logo, título e informações do usuário -->
-    <header class="header" id="home">
-        <div class="container" id="header-container">
-            <div>
-                <div class="header-content">
-                    <!-- Título principal com logo clicável -->
-                    <div class="header-title">
-                        <!-- Logo NavCode clicável que leva ao login -->
-                        <div class="brand-logo" onclick="redirectToLogin()">
-                            <!-- Ícone da marca (raio representando velocidade/tecnologia) -->
-                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                            </svg>
-                            <span class="brand-name">NavCode</span>
-                        </div>
-
-                        <!-- Ícone de livro representando educação -->
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Título principal com logo clicável -->
+                <div class="header-title">
+                    <!-- Logo NavCode clicável que leva ao login -->
+                    <div class="brand-logo" onclick="redirectToLogin()">
+                        <!-- Ícone da marca (raio representando velocidade/tecnologia) -->
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                         </svg>
-                        <h1>Plataforma de Cursos Técnicos</h1>
+                        <span class="brand-name">NavCode</span>
                     </div>
+
+                    <!-- Ícone de livro representando educação -->
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                    <h1>Plataforma de Cursos Técnicos</h1>
                 </div>
-                <!-- Descrição da plataforma -->
-                <p class="header-description">
-                    Desenvolva suas habilidades técnicas com os cursos completos da NavCode.
-                    Aprenda desde fundamentos de hardware até segurança da informação com metodologia profissional
-                    e conteúdo sempre atualizado.
-                </p>
-            </div>
-            <div class="header-user-mode">
+
                 <!-- Área de informações do usuário (visível apenas quando logado) -->
                 <div class="user-info" id="user-info" style="display: none;">
                     <div class="user-welcome">
@@ -73,25 +63,13 @@
                     </button>
                 </div>
 
-                <!--Botão de configurações-->
-                <div class="settings">
-                    <p>Mudar tema do site: </p>
-                    <a href="#" class="settings-btn" id="openModal" onclick="openSettings()"><svg src="../atex-pii-modules-III-IV-2025-2/assets/icons/settings.svg"></svg></a>
-                    <div class="modal" id="modal">
-                        <span id="closeModal" class="close">&times;</span>
-                        <div class="modal-content">
-                            <div class="theme-toggle">
-                                <p class="text-mode"><abbr title="Tema minimalista e escuro, perfeito para passar noites em claro estudando" class="abbr">Modo Escuro</abbr></p>
-                                <button type="button" id="theme-switch" class="switch-btn" onclick="darkMode()"
-                                    aria-label="Alternar modo">
-                                    <span class="slider"></span>
-                                </button>
-                            </div><br>
-                        </div>
-                    </div>
-                </div>
+                <!-- Descrição da plataforma -->
+                <p class="header-description">
+                    Desenvolva suas habilidades técnicas com os cursos completos da NavCode.
+                    Aprenda desde fundamentos de hardware até segurança da informação com metodologia profissional
+                    e conteúdo sempre atualizado.
+                </p>
             </div>
-        </div>
         </div>
     </header>
 
@@ -111,7 +89,7 @@
                         Seu Progresso NavCode
                     </h2>
                     <p class="card-description">
-                        <span id="completed-count">0</span> de <span id="total-courses">3</span> cursos iniciados
+                        <span id="completed-count">0</span> de <span id="total-courses">6</span> cursos iniciados
                     </p>
                 </div>
                 <div class="card-content">
@@ -151,7 +129,7 @@
 
                     <!-- Formulário para nova avaliação (visível apenas quando logado) -->
                     <div class="review-form" id="review-form" style="display: none;">
-                        <h3 class="title-avaliation">Deixe sua Avaliação</h3>
+                        <h3>Deixe sua Avaliação</h3>
 
                         <!-- Seletor de estrelas -->
                         <div class="star-rating" id="star-rating">
@@ -184,11 +162,9 @@
                         </textarea>
 
                         <!-- Botão para enviar avaliação -->
-                        <div id="btn-submit-review">
-                            <a class="btn btn-primary" onclick="submitReview()" id="btn-submit-review">
-                                Enviar Avaliação
-                            </a>
-                        </div>
+                        <button class="btn btn-primary" onclick="submitReview()">
+                            Enviar Avaliação
+                        </button>
                     </div>
                 </div>
             </div>
@@ -196,7 +172,7 @@
             <!-- ===== INFORMAÇÕES GERAIS DA PLATAFORMA ===== -->
             <div class="course-info-card">
                 <div class="card-header">
-                    <h2 class="card-title" id="about-navcode">Sobre a NavCode</h2>
+                    <h2 class="card-title">Sobre a NavCode</h2>
                 </div>
                 <div class="card-content">
                     <!-- Estatísticas da plataforma -->
@@ -239,125 +215,120 @@
                 </div>
             </div>
         </div>
+    </main>
 
-        <!-- ===== SEÇÃO DE CRIADORES ===== -->
-        <!-- Rodapé com informações sobre a equipe NavCode -->
-        <section class="creators-section" id="time">
-            <div class="container" id="container-cards">
-                <!-- Título da seção com ícone -->
-                <div class="section-header">
-                    <h2 class="section-title">Nossos Criadores</h2>
-                    <p class="section-description">Conheça os profissionais experientes por trás dos nossos cursos</p>
+    <!-- ===== SEÇÃO DE CRIADORES ===== -->
+    <!-- Rodapé com informações sobre a equipe NavCode -->
+    <section class="creators-section">
+        <div class="container">
+            <!-- Título da seção com ícone -->
+            <div class="section-header">
+                <h2 class="section-title">Nossos Criadores</h2>
+                <p class="section-description">Conheça os profissionais experientes por trás dos nossos cursos</p>
+            </div>
+
+            <!-- Grid dos criadores com cards clicáveis -->
+            <div class="creators-grid">
+                <!-- Criador 1: Rafael Engel Serafin -->
+                <div class="creator-card" onclick="window.location.href='creator-rafael.html'">
+                    <div class="creator-image-wrapper">
+                        <img src="../atex-pii-modules-III-IV-2025-2/images/party/ft-engel.jpg"
+                            alt="Rafael Engel Serafin" class="creator-photo">
+                    </div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Rafael Engel Serafin</h3>
+                        <p class="creator-role">Especialista em Desenvolvimento Full-Stack</p>
+                        <p class="creator-description">Expert em JavaScript, React, Node.js e arquitetura de sistemas
+                            modernos.</p>
+                    </div>
                 </div>
 
-                <!-- Grid dos criadores com cards clicáveis -->
-                <div class="creators-grid">
-                    <!-- Criador 1: Rafael Engel Serafin -->
-                    <div class="creator-card" onclick="window.location.href='creator-rafael.html'">
-                        <div class="creator-image-wrapper">
-                            <img src="../atex-pii-modules-III-IV-2025-2/assets/party/engel_rafael.jpeg"
-                                alt="Rafael Engel Serafin" class="creator-photo">
-                        </div>
-                        <div class="creator-info">
-                            <h3 class="creator-name">Rafael Engel Serafin</h3>
-                            <p class="creator-role">Especialista em Desenvolvimento Full-Stack</p>
-                            <p class="creator-description">Expert em JavaScript, React, Node.js e arquitetura de
-                                sistemas
-                                modernos.</p>
-                        </div>
+                <!-- Criador 2: Marcos Paulo Cassiano -->
+                <div class="creator-card" onclick="window.location.href='creator-marcos.html'">
+                    <div class="creator-image-wrapper">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-marcos.jpg-y7eRD3xIsZVvPh0JqMApfXRyDJRrsF.jpeg"
+                            alt="Marcos Paulo Cassiano" class="creator-photo">
                     </div>
-
-                    <!-- Criador 2: Marcos Paulo Cassiano -->
-                    <div class="creator-card" onclick="window.location.href='creator-marcos.html'">
-                        <div class="creator-image-wrapper">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-marcos.jpg-y7eRD3xIsZVvPh0JqMApfXRyDJRrsF.jpeg"
-                                alt="Marcos Paulo Cassiano" class="creator-photo">
-                        </div>
-                        <div class="creator-info">
-                            <h3 class="creator-name">Marcos Paulo Cassiano</h3>
-                            <p class="creator-role">Desenvolvedor Full Stack</p>
-                            <p class="creator-description">Especialista em Python, Django, APIs REST e desenvolvimento
-                                backend.</p>
-                        </div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Marcos Paulo Cassiano</h3>
+                        <p class="creator-role">Desenvolvedor Full Stack</p>
+                        <p class="creator-description">Especialista em Python, Django, APIs REST e desenvolvimento
+                            backend.</p>
                     </div>
+                </div>
 
-                    <!-- Criador 3: Rebeca Costa -->
-                    <div class="creator-card" onclick="window.location.href='creator-rebeca.html'">
-                        <div class="creator-image-wrapper">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-rebeca.jpg-rkwRykefWVjM0izDaCS36f28RWY5WM.jpeg"
-                                alt="Rebeca Costa" class="creator-photo">
-                        </div>
-                        <div class="creator-info">
-                            <h3 class="creator-name">Rebeca Costa</h3>
-                            <p class="creator-role">Especialista em Redes</p>
-                            <p class="creator-description">Expert em infraestrutura de redes, segurança e administração
-                                de
-                                sistemas.</p>
-                        </div>
+                <!-- Criador 3: Rebeca Costa -->
+                <div class="creator-card" onclick="window.location.href='creator-rebeca.html'">
+                    <div class="creator-image-wrapper">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-rebeca.jpg-rkwRykefWVjM0izDaCS36f28RWY5WM.jpeg"
+                            alt="Rebeca Costa" class="creator-photo">
                     </div>
-
-                    <!-- Criador 4: João Pedro Schmidt -->
-                    <div class="creator-card" onclick="window.location.href='creator-joao.html'">
-                        <div class="creator-image-wrapper">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-joao.jpg-0Es4xd5GgvV1iYCMdu2WJEEy5me4TI.jpeg"
-                                alt="João Pedro Schmidt" class="creator-photo">
-                        </div>
-                        <div class="creator-info">
-                            <h3 class="creator-name">João Pedro Schmidt</h3>
-                            <p class="creator-role">Analista de Sistemas</p>
-                            <p class="creator-description">Especialista em análise de sistemas, banco de dados e
-                                otimização
-                                de performance.</p>
-                        </div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Rebeca Costa</h3>
+                        <p class="creator-role">Especialista em Redes</p>
+                        <p class="creator-description">Expert em infraestrutura de redes, segurança e administração de
+                            sistemas.</p>
                     </div>
+                </div>
 
-                    <!-- Criador 5: Ryan -->
-                    <div class="creator-card" onclick="window.location.href='creator-ryan.html'">
-                        <div class="creator-image-wrapper">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-Ryan.jpg-MXMsmonkRMR1vSXHaa8tCChj5bghTD.jpeg"
-                                alt="Ryan" class="creator-photo">
-                        </div>
-                        <div class="creator-info">
-                            <h3 class="creator-name">Ryan</h3>
-                            <p class="creator-role">Especialista em DevOps</p>
-                            <p class="creator-description">Expert em Docker, Kubernetes, CI/CD e infraestrutura como
-                                código.
-                            </p>
-                        </div>
+                <!-- Criador 4: João Pedro Schmidt -->
+                <div class="creator-card" onclick="window.location.href='creator-joao.html'">
+                    <div class="creator-image-wrapper">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-joao.jpg-0Es4xd5GgvV1iYCMdu2WJEEy5me4TI.jpeg"
+                            alt="João Pedro Schmidt" class="creator-photo">
                     </div>
-
-                    <!-- Criador 6: Luiz Gustavo -->
-                    <div class="creator-card" onclick="window.location.href='creator-luiz.html'">
-                        <div class="creator-image-wrapper">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-luizg.jpg-IytYoY6vPHAyAVzBhl7q0SHiY46GBI.jpeg"
-                                alt="Luiz Gustavo" class="creator-photo">
-                        </div>
-                        <div class="creator-info">
-                            <h3 class="creator-name">Luiz Gustavo</h3>
-                            <p class="creator-role">Desenvolvedor Mobile</p>
-                            <p class="creator-description">Especialista em React Native, Flutter e desenvolvimento de
-                                aplicativos móveis.</p>
-                        </div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">João Pedro Schmidt</h3>
+                        <p class="creator-role">Analista de Sistemas</p>
+                        <p class="creator-description">Especialista em análise de sistemas, banco de dados e otimização
+                            de performance.</p>
                     </div>
+                </div>
 
-                    <!-- Criador 7: Pedro Lucas -->
-                    <div class="creator-card" id="pedro-creator-card"
-                        onclick="window.location.href='creator-pedro-lucas.html'">
-                        <div class="creator-image-wrapper">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-pedrolucas.jpg-ywazAB9GSikUVc7RgcGTLrTRjh07Ul.jpeg"
-                                alt="Pedro Lucas" class="creator-photo">
-                        </div>
-                        <div class="creator-info">
-                            <h3 class="creator-name">Pedro Lucas</h3>
-                            <p class="creator-role">Cientista de Dados</p>
-                            <p class="creator-description">Expert em Machine Learning, Python, análise de dados e
-                                inteligência artificial.</p>
-                        </div>
+                <!-- Criador 5: Ryan -->
+                <div class="creator-card" onclick="window.location.href='creator-ryan.html'">
+                    <div class="creator-image-wrapper">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-Ryan.jpg-MXMsmonkRMR1vSXHaa8tCChj5bghTD.jpeg"
+                            alt="Ryan" class="creator-photo">
+                    </div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Ryan</h3>
+                        <p class="creator-role">Especialista em DevOps</p>
+                        <p class="creator-description">Expert em Docker, Kubernetes, CI/CD e infraestrutura como código.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Criador 6: Luiz Gustavo -->
+                <div class="creator-card" onclick="window.location.href='creator-luiz.html'">
+                    <div class="creator-image-wrapper">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-luizg.jpg-IytYoY6vPHAyAVzBhl7q0SHiY46GBI.jpeg"
+                            alt="Luiz Gustavo" class="creator-photo">
+                    </div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Luiz Gustavo</h3>
+                        <p class="creator-role">Desenvolvedor Mobile</p>
+                        <p class="creator-description">Especialista em React Native, Flutter e desenvolvimento de
+                            aplicativos móveis.</p>
+                    </div>
+                </div>
+
+                <!-- Criador 7: Pedro Lucas -->
+                <div class="creator-card" onclick="window.location.href='creator-pedro-lucas.html'">
+                    <div class="creator-image-wrapper">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ft-pedrolucas.jpg-ywazAB9GSikUVc7RgcGTLrTRjh07Ul.jpeg"
+                            alt="Pedro Lucas" class="creator-photo">
+                    </div>
+                    <div class="creator-info">
+                        <h3 class="creator-name">Pedro Lucas</h3>
+                        <p class="creator-role">Cientista de Dados</p>
+                        <p class="creator-description">Expert em Machine Learning, Python, análise de dados e
+                            inteligência artificial.</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- ===== RODAPÉ PRINCIPAL ===== -->
     <!-- Rodapé com informações sobre a equipe NavCode -->
@@ -372,7 +343,7 @@
                                 stroke-width="2">
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                             </svg>
-                            <span class="brand-name"><a href="#home" id="navcode-a">NavCode</a></span>
+                            <span class="brand-name">NavCode</span>
                         </div>
                         <p class="footer-description">
                             Transformando carreiras através da educação em tecnologia da informação.
@@ -382,47 +353,53 @@
 
                 <!-- Coluna 2: Cursos -->
                 <div class="footer-column">
-                    <h3 class="footer-title">Cursos</h3>
+                    <h3 class="footer-title">Cursos &#8595;</h3>
                     <ul class="footer-links">
                         <li><a href="curso-informatica.html">Técnico em Informática</a></li>
                         <li><a href="curso-web.html">Desenvolvimento Web</a></li>
                         <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
                     </ul>
                 </div>
 
                 <!-- Coluna 3: Empresa -->
                 <div class="footer-column">
-                    <h3 class="footer-title">Empresa</h3>
+                    <h3 class="footer-title">Empresa &#8595;</h3>
                     <ul class="footer-links">
-                        <li><a href="../atex-pii-modules-III-IV-2025-2/nossa-empresa.html">Sobre Nós</a></li>
-                        <li><a href="#time">Nossos Criadores</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                        <li><a href="#certificados">Certificados</a></li>
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="#creators-section">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="#course-info-card">Certificados</a></li>
                     </ul>
                 </div>
 
                 <!-- Coluna 4: Suporte -->
                 <div class="footer-column">
-                    <h3 class="footer-title">Suporte</h3>
+                    <h3 class="footer-title">Suporte &#8595;</h3>
                     <ul class="footer-links">
-                        <li><a href="#ajuda">Central de Ajuda</a></li>
-                        <li><a href="#faq"><abbr title="Perguntas Frequentes" class="abbr">FAQ</abbr></a></li>
-                        <li><a href="#politica">Política de Privacidade</a></li>
-                        <li><a href="#termos">Termos de Uso</a></li>
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Linha de copyright -->
             <div class="footer-bottom">
-                <p>&copy; 2025 NavCode. Todos os direitos reservados.</p>
+                <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
     <!-- Importando sistema de autenticação -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script>
+    <script src="auth.js"></script>
+
+    <!-- Importando sistema de temas -->
+    <script src="theme-system.js"></script>
 
     <!-- Script principal da página -->
     <script>
@@ -461,6 +438,39 @@
                 videos: 25,
                 level: "Intermediário a Avançado",
                 category: "Segurança"
+            },
+            {
+                id: 4,
+                title: "Programação Python",
+                description: "Aprenda Python do básico ao avançado com projetos práticos.",
+                duration: "20h",
+                chapters: 6,
+                exercises: 60,
+                videos: 30,
+                level: "Iniciante a Intermediário",
+                category: "Programação"
+            },
+            {
+                id: 5,
+                title: "Redes de Computadores",
+                description: "Fundamentos de redes, protocolos e infraestrutura de comunicação.",
+                duration: "18h",
+                chapters: 6,
+                exercises: 50,
+                videos: 25,
+                level: "Intermediário",
+                category: "Redes"
+            },
+            {
+                id: 6,
+                title: "Banco de Dados",
+                description: "Fundamentos de banco de dados, SQL e modelagem de dados.",
+                duration: "16h",
+                chapters: 6,
+                exercises: 45,
+                videos: 20,
+                level: "Intermediário",
+                category: "Banco de Dados"
             }
         ];
 
@@ -646,23 +656,16 @@
                 // Fallback: redirecionar para página específica do curso
                 console.log(`[NavCode] Redirecionando para curso ${courseId}`);
 
-                // Tentar redirecionar para arquivos específicos do curso
-                switch (courseId) {
-                    case 1:
-                        // Curso Técnico de Informática - usar o sistema existente
-                        window.location.href = 'curso-informatica.html';
-                        break;
-                    case 2:
-                        // Desenvolvimento Web
-                        window.location.href = 'curso-web.html';
-                        break;
-                    case 3:
-                        // Segurança da Informação
-                        window.location.href = 'curso-seguranca.html';
-                        break;
-                    default:
-                        alert(`Curso "${course.title}" será disponibilizado em breve!`);
-                }
+                // Redirecionar para o curso específico baseado no ID
+                const courseUrls = {
+                    1: 'curso-informatica.html',
+                    2: 'curso-web.html',
+                    3: 'curso-seguranca.html',
+                    4: 'curso-python.html',
+                    5: 'curso-redes.html',
+                    6: 'curso-banco-dados.html'
+                };
+                window.location.href = courseUrls[courseId] || 'curso-informatica.html';
             }
         }
 
@@ -675,7 +678,7 @@
             const mockProgress = {
                 completedCourses: 1,
                 totalCourses: courses.length,
-                overallProgress: 33
+                overallProgress: Math.round((1 / courses.length) * 100)
             };
 
             // Atualizar elementos da interface
@@ -873,8 +876,6 @@
         console.log('[NavCode] Sistema de cursos inicializado');
         console.log('[NavCode] Cursos disponíveis:', courses.length);
         console.log('[NavCode] Funcionalidades: Autenticação, Progresso, Avaliações, Cursos');
-
-        
     </script>
 </body>
 

@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Dados - NavCode</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+    </button>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="course-navigation">
+                    <button type="button" class="back-btn" onclick="goHome()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5" />
+                            <path d="M12 19l-7-7 7-7" />
+                        </svg>
+                        Voltar ao Início
+                    </button>
+                    <div class="brand-logo">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                        <span class="brand-name">NavCode</span>
+                    </div>
+                </div>
+                <h1>Banco de Dados</h1>
+                <p class="course-subtitle">
+                    Fundamentos de banco de dados, SQL e modelagem de dados
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="progress-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                        Seu Progresso
+                    </h2>
+                    <p class="card-description">
+                        <span id="completed-chapters">0</span> de <span id="total-chapters">6</span> capítulos
+                        concluídos
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="course-progress-fill"></div>
+                    </div>
+                    <p class="progress-text"><span id="course-progress-percentage">0</span>% concluído</p>
+                </div>
+            </div>
+
+            <div class="chapters-grid" id="chapters-grid"></div>
+            <div class="chapter-content" id="chapter-content" style="display: none;"></div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        const courseData = {
+            id: 6,
+            title: "Banco de Dados",
+            description: "Fundamentos de banco de dados, SQL e modelagem de dados",
+            duration: "16h",
+            totalChapters: 6,
+            totalExercises: 45,
+            totalVideos: 20,
+            level: "Intermediário",
+            category: "Banco de Dados",
+            chapters: [
+                {
+                    id: 1,
+                    title: "Fundamentos de Banco de Dados",
+                    description: "Conceitos básicos, tipos de SGBD e arquitetura",
+                    duration: "3h",
+                    exercises: 8,
+                    videos: 4,
+                    content: {
+                        theory: `
+                            <h3>🗄️ O que é um Banco de Dados?</h3>
+                            <p>Banco de dados é uma coleção organizada de dados relacionados, armazenados de forma estruturada.</p>
+                            
+                            <h4>Tipos de SGBD:</h4>
+                            <ul>
+                                <li><strong>Relacionais:</strong> MySQL, PostgreSQL, SQL Server</li>
+                                <li><strong>NoSQL:</strong> MongoDB, Redis, Cassandra</li>
+                                <li><strong>Orientados a Objetos:</strong> ObjectDB, Versant</li>
+                            </ul>
+                            
+                            <h4>Vantagens dos Bancos de Dados:</h4>
+                            <ul>
+                                <li><strong>Integridade:</strong> Consistência dos dados</li>
+                                <li><strong>Segurança:</strong> Controle de acesso</li>
+                                <li><strong>Performance:</strong> Consultas otimizadas</li>
+                                <li><strong>Backup:</strong> Recuperação de dados</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 1,
+                                title: "Identificando tipos de SGBD",
+                                description: "Analise cenários e identifique o tipo de SGBD mais adequado",
+                                difficulty: "Fácil",
+                                estimatedTime: "30 min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 1,
+                                title: "Introdução aos Bancos de Dados",
+                                duration: "25 min",
+                                description: "Conceitos fundamentais e tipos de SGBD"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 2,
+                    title: "Modelagem de Dados",
+                    description: "Entidade-Relacionamento, normalização e design de banco",
+                    duration: "3h",
+                    exercises: 8,
+                    videos: 4,
+                    content: {
+                        theory: `
+                            <h3>📊 Modelagem de Dados</h3>
+                            <p>Modelagem é o processo de criar um modelo conceitual dos dados a serem armazenados.</p>
+                            
+                            <h4>Diagrama Entidade-Relacionamento:</h4>
+                            <ul>
+                                <li><strong>Entidades:</strong> Objetos do mundo real</li>
+                                <li><strong>Atributos:</strong> Características das entidades</li>
+                                <li><strong>Relacionamentos:</strong> Conexões entre entidades</li>
+                                <li><strong>Cardinalidade:</strong> 1:1, 1:N, N:N</li>
+                            </ul>
+                            
+                            <h4>Normalização:</h4>
+                            <ul>
+                                <li><strong>1FN:</strong> Eliminar grupos repetitivos</li>
+                                <li><strong>2FN:</strong> Dependência funcional completa</li>
+                                <li><strong>3FN:</strong> Dependência transitiva</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 2,
+                                title: "Criando modelo ER",
+                                description: "Desenhe um diagrama ER para um sistema de biblioteca",
+                                difficulty: "Médio",
+                                estimatedTime: "1h"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 2,
+                                title: "Modelagem de Dados",
+                                duration: "30 min",
+                                description: "Diagrama ER e normalização"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 3,
+                    title: "SQL Básico",
+                    description: "SELECT, INSERT, UPDATE, DELETE e operações básicas",
+                    duration: "3h",
+                    exercises: 10,
+                    videos: 5,
+                    content: {
+                        theory: `
+                            <h3>💻 SQL Básico</h3>
+                            <p>SQL (Structured Query Language) é a linguagem padrão para manipular bancos de dados relacionais.</p>
+                            
+                            <h4>Comandos DDL (Data Definition Language):</h4>
+                            <ul>
+                                <li><strong>CREATE:</strong> Criar tabelas e estruturas</li>
+                                <li><strong>ALTER:</strong> Modificar estruturas</li>
+                                <li><strong>DROP:</strong> Remover estruturas</li>
+                            </ul>
+                            
+                            <h4>Comandos DML (Data Manipulation Language):</h4>
+                            <ul>
+                                <li><strong>SELECT:</strong> Consultar dados</li>
+                                <li><strong>INSERT:</strong> Inserir dados</li>
+                                <li><strong>UPDATE:</strong> Atualizar dados</li>
+                                <li><strong>DELETE:</strong> Remover dados</li>
+                            </ul>
+                            
+                            <h4>Exemplo de SELECT:</h4>
+                            <pre><code>SELECT nome, idade 
+FROM usuarios 
+WHERE idade > 18 
+ORDER BY nome;</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 3,
+                                title: "Consultas SQL básicas",
+                                description: "Crie consultas SELECT para diferentes cenários",
+                                difficulty: "Médio",
+                                estimatedTime: "1h 30min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 3,
+                                title: "SQL Básico",
+                                duration: "35 min",
+                                description: "Comandos DDL e DML fundamentais"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 4,
+                    title: "SQL Avançado",
+                    description: "JOINs, subconsultas, funções e otimização",
+                    duration: "3h",
+                    exercises: 10,
+                    videos: 4,
+                    content: {
+                        theory: `
+                            <h3>🚀 SQL Avançado</h3>
+                            <p>Recursos avançados do SQL para consultas complexas e otimização.</p>
+                            
+                            <h4>JOINs:</h4>
+                            <ul>
+                                <li><strong>INNER JOIN:</strong> Apenas registros correspondentes</li>
+                                <li><strong>LEFT JOIN:</strong> Todos da tabela esquerda</li>
+                                <li><strong>RIGHT JOIN:</strong> Todos da tabela direita</li>
+                                <li><strong>FULL OUTER JOIN:</strong> Todos os registros</li>
+                            </ul>
+                            
+                            <h4>Funções Agregadas:</h4>
+                            <ul>
+                                <li><strong>COUNT:</strong> Contar registros</li>
+                                <li><strong>SUM:</strong> Somar valores</li>
+                                <li><strong>AVG:</strong> Média aritmética</li>
+                                <li><strong>MAX/MIN:</strong> Maior/menor valor</li>
+                            </ul>
+                            
+                            <h4>Exemplo de JOIN:</h4>
+                            <pre><code>SELECT u.nome, p.titulo 
+FROM usuarios u 
+INNER JOIN posts p ON u.id = p.usuario_id;</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 4,
+                                title: "Consultas com JOINs",
+                                description: "Crie consultas complexas usando diferentes tipos de JOIN",
+                                difficulty: "Avançado",
+                                estimatedTime: "2h"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 4,
+                                title: "SQL Avançado",
+                                duration: "40 min",
+                                description: "JOINs, subconsultas e funções"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 5,
+                    title: "Índices e Performance",
+                    description: "Otimização de consultas, índices e análise de performance",
+                    duration: "2h",
+                    exercises: 6,
+                    videos: 2,
+                    content: {
+                        theory: `
+                            <h3>⚡ Índices e Performance</h3>
+                            <p>Índices são estruturas que aceleram consultas, mas consomem espaço e afetam inserções.</p>
+                            
+                            <h4>Tipos de Índices:</h4>
+                            <ul>
+                                <li><strong>Índice Simples:</strong> Uma coluna</li>
+                                <li><strong>Índice Composto:</strong> Múltiplas colunas</li>
+                                <li><strong>Índice Único:</strong> Valores únicos</li>
+                                <li><strong>Índice de Texto:</strong> Busca em texto</li>
+                            </ul>
+                            
+                            <h4>Otimização de Consultas:</h4>
+                            <ul>
+                                <li><strong>EXPLAIN:</strong> Analisar plano de execução</li>
+                                <li><strong>Índices apropriados:</strong> Para colunas frequentemente consultadas</li>
+                                <li><strong>Evitar SELECT *:</strong> Selecionar apenas colunas necessárias</li>
+                                <li><strong>LIMIT:</strong> Limitar resultados quando possível</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 5,
+                                title: "Otimizando consultas",
+                                description: "Analise e otimize consultas SQL lentas",
+                                difficulty: "Avançado",
+                                estimatedTime: "1h 30min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 5,
+                                title: "Índices e Performance",
+                                duration: "30 min",
+                                description: "Otimização de consultas e análise de performance"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 6,
+                    title: "Transações e Concorrência",
+                    description: "ACID, transações, locks e controle de concorrência",
+                    duration: "2h",
+                    exercises: 3,
+                    videos: 1,
+                    content: {
+                        theory: `
+                            <h3>🔄 Transações e Concorrência</h3>
+                            <p>Transações garantem consistência dos dados em operações complexas.</p>
+                            
+                            <h4>Propriedades ACID:</h4>
+                            <ul>
+                                <li><strong>Atomicidade:</strong> Tudo ou nada</li>
+                                <li><strong>Consistência:</strong> Dados sempre válidos</li>
+                                <li><strong>Isolamento:</strong> Transações independentes</li>
+                                <li><strong>Durabilidade:</strong> Alterações permanentes</li>
+                            </ul>
+                            
+                            <h4>Controle de Concorrência:</h4>
+                            <ul>
+                                <li><strong>Locks:</strong> Bloqueio de recursos</li>
+                                <li><strong>Deadlock:</strong> Bloqueio mútuo</li>
+                                <li><strong>Isolation Levels:</strong> Níveis de isolamento</li>
+                            </ul>
+                            
+                            <h4>Exemplo de Transação:</h4>
+                            <pre><code>BEGIN TRANSACTION;
+UPDATE conta SET saldo = saldo - 100 WHERE id = 1;
+UPDATE conta SET saldo = saldo + 100 WHERE id = 2;
+COMMIT;</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 6,
+                                title: "Implementando transações",
+                                description: "Crie transações para operações bancárias",
+                                difficulty: "Avançado",
+                                estimatedTime: "2h"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 6,
+                                title: "Transações e Concorrência",
+                                duration: "35 min",
+                                description: "ACID, locks e controle de concorrência"
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+
+        let currentChapter = null;
+        let userProgress = JSON.parse(localStorage.getItem('navcode_database_progress') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('[NavCode] Inicializando curso de Banco de Dados...');
+            loadChapters();
+            loadProgress();
+            console.log('[NavCode] Curso carregado com sucesso!');
+        });
+
+        function goHome() {
+            window.location.href = '../atex-pii-modules-III-IV-2025-2/index.html';
+        }
+
+        function loadChapters() {
+            const chaptersGrid = document.getElementById('chapters-grid');
+            chaptersGrid.innerHTML = '';
+
+            courseData.chapters.forEach((chapter, index) => {
+                const chapterCard = document.createElement('div');
+                chapterCard.className = 'chapter-card';
+                chapterCard.onclick = () => openChapter(chapter.id);
+
+                const isCompleted = userProgress[`chapter_${chapter.id}`]?.completed || false;
+                const completionIcon = isCompleted ?
+                    '<svg class="icon completed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>' :
+                    '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>';
+
+                chapterCard.innerHTML = `
+                    <div class="chapter-header">
+                        <div class="chapter-info">
+                            <div class="chapter-icon-wrapper">
+                                ${completionIcon}
+                            </div>
+                            <div class="chapter-details">
+                                <h3>${chapter.title}</h3>
+                                <div class="chapter-duration">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    ${chapter.duration} • ${chapter.exercises} exercícios • ${chapter.videos} vídeos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chapter-body">
+                        <p class="chapter-description">${chapter.description}</p>
+                        <button class="chapter-button primary">
+                            ${isCompleted ? 'Revisar Capítulo' : 'Iniciar Capítulo'}
+                        </button>
+                    </div>
+                `;
+
+                chaptersGrid.appendChild(chapterCard);
+            });
+        }
+
+        function loadProgress() {
+            const completedChapters = Object.values(userProgress).filter(progress => progress.completed).length;
+            const totalChapters = courseData.totalChapters;
+            const percentage = Math.round((completedChapters / totalChapters) * 100);
+
+            document.getElementById('course-progress-percentage').textContent = percentage;
+            document.getElementById('course-progress-fill').style.width = `${percentage}%`;
+            document.getElementById('completed-chapters').textContent = completedChapters;
+        }
+
+        function openChapter(chapterId) {
+            currentChapter = courseData.chapters.find(ch => ch.id === chapterId);
+            if (!currentChapter) return;
+
+            document.getElementById('chapters-grid').style.display = 'none';
+            document.getElementById('chapter-content').style.display = 'block';
+
+            loadChapterContent();
+        }
+
+        function loadChapterContent() {
+            if (!currentChapter) return;
+
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="chapter-header">
+                    <h2>${currentChapter.title}</h2>
+                    <div class="chapter-actions">
+                        <button class="btn-secondary" onclick="goBackToChapters()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5"/>
+                                <path d="M12 19l-7-7 7-7"/>
+                            </svg>
+                            Voltar aos Capítulos
+                        </button>
+                        <button class="btn-primary" onclick="markChapterComplete()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            Marcar como Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chapter-tabs">
+                    <button class="tab-btn active" onclick="showTab('theory')">📚 Teoria</button>
+                    <button class="tab-btn" onclick="showTab('exercises')">✏️ Exercícios</button>
+                    <button class="tab-btn" onclick="showTab('quiz')">📝 Quiz</button>
+                    <button class="tab-btn" onclick="showTab('exam')">🎯 Prova</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="theory-tab" class="tab-pane active">
+                        <div class="chapter-body">
+                            ${currentChapter.content.theory}
+                        </div>
+                    </div>
+
+                    <div id="exercises-tab" class="tab-pane">
+                        <div class="exercises-content">
+                            <h3>✏️ Exercícios Práticos</h3>
+                            <p>Pratique os conceitos aprendidos com exercícios interativos:</p>
+                            <div class="exercise-stats">
+                                <div class="stat">
+                                    <span class="stat-number">${currentChapter.exercises}</span>
+                                    <span class="stat-label">Exercícios</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">${currentChapter.duration}</span>
+                                    <span class="stat-label">Duração</span>
+                                </div>
+                            </div>
+                            <div class="exercise-actions">
+                                <button class="btn btn-primary" onclick="showTab('exercises')">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9"/>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                    </svg>
+                                    Iniciar Exercícios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-tab" class="tab-pane">
+                        <div class="quiz-content">
+                            <h3>📝 Quiz do Capítulo</h3>
+                            <p>Teste seus conhecimentos com perguntas de múltipla escolha:</p>
+                            <div class="quiz-info">
+                                <div class="quiz-details">
+                                    <span>5 perguntas</span>
+                                    <span>10 minutos</span>
+                                    <span>70% para aprovação</span>
+                                </div>
+                            </div>
+                            <div class="quiz-actions">
+                                <button class="btn btn-primary" onclick="startQuiz(${currentChapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                        <path d="M12 17h.01"/>
+                                    </svg>
+                                    Iniciar Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="exam-tab" class="tab-pane">
+                        <div class="exam-content">
+                            <h3>🎯 Prova do Capítulo</h3>
+                            <p>Faça a prova oficial com 10 perguntas em 30 minutos:</p>
+                            <div class="exam-info">
+                                <div class="exam-details">
+                                    <span>10 perguntas</span>
+                                    <span>30 minutos</span>
+                                    <span>70% para aprovação</span>
+                                </div>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn btn-primary" onclick="startExam(${currentChapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10,9 9,9 8,9"/>
+                                    </svg>
+                                    Iniciar Prova
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function goBackToChapters() {
+            document.getElementById('chapters-grid').style.display = 'grid';
+            document.getElementById('chapter-content').style.display = 'none';
+        }
+
+        function markChapterComplete() {
+            if (!currentChapter) return;
+
+            userProgress[`chapter_${currentChapter.id}`] = {
+                completed: true,
+                completedAt: new Date().toISOString()
+            };
+
+            localStorage.setItem('navcode_database_progress', JSON.stringify(userProgress));
+            loadProgress();
+            loadChapters();
+
+            alert('Capítulo marcado como concluído!');
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+
+            if (tabName === 'exercises') {
+                loadExercises();
+            }
+        }
+
+        function loadExercises() {
+            if (!currentChapter || !currentChapter.content.exercises) return;
+
+            const exercises = currentChapter.content.exercises;
+            const exercisesTab = document.getElementById('exercises-tab');
+
+            exercisesTab.innerHTML = `
+                <div class="exercises-content">
+                    <h3>✏️ Exercícios Práticos - ${currentChapter.title}</h3>
+                    <p>Pratique os conceitos aprendidos com exercícios interativos:</p>
+                    
+                    <div class="exercises-list">
+                        ${exercises.map((exercise, index) => `
+                            <div class="exercise-card">
+                                <div class="exercise-header">
+                                    <h4>Exercício ${index + 1}: ${exercise.title}</h4>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty ${exercise.difficulty.toLowerCase()}">${exercise.difficulty}</span>
+                                        <span class="duration">${exercise.estimatedTime}</span>
+                                    </div>
+                                </div>
+                                <p class="exercise-description">${exercise.description}</p>
+                                <button class="btn btn-primary" onclick="startExercise(${index})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9"/>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                    </svg>
+                                    Iniciar Exercício
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function startExercise(exerciseIndex) {
+            alert(`Iniciando exercício ${exerciseIndex + 1}. Esta funcionalidade será implementada em breve!`);
+        }
+
+        // Sistema de Quiz e Prova
+        let currentQuiz = null;
+        let currentExam = null;
+        let quizTimer = null;
+        let examTimer = null;
+        let examTimeLeft = 30 * 60;
+
+        const quizData = {
+            1: {
+                quiz: [
+                    {
+                        question: "O que é um SGBD?",
+                        options: [
+                            "Sistema de Gerenciamento de Banco de Dados",
+                            "Sistema de Gestão de Backup de Dados",
+                            "Sistema de Gerenciamento de Backup de Dados",
+                            "Sistema de Gestão de Banco de Dados"
+                        ],
+                        correct: 0,
+                        explanation: "SGBD significa Sistema de Gerenciamento de Banco de Dados."
+                    },
+                    {
+                        question: "Qual é a linguagem padrão para bancos relacionais?",
+                        options: [
+                            "SQL",
+                            "Python",
+                            "Java",
+                            "C++"
+                        ],
+                        correct: 0,
+                        explanation: "SQL é a linguagem padrão para bancos de dados relacionais."
+                    },
+                    {
+                        question: "O que é uma chave primária?",
+                        options: [
+                            "Identificador único de um registro",
+                            "Chave de criptografia",
+                            "Chave de acesso",
+                            "Chave de validação"
+                        ],
+                        correct: 0,
+                        explanation: "Chave primária identifica unicamente cada registro em uma tabela."
+                    },
+                    {
+                        question: "Qual é a diferença entre SQL e NoSQL?",
+                        options: [
+                            "SQL é relacional, NoSQL é não-relacional",
+                            "Não há diferença",
+                            "NoSQL é mais antigo",
+                            "SQL é mais rápido"
+                        ],
+                        correct: 0,
+                        explanation: "SQL usa bancos relacionais, NoSQL usa estruturas flexíveis."
+                    },
+                    {
+                        question: "O que é normalização?",
+                        options: [
+                            "Processo de organizar dados para reduzir redundância",
+                            "Processo de criptografar dados",
+                            "Processo de backup",
+                            "Processo de indexação"
+                        ],
+                        correct: 0,
+                        explanation: "Normalização organiza dados para reduzir redundância e inconsistências."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Explique as vantagens dos bancos de dados.",
+                        options: [
+                            "Integridade, segurança, performance e backup",
+                            "Apenas velocidade",
+                            "Apenas segurança",
+                            "Apenas integridade"
+                        ],
+                        correct: 0,
+                        explanation: "Bancos de dados oferecem integridade, segurança, performance e backup."
+                    },
+                    {
+                        question: "O que é ACID?",
+                        options: [
+                            "Propriedades de transações: Atomicidade, Consistência, Isolamento, Durabilidade",
+                            "Tipo de banco de dados",
+                            "Linguagem de programação",
+                            "Protocolo de rede"
+                        ],
+                        correct: 0,
+                        explanation: "ACID define as propriedades das transações em bancos de dados."
+                    },
+                    {
+                        question: "Para que serve um índice?",
+                        options: [
+                            "Acelerar consultas",
+                            "Armazenar dados",
+                            "Criptografar dados",
+                            "Validar dados"
+                        ],
+                        correct: 0,
+                        explanation: "Índices aceleram consultas criando estruturas otimizadas para busca."
+                    },
+                    {
+                        question: "O que é uma transação?",
+                        options: [
+                            "Sequência de operações que devem ser executadas como uma unidade",
+                            "Uma consulta simples",
+                            "Um backup",
+                            "Uma validação"
+                        ],
+                        correct: 0,
+                        explanation: "Transação é uma sequência de operações executadas como uma unidade atômica."
+                    },
+                    {
+                        question: "Qual é a diferença entre MySQL e PostgreSQL?",
+                        options: [
+                            "PostgreSQL é mais avançado, MySQL é mais simples",
+                            "Não há diferença",
+                            "MySQL é mais avançado",
+                            "São a mesma coisa"
+                        ],
+                        correct: 0,
+                        explanation: "PostgreSQL oferece mais recursos avançados, MySQL é mais simples."
+                    }
+                ]
+            }
+        };
+
+        function startQuiz(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Quiz não disponível para este capítulo ainda!');
+                return;
+            }
+
+            currentQuiz = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].quiz],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
+
+            showQuizInterface();
+        }
+
+        function showQuizInterface() {
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>📝 Quiz - Capítulo ${currentQuiz.chapterId}</h2>
+                        <div class="quiz-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentQuiz.currentQuestion / currentQuiz.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentQuiz.currentQuestion + 1} de ${currentQuiz.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="quiz-question-container">
+                        ${renderQuizQuestion()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderQuizQuestion() {
+            const question = currentQuiz.questions[currentQuiz.currentQuestion];
+            return `
+                <div class="question">
+                    <h3>${question.question}</h3>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectQuizAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-navigation">
+                        <button class="btn btn-secondary" onclick="previousQuizQuestion()" ${currentQuiz.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuizQuestion()" ${currentQuiz.answers[currentQuiz.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentQuiz.currentQuestion === currentQuiz.questions.length - 1 ? 'Finalizar Quiz' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectQuizAnswer(answerIndex) {
+            currentQuiz.answers[currentQuiz.currentQuestion] = answerIndex;
+
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            document.querySelector('.quiz-navigation .btn-primary').disabled = false;
+        }
+
+        function nextQuizQuestion() {
+            if (currentQuiz.currentQuestion < currentQuiz.questions.length - 1) {
+                currentQuiz.currentQuestion++;
+                showQuizInterface();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuizQuestion() {
+            if (currentQuiz.currentQuestion > 0) {
+                currentQuiz.currentQuestion--;
+                showQuizInterface();
+            }
+        }
+
+        function finishQuiz() {
+            let correct = 0;
+            currentQuiz.questions.forEach((question, index) => {
+                if (currentQuiz.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / currentQuiz.questions.length) * 100);
+            const passed = percentage >= 70;
+
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="quiz-result">
+                    <h2>📝 Resultado do Quiz</h2>
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span class="stat-number">${correct}</span>
+                            <span class="stat-label">Acertos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${currentQuiz.questions.length}</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${percentage}%</span>
+                            <span class="stat-label">Pontuação</span>
+                        </div>
+                    </div>
+                    <div class="result-message ${passed ? 'success' : 'error'}">
+                        ${passed ? '🎉 Parabéns! Você passou no quiz!' : '❌ Que pena! Tente novamente.'}
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-secondary" onclick="goBackToChapters()">
+                            Voltar aos Capítulos
+                        </button>
+                        ${!passed ? `<button class="btn btn-primary" onclick="startQuiz(${currentQuiz.chapterId})">Tentar Novamente</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function startExam(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Prova não disponível para este capítulo ainda!');
+                return;
+            }
+
+            if (!confirm('A prova tem 30 minutos de duração. Deseja continuar?')) {
+                return;
+            }
+
+            currentExam = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].exam],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
+
+            examTimeLeft = 30 * 60;
+            showExamInterface();
+            startExamTimer();
+        }
+
+        function showExamInterface() {
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="exam-container">
+                    <div class="exam-header">
+                        <h2>🎯 Prova - Capítulo ${currentExam.chapterId}</h2>
+                        <div class="exam-timer">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span id="exam-timer">30:00</span>
+                        </div>
+                        <div class="exam-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentExam.currentQuestion / currentExam.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentExam.currentQuestion + 1} de ${currentExam.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="exam-question-container">
+                        ${renderExamQuestion()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderExamQuestion() {
+            const question = currentExam.questions[currentExam.currentQuestion];
+            return `
+                <div class="question">
+                    <h3>${question.question}</h3>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectExamAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="exam-navigation">
+                        <button class="btn btn-secondary" onclick="previousExamQuestion()" ${currentExam.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextExamQuestion()" ${currentExam.answers[currentExam.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentExam.currentQuestion === currentExam.questions.length - 1 ? 'Finalizar Prova' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectExamAnswer(answerIndex) {
+            currentExam.answers[currentExam.currentQuestion] = answerIndex;
+
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            document.querySelector('.exam-navigation .btn-primary').disabled = false;
+        }
+
+        function nextExamQuestion() {
+            if (currentExam.currentQuestion < currentExam.questions.length - 1) {
+                currentExam.currentQuestion++;
+                showExamInterface();
+            } else {
+                finishExam();
+            }
+        }
+
+        function previousExamQuestion() {
+            if (currentExam.currentQuestion > 0) {
+                currentExam.currentQuestion--;
+                showExamInterface();
+            }
+        }
+
+        function startExamTimer() {
+            examTimer = setInterval(() => {
+                examTimeLeft--;
+                const minutes = Math.floor(examTimeLeft / 60);
+                const seconds = examTimeLeft % 60;
+                document.getElementById('exam-timer').textContent =
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (examTimeLeft <= 0) {
+                    clearInterval(examTimer);
+                    finishExam();
+                }
+            }, 1000);
+        }
+
+        function finishExam() {
+            clearInterval(examTimer);
+
+            let correct = 0;
+            currentExam.questions.forEach((question, index) => {
+                if (currentExam.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / currentExam.questions.length) * 100);
+            const passed = percentage >= 70;
+
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="exam-result">
+                    <h2>🎯 Resultado da Prova</h2>
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span class="stat-number">${correct}</span>
+                            <span class="stat-label">Acertos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${currentExam.questions.length}</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${percentage}%</span>
+                            <span class="stat-label">Pontuação</span>
+                        </div>
+                    </div>
+                    <div class="result-message ${passed ? 'success' : 'error'}">
+                        ${passed ? '🎉 Parabéns! Você passou na prova!' : '❌ Que pena! Tente novamente.'}
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-secondary" onclick="goBackToChapters()">
+                            Voltar aos Capítulos
+                        </button>
+                        ${!passed ? `<button class="btn btn-primary" onclick="startExam(${currentExam.chapterId})">Tentar Novamente</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        console.log('[NavCode] Sistema de curso de Banco de Dados inicializado');
+        console.log('[NavCode] Capítulos disponíveis:', courseData.totalChapters);
+        console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Quiz, Prova, Certificação');
+    </script>
+
+    <script src="theme-system.js"></script>
+
+    <!-- ===== RODAPÉ PADRONIZADO ===== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1: Logo e descrição -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-logo">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            <span class="brand-name">NavCode</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando carreiras através da educação em tecnologia da informação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Cursos -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Cursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
+                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Empresa -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="index.html#creators-section">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="index.html#course-info-card">Certificados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Suporte -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Linha de copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

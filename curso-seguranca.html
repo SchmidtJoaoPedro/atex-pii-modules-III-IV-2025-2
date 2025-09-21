@@ -8,18 +8,19 @@
     <title>Segurança da Informação - NavCode</title>
 
     <!-- Importando estilos e fontes -->
-    <link class="styling-link" rel="stylesheet" href="neostyles.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Ícone de Página -->
-    <link rel="icon" type="image/png" href="../atex-pii-modules-III-IV-2025-2/assets/images/favicon/favicon.png">
-
-    <!-- Importando scripts -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/themes.js"></script>
-
 </head>
 
 <body>
+    <!-- ===== BOTÃO DE ALTERNÂNCIA DE TEMA ===== -->
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+    </button>
 
     <!-- ===== CABEÇALHO DO CURSO ===== -->
     <header class="header">
@@ -27,7 +28,7 @@
             <div class="header-content">
                 <!-- Navegação de volta para home -->
                 <div class="course-navigation">
-                    <button class="back-btn" onclick="goHome()">
+                    <button type="button" class="back-btn" onclick="goHome()">
                         <!-- Ícone de seta para voltar -->
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M19 12H5" />
@@ -54,81 +55,1619 @@
         </div>
     </header>
 
-    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <!-- ===== CONTEÚDO PRINCIPAL DO CURSO ===== -->
     <main class="main-content">
         <div class="container">
-            <!-- Mensagem de curso em desenvolvimento -->
-            <div class="course-coming-soon">
-                <div class="coming-soon-icon">🔒</div>
-                <h2>Curso em Desenvolvimento</h2>
-                <p>Este curso está sendo preparado com foco na segurança digital atual.</p>
-                <p>Em breve você terá acesso a conteúdo completo sobre:</p>
 
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <h3>Fundamentos</h3>
-                        <p>CIA, Políticas, Normas ISO</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔍</div>
-                        <h3>Análise de Riscos</h3>
-                        <p>Identificação, Avaliação, Mitigação</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚨</div>
-                        <h3>Incident Response</h3>
-                        <p>Detecção, Resposta, Recuperação</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔐</div>
-                        <h3>Criptografia</h3>
-                        <p>Algoritmos, PKI, Certificados</p>
-                    </div>
+            <!-- ===== PROGRESSO DO CURSO ===== -->
+            <div class="progress-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <!-- Ícone de progresso -->
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                        Seu Progresso
+                    </h2>
+                    <p class="card-description">
+                        <span id="completed-chapters">0</span> de <span id="total-chapters">5</span> capítulos
+                        concluídos
+                    </p>
                 </div>
+                <div class="card-content">
+                    <!-- Barra de progresso do curso -->
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="course-progress-fill"></div>
+                    </div>
+                    <p class="progress-text"><span id="course-progress-percentage">0</span>% concluído</p>
+                </div>
+            </div>
 
-                <button class="btn btn-primary" onclick="goHome()">
-                    Voltar aos Cursos Disponíveis
-                </button>
+            <!-- ===== CAPÍTULOS DO CURSO ===== -->
+            <div class="chapters-grid" id="chapters-grid">
+                <!-- Os capítulos serão carregados dinamicamente -->
+            </div>
+
+            <!-- ===== ÁREA DE CONTEÚDO DO CAPÍTULO ===== -->
+            <div class="chapter-content" id="chapter-content" style="display: none;">
+                <!-- Conteúdo será carregado dinamicamente quando capítulo for selecionado -->
             </div>
         </div>
     </main>
 
     <!-- ===== SCRIPTS ===== -->
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script>
+    <script src="auth.js"></script>
     <script>
+        // ===== DADOS DO CURSO =====
         /**
-         * Função executada quando a página carrega
-         * Verifica se usuário está logado
+         * Estrutura completa do curso de segurança da informação
          */
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('[NavCode] Carregando curso de Segurança da Informação...');
+        const courseData = {
+            id: 3,
+            title: "Segurança da Informação",
+            description: "Fundamentos e práticas avançadas de cybersecurity e proteção de dados",
+            duration: "15h",
+            totalChapters: 5,
+            totalExercises: 40,
+            totalVideos: 25,
+            level: "Intermediário a Avançado",
+            category: "Segurança",
+            chapters: [
+                {
+                    id: 1,
+                    title: "Fundamentos de Segurança da Informação",
+                    description: "Conceitos básicos, princípios e terminologia da segurança da informação",
+                    duration: "3h",
+                    exercises: 8,
+                    videos: 5,
+                    content: {
+                        theory: `
+                            <h3>O que é Segurança da Informação?</h3>
+                            <p>Segurança da informação é a prática de proteger informações contra acesso não autorizado, uso, divulgação, perturbação, modificação, inspeção, registro ou destruição.</p>
+                            
+                            <h4>Definição Completa:</h4>
+                            <p>Segurança da informação é um conjunto de estratégias, políticas, procedimentos e tecnologias que visam proteger os ativos de informação de uma organização contra ameaças internas e externas, garantindo a confidencialidade, integridade e disponibilidade dos dados.</p>
+                            
+                            <h4>Princípios Fundamentais (Tríade CIA):</h4>
+                            <ul>
+                                <li><strong>Confidencialidade:</strong> Garantir que informações só sejam acessadas por pessoas autorizadas</li>
+                                <li><strong>Integridade:</strong> Assegurar que as informações não sejam alteradas indevidamente</li>
+                                <li><strong>Disponibilidade:</strong> Garantir que as informações estejam acessíveis quando necessário</li>
+                            </ul>
+                            
+                            <h4>Tipos de Ameaças:</h4>
+                            <ul>
+                                <li><strong>Malware:</strong> Vírus, worms, trojans, ransomware</li>
+                                <li><strong>Phishing:</strong> Tentativas de enganar usuários para obter informações</li>
+                                <li><strong>Ataques de Força Bruta:</strong> Tentativas de quebrar senhas</li>
+                                <li><strong>Engenharia Social:</strong> Manipulação psicológica de usuários</li>
+                                <li><strong>Vulnerabilidades de Software:</strong> Falhas em sistemas e aplicações</li>
+                            </ul>
+                            
+                            <h4>Classificação da Informação:</h4>
+                            <ul>
+                                <li><strong>Pública:</strong> Pode ser divulgada sem restrições</li>
+                                <li><strong>Interna:</strong> Uso restrito à organização</li>
+                                <li><strong>Confidencial:</strong> Acesso limitado a pessoas específicas</li>
+                                <li><strong>Secreta:</strong> Máximo nível de proteção</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 1,
+                                title: "Identificando tipos de ameaças",
+                                description: "Analise cenários e identifique os tipos de ameaças de segurança",
+                                difficulty: "Fácil",
+                                estimatedTime: "30 min"
+                            },
+                            {
+                                id: 2,
+                                title: "Classificação de informações",
+                                description: "Classifique diferentes tipos de informações segundo níveis de confidencialidade",
+                                difficulty: "Fácil",
+                                estimatedTime: "45 min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 1,
+                                title: "Introdução à Segurança da Informação",
+                                duration: "20 min",
+                                description: "Conceitos fundamentais e importância da segurança da informação"
+                            },
+                            {
+                                id: 2,
+                                title: "A Tríade CIA - Confidencialidade, Integridade e Disponibilidade",
+                                duration: "25 min",
+                                description: "Entendendo os três pilares da segurança da informação"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 2,
+                    title: "Criptografia e Criptoanálise",
+                    description: "Técnicas de criptografia, algoritmos e métodos de proteção de dados",
+                    duration: "3h",
+                    exercises: 10,
+                    videos: 6,
+                    content: {
+                        theory: `
+                            <h3>Criptografia - A Arte de Proteger Informações</h3>
+                            <p>Criptografia é a ciência e arte de escrever mensagens em código secreto, garantindo que apenas pessoas autorizadas possam lê-las.</p>
+                            
+                            <h4>Tipos de Criptografia:</h4>
+                            <ul>
+                                <li><strong>Simétrica:</strong> Mesma chave para criptografar e descriptografar</li>
+                                <li><strong>Assimétrica:</strong> Chaves diferentes (pública e privada)</li>
+                                <li><strong>Hash:</strong> Função unidirecional que gera um valor único</li>
+                            </ul>
+                            
+                            <h4>Algoritmos Simétricos:</h4>
+                            <ul>
+                                <li><strong>DES (Data Encryption Standard):</strong> 56 bits, considerado inseguro</li>
+                                <li><strong>3DES:</strong> Triplo DES, mais seguro que DES</li>
+                                <li><strong>AES (Advanced Encryption Standard):</strong> 128, 192 ou 256 bits</li>
+                            </ul>
+                            
+                            <h4>Algoritmos Assimétricos:</h4>
+                            <ul>
+                                <li><strong>RSA:</strong> Baseado em fatoração de números primos</li>
+                                <li><strong>ECC (Elliptic Curve Cryptography):</strong> Baseado em curvas elípticas</li>
+                                <li><strong>Diffie-Hellman:</strong> Troca de chaves segura</li>
+                            </ul>
+                            
+                            <h4>Funções Hash:</h4>
+                            <ul>
+                                <li><strong>MD5:</strong> 128 bits, considerado inseguro</li>
+                                <li><strong>SHA-1:</strong> 160 bits, em desuso</li>
+                                <li><strong>SHA-256:</strong> 256 bits, amplamente usado</li>
+                                <li><strong>SHA-3:</strong> Padrão mais recente</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 3,
+                                title: "Criptografia simétrica na prática",
+                                description: "Implemente algoritmos de criptografia simétrica",
+                                difficulty: "Médio",
+                                estimatedTime: "1h 30min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 3,
+                                title: "Fundamentos da Criptografia",
+                                duration: "30 min",
+                                description: "Entendendo como funciona a criptografia"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 3,
+                    title: "Segurança de Redes",
+                    description: "Proteção de redes, firewalls, IDS/IPS e monitoramento",
+                    duration: "3h",
+                    exercises: 8,
+                    videos: 5,
+                    content: {
+                        theory: `
+                            <h3>Segurança de Redes - Protegendo a Infraestrutura</h3>
+                            <p>Segurança de redes envolve a proteção da infraestrutura de rede contra ataques e acessos não autorizados.</p>
+                            
+                            <h4>Componentes de Segurança de Redes:</h4>
+                            <ul>
+                                <li><strong>Firewalls:</strong> Filtram tráfego de rede</li>
+                                <li><strong>IDS (Intrusion Detection System):</strong> Detecta intrusões</li>
+                                <li><strong>IPS (Intrusion Prevention System):</strong> Previne intrusões</li>
+                                <li><strong>VPN (Virtual Private Network):</strong> Conexões seguras</li>
+                            </ul>
+                            
+                            <h4>Tipos de Firewalls:</h4>
+                            <ul>
+                                <li><strong>Packet Filtering:</strong> Filtra pacotes baseado em regras</li>
+                                <li><strong>Stateful:</strong> Mantém estado das conexões</li>
+                                <li><strong>Application Layer:</strong> Inspeciona conteúdo das aplicações</li>
+                                <li><strong>Next-Generation (NGFW):</strong> Combina múltiplas funcionalidades</li>
+                            </ul>
+                            
+                            <h4>Protocolos de Segurança:</h4>
+                            <ul>
+                                <li><strong>IPSec:</strong> Segurança no nível de IP</li>
+                                <li><strong>SSL/TLS:</strong> Segurança em aplicações web</li>
+                                <li><strong>WPA3:</strong> Segurança em redes Wi-Fi</li>
+                                <li><strong>802.1X:</strong> Autenticação de rede</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 4,
+                                title: "Configuração de firewall",
+                                description: "Configure regras de firewall para proteger uma rede",
+                                difficulty: "Avançado",
+                                estimatedTime: "2h"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 4,
+                                title: "Firewalls e Segurança de Redes",
+                                duration: "35 min",
+                                description: "Aprendendo sobre proteção de redes"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 4,
+                    title: "Análise de Vulnerabilidades e Penetration Testing",
+                    description: "Identificação de vulnerabilidades e testes de penetração",
+                    duration: "3h",
+                    exercises: 8,
+                    videos: 5,
+                    content: {
+                        theory: `
+                            <h3>Análise de Vulnerabilidades</h3>
+                            <p>Processo de identificar, classificar e priorizar vulnerabilidades em sistemas e redes.</p>
+                            
+                            <h4>Tipos de Análise:</h4>
+                            <ul>
+                                <li><strong>Vulnerability Assessment:</strong> Identificação de vulnerabilidades</li>
+                                <li><strong>Penetration Testing:</strong> Simulação de ataques reais</li>
+                                <li><strong>Code Review:</strong> Análise de código-fonte</li>
+                                <li><strong>Security Audit:</strong> Auditoria de segurança</li>
+                            </ul>
+                            
+                            <h4>Ferramentas de Análise:</h4>
+                            <ul>
+                                <li><strong>Nmap:</strong> Scanner de portas e serviços</li>
+                                <li><strong>Nessus:</strong> Scanner de vulnerabilidades</li>
+                                <li><strong>Metasploit:</strong> Framework de penetration testing</li>
+                                <li><strong>Burp Suite:</strong> Teste de aplicações web</li>
+                            </ul>
+                            
+                            <h4>Metodologias de Penetration Testing:</h4>
+                            <ul>
+                                <li><strong>OWASP Testing Guide:</strong> Para aplicações web</li>
+                                <li><strong>PTES (Penetration Testing Execution Standard):</strong> Padrão geral</li>
+                                <li><strong>OSSTMM (Open Source Security Testing Methodology Manual):</strong> Metodologia aberta</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 5,
+                                title: "Análise de vulnerabilidades com Nmap",
+                                description: "Use Nmap para identificar vulnerabilidades em uma rede",
+                                difficulty: "Avançado",
+                                estimatedTime: "2h 30min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 5,
+                                title: "Penetration Testing - Metodologia e Ferramentas",
+                                duration: "40 min",
+                                description: "Aprendendo sobre testes de penetração"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 5,
+                    title: "Compliance e Gestão de Riscos",
+                    description: "Normas de compliance, gestão de riscos e políticas de segurança",
+                    duration: "3h",
+                    exercises: 6,
+                    videos: 4,
+                    content: {
+                        theory: `
+                            <h3>Compliance e Gestão de Riscos</h3>
+                            <p>Compliance é o cumprimento de normas e regulamentações, enquanto gestão de riscos envolve identificar, avaliar e mitigar riscos de segurança.</p>
+                            
+                            <h4>Normas e Padrões:</h4>
+                            <ul>
+                                <li><strong>ISO 27001:</strong> Sistema de gestão de segurança da informação</li>
+                                <li><strong>LGPD (Lei Geral de Proteção de Dados):</strong> Proteção de dados pessoais no Brasil</li>
+                                <li><strong>GDPR (General Data Protection Regulation):</strong> Regulamento europeu</li>
+                                <li><strong>PCI DSS:</strong> Segurança para cartões de pagamento</li>
+                            </ul>
+                            
+                            <h4>Gestão de Riscos:</h4>
+                            <ul>
+                                <li><strong>Identificação:</strong> Identificar ativos e ameaças</li>
+                                <li><strong>Avaliação:</strong> Calcular probabilidade e impacto</li>
+                                <li><strong>Mitigação:</strong> Implementar controles de segurança</li>
+                                <li><strong>Monitoramento:</strong> Acompanhar e revisar riscos</li>
+                            </ul>
+                            
+                            <h4>Políticas de Segurança:</h4>
+                            <ul>
+                                <li><strong>Política de Senhas:</strong> Requisitos para criação e uso</li>
+                                <li><strong>Política de Acesso:</strong> Controle de acesso a sistemas</li>
+                                <li><strong>Política de Backup:</strong> Procedimentos de backup e recuperação</li>
+                                <li><strong>Política de Incidentes:</strong> Resposta a incidentes de segurança</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 6,
+                                title: "Elaboração de política de segurança",
+                                description: "Crie uma política de segurança para uma empresa",
+                                difficulty: "Avançado",
+                                estimatedTime: "3h"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 6,
+                                title: "LGPD e Compliance em Segurança",
+                                duration: "45 min",
+                                description: "Entendendo as obrigações legais de proteção de dados"
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
 
-            // Verificar se usuário está logado
-            if (!isUserLoggedIn()) {
-                alert('Você precisa estar logado para acessar este curso!');
-                window.location.href = 'login.html';
+        // ===== VARIÁVEIS GLOBAIS =====
+        let currentChapter = null;
+        let userProgress = JSON.parse(localStorage.getItem('navcode_security_progress') || '{}');
+
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('[NavCode] Inicializando curso de Segurança da Informação...');
+            loadChapters();
+            loadProgress();
+            console.log('[NavCode] Curso carregado com sucesso!');
+        });
+
+        // ===== FUNÇÕES DE NAVEGAÇÃO =====
+        function goHome() {
+            window.location.href = '../atex-pii-modules-III-IV-2025-2/index.html';;
+        }
+
+        // ===== FUNÇÕES DE CARREGAMENTO =====
+        function loadChapters() {
+            const chaptersGrid = document.getElementById('chapters-grid');
+            chaptersGrid.innerHTML = '';
+
+            courseData.chapters.forEach((chapter, index) => {
+                const chapterCard = document.createElement('div');
+                chapterCard.className = 'chapter-card';
+                chapterCard.onclick = () => openChapter(chapter.id);
+
+                const isCompleted = userProgress[`chapter_${chapter.id}`]?.completed || false;
+                const completionIcon = isCompleted ?
+                    '<svg class="icon completed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>' :
+                    '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>';
+
+                chapterCard.innerHTML = `
+                    <div class="chapter-header">
+                        <div class="chapter-info">
+                            <div class="chapter-icon-wrapper">
+                                ${completionIcon}
+                            </div>
+                            <div class="chapter-details">
+                                <h3>${chapter.title}</h3>
+                                <div class="chapter-duration">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    ${chapter.duration} • ${chapter.exercises} exercícios • ${chapter.videos} vídeos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chapter-body">
+                        <p class="chapter-description">${chapter.description}</p>
+                        <button class="chapter-button primary">
+                            ${isCompleted ? 'Revisar Capítulo' : 'Iniciar Capítulo'}
+                        </button>
+                    </div>
+                `;
+
+                chaptersGrid.appendChild(chapterCard);
+            });
+        }
+
+        function loadProgress() {
+            const completedChapters = Object.values(userProgress).filter(progress => progress.completed).length;
+            const totalChapters = courseData.totalChapters;
+            const percentage = Math.round((completedChapters / totalChapters) * 100);
+
+            document.getElementById('course-progress-percentage').textContent = percentage;
+            document.getElementById('course-progress-fill').style.width = `${percentage}%`;
+            document.getElementById('completed-chapters').textContent = completedChapters;
+        }
+
+        // ===== FUNÇÕES DE CAPÍTULOS =====
+        function openChapter(chapterId) {
+            currentChapter = courseData.chapters.find(ch => ch.id === chapterId);
+            if (!currentChapter) return;
+
+            // Esconder grid de capítulos
+            document.getElementById('chapters-grid').style.display = 'none';
+
+            // Mostrar área de conteúdo
+            document.getElementById('chapter-content').style.display = 'block';
+
+            loadChapterContent();
+        }
+
+        function loadChapterContent() {
+            if (!currentChapter) return;
+
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="chapter-header">
+                    <h2>${currentChapter.title}</h2>
+                    <div class="chapter-actions">
+                        <button class="btn-secondary" onclick="goBackToChapters()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5"/>
+                                <path d="M12 19l-7-7 7-7"/>
+                            </svg>
+                            Voltar aos Capítulos
+                        </button>
+                        <button class="btn-primary" onclick="markChapterComplete()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            Marcar como Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ===== NAVEGAÇÃO DE ABAS ===== -->
+                <div class="chapter-tabs">
+                    <button class="tab-btn active" onclick="showTab('theory')">📚 Teoria</button>
+                    <button class="tab-btn" onclick="showTab('exercises')">✏️ Exercícios</button>
+                    <button class="tab-btn" onclick="showTab('quiz')">📝 Quiz</button>
+                    <button class="tab-btn" onclick="showTab('exam')">🎯 Prova</button>
+                </div>
+
+                <!-- ===== CONTEÚDO DAS ABAS ===== -->
+                <div class="tab-content">
+                    <!-- ABA DE TEORIA -->
+                    <div id="theory-tab" class="tab-pane active">
+                        <div class="chapter-body">
+                            ${currentChapter.content.theory}
+                        </div>
+                    </div>
+
+                    <!-- ABA DE EXERCÍCIOS -->
+                    <div id="exercises-tab" class="tab-pane">
+                        <div class="exercises-content">
+                            <h3>✏️ Exercícios Práticos</h3>
+                            <p>Pratique os conceitos aprendidos com exercícios interativos:</p>
+                            <div class="exercise-stats">
+                                <div class="stat">
+                                    <span class="stat-number">${currentChapter.exercises}</span>
+                                    <span class="stat-label">Exercícios</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">${currentChapter.duration}</span>
+                                    <span class="stat-label">Duração</span>
+                                </div>
+                            </div>
+                            <div class="exercise-actions">
+                                <button class="btn btn-primary" onclick="showTab('exercises')">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9"/>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                    </svg>
+                                    Iniciar Exercícios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ABA DE QUIZ -->
+                    <div id="quiz-tab" class="tab-pane">
+                        <div class="quiz-content">
+                            <h3>📝 Quiz do Capítulo</h3>
+                            <p>Teste seus conhecimentos com perguntas de múltipla escolha:</p>
+                            <div class="quiz-info">
+                                <div class="quiz-details">
+                                    <span>5 perguntas</span>
+                                    <span>10 minutos</span>
+                                    <span>70% para aprovação</span>
+                                </div>
+                            </div>
+                            <div class="quiz-actions">
+                                <button class="btn btn-primary" onclick="startQuiz(${currentChapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                        <path d="M12 17h.01"/>
+                                    </svg>
+                                    Iniciar Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ABA DE PROVA -->
+                    <div id="exam-tab" class="tab-pane">
+                        <div class="exam-content">
+                            <h3>🎯 Prova do Capítulo</h3>
+                            <p>Faça a prova oficial com 10 perguntas em 30 minutos:</p>
+                            <div class="exam-info">
+                                <div class="exam-details">
+                                    <span>10 perguntas</span>
+                                    <span>30 minutos</span>
+                                    <span>70% para aprovação</span>
+                                </div>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn btn-primary" onclick="startExam(${currentChapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10,9 9,9 8,9"/>
+                                    </svg>
+                                    Iniciar Prova
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function goBackToChapters() {
+            document.getElementById('chapters-grid').style.display = 'grid';
+            document.getElementById('chapter-content').style.display = 'none';
+        }
+
+        function markChapterComplete() {
+            if (!currentChapter) return;
+
+            userProgress[`chapter_${currentChapter.id}`] = {
+                completed: true,
+                completedAt: new Date().toISOString()
+            };
+
+            localStorage.setItem('navcode_security_progress', JSON.stringify(userProgress));
+            loadProgress();
+            loadChapters();
+
+            alert('Capítulo marcado como concluído!');
+        }
+
+        // ===== FUNÇÕES DE NAVEGAÇÃO ENTRE ABAS =====
+        function showTab(tabName) {
+            // Remover classe active de todas as abas
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            // Adicionar classe active à aba clicada
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+
+            // Carregar conteúdo específico se necessário
+            if (tabName === 'exercises') {
+                loadExercises();
+            }
+        }
+
+        // ===== FUNÇÕES DE EXERCÍCIOS =====
+        function loadExercises() {
+            if (!currentChapter || !currentChapter.content.exercises) return;
+
+            const exercises = currentChapter.content.exercises;
+            const exercisesTab = document.getElementById('exercises-tab');
+
+            exercisesTab.innerHTML = `
+                <div class="exercises-content">
+                    <h3>✏️ Exercícios Práticos - ${currentChapter.title}</h3>
+                    <p>Pratique os conceitos aprendidos com exercícios interativos:</p>
+                    
+                    <div class="exercises-list">
+                        ${exercises.map((exercise, index) => `
+                            <div class="exercise-card">
+                                <div class="exercise-header">
+                                    <h4>Exercício ${index + 1}: ${exercise.title}</h4>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty ${exercise.difficulty.toLowerCase()}">${exercise.difficulty}</span>
+                                        <span class="duration">${exercise.estimatedTime}</span>
+                                    </div>
+                                </div>
+                                <p class="exercise-description">${exercise.description}</p>
+                                <button class="btn btn-primary" onclick="startExercise(${index})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9"/>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                    </svg>
+                                    Iniciar Exercício
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function startExercise(exerciseIndex) {
+            alert(`Iniciando exercício ${exerciseIndex + 1}. Esta funcionalidade será implementada em breve!`);
+        }
+
+        // ===== SISTEMA DE QUIZ E PROVA =====
+        let currentQuiz = null;
+        let currentExam = null;
+        let quizTimer = null;
+        let examTimer = null;
+        let examTimeLeft = 30 * 60; // 30 minutos em segundos
+
+        // Dados dos quizzes e provas por capítulo
+        const quizData = {
+            1: {
+                quiz: [
+                    {
+                        question: "O que é segurança da informação?",
+                        options: [
+                            "Proteção apenas de computadores",
+                            "Proteção de informações contra acesso não autorizado",
+                            "Proteção apenas de senhas",
+                            "Proteção apenas de redes"
+                        ],
+                        correct: 1,
+                        explanation: "Segurança da informação é a prática de proteger informações contra acesso não autorizado, uso, divulgação, perturbação, modificação, inspeção, registro ou destruição."
+                    },
+                    {
+                        question: "Quais são os três pilares da segurança da informação (Tríade CIA)?",
+                        options: [
+                            "Confidencialidade, Integridade, Autenticidade",
+                            "Confidencialidade, Integridade, Disponibilidade",
+                            "Confidencialidade, Integridade, Autenticação",
+                            "Confidencialidade, Integridade, Autorização"
+                        ],
+                        correct: 1,
+                        explanation: "A Tríade CIA consiste em Confidencialidade (acesso apenas por autorizados), Integridade (dados não alterados indevidamente) e Disponibilidade (acesso quando necessário)."
+                    },
+                    {
+                        question: "O que é malware?",
+                        options: [
+                            "Software de segurança",
+                            "Software malicioso",
+                            "Software de backup",
+                            "Software de antivírus"
+                        ],
+                        correct: 1,
+                        explanation: "Malware é qualquer software malicioso projetado para danificar, interromper ou obter acesso não autorizado a sistemas."
+                    },
+                    {
+                        question: "O que é phishing?",
+                        options: [
+                            "Tipo de vírus",
+                            "Tentativa de enganar usuários para obter informações",
+                            "Tipo de firewall",
+                            "Tipo de backup"
+                        ],
+                        correct: 1,
+                        explanation: "Phishing é uma técnica de engenharia social usada para enganar usuários e obter informações confidenciais."
+                    },
+                    {
+                        question: "Qual é o objetivo da classificação da informação?",
+                        options: [
+                            "Organizar arquivos",
+                            "Definir níveis de proteção adequados",
+                            "Facilitar o acesso",
+                            "Reduzir custos"
+                        ],
+                        correct: 1,
+                        explanation: "A classificação da informação define níveis de proteção adequados baseados na sensibilidade e criticidade dos dados."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Explique a importância da segurança da informação nas organizações.",
+                        options: [
+                            "Apenas para grandes empresas",
+                            "Protege ativos críticos e mantém confiança",
+                            "Apenas para empresas de tecnologia",
+                            "Apenas para dados financeiros"
+                        ],
+                        correct: 1,
+                        explanation: "A segurança da informação é crucial para proteger ativos críticos, manter a confiança dos clientes e cumprir regulamentações."
+                    },
+                    {
+                        question: "Quais são os principais tipos de ameaças à segurança da informação?",
+                        options: [
+                            "Apenas vírus",
+                            "Malware, phishing, ataques de força bruta, engenharia social",
+                            "Apenas hackers",
+                            "Apenas falhas de software"
+                        ],
+                        correct: 1,
+                        explanation: "As principais ameaças incluem malware, phishing, ataques de força bruta, engenharia social e vulnerabilidades de software."
+                    },
+                    {
+                        question: "O que é engenharia social?",
+                        options: [
+                            "Engenharia de software",
+                            "Manipulação psicológica de usuários",
+                            "Criação de sistemas",
+                            "Análise de dados"
+                        ],
+                        correct: 1,
+                        explanation: "Engenharia social é a manipulação psicológica de usuários para obter informações confidenciais ou acesso a sistemas."
+                    },
+                    {
+                        question: "Por que a classificação da informação é importante?",
+                        options: [
+                            "Para facilitar o acesso",
+                            "Para aplicar controles de segurança adequados",
+                            "Para reduzir custos",
+                            "Para aumentar a velocidade"
+                        ],
+                        correct: 1,
+                        explanation: "A classificação permite aplicar controles de segurança adequados baseados no nível de sensibilidade dos dados."
+                    },
+                    {
+                        question: "O que são vulnerabilidades de software?",
+                        options: [
+                            "Recursos de segurança",
+                            "Falhas que podem ser exploradas",
+                            "Funcionalidades extras",
+                            "Atualizações de segurança"
+                        ],
+                        correct: 1,
+                        explanation: "Vulnerabilidades são falhas ou fraquezas no software que podem ser exploradas por atacantes."
+                    }
+                ]
+            },
+            2: {
+                quiz: [
+                    {
+                        question: "O que é criptografia?",
+                        options: [
+                            "Ciência de escrever mensagens em código secreto",
+                            "Tipo de vírus",
+                            "Software de backup",
+                            "Tipo de firewall"
+                        ],
+                        correct: 0,
+                        explanation: "Criptografia é a ciência e arte de escrever mensagens em código secreto para proteger informações."
+                    },
+                    {
+                        question: "Qual é a diferença entre criptografia simétrica e assimétrica?",
+                        options: [
+                            "Simétrica usa uma chave, assimétrica usa duas",
+                            "Não há diferença",
+                            "Assimétrica é mais antiga",
+                            "Simétrica é mais segura"
+                        ],
+                        correct: 0,
+                        explanation: "Criptografia simétrica usa a mesma chave para criptografar e descriptografar, assimétrica usa chaves diferentes (pública e privada)."
+                    },
+                    {
+                        question: "O que é AES?",
+                        options: [
+                            "Advanced Encryption Standard",
+                            "Advanced Security System",
+                            "Automatic Encryption System",
+                            "Advanced Error System"
+                        ],
+                        correct: 0,
+                        explanation: "AES (Advanced Encryption Standard) é um algoritmo de criptografia simétrica amplamente usado."
+                    },
+                    {
+                        question: "Para que serve uma função hash?",
+                        options: [
+                            "Gerar um valor único e unidirecional",
+                            "Criptografar dados",
+                            "Descriptografar dados",
+                            "Armazenar dados"
+                        ],
+                        correct: 0,
+                        explanation: "Funções hash geram um valor único e unidirecional a partir de dados, usado para verificar integridade."
+                    },
+                    {
+                        question: "O que é RSA?",
+                        options: [
+                            "Algoritmo de criptografia assimétrica",
+                            "Algoritmo de criptografia simétrica",
+                            "Função hash",
+                            "Protocolo de rede"
+                        ],
+                        correct: 0,
+                        explanation: "RSA é um algoritmo de criptografia assimétrica baseado na fatoração de números primos."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Explique como funciona a criptografia de chave pública.",
+                        options: [
+                            "Usa duas chaves: uma pública para criptografar, uma privada para descriptografar",
+                            "Usa apenas uma chave",
+                            "Não usa chaves",
+                            "Usa três chaves"
+                        ],
+                        correct: 0,
+                        explanation: "Criptografia de chave pública usa uma chave pública para criptografar e uma chave privada para descriptografar."
+                    },
+                    {
+                        question: "Qual é a diferença entre MD5 e SHA-256?",
+                        options: [
+                            "SHA-256 é mais seguro que MD5",
+                            "MD5 é mais seguro que SHA-256",
+                            "Não há diferença",
+                            "São a mesma coisa"
+                        ],
+                        correct: 0,
+                        explanation: "SHA-256 é mais seguro que MD5, que é considerado vulnerável e em desuso."
+                    },
+                    {
+                        question: "O que é Diffie-Hellman?",
+                        options: [
+                            "Protocolo de troca de chaves",
+                            "Algoritmo de criptografia simétrica",
+                            "Função hash",
+                            "Protocolo de rede"
+                        ],
+                        correct: 0,
+                        explanation: "Diffie-Hellman é um protocolo que permite trocar chaves criptográficas de forma segura."
+                    },
+                    {
+                        question: "Para que serve a criptografia em trânsito?",
+                        options: [
+                            "Proteger dados durante transmissão",
+                            "Proteger dados armazenados",
+                            "Proteger senhas",
+                            "Proteger arquivos locais"
+                        ],
+                        correct: 0,
+                        explanation: "Criptografia em trânsito protege dados durante a transmissão entre sistemas."
+                    },
+                    {
+                        question: "O que é criptografia de ponta a ponta?",
+                        options: [
+                            "Criptografia que só pode ser descriptografada pelos destinatários",
+                            "Criptografia simples",
+                            "Criptografia fraca",
+                            "Criptografia sem chaves"
+                        ],
+                        correct: 0,
+                        explanation: "Criptografia de ponta a ponta garante que apenas os destinatários possam descriptografar os dados."
+                    }
+                ]
+            },
+            3: {
+                quiz: [
+                    {
+                        question: "O que é um firewall?",
+                        options: [
+                            "Sistema que filtra tráfego de rede",
+                            "Tipo de vírus",
+                            "Software de backup",
+                            "Tipo de banco de dados"
+                        ],
+                        correct: 0,
+                        explanation: "Firewall é um sistema de segurança que filtra e controla o tráfego de rede."
+                    },
+                    {
+                        question: "Qual é a diferença entre IDS e IPS?",
+                        options: [
+                            "IDS detecta, IPS previne intrusões",
+                            "Não há diferença",
+                            "IPS detecta, IDS previne",
+                            "São a mesma coisa"
+                        ],
+                        correct: 0,
+                        explanation: "IDS (Intrusion Detection System) detecta intrusões, IPS (Intrusion Prevention System) previne intrusões."
+                    },
+                    {
+                        question: "O que é VPN?",
+                        options: [
+                            "Virtual Private Network - rede privada virtual",
+                            "Very Private Network",
+                            "Virtual Public Network",
+                            "Very Public Network"
+                        ],
+                        correct: 0,
+                        explanation: "VPN (Virtual Private Network) cria uma conexão segura e criptografada através de uma rede pública."
+                    },
+                    {
+                        question: "Para que serve o protocolo SSL/TLS?",
+                        options: [
+                            "Criptografar comunicação web",
+                            "Filtrar tráfego",
+                            "Detectar intrusões",
+                            "Gerenciar usuários"
+                        ],
+                        correct: 0,
+                        explanation: "SSL/TLS criptografa a comunicação entre cliente e servidor web."
+                    },
+                    {
+                        question: "O que é WPA3?",
+                        options: [
+                            "Protocolo de segurança para Wi-Fi",
+                            "Protocolo de criptografia",
+                            "Protocolo de rede",
+                            "Protocolo de backup"
+                        ],
+                        correct: 0,
+                        explanation: "WPA3 é o protocolo de segurança mais recente para redes Wi-Fi."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Explique os tipos de firewall e suas diferenças.",
+                        options: [
+                            "Packet filtering, stateful, application layer e next-generation",
+                            "Apenas packet filtering",
+                            "Apenas stateful",
+                            "Apenas application layer"
+                        ],
+                        correct: 0,
+                        explanation: "Existem vários tipos: packet filtering (filtra pacotes), stateful (mantém estado), application layer (inspeciona conteúdo) e next-generation (combina funcionalidades)."
+                    },
+                    {
+                        question: "Como funciona a autenticação 802.1X?",
+                        options: [
+                            "Autentica usuários antes de permitir acesso à rede",
+                            "Criptografa dados",
+                            "Filtra tráfego",
+                            "Detecta intrusões"
+                        ],
+                        correct: 0,
+                        explanation: "802.1X autentica usuários e dispositivos antes de permitir acesso à rede."
+                    },
+                    {
+                        question: "O que é segmentação de rede?",
+                        options: [
+                            "Dividir rede em segmentos menores para melhor segurança",
+                            "Conectar redes",
+                            "Criptografar redes",
+                            "Backup de redes"
+                        ],
+                        correct: 0,
+                        explanation: "Segmentação de rede divide a rede em segmentos menores para limitar o impacto de ataques."
+                    },
+                    {
+                        question: "Para que serve um proxy reverso?",
+                        options: [
+                            "Interceptar e filtrar requisições para servidores",
+                            "Criptografar dados",
+                            "Detectar intrusões",
+                            "Gerenciar usuários"
+                        ],
+                        correct: 0,
+                        explanation: "Proxy reverso intercepta requisições para servidores, podendo filtrar, balancear carga e melhorar segurança."
+                    },
+                    {
+                        question: "O que é DDoS e como se protege?",
+                        options: [
+                            "Ataque de negação de serviço distribuído, protegido com filtros e CDN",
+                            "Tipo de vírus",
+                            "Tipo de firewall",
+                            "Tipo de criptografia"
+                        ],
+                        correct: 0,
+                        explanation: "DDoS é um ataque que sobrecarrega servidores com tráfego. Proteção inclui filtros, CDN e sistemas de mitigação."
+                    }
+                ]
+            },
+            4: {
+                quiz: [
+                    {
+                        question: "O que é penetration testing?",
+                        options: [
+                            "Simulação de ataques reais para testar segurança",
+                            "Tipo de vírus",
+                            "Software de backup",
+                            "Tipo de firewall"
+                        ],
+                        correct: 0,
+                        explanation: "Penetration testing é a simulação de ataques reais para identificar vulnerabilidades de segurança."
+                    },
+                    {
+                        question: "Para que serve o Nmap?",
+                        options: [
+                            "Scanner de portas e serviços de rede",
+                            "Criptografar dados",
+                            "Detectar vírus",
+                            "Fazer backup"
+                        ],
+                        correct: 0,
+                        explanation: "Nmap é uma ferramenta para escanear portas e serviços em redes e sistemas."
+                    },
+                    {
+                        question: "O que é OWASP?",
+                        options: [
+                            "Open Web Application Security Project",
+                            "Organization for Web Security",
+                            "Open Web Security Protocol",
+                            "Online Web Security Platform"
+                        ],
+                        correct: 0,
+                        explanation: "OWASP é uma organização que fornece ferramentas e recursos para segurança de aplicações web."
+                    },
+                    {
+                        question: "Qual é a diferença entre vulnerabilidade e exploit?",
+                        options: [
+                            "Vulnerabilidade é a falha, exploit é o código que a explora",
+                            "Não há diferença",
+                            "Exploit é a falha, vulnerabilidade é o código",
+                            "São a mesma coisa"
+                        ],
+                        correct: 0,
+                        explanation: "Vulnerabilidade é a falha no sistema, exploit é o código ou técnica que explora essa vulnerabilidade."
+                    },
+                    {
+                        question: "O que é Metasploit?",
+                        options: [
+                            "Framework de penetration testing",
+                            "Tipo de vírus",
+                            "Software de backup",
+                            "Tipo de firewall"
+                        ],
+                        correct: 0,
+                        explanation: "Metasploit é um framework popular para penetration testing e desenvolvimento de exploits."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Explique as fases do penetration testing.",
+                        options: [
+                            "Reconhecimento, escaneamento, exploração, manutenção de acesso e cobertura de rastros",
+                            "Apenas escaneamento",
+                            "Apenas exploração",
+                            "Apenas reconhecimento"
+                        ],
+                        correct: 0,
+                        explanation: "As fases incluem reconhecimento (coleta de informações), escaneamento (identificação de vulnerabilidades), exploração (exploração das falhas), manutenção de acesso e cobertura de rastros."
+                    },
+                    {
+                        question: "O que é PTES?",
+                        options: [
+                            "Penetration Testing Execution Standard",
+                            "Penetration Testing Evaluation System",
+                            "Penetration Testing Expert System",
+                            "Penetration Testing Enterprise Solution"
+                        ],
+                        correct: 0,
+                        explanation: "PTES é um padrão para execução de penetration testing que define metodologias e práticas."
+                    },
+                    {
+                        question: "Para que serve o Burp Suite?",
+                        options: [
+                            "Teste de segurança de aplicações web",
+                            "Criptografar dados",
+                            "Detectar vírus",
+                            "Fazer backup"
+                        ],
+                        correct: 0,
+                        explanation: "Burp Suite é uma ferramenta para teste de segurança de aplicações web, incluindo proxy, scanner e outras funcionalidades."
+                    },
+                    {
+                        question: "O que é uma vulnerabilidade zero-day?",
+                        options: [
+                            "Vulnerabilidade desconhecida e sem patch disponível",
+                            "Vulnerabilidade muito antiga",
+                            "Vulnerabilidade simples",
+                            "Vulnerabilidade falsa"
+                        ],
+                        correct: 0,
+                        explanation: "Zero-day é uma vulnerabilidade desconhecida pelos desenvolvedores e sem correção disponível."
+                    },
+                    {
+                        question: "Como funciona o Nessus?",
+                        options: [
+                            "Scanner de vulnerabilidades automatizado",
+                            "Criptografador de dados",
+                            "Detector de vírus",
+                            "Sistema de backup"
+                        ],
+                        correct: 0,
+                        explanation: "Nessus é um scanner de vulnerabilidades que identifica automaticamente falhas de segurança em sistemas e redes."
+                    }
+                ]
+            },
+            5: {
+                quiz: [
+                    {
+                        question: "O que é ISO 27001?",
+                        options: [
+                            "Padrão internacional para gestão de segurança da informação",
+                            "Tipo de vírus",
+                            "Software de backup",
+                            "Tipo de firewall"
+                        ],
+                        correct: 0,
+                        explanation: "ISO 27001 é um padrão internacional que especifica requisitos para sistemas de gestão de segurança da informação."
+                    },
+                    {
+                        question: "O que é LGPD?",
+                        options: [
+                            "Lei Geral de Proteção de Dados",
+                            "Lei Geral de Programação de Dados",
+                            "Lei Geral de Processamento de Dados",
+                            "Lei Geral de Publicação de Dados"
+                        ],
+                        correct: 0,
+                        explanation: "LGPD é a Lei Geral de Proteção de Dados brasileira que regula o tratamento de dados pessoais."
+                    },
+                    {
+                        question: "O que é GDPR?",
+                        options: [
+                            "General Data Protection Regulation",
+                            "General Data Processing Regulation",
+                            "General Data Programming Regulation",
+                            "General Data Publication Regulation"
+                        ],
+                        correct: 0,
+                        explanation: "GDPR é o Regulamento Geral de Proteção de Dados da União Europeia."
+                    },
+                    {
+                        question: "O que é PCI DSS?",
+                        options: [
+                            "Padrão de segurança para dados de cartões de pagamento",
+                            "Tipo de vírus",
+                            "Software de backup",
+                            "Tipo de firewall"
+                        ],
+                        correct: 0,
+                        explanation: "PCI DSS é um padrão de segurança para organizações que processam dados de cartões de pagamento."
+                    },
+                    {
+                        question: "O que é gestão de riscos?",
+                        options: [
+                            "Processo de identificar, avaliar e mitigar riscos",
+                            "Processo de criar riscos",
+                            "Processo de ignorar riscos",
+                            "Processo de aumentar riscos"
+                        ],
+                        correct: 0,
+                        explanation: "Gestão de riscos é o processo sistemático de identificar, avaliar, priorizar e mitigar riscos de segurança."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Explique o ciclo de gestão de riscos.",
+                        options: [
+                            "Identificação, avaliação, tratamento, monitoramento e revisão",
+                            "Apenas identificação",
+                            "Apenas avaliação",
+                            "Apenas tratamento"
+                        ],
+                        correct: 0,
+                        explanation: "O ciclo inclui identificação de riscos, avaliação (probabilidade e impacto), tratamento (mitigação), monitoramento contínuo e revisão periódica."
+                    },
+                    {
+                        question: "Quais são os princípios da LGPD?",
+                        options: [
+                            "Finalidade, adequação, necessidade, livre acesso, qualidade, transparência, segurança, prevenção, não discriminação e responsabilização",
+                            "Apenas segurança",
+                            "Apenas transparência",
+                            "Apenas finalidade"
+                        ],
+                        correct: 0,
+                        explanation: "A LGPD estabelece 10 princípios fundamentais para o tratamento de dados pessoais."
+                    },
+                    {
+                        question: "O que é uma política de segurança?",
+                        options: [
+                            "Documento que define diretrizes e procedimentos de segurança",
+                            "Tipo de vírus",
+                            "Software de backup",
+                            "Tipo de firewall"
+                        ],
+                        correct: 0,
+                        explanation: "Política de segurança é um documento formal que define diretrizes, procedimentos e responsabilidades para segurança da informação."
+                    },
+                    {
+                        question: "Para que serve um plano de resposta a incidentes?",
+                        options: [
+                            "Definir procedimentos para lidar com incidentes de segurança",
+                            "Prevenir incidentes",
+                            "Criar incidentes",
+                            "Ignorar incidentes"
+                        ],
+                        correct: 0,
+                        explanation: "Plano de resposta a incidentes define procedimentos para detectar, conter, erradicar e recuperar de incidentes de segurança."
+                    },
+                    {
+                        question: "O que é auditoria de segurança?",
+                        options: [
+                            "Avaliação sistemática dos controles de segurança",
+                            "Criação de controles de segurança",
+                            "Remoção de controles de segurança",
+                            "Ignorar controles de segurança"
+                        ],
+                        correct: 0,
+                        explanation: "Auditoria de segurança é uma avaliação sistemática e independente dos controles de segurança implementados."
+                    }
+                ]
+            }
+        };
+
+        // Funções do sistema de quiz
+        function startQuiz(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Quiz não disponível para este capítulo ainda!');
                 return;
             }
 
-            console.log('[NavCode] Curso de Segurança em desenvolvimento carregado!');
-        });
+            currentQuiz = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].quiz],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
 
-        /**
-         * Volta para a página inicial
-         */
-        function goHome() {
-            window.location.href = 'index.html';
+            showQuizInterface();
         }
 
-        /**
-         * Verifica se usuário está logado
-         * @returns {boolean} - Status de login
-         */
-        function isUserLoggedIn() {
-            return localStorage.getItem('navcode_logged_in') === 'true';
+        function showQuizInterface() {
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>📝 Quiz - Capítulo ${currentQuiz.chapterId}</h2>
+                        <div class="quiz-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentQuiz.currentQuestion / currentQuiz.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentQuiz.currentQuestion + 1} de ${currentQuiz.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="quiz-question-container">
+                        ${renderQuizQuestion()}
+                    </div>
+                </div>
+            `;
         }
+
+        function renderQuizQuestion() {
+            const question = currentQuiz.questions[currentQuiz.currentQuestion];
+            return `
+                <div class="question">
+                    <h3>${question.question}</h3>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectQuizAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-navigation">
+                        <button class="btn btn-secondary" onclick="previousQuizQuestion()" ${currentQuiz.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuizQuestion()" ${currentQuiz.answers[currentQuiz.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentQuiz.currentQuestion === currentQuiz.questions.length - 1 ? 'Finalizar Quiz' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectQuizAnswer(answerIndex) {
+            currentQuiz.answers[currentQuiz.currentQuestion] = answerIndex;
+
+            // Atualizar visual dos botões
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            // Habilitar botão próximo
+            document.querySelector('.quiz-navigation .btn-primary').disabled = false;
+        }
+
+        function nextQuizQuestion() {
+            if (currentQuiz.currentQuestion < currentQuiz.questions.length - 1) {
+                currentQuiz.currentQuestion++;
+                showQuizInterface();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuizQuestion() {
+            if (currentQuiz.currentQuestion > 0) {
+                currentQuiz.currentQuestion--;
+                showQuizInterface();
+            }
+        }
+
+        function finishQuiz() {
+            // Calcular pontuação
+            let correct = 0;
+            currentQuiz.questions.forEach((question, index) => {
+                if (currentQuiz.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / currentQuiz.questions.length) * 100);
+            const passed = percentage >= 70;
+
+            // Mostrar resultado
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="quiz-result">
+                    <h2>📝 Resultado do Quiz</h2>
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span class="stat-number">${correct}</span>
+                            <span class="stat-label">Acertos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${currentQuiz.questions.length}</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${percentage}%</span>
+                            <span class="stat-label">Pontuação</span>
+                        </div>
+                    </div>
+                    <div class="result-message ${passed ? 'success' : 'error'}">
+                        ${passed ? '🎉 Parabéns! Você passou no quiz!' : '❌ Que pena! Tente novamente.'}
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-secondary" onclick="goBackToChapters()">
+                            Voltar aos Capítulos
+                        </button>
+                        ${!passed ? `<button class="btn btn-primary" onclick="startQuiz(${currentQuiz.chapterId})">Tentar Novamente</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Funções do sistema de prova
+        function startExam(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Prova não disponível para este capítulo ainda!');
+                return;
+            }
+
+            if (!confirm('A prova tem 30 minutos de duração. Deseja continuar?')) {
+                return;
+            }
+
+            currentExam = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].exam],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
+
+            examTimeLeft = 30 * 60; // Reset timer
+            showExamInterface();
+            startExamTimer();
+        }
+
+        function showExamInterface() {
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="exam-container">
+                    <div class="exam-header">
+                        <h2>🎯 Prova - Capítulo ${currentExam.chapterId}</h2>
+                        <div class="exam-timer">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span id="exam-timer">30:00</span>
+                        </div>
+                        <div class="exam-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentExam.currentQuestion / currentExam.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentExam.currentQuestion + 1} de ${currentExam.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="exam-question-container">
+                        ${renderExamQuestion()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderExamQuestion() {
+            const question = currentExam.questions[currentExam.currentQuestion];
+            return `
+                <div class="question">
+                    <h3>${question.question}</h3>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectExamAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="exam-navigation">
+                        <button class="btn btn-secondary" onclick="previousExamQuestion()" ${currentExam.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextExamQuestion()" ${currentExam.answers[currentExam.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentExam.currentQuestion === currentExam.questions.length - 1 ? 'Finalizar Prova' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectExamAnswer(answerIndex) {
+            currentExam.answers[currentExam.currentQuestion] = answerIndex;
+
+            // Atualizar visual dos botões
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            // Habilitar botão próximo
+            document.querySelector('.exam-navigation .btn-primary').disabled = false;
+        }
+
+        function nextExamQuestion() {
+            if (currentExam.currentQuestion < currentExam.questions.length - 1) {
+                currentExam.currentQuestion++;
+                showExamInterface();
+            } else {
+                finishExam();
+            }
+        }
+
+        function previousExamQuestion() {
+            if (currentExam.currentQuestion > 0) {
+                currentExam.currentQuestion--;
+                showExamInterface();
+            }
+        }
+
+        function startExamTimer() {
+            examTimer = setInterval(() => {
+                examTimeLeft--;
+                const minutes = Math.floor(examTimeLeft / 60);
+                const seconds = examTimeLeft % 60;
+                document.getElementById('exam-timer').textContent =
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (examTimeLeft <= 0) {
+                    clearInterval(examTimer);
+                    finishExam();
+                }
+            }, 1000);
+        }
+
+        function finishExam() {
+            clearInterval(examTimer);
+
+            // Calcular pontuação
+            let correct = 0;
+            currentExam.questions.forEach((question, index) => {
+                if (currentExam.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / currentExam.questions.length) * 100);
+            const passed = percentage >= 70;
+
+            // Mostrar resultado
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="exam-result">
+                    <h2>🎯 Resultado da Prova</h2>
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span class="stat-number">${correct}</span>
+                            <span class="stat-label">Acertos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${currentExam.questions.length}</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${percentage}%</span>
+                            <span class="stat-label">Pontuação</span>
+                        </div>
+                    </div>
+                    <div class="result-message ${passed ? 'success' : 'error'}">
+                        ${passed ? '🎉 Parabéns! Você passou na prova!' : '❌ Que pena! Tente novamente.'}
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-secondary" onclick="goBackToChapters()">
+                            Voltar aos Capítulos
+                        </button>
+                        ${!passed ? `<button class="btn btn-primary" onclick="startExam(${currentExam.chapterId})">Tentar Novamente</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // ===== LOG DE INICIALIZAÇÃO =====
+        console.log('[NavCode] Sistema de curso de Segurança da Informação inicializado');
+        console.log('[NavCode] Capítulos disponíveis:', courseData.totalChapters);
+        console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Quiz, Prova, Certificação');
     </script>
+
+    <!-- Importando sistema de temas -->
+    <script src="theme-system.js"></script>
+
+    <!-- ===== RODAPÉ PADRONIZADO ===== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1: Logo e descrição -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-logo">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            <span class="brand-name">NavCode</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando carreiras através da educação em tecnologia da informação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Cursos -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Cursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
+                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Empresa -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="index.html#creators-section">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="index.html#course-info-card">Certificados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Suporte -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Linha de copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

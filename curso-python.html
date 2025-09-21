@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programação Python - NavCode</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+    </button>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="course-navigation">
+                    <button type="button" class="back-btn" onclick="goHome()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5" />
+                            <path d="M12 19l-7-7 7-7" />
+                        </svg>
+                        Voltar ao Início
+                    </button>
+                    <div class="brand-logo">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                        <span class="brand-name">NavCode</span>
+                    </div>
+                </div>
+                <h1>Programação Python</h1>
+                <p class="course-subtitle">
+                    Aprenda Python do básico ao avançado com projetos práticos
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="progress-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                        Seu Progresso
+                    </h2>
+                    <p class="card-description">
+                        <span id="completed-chapters">0</span> de <span id="total-chapters">6</span> capítulos
+                        concluídos
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="course-progress-fill"></div>
+                    </div>
+                    <p class="progress-text"><span id="course-progress-percentage">0</span>% concluído</p>
+                </div>
+            </div>
+
+            <div class="chapters-grid" id="chapters-grid"></div>
+            <div class="chapter-content" id="chapter-content" style="display: none;"></div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        const courseData = {
+            id: 4,
+            title: "Programação Python",
+            description: "Aprenda Python do básico ao avançado com projetos práticos",
+            duration: "20h",
+            totalChapters: 6,
+            totalExercises: 60,
+            totalVideos: 30,
+            level: "Iniciante a Intermediário",
+            category: "Programação",
+            chapters: [
+                {
+                    id: 1,
+                    title: "Introdução ao Python",
+                    description: "Fundamentos da linguagem Python e configuração do ambiente",
+                    duration: "3h",
+                    exercises: 10,
+                    videos: 5,
+                    content: {
+                        theory: `
+                            <h3>🐍 O que é Python?</h3>
+                            <p>Python é uma linguagem de programação de alto nível, interpretada e de propósito geral, conhecida por sua sintaxe simples e legível.</p>
+                            
+                            <h4>Características do Python:</h4>
+                            <ul>
+                                <li><strong>Simplicidade:</strong> Sintaxe clara e fácil de aprender</li>
+                                <li><strong>Versatilidade:</strong> Usado em web, data science, IA, automação</li>
+                                <li><strong>Comunidade:</strong> Grande comunidade e bibliotecas</li>
+                                <li><strong>Multiplataforma:</strong> Funciona em Windows, Linux, macOS</li>
+                            </ul>
+                            
+                            <h4>Instalação e Configuração:</h4>
+                            <p>Python pode ser instalado diretamente do site oficial ou usando gerenciadores como Anaconda.</p>
+                            
+                            <h4>Primeiro Programa:</h4>
+                            <pre><code>print("Olá, Mundo!")</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 1,
+                                title: "Seu primeiro programa Python",
+                                description: "Crie um programa que exiba 'Olá, Mundo!'",
+                                difficulty: "Fácil",
+                                estimatedTime: "15 min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 1,
+                                title: "Introdução ao Python",
+                                duration: "20 min",
+                                description: "Conceitos básicos e instalação"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 2,
+                    title: "Variáveis e Tipos de Dados",
+                    description: "Aprenda sobre variáveis, tipos de dados e operações básicas",
+                    duration: "3h",
+                    exercises: 10,
+                    videos: 5,
+                    content: {
+                        theory: `
+                            <h3>📊 Variáveis e Tipos de Dados</h3>
+                            <p>Em Python, as variáveis são criadas quando você atribui um valor a elas. Python é dinamicamente tipado.</p>
+                            
+                            <h4>Tipos Básicos:</h4>
+                            <ul>
+                                <li><strong>int:</strong> Números inteiros (1, 2, 3)</li>
+                                <li><strong>float:</strong> Números decimais (1.5, 2.7)</li>
+                                <li><strong>str:</strong> Strings/texto ("Olá", 'Mundo')</li>
+                                <li><strong>bool:</strong> Valores booleanos (True, False)</li>
+                            </ul>
+                            
+                            <h4>Exemplos:</h4>
+                            <pre><code>nome = "João"
+idade = 25
+altura = 1.75
+ativo = True</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 2,
+                                title: "Trabalhando com variáveis",
+                                description: "Crie variáveis para armazenar seus dados pessoais",
+                                difficulty: "Fácil",
+                                estimatedTime: "20 min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 2,
+                                title: "Variáveis e Tipos de Dados",
+                                duration: "25 min",
+                                description: "Aprendendo sobre tipos básicos em Python"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 3,
+                    title: "Estruturas de Controle",
+                    description: "Condicionais, loops e controle de fluxo",
+                    duration: "4h",
+                    exercises: 12,
+                    videos: 6,
+                    content: {
+                        theory: `
+                            <h3>🔄 Estruturas de Controle</h3>
+                            <p>As estruturas de controle permitem que o programa tome decisões e repita operações.</p>
+                            
+                            <h4>Condicionais (if/elif/else):</h4>
+                            <pre><code>if idade >= 18:
+    print("Maior de idade")
+elif idade >= 13:
+    print("Adolescente")
+else:
+    print("Criança")</code></pre>
+                            
+                            <h4>Loops (for/while):</h4>
+                            <pre><code># Loop for
+for i in range(5):
+    print(i)
+
+# Loop while
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 3,
+                                title: "Criando um jogo de adivinhação",
+                                description: "Implemente um jogo que o usuário tenta adivinhar um número",
+                                difficulty: "Médio",
+                                estimatedTime: "45 min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 3,
+                                title: "Estruturas de Controle",
+                                duration: "30 min",
+                                description: "Condicionais e loops em Python"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 4,
+                    title: "Funções e Módulos",
+                    description: "Criação de funções, módulos e organização de código",
+                    duration: "4h",
+                    exercises: 12,
+                    videos: 6,
+                    content: {
+                        theory: `
+                            <h3>🔧 Funções e Módulos</h3>
+                            <p>Funções permitem reutilizar código e organizar melhor os programas.</p>
+                            
+                            <h4>Definindo Funções:</h4>
+                            <pre><code>def saudacao(nome):
+    return f"Olá, {nome}!"
+
+# Chamando a função
+mensagem = saudacao("Maria")
+print(mensagem)</code></pre>
+                            
+                            <h4>Módulos:</h4>
+                            <p>Módulos são arquivos Python que contêm funções e variáveis reutilizáveis.</p>
+                            
+                            <h4>Bibliotecas Padrão:</h4>
+                            <ul>
+                                <li><strong>math:</strong> Operações matemáticas</li>
+                                <li><strong>random:</strong> Números aleatórios</li>
+                                <li><strong>datetime:</strong> Data e hora</li>
+                            </ul>
+                        `,
+                        exercises: [
+                            {
+                                id: 4,
+                                title: "Calculadora com funções",
+                                description: "Crie uma calculadora usando funções para cada operação",
+                                difficulty: "Médio",
+                                estimatedTime: "1h"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 4,
+                                title: "Funções e Módulos",
+                                duration: "35 min",
+                                description: "Organizando código com funções e módulos"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 5,
+                    title: "Estruturas de Dados",
+                    description: "Listas, dicionários, tuplas e conjuntos",
+                    duration: "3h",
+                    exercises: 10,
+                    videos: 5,
+                    content: {
+                        theory: `
+                            <h3>📚 Estruturas de Dados</h3>
+                            <p>Python oferece várias estruturas de dados para organizar informações.</p>
+                            
+                            <h4>Listas:</h4>
+                            <pre><code>frutas = ["maçã", "banana", "laranja"]
+frutas.append("uva")
+print(frutas[0])  # maçã</code></pre>
+                            
+                            <h4>Dicionários:</h4>
+                            <pre><code>pessoa = {
+    "nome": "João",
+    "idade": 25,
+    "cidade": "São Paulo"
+}
+print(pessoa["nome"])  # João</code></pre>
+                            
+                            <h4>Tuplas e Conjuntos:</h4>
+                            <pre><code># Tupla (imutável)
+coordenadas = (10, 20)
+
+# Conjunto (sem duplicatas)
+cores = {"vermelho", "azul", "verde"}</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 5,
+                                title: "Sistema de cadastro",
+                                description: "Crie um sistema para cadastrar e listar pessoas",
+                                difficulty: "Médio",
+                                estimatedTime: "1h 30min"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 5,
+                                title: "Estruturas de Dados",
+                                duration: "30 min",
+                                description: "Listas, dicionários, tuplas e conjuntos"
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 6,
+                    title: "Programação Orientada a Objetos",
+                    description: "Classes, objetos, herança e polimorfismo",
+                    duration: "3h",
+                    exercises: 6,
+                    videos: 3,
+                    content: {
+                        theory: `
+                            <h3>🏗️ Programação Orientada a Objetos</h3>
+                            <p>POO é um paradigma de programação baseado em objetos e classes.</p>
+                            
+                            <h4>Classes e Objetos:</h4>
+                            <pre><code>class Pessoa:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+    
+    def apresentar(self):
+        return f"Olá, sou {self.nome} e tenho {self.idade} anos"
+
+# Criando objeto
+pessoa1 = Pessoa("Maria", 30)
+print(pessoa1.apresentar())</code></pre>
+                            
+                            <h4>Herança:</h4>
+                            <pre><code>class Estudante(Pessoa):
+    def __init__(self, nome, idade, curso):
+        super().__init__(nome, idade)
+        self.curso = curso</code></pre>
+                        `,
+                        exercises: [
+                            {
+                                id: 6,
+                                title: "Sistema de biblioteca",
+                                description: "Crie classes para Livro, Usuário e Biblioteca",
+                                difficulty: "Avançado",
+                                estimatedTime: "2h"
+                            }
+                        ],
+                        videos: [
+                            {
+                                id: 6,
+                                title: "Programação Orientada a Objetos",
+                                duration: "40 min",
+                                description: "Classes, objetos e herança em Python"
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+
+        let currentChapter = null;
+        let userProgress = JSON.parse(localStorage.getItem('navcode_python_progress') || '{}');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('[NavCode] Inicializando curso de Python...');
+            loadChapters();
+            loadProgress();
+            console.log('[NavCode] Curso carregado com sucesso!');
+        });
+
+        function goHome() {
+            window.location.href = '../atex-pii-modules-III-IV-2025-2/index.html';;
+        }
+
+        function loadChapters() {
+            const chaptersGrid = document.getElementById('chapters-grid');
+            chaptersGrid.innerHTML = '';
+
+            courseData.chapters.forEach((chapter, index) => {
+                const chapterCard = document.createElement('div');
+                chapterCard.className = 'chapter-card';
+                chapterCard.onclick = () => openChapter(chapter.id);
+
+                const isCompleted = userProgress[`chapter_${chapter.id}`]?.completed || false;
+                const completionIcon = isCompleted ?
+                    '<svg class="icon completed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>' :
+                    '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>';
+
+                chapterCard.innerHTML = `
+                    <div class="chapter-header">
+                        <div class="chapter-info">
+                            <div class="chapter-icon-wrapper">
+                                ${completionIcon}
+                            </div>
+                            <div class="chapter-details">
+                                <h3>${chapter.title}</h3>
+                                <div class="chapter-duration">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    ${chapter.duration} • ${chapter.exercises} exercícios • ${chapter.videos} vídeos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chapter-body">
+                        <p class="chapter-description">${chapter.description}</p>
+                        <button class="chapter-button primary">
+                            ${isCompleted ? 'Revisar Capítulo' : 'Iniciar Capítulo'}
+                        </button>
+                    </div>
+                `;
+
+                chaptersGrid.appendChild(chapterCard);
+            });
+        }
+
+        function loadProgress() {
+            const completedChapters = Object.values(userProgress).filter(progress => progress.completed).length;
+            const totalChapters = courseData.totalChapters;
+            const percentage = Math.round((completedChapters / totalChapters) * 100);
+
+            document.getElementById('course-progress-percentage').textContent = percentage;
+            document.getElementById('course-progress-fill').style.width = `${percentage}%`;
+            document.getElementById('completed-chapters').textContent = completedChapters;
+        }
+
+        function openChapter(chapterId) {
+            currentChapter = courseData.chapters.find(ch => ch.id === chapterId);
+            if (!currentChapter) return;
+
+            document.getElementById('chapters-grid').style.display = 'none';
+            document.getElementById('chapter-content').style.display = 'block';
+
+            loadChapterContent();
+        }
+
+        function loadChapterContent() {
+            if (!currentChapter) return;
+
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="chapter-header">
+                    <h2>${currentChapter.title}</h2>
+                    <div class="chapter-actions">
+                        <button class="btn-secondary" onclick="goBackToChapters()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5"/>
+                                <path d="M12 19l-7-7 7-7"/>
+                            </svg>
+                            Voltar aos Capítulos
+                        </button>
+                        <button class="btn-primary" onclick="markChapterComplete()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            Marcar como Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chapter-tabs">
+                    <button class="tab-btn active" onclick="showTab('theory')">📚 Teoria</button>
+                    <button class="tab-btn" onclick="showTab('exercises')">✏️ Exercícios</button>
+                    <button class="tab-btn" onclick="showTab('quiz')">📝 Quiz</button>
+                    <button class="tab-btn" onclick="showTab('exam')">🎯 Prova</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="theory-tab" class="tab-pane active">
+                        <div class="chapter-body">
+                            ${currentChapter.content.theory}
+                        </div>
+                    </div>
+
+                    <div id="exercises-tab" class="tab-pane">
+                        <div class="exercises-content">
+                            <h3>✏️ Exercícios Práticos</h3>
+                            <p>Pratique os conceitos aprendidos com exercícios interativos:</p>
+                            <div class="exercise-stats">
+                                <div class="stat">
+                                    <span class="stat-number">${currentChapter.exercises}</span>
+                                    <span class="stat-label">Exercícios</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">${currentChapter.duration}</span>
+                                    <span class="stat-label">Duração</span>
+                                </div>
+                            </div>
+                            <div class="exercise-actions">
+                                <button class="btn btn-primary" onclick="showTab('exercises')">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9"/>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                    </svg>
+                                    Iniciar Exercícios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-tab" class="tab-pane">
+                        <div class="quiz-content">
+                            <h3>📝 Quiz do Capítulo</h3>
+                            <p>Teste seus conhecimentos com perguntas de múltipla escolha:</p>
+                            <div class="quiz-info">
+                                <div class="quiz-details">
+                                    <span>5 perguntas</span>
+                                    <span>10 minutos</span>
+                                    <span>70% para aprovação</span>
+                                </div>
+                            </div>
+                            <div class="quiz-actions">
+                                <button class="btn btn-primary" onclick="startQuiz(${currentChapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                        <path d="M12 17h.01"/>
+                                    </svg>
+                                    Iniciar Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="exam-tab" class="tab-pane">
+                        <div class="exam-content">
+                            <h3>🎯 Prova do Capítulo</h3>
+                            <p>Faça a prova oficial com 10 perguntas em 30 minutos:</p>
+                            <div class="exam-info">
+                                <div class="exam-details">
+                                    <span>10 perguntas</span>
+                                    <span>30 minutos</span>
+                                    <span>70% para aprovação</span>
+                                </div>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn btn-primary" onclick="startExam(${currentChapter.id})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10,9 9,9 8,9"/>
+                                    </svg>
+                                    Iniciar Prova
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function goBackToChapters() {
+            document.getElementById('chapters-grid').style.display = 'grid';
+            document.getElementById('chapter-content').style.display = 'none';
+        }
+
+        function markChapterComplete() {
+            if (!currentChapter) return;
+
+            userProgress[`chapter_${currentChapter.id}`] = {
+                completed: true,
+                completedAt: new Date().toISOString()
+            };
+
+            localStorage.setItem('navcode_python_progress', JSON.stringify(userProgress));
+            loadProgress();
+            loadChapters();
+
+            alert('Capítulo marcado como concluído!');
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+
+            if (tabName === 'exercises') {
+                loadExercises();
+            }
+        }
+
+        function loadExercises() {
+            if (!currentChapter || !currentChapter.content.exercises) return;
+
+            const exercises = currentChapter.content.exercises;
+            const exercisesTab = document.getElementById('exercises-tab');
+
+            exercisesTab.innerHTML = `
+                <div class="exercises-content">
+                    <h3>✏️ Exercícios Práticos - ${currentChapter.title}</h3>
+                    <p>Pratique os conceitos aprendidos com exercícios interativos:</p>
+                    
+                    <div class="exercises-list">
+                        ${exercises.map((exercise, index) => `
+                            <div class="exercise-card">
+                                <div class="exercise-header">
+                                    <h4>Exercício ${index + 1}: ${exercise.title}</h4>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty ${exercise.difficulty.toLowerCase()}">${exercise.difficulty}</span>
+                                        <span class="duration">${exercise.estimatedTime}</span>
+                                    </div>
+                                </div>
+                                <p class="exercise-description">${exercise.description}</p>
+                                <button class="btn btn-primary" onclick="startExercise(${index})">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 20h9"/>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                    </svg>
+                                    Iniciar Exercício
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function startExercise(exerciseIndex) {
+            alert(`Iniciando exercício ${exerciseIndex + 1}. Esta funcionalidade será implementada em breve!`);
+        }
+
+        // Sistema de Quiz e Prova
+        let currentQuiz = null;
+        let currentExam = null;
+        let quizTimer = null;
+        let examTimer = null;
+        let examTimeLeft = 30 * 60;
+
+        const quizData = {
+            1: {
+                quiz: [
+                    {
+                        question: "O que é Python?",
+                        options: [
+                            "Uma linguagem de programação",
+                            "Um tipo de cobra",
+                            "Um sistema operacional",
+                            "Um banco de dados"
+                        ],
+                        correct: 0,
+                        explanation: "Python é uma linguagem de programação de alto nível."
+                    },
+                    {
+                        question: "Como se exibe texto na tela em Python?",
+                        options: [
+                            "print()",
+                            "echo()",
+                            "display()",
+                            "show()"
+                        ],
+                        correct: 0,
+                        explanation: "A função print() é usada para exibir texto na tela."
+                    },
+                    {
+                        question: "Qual é a extensão de arquivo Python?",
+                        options: [
+                            ".py",
+                            ".python",
+                            ".pyt",
+                            ".pyc"
+                        ],
+                        correct: 0,
+                        explanation: "Arquivos Python têm extensão .py"
+                    },
+                    {
+                        question: "Python é uma linguagem interpretada?",
+                        options: [
+                            "Sim",
+                            "Não",
+                            "Depende",
+                            "Às vezes"
+                        ],
+                        correct: 0,
+                        explanation: "Sim, Python é uma linguagem interpretada."
+                    },
+                    {
+                        question: "Qual comando instala pacotes Python?",
+                        options: [
+                            "pip install",
+                            "python install",
+                            "install pip",
+                            "get pip"
+                        ],
+                        correct: 0,
+                        explanation: "pip install é usado para instalar pacotes Python."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "Explique as vantagens do Python.",
+                        options: [
+                            "Sintaxe simples, versatilidade, comunidade ativa",
+                            "Apenas velocidade",
+                            "Apenas simplicidade",
+                            "Apenas comunidade"
+                        ],
+                        correct: 0,
+                        explanation: "Python tem sintaxe simples, é versátil e tem uma comunidade ativa."
+                    },
+                    {
+                        question: "O que é PEP?",
+                        options: [
+                            "Python Enhancement Proposal",
+                            "Python Error Protocol",
+                            "Python Execution Process",
+                            "Python Extension Package"
+                        ],
+                        correct: 0,
+                        explanation: "PEP são propostas de melhorias para o Python."
+                    },
+                    {
+                        question: "Python é case-sensitive?",
+                        options: [
+                            "Sim",
+                            "Não",
+                            "Depende",
+                            "Às vezes"
+                        ],
+                        correct: 0,
+                        explanation: "Sim, Python diferencia maiúsculas de minúsculas."
+                    },
+                    {
+                        question: "Qual é o interpretador padrão do Python?",
+                        options: [
+                            "CPython",
+                            "JPython",
+                            "IronPython",
+                            "PyPy"
+                        ],
+                        correct: 0,
+                        explanation: "CPython é o interpretador padrão do Python."
+                    },
+                    {
+                        question: "Python suporta programação orientada a objetos?",
+                        options: [
+                            "Sim",
+                            "Não",
+                            "Parcialmente",
+                            "Depende da versão"
+                        ],
+                        correct: 0,
+                        explanation: "Sim, Python suporta programação orientada a objetos."
+                    }
+                ]
+            }
+        };
+
+        function startQuiz(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Quiz não disponível para este capítulo ainda!');
+                return;
+            }
+
+            currentQuiz = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].quiz],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
+
+            showQuizInterface();
+        }
+
+        function showQuizInterface() {
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>📝 Quiz - Capítulo ${currentQuiz.chapterId}</h2>
+                        <div class="quiz-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentQuiz.currentQuestion / currentQuiz.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentQuiz.currentQuestion + 1} de ${currentQuiz.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="quiz-question-container">
+                        ${renderQuizQuestion()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderQuizQuestion() {
+            const question = currentQuiz.questions[currentQuiz.currentQuestion];
+            return `
+                <div class="question">
+                    <h3>${question.question}</h3>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectQuizAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-navigation">
+                        <button class="btn btn-secondary" onclick="previousQuizQuestion()" ${currentQuiz.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuizQuestion()" ${currentQuiz.answers[currentQuiz.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentQuiz.currentQuestion === currentQuiz.questions.length - 1 ? 'Finalizar Quiz' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectQuizAnswer(answerIndex) {
+            currentQuiz.answers[currentQuiz.currentQuestion] = answerIndex;
+
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            document.querySelector('.quiz-navigation .btn-primary').disabled = false;
+        }
+
+        function nextQuizQuestion() {
+            if (currentQuiz.currentQuestion < currentQuiz.questions.length - 1) {
+                currentQuiz.currentQuestion++;
+                showQuizInterface();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuizQuestion() {
+            if (currentQuiz.currentQuestion > 0) {
+                currentQuiz.currentQuestion--;
+                showQuizInterface();
+            }
+        }
+
+        function finishQuiz() {
+            let correct = 0;
+            currentQuiz.questions.forEach((question, index) => {
+                if (currentQuiz.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / currentQuiz.questions.length) * 100);
+            const passed = percentage >= 70;
+
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="quiz-result">
+                    <h2>📝 Resultado do Quiz</h2>
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span class="stat-number">${correct}</span>
+                            <span class="stat-label">Acertos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${currentQuiz.questions.length}</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${percentage}%</span>
+                            <span class="stat-label">Pontuação</span>
+                        </div>
+                    </div>
+                    <div class="result-message ${passed ? 'success' : 'error'}">
+                        ${passed ? '🎉 Parabéns! Você passou no quiz!' : '❌ Que pena! Tente novamente.'}
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-secondary" onclick="goBackToChapters()">
+                            Voltar aos Capítulos
+                        </button>
+                        ${!passed ? `<button class="btn btn-primary" onclick="startQuiz(${currentQuiz.chapterId})">Tentar Novamente</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function startExam(chapterId) {
+            if (!quizData[chapterId]) {
+                alert('Prova não disponível para este capítulo ainda!');
+                return;
+            }
+
+            if (!confirm('A prova tem 30 minutos de duração. Deseja continuar?')) {
+                return;
+            }
+
+            currentExam = {
+                chapterId: chapterId,
+                questions: [...quizData[chapterId].exam],
+                currentQuestion: 0,
+                answers: [],
+                score: 0
+            };
+
+            examTimeLeft = 30 * 60;
+            showExamInterface();
+            startExamTimer();
+        }
+
+        function showExamInterface() {
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="exam-container">
+                    <div class="exam-header">
+                        <h2>🎯 Prova - Capítulo ${currentExam.chapterId}</h2>
+                        <div class="exam-timer">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span id="exam-timer">30:00</span>
+                        </div>
+                        <div class="exam-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(currentExam.currentQuestion / currentExam.questions.length) * 100}%"></div>
+                            </div>
+                            <span>Pergunta ${currentExam.currentQuestion + 1} de ${currentExam.questions.length}</span>
+                        </div>
+                    </div>
+                    <div class="exam-question-container">
+                        ${renderExamQuestion()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderExamQuestion() {
+            const question = currentExam.questions[currentExam.currentQuestion];
+            return `
+                <div class="question">
+                    <h3>${question.question}</h3>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectExamAnswer(${index})">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="exam-navigation">
+                        <button class="btn btn-secondary" onclick="previousExamQuestion()" ${currentExam.currentQuestion === 0 ? 'disabled' : ''}>
+                            Anterior
+                        </button>
+                        <button class="btn btn-primary" onclick="nextExamQuestion()" ${currentExam.answers[currentExam.currentQuestion] === undefined ? 'disabled' : ''}>
+                            ${currentExam.currentQuestion === currentExam.questions.length - 1 ? 'Finalizar Prova' : 'Próxima'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectExamAnswer(answerIndex) {
+            currentExam.answers[currentExam.currentQuestion] = answerIndex;
+
+            document.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index === answerIndex) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            document.querySelector('.exam-navigation .btn-primary').disabled = false;
+        }
+
+        function nextExamQuestion() {
+            if (currentExam.currentQuestion < currentExam.questions.length - 1) {
+                currentExam.currentQuestion++;
+                showExamInterface();
+            } else {
+                finishExam();
+            }
+        }
+
+        function previousExamQuestion() {
+            if (currentExam.currentQuestion > 0) {
+                currentExam.currentQuestion--;
+                showExamInterface();
+            }
+        }
+
+        function startExamTimer() {
+            examTimer = setInterval(() => {
+                examTimeLeft--;
+                const minutes = Math.floor(examTimeLeft / 60);
+                const seconds = examTimeLeft % 60;
+                document.getElementById('exam-timer').textContent =
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (examTimeLeft <= 0) {
+                    clearInterval(examTimer);
+                    finishExam();
+                }
+            }, 1000);
+        }
+
+        function finishExam() {
+            clearInterval(examTimer);
+
+            let correct = 0;
+            currentExam.questions.forEach((question, index) => {
+                if (currentExam.answers[index] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / currentExam.questions.length) * 100);
+            const passed = percentage >= 70;
+
+            const chapterContent = document.getElementById('chapter-content');
+            chapterContent.innerHTML = `
+                <div class="exam-result">
+                    <h2>🎯 Resultado da Prova</h2>
+                    <div class="result-stats">
+                        <div class="stat">
+                            <span class="stat-number">${correct}</span>
+                            <span class="stat-label">Acertos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${currentExam.questions.length}</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">${percentage}%</span>
+                            <span class="stat-label">Pontuação</span>
+                        </div>
+                    </div>
+                    <div class="result-message ${passed ? 'success' : 'error'}">
+                        ${passed ? '🎉 Parabéns! Você passou na prova!' : '❌ Que pena! Tente novamente.'}
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-secondary" onclick="goBackToChapters()">
+                            Voltar aos Capítulos
+                        </button>
+                        ${!passed ? `<button class="btn btn-primary" onclick="startExam(${currentExam.chapterId})">Tentar Novamente</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        console.log('[NavCode] Sistema de curso de Python inicializado');
+        console.log('[NavCode] Capítulos disponíveis:', courseData.totalChapters);
+        console.log('[NavCode] Funcionalidades: Progresso, Exercícios, Vídeos, Quiz, Prova, Certificação');
+    </script>
+
+    <script src="theme-system.js"></script>
+
+    <!-- ===== RODAPÉ PADRONIZADO ===== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1: Logo e descrição -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-logo">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            <span class="brand-name">NavCode</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando carreiras através da educação em tecnologia da informação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Cursos -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Cursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
+                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Empresa -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="index.html#creators-section">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="index.html#course-info-card">Certificados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Suporte -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Linha de copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -5,155 +5,387 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - NavCode Curso Técnico</title>
-    <link class="styling-link" rel="stylesheet" href="neostyles.css">
-
-    <!-- Ícone de Página -->
-    <link rel="icon" type="image/png" href="../atex-pii-modules-III-IV-2025-2/assets/images/favicon/favicon.png">
-
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/generator.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <style>
+        /* ===== ESTILOS MODERNOS NAVCODE PARA REGISTRO ===== */
         .register-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: var(--navcode-gradient-dark);
+            background-attachment: fixed;
             padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efeito de fundo animado futurista */
+        .register-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(165, 94, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+            animation: backgroundFloat 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes backgroundFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
         }
 
         .register-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
+            background: var(--navcode-bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--navcode-border-light);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 450px;
+            box-shadow: var(--navcode-shadow-lg), var(--navcode-glow-blue);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .register-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .register-logo {
-            width: 80px;
-            height: 80px;
-            background: #059669;
-            border-radius: 16px;
+            width: 90px;
+            height: 90px;
+            background: var(--navcode-gradient-primary);
+            border-radius: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            box-shadow: var(--navcode-shadow-neon);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-logo::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: logoShine 3s ease-in-out infinite;
+        }
+
+        @keyframes logoShine {
+            0% {
+                left: -100%;
+            }
+
+            50% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .register-title {
+            margin: 0;
+            color: var(--navcode-text-primary);
             font-size: 2rem;
-            font-weight: bold;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: var(--navcode-gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .register-subtitle {
+            margin: 0.5rem 0 0;
+            color: var(--navcode-text-secondary);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .register-description {
+            margin: 0.5rem 0 0;
+            color: var(--navcode-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
+            position: relative;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-weight: 600;
-            color: #374151;
+            color: var(--navcode-text-primary);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
         }
 
         .form-input {
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            background: var(--navcode-bg-primary);
+            border: 2px solid var(--navcode-border-light);
+            border-radius: 1rem;
             font-size: 1rem;
-            transition: border-color 0.2s;
+            color: var(--navcode-text-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-sizing: border-box;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .form-input::placeholder {
+            color: var(--navcode-text-muted);
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #059669;
+            border-color: var(--navcode-primary);
+            box-shadow: 0 0 0 3px var(--navcode-primary-bg), var(--navcode-glow-blue);
+            transform: translateY(-2px);
+        }
+
+        .form-input:hover {
+            border-color: var(--navcode-border-medium);
+            transform: translateY(-1px);
         }
 
         .register-btn {
             width: 100%;
-            background: #059669;
+            background: var(--navcode-gradient-primary);
             color: white;
-            padding: 0.75rem;
+            padding: 1rem 1.5rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: var(--navcode-shadow-md);
+        }
+
+        .register-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
         }
 
         .register-btn:hover {
-            background: #047857;
+            transform: translateY(-3px);
+            box-shadow: var(--navcode-shadow-lg), var(--navcode-glow-blue);
+        }
+
+        .register-btn:hover::before {
+            left: 100%;
+        }
+
+        .register-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .register-footer {
             text-align: center;
-            margin-top: 1.5rem;
-            color: #6b7280;
+            margin-top: 2rem;
+            color: var(--navcode-text-muted);
+            font-size: 0.95rem;
         }
 
         .register-footer a {
-            color: #059669;
+            color: var(--navcode-primary);
             text-decoration: none;
             font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .register-footer a:hover {
-            text-decoration: underline;
+        .register-footer a::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--navcode-primary);
+            transition: width 0.3s ease;
+        }
+
+        .register-footer a:hover::after {
+            width: 100%;
         }
 
         .success-message,
         .error-message {
-            padding: 0.75rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            padding: 1rem 1.25rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
             display: none;
+            font-weight: 500;
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .success-message {
-            background: #f0fdf4;
-            color: #166534;
-            border: 1px solid #bbf7d0;
+            background: var(--navcode-success-bg);
+            color: var(--navcode-success-text);
+            border: 1px solid var(--navcode-success);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
         }
 
         .error-message {
-            background: #fef2f2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
+            background: var(--navcode-error-bg);
+            color: var(--navcode-error-text);
+            border: 1px solid var(--navcode-error);
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.2);
         }
 
         .password-strength {
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
             font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
         }
 
         .strength-weak {
-            color: #dc2626;
+            color: var(--navcode-error-text);
+            background: var(--navcode-error-bg);
         }
 
         .strength-medium {
-            color: #f59e0b;
+            color: var(--navcode-warning);
+            background: var(--navcode-warning-bg);
         }
 
         .strength-strong {
-            color: #059669;
+            color: var(--navcode-success-text);
+            background: var(--navcode-success-bg);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .register-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .register-title {
+                font-size: 1.75rem;
+            }
+
+            .register-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 1.5rem;
+                margin: 0.5rem;
+            }
+
+            .register-title {
+                font-size: 1.5rem;
+            }
+
+            .form-input {
+                padding: 0.875rem 1rem;
+            }
+
+            .register-btn {
+                padding: 0.875rem 1.25rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- ===== BOTÃO DE ALTERNÂNCIA DE TEMA ===== -->
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+    </button>
     <div class="register-container">
         <div class="register-card">
             <div class="register-header">
                 <div class="register-logo">NC</div>
-                <h1 style="margin: 0; color: #1f2937;">Criar Conta</h1>
-                <p style="margin: 0.5rem 0 0; color: #6b7280;">NavCode Curso Técnico</p>
+                <h1 class="register-title">Junte-se à NavCode!</h1>
+                <p class="register-subtitle">Plataforma de Cursos Técnicos</p>
+                <p class="register-description">Crie sua conta e comece sua jornada de aprendizado</p>
             </div>
 
             <div class="success-message" id="successMessage">
@@ -164,35 +396,29 @@
                 Erro ao criar conta
             </div>
 
-            <form id="registerForm" class="register-form" action="/register" method="post">
+            <form id="registerForm">
                 <div class="form-group">
                     <label class="form-label" for="email">Email</label>
-                    <input name="email" type="email" id="email" class="form-input" required>
+                    <input type="email" id="email" class="form-input" placeholder="seu@email.com" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="username">Usuário</label>
-                    <input name="username" type="text" id="username" class="form-input" required minlength="3">
+                    <input type="text" id="username" class="form-input" placeholder="seu_usuario" required
+                        minlength="3">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="password">Senha</label>
-                    <input name="password" type="password" id="password" class="form-input" required minlength="6">
-                    <div class="password-strength" id="passwordStrength">
-                        <a href="#" class="toggle-btn" onclick="togglePassword()" id="toggle">
-                            <img id="toggle-icon" src="../atex-pii-modules-III-IV-2025-2/assets/icons/blind.svg"
-                                alt="blind" width="24" height="24">
-                        </a>
-                    </div>
-                    <div id="btn-div-password">
-                        <button type="button" class="form-password" onclick="passwordGenerator()">- Gerar senha
-                            -</button>
-                    </div>
+                    <input type="password" id="password" class="form-input" placeholder="Mínimo 6 caracteres" required
+                        minlength="6">
+                    <div class="password-strength" id="passwordStrength"></div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="confirmPassword">Confirmar Senha</label>
-                    <input type="password" id="confirmPassword" class="form-input" required>
+                    <input type="password" id="confirmPassword" class="form-input"
+                        placeholder="Digite a senha novamente" required>
                 </div>
 
                 <button type="submit" class="register-btn">Criar Conta</button>
@@ -204,7 +430,7 @@
         </div>
     </div>
 
-    <script src="../atex-pii-modules-III-IV-2025-2/JS/auth.js"></script>
+    <script src="auth.js"></script>
     <script>
         const registerForm = document.getElementById('registerForm');
         const passwordInput = document.getElementById('password');
@@ -276,9 +502,74 @@
 
         // Verificar se já está logado
         if (localStorage.getItem('navcode_logged_in') === 'true') {
-            window.location.href = 'index.html';
+            window.location.href = '../atex-pii-modules-III-IV-2025-2/index.html';;
         }
     </script>
+    <!-- Importando sistema de temas -->
+    <script src="theme-system.js"></script>
+
+    <!-- ===== RODAPÉ PADRONIZADO ===== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1: Logo e descrição -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-logo">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            <span class="brand-name">NavCode</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando carreiras através da educação em tecnologia da informação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Cursos -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Cursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
+                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Empresa -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="index.html#creators-section">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="index.html#course-info-card">Certificados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Suporte -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Linha de copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

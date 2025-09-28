@@ -97,23 +97,10 @@
     </div>
 
     <script>
-        // Verificar se usuário está logado
-        document.addEventListener('DOMContentLoaded', function() {
-            const isLoggedIn = localStorage.getItem('navcode_logged_in') === 'true';
-            const username = localStorage.getItem('navcode_user');
-            
-            if (isLoggedIn && username) {
-                // Usuário logado - redirecionar para home.html
-                setTimeout(() => {
-                    window.location.href = 'home.html';
-                }, 2000);
-            } else {
-                // Usuário não logado - redirecionar para login.html
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 2000);
-            }
-        });
+        // Redirecionar para home.html após 2 segundos
+        setTimeout(() => {
+            window.location.href = 'home.html';
+        }, 2000);
     </script>
 </body>
 </html>

@@ -1,189 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <!-- Configurações básicas da página de login -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - NavCode Plataforma de Cursos</title>
 
     <!-- Importando estilos principais -->
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <!-- ===== CONTAINER PRINCIPAL DE LOGIN ===== -->
     <!-- Layout centralizado com fundo gradiente moderno -->
     <div class="login-container">
+      <!-- ===== CARTÃO DE LOGIN ===== -->
+      <!-- Cartão principal com formulário de autenticação -->
+      <div class="login-card">
+        <!-- ===== CABEÇALHO DO LOGIN ===== -->
+        <!-- Logo e informações da marca NavCode -->
+        <div class="login-header">
+          <!-- Logo NavCode com ícone de raio -->
+          <div class="login-logo">
+            <svg
+              class="brand-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+          </div>
 
-        <!-- ===== CARTÃO DE LOGIN ===== -->
-        <!-- Cartão principal com formulário de autenticação -->
-        <div class="login-card">
-
-            <!-- ===== CABEÇALHO DO LOGIN ===== -->
-            <!-- Logo e informações da marca NavCode -->
-            <div class="login-header">
-                <!-- Logo NavCode com ícone de raio -->
-                <div class="login-logo">
-                    <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg>
-                </div>
-
-                <!-- Título e subtítulo da plataforma -->
-                <h1 class="login-title">Bem-vindo de volta!</h1>
-                <p class="login-subtitle">NavCode - Plataforma de Cursos Técnicos</p>
-                <p class="login-description">Acesse sua conta para continuar aprendendo</p>
-            </div>
-
-            <!-- ===== MENSAGEM DE ERRO ===== -->
-            <!-- Exibida quando credenciais são inválidas -->
-            <div class="error-message" id="errorMessage">
-                <div class="error-icon">⚠️</div>
-                <span id="errorText">Usuário ou senha incorretos</span>
-            </div>
-
-            <!-- ===== FORMULÁRIO DE LOGIN ===== -->
-            <!-- Campos de usuário e senha com validação -->
-            <form id="loginForm" class="login-form">
-
-                <!-- Campo de usuário -->
-                <div class="form-group">
-                    <label class="form-label" for="username">
-                        <!-- Ícone de usuário -->
-                        <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                        Usuário
-                    </label>
-                    <input type="text" id="username" class="form-input" placeholder="Digite seu usuário" required
-                        autocomplete="username">
-                </div>
-
-                <!-- Campo de senha -->
-                <div class="form-group">
-                    <label class="form-label" for="password">
-                        <!-- Ícone de cadeado -->
-                        <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                            <circle cx="12" cy="16" r="1" />
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                        </svg>
-                        Senha
-                    </label>
-                    <div class="password-input-wrapper">
-                        <input type="password" id="password" class="form-input" placeholder="Digite sua senha" required
-                            autocomplete="current-password">
-                        <!-- Botão para mostrar/esconder senha -->
-                        <button type="button" class="password-toggle" onclick="togglePassword()">
-                            <svg id="eye-icon" class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                                <circle cx="12" cy="12" r="3" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Opções adicionais -->
-                <div class="form-options">
-                    <!-- Checkbox para lembrar usuário -->
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="rememberMe" class="checkbox-input">
-                        <span class="checkbox-custom"></span>
-                        Lembrar de mim
-                    </label>
-
-                    <!-- Link para recuperar senha -->
-                    <a href="#" class="forgot-password" onclick="showForgotPassword()">
-                        Esqueceu a senha?
-                    </a>
-                </div>
-
-                <!-- Botão de login -->
-                <button type="submit" class="login-btn">
-                    <!-- Ícone de entrada -->
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                        <polyline points="10,17 15,12 10,7" />
-                        <line x1="15" y1="12" x2="3" y2="12" />
-                    </svg>
-                    Entrar na Plataforma
-                </button>
-            </form>
-
-            <!-- ===== RODAPÉ DO LOGIN ===== -->
-            <!-- Links para registro e informações adicionais -->
-            <div class="login-footer">
-                <!-- Divisor visual -->
-                <div class="divider">
-                    <span>ou</span>
-                </div>
-
-                <!-- Link para criar conta -->
-                <p class="register-link">
-                    Não tem uma conta?
-                    <a href="register.html" class="register-btn">
-                        Criar Conta Gratuita
-                        <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14" />
-                            <path d="M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </p>
-
-                <!-- Informações sobre a plataforma -->
-                <div class="platform-info">
-                    <p>✨ Acesso a todos os cursos técnicos</p>
-                    <p>📚 Conteúdo sempre atualizado</p>
-                    <p>🏆 Certificados reconhecidos</p>
-                </div>
-            </div>
+          <!-- Título e subtítulo da plataforma -->
+          <h1 class="login-title">Bem-vindo de volta!</h1>
+          <p class="login-subtitle">NavCode - Plataforma de Cursos Técnicos</p>
+          <p class="login-description">
+            Acesse sua conta para continuar aprendendo
+          </p>
         </div>
 
-        <!-- ===== INFORMAÇÕES LATERAIS ===== -->
-        <!-- Painel com estatísticas e depoimentos -->
-        <div class="login-sidebar">
-            <div class="sidebar-content">
-                <!-- Título da sidebar -->
-                <h2 class="sidebar-title">Junte-se a milhares de estudantes</h2>
-                <p class="sidebar-description">
-                    Desenvolva suas habilidades técnicas com a melhor plataforma de educação em tecnologia do Brasil.
-                </p>
-
-                <!-- Estatísticas da plataforma -->
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Alunos Ativos</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50h+</div>
-                        <div class="stat-label">Conteúdo</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">95%</div>
-                        <div class="stat-label">Satisfação</div>
-                    </div>
-                </div>
-
-                <!-- Depoimento de aluno -->
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        "A NavCode transformou minha carreira. Os cursos são práticos e o suporte é excepcional!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
-                        <div class="author-info">
-                            <div class="author-name">Maria Rodrigues</div>
-                            <div class="author-role">Desenvolvedora Full-Stack</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- ===== MENSAGEM DE ERRO ===== -->
+        <!-- Exibida quando credenciais são inválidas -->
+        <div class="error-message" id="errorMessage">
+          <div class="error-icon">⚠️</div>
+          <span id="errorText">Usuário ou senha incorretos</span>
         </div>
+
+        <!-- ===== FORMULÁRIO DE LOGIN ===== -->
+        <!-- Campos de usuário e senha com validação -->
+        <form id="loginForm" class="login-form">
+          <!-- Campo de usuário -->
+          <div class="form-group">
+            <label class="form-label" for="username">
+              <!-- Ícone de usuário -->
+              <svg
+                class="label-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Usuário
+            </label>
+            <input
+              type="text"
+              id="username"
+              class="form-input"
+              placeholder="Digite seu usuário"
+              required
+              autocomplete="username"
+            />
+          </div>
+
+          <!-- Campo de senha -->
+          <div class="form-group">
+            <label class="form-label" for="password">
+              <!-- Ícone de cadeado -->
+              <svg
+                class="label-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <circle cx="12" cy="16" r="1" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              Senha
+            </label>
+            <div class="password-input-wrapper">
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Digite sua senha"
+                required
+                autocomplete="current-password"
+              />
+              <!-- Botão para mostrar/esconder senha -->
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword()"
+              >
+                <svg
+                  id="eye-icon"
+                  class="eye-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Opções adicionais -->
+          <div class="form-options">
+            <!-- Checkbox para lembrar usuário -->
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" class="checkbox-input" />
+              <span class="checkbox-custom"></span>
+              Lembrar de mim
+            </label>
+
+            <!-- Link para recuperar senha -->
+            <a href="#" class="forgot-password" onclick="showForgotPassword()">
+              Esqueceu a senha?
+            </a>
+          </div>
+
+          <!-- Botão de login -->
+          <button type="submit" class="login-btn">
+            <!-- Ícone de entrada -->
+            <svg
+              class="btn-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10,17 15,12 10,7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            Entrar na Plataforma
+          </button>
+        </form>
+
+        <!-- ===== RODAPÉ DO LOGIN ===== -->
+        <!-- Links para registro e informações adicionais -->
+        <div class="login-footer">
+          <!-- Divisor visual -->
+          <div class="divider">
+            <span>ou</span>
+          </div>
+
+          <!-- Link para criar conta -->
+          <p class="register-link">
+            Não tem uma conta?
+            <a href="register.html" class="register-btn">
+              Criar Conta Gratuita
+              <svg
+                class="link-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </p>
+
+          <!-- Informações sobre a plataforma -->
+          <div class="platform-info">
+            <p>✨ Acesso a todos os cursos técnicos</p>
+            <p>📚 Conteúdo sempre atualizado</p>
+            <p>🏆 Certificados reconhecidos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== INFORMAÇÕES LATERAIS ===== -->
+      <!-- Painel com estatísticas e depoimentos -->
+      <div class="login-sidebar">
+        <div class="sidebar-content">
+          <!-- Título da sidebar -->
+          <h2 class="sidebar-title">Junte-se a milhares de estudantes</h2>
+          <p class="sidebar-description">
+            Desenvolva suas habilidades técnicas com a melhor plataforma de
+            educação em tecnologia do Brasil.
+          </p>
+
+          <!-- Estatísticas da plataforma -->
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">1000+</div>
+              <div class="stat-label">Alunos Ativos</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">50h+</div>
+              <div class="stat-label">Conteúdo</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">95%</div>
+              <div class="stat-label">Satisfação</div>
+            </div>
+          </div>
+
+          <!-- Depoimento de aluno -->
+          <div class="testimonial">
+            <div class="testimonial-content">
+              "A NavCode transformou minha carreira. Os cursos são práticos e o
+              suporte é excepcional!"
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">MR</div>
+              <div class="author-info">
+                <div class="author-name">Maria Rodrigues</div>
+                <div class="author-role">Desenvolvedora Full-Stack</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ===== SCRIPTS ===== -->
@@ -195,240 +250,260 @@
 
     <!-- Script principal da página de login -->
     <script>
-        // ===== MANIPULAÇÃO DO FORMULÁRIO =====
-        /**
-         * Event listener para submissão do formulário de login
-         * Processa credenciais e redireciona em caso de sucesso
-         */
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevenir envio padrão do formulário
+      // ===== MANIPULAÇÃO DO FORMULÁRIO =====
+      /**
+       * Event listener para submissão do formulário de login
+       * Processa credenciais e redireciona em caso de sucesso
+       */
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevenir envio padrão do formulário
 
-            console.log('[NavCode] Tentativa de login iniciada...');
+          console.log("[NavCode] Tentativa de login iniciada...");
 
-            // Obter valores dos campos
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
+          // Obter valores dos campos
+          const username = document.getElementById("username").value.trim();
+          const password = document.getElementById("password").value;
+          const rememberMe = document.getElementById("rememberMe").checked;
 
-            // Validar campos obrigatórios
-            if (!username || !password) {
-                showError('Por favor, preencha todos os campos!');
-                return;
+          // Validar campos obrigatórios
+          if (!username || !password) {
+            showError("Por favor, preencha todos os campos!");
+            return;
+          }
+
+          // Tentar fazer login usando sistema de autenticação
+          const result = loginUser(username, password);
+
+          if (result.success) {
+            console.log("[NavCode] Login realizado com sucesso!");
+
+            // Salvar preferência de "lembrar"
+            if (rememberMe) {
+              localStorage.setItem("navcode_remember_user", username);
             }
 
-            // Tentar fazer login usando sistema de autenticação
-            const result = loginUser(username, password);
+            // Mostrar mensagem de sucesso
+            showSuccess("Login realizado com sucesso! Redirecionando...");
 
-            if (result.success) {
-                console.log('[NavCode] Login realizado com sucesso!');
-
-                // Salvar preferência de "lembrar"
-                if (rememberMe) {
-                    localStorage.setItem('navcode_remember_user', username);
-                }
-
-                // Mostrar mensagem de sucesso
-                showSuccess('Login realizado com sucesso! Redirecionando...');
-
-                // Redirecionar após pequeno delay
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-
-            } else {
-                console.log('[NavCode] Falha no login:', result.message);
-                showError(result.message);
-            }
+            // Redirecionar após pequeno delay
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1500);
+          } else {
+            console.log("[NavCode] Falha no login:", result.message);
+            showError(result.message);
+          }
         });
 
-        // ===== FUNÇÕES DE INTERFACE =====
-        /**
-         * Exibe mensagem de erro na interface
-         * @param {string} message - Mensagem de erro a ser exibida
-         */
-        function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            const errorText = document.getElementById('errorText');
+      // ===== FUNÇÕES DE INTERFACE =====
+      /**
+       * Exibe mensagem de erro na interface
+       * @param {string} message - Mensagem de erro a ser exibida
+       */
+      function showError(message) {
+        const errorDiv = document.getElementById("errorMessage");
+        const errorText = document.getElementById("errorText");
 
-            errorText.textContent = message;
-            errorDiv.style.display = 'flex';
-            errorDiv.classList.add('shake'); // Animação de balanço
+        errorText.textContent = message;
+        errorDiv.style.display = "flex";
+        errorDiv.classList.add("shake"); // Animação de balanço
 
-            // Esconder após 4 segundos
-            setTimeout(() => {
-                errorDiv.style.display = 'none';
-                errorDiv.classList.remove('shake');
-            }, 4000);
-        }
+        // Esconder após 4 segundos
+        setTimeout(() => {
+          errorDiv.style.display = "none";
+          errorDiv.classList.remove("shake");
+        }, 4000);
+      }
 
-        /**
-         * Exibe mensagem de sucesso na interface
-         * @param {string} message - Mensagem de sucesso a ser exibida
-         */
-        function showSuccess(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            const errorText = document.getElementById('errorText');
+      /**
+       * Exibe mensagem de sucesso na interface
+       * @param {string} message - Mensagem de sucesso a ser exibida
+       */
+      function showSuccess(message) {
+        const errorDiv = document.getElementById("errorMessage");
+        const errorText = document.getElementById("errorText");
 
-            // Transformar em mensagem de sucesso temporariamente
-            errorDiv.className = 'success-message';
-            errorText.textContent = message;
-            errorDiv.style.display = 'flex';
+        // Transformar em mensagem de sucesso temporariamente
+        errorDiv.className = "success-message";
+        errorText.textContent = message;
+        errorDiv.style.display = "flex";
 
-            // Ícone de sucesso
-            errorDiv.innerHTML = `
+        // Ícone de sucesso
+        errorDiv.innerHTML = `
                 <div class="success-icon">✅</div>
                 <span>${message}</span>
             `;
-        }
+      }
 
-        /**
-         * Alterna visibilidade da senha
-         * Permite ao usuário ver/esconder a senha digitada
-         */
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eye-icon');
+      /**
+       * Alterna visibilidade da senha
+       * Permite ao usuário ver/esconder a senha digitada
+       */
+      function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const eyeIcon = document.getElementById("eye-icon");
 
-            if (passwordInput.type === 'password') {
-                // Mostrar senha
-                passwordInput.type = 'text';
-                eyeIcon.innerHTML = `
+        if (passwordInput.type === "password") {
+          // Mostrar senha
+          passwordInput.type = "text";
+          eyeIcon.innerHTML = `
                     <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
                     <line x1="1" y1="1" x2="23" y2="23"/>
                 `;
-            } else {
-                // Esconder senha
-                passwordInput.type = 'password';
-                eyeIcon.innerHTML = `
+        } else {
+          // Esconder senha
+          passwordInput.type = "password";
+          eyeIcon.innerHTML = `
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                     <circle cx="12" cy="12" r="3"/>
                 `;
-            }
+        }
+      }
+
+      /**
+       * Mostra modal de recuperação de senha
+       * Funcionalidade para usuários que esqueceram a senha
+       */
+      function showForgotPassword() {
+        alert(
+          "Funcionalidade de recuperação de senha será implementada em breve!\n\nPor enquanto, use as credenciais padrão:\nUsuário: admin\nSenha: 123456",
+        );
+      }
+
+      // ===== INICIALIZAÇÃO DA PÁGINA =====
+      /**
+       * Função executada quando a página carrega
+       * Verifica se usuário já está logado e configura interface
+       */
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("[NavCode] Inicializando página de login...");
+
+        // Verificar se já está logado
+        if (localStorage.getItem("navcode_logged_in") === "true") {
+          console.log("[NavCode] Usuário já logado, redirecionando...");
+          window.location.href = "index.html";
+          return;
         }
 
-        /**
-         * Mostra modal de recuperação de senha
-         * Funcionalidade para usuários que esqueceram a senha
-         */
-        function showForgotPassword() {
-            alert('Funcionalidade de recuperação de senha será implementada em breve!\n\nPor enquanto, use as credenciais padrão:\nUsuário: admin\nSenha: 123456');
+        // Carregar usuário lembrado, se existir
+        const rememberedUser = localStorage.getItem("navcode_remember_user");
+        if (rememberedUser) {
+          document.getElementById("username").value = rememberedUser;
+          document.getElementById("rememberMe").checked = true;
+          // Focar no campo de senha
+          document.getElementById("password").focus();
+        } else {
+          // Focar no campo de usuário
+          document.getElementById("username").focus();
         }
 
-        // ===== INICIALIZAÇÃO DA PÁGINA =====
-        /**
-         * Função executada quando a página carrega
-         * Verifica se usuário já está logado e configura interface
-         */
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('[NavCode] Inicializando página de login...');
+        console.log("[NavCode] Página de login carregada com sucesso!");
+      });
 
-            // Verificar se já está logado
-            if (localStorage.getItem('navcode_logged_in') === 'true') {
-                console.log('[NavCode] Usuário já logado, redirecionando...');
-                window.location.href = 'index.html';
-                return;
-            }
+      // ===== ATALHOS DE TECLADO =====
+      /**
+       * Adiciona atalhos de teclado para melhor experiência
+       */
+      document.addEventListener("keydown", function (e) {
+        // Enter para submeter formulário (se não estiver em um botão)
+        if (e.key === "Enter" && e.target.tagName !== "BUTTON") {
+          document
+            .getElementById("loginForm")
+            .dispatchEvent(new Event("submit"));
+        }
 
-            // Carregar usuário lembrado, se existir
-            const rememberedUser = localStorage.getItem('navcode_remember_user');
-            if (rememberedUser) {
-                document.getElementById('username').value = rememberedUser;
-                document.getElementById('rememberMe').checked = true;
-                // Focar no campo de senha
-                document.getElementById('password').focus();
-            } else {
-                // Focar no campo de usuário
-                document.getElementById('username').focus();
-            }
+        // Escape para limpar mensagens de erro
+        if (e.key === "Escape") {
+          const errorDiv = document.getElementById("errorMessage");
+          errorDiv.style.display = "none";
+        }
+      });
 
-            console.log('[NavCode] Página de login carregada com sucesso!');
-        });
-
-        // ===== ATALHOS DE TECLADO =====
-        /**
-         * Adiciona atalhos de teclado para melhor experiência
-         */
-        document.addEventListener('keydown', function (e) {
-            // Enter para submeter formulário (se não estiver em um botão)
-            if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
-                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-            }
-
-            // Escape para limpar mensagens de erro
-            if (e.key === 'Escape') {
-                const errorDiv = document.getElementById('errorMessage');
-                errorDiv.style.display = 'none';
-            }
-        });
-
-        // ===== LOG DE INICIALIZAÇÃO =====
-        console.log('[NavCode] Sistema de login inicializado');
-        console.log('[NavCode] Funcionalidades: Autenticação, Lembrar usuário, Recuperação de senha');
-        console.log('[NavCode] Credenciais padrão: admin/123456');
+      // ===== LOG DE INICIALIZAÇÃO =====
+      console.log("[NavCode] Sistema de login inicializado");
+      console.log(
+        "[NavCode] Funcionalidades: Autenticação, Lembrar usuário, Recuperação de senha",
+      );
+      console.log("[NavCode] Credenciais padrão: admin/123456");
     </script>
 
     <!-- ===== RODAPÉ PADRONIZADO ===== -->
     <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Coluna 1: Logo e descrição -->
-                <div class="footer-column">
-                    <div class="footer-brand">
-                        <div class="brand-logo">
-                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                            </svg>
-                            <span class="brand-name">NavCode</span>
-                        </div>
-                        <p class="footer-description">
-                            Transformando carreiras através da educação em tecnologia da informação.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Coluna 2: Cursos -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Cursos</h3>
-                    <ul class="footer-links">
-                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
-                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
-                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
-                        <li><a href="curso-python.html">Programação Python</a></li>
-                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
-                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 3: Empresa -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Empresa</h3>
-                    <ul class="footer-links">
-                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
-                        <li><a href="index.html#creators-section">Nosso Time</a></li>
-                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
-                        <li><a href="index.html#course-info-card">Certificados</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 4: Suporte -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Suporte</h3>
-                    <ul class="footer-links">
-                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
-                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
-                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
-                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
-                    </ul>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <!-- Coluna 1: Logo e descrição -->
+          <div class="footer-column">
+            <div class="footer-brand">
+              <div class="brand-logo">
+                <svg
+                  class="brand-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+                <span class="brand-name">NavCode</span>
+              </div>
+              <p class="footer-description">
+                Transformando carreiras através da educação em tecnologia da
+                informação.
+              </p>
             </div>
+          </div>
 
-            <!-- Linha de copyright -->
-            <div class="footer-bottom">
-                <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
-            </div>
+          <!-- Coluna 2: Cursos -->
+          <div class="footer-column">
+            <h3 class="footer-title">Cursos</h3>
+            <ul class="footer-links">
+              <li>
+                <a href="curso-informatica.html">Técnico em Informática</a>
+              </li>
+              <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+              <li>
+                <a href="curso-seguranca.html">Segurança da Informação</a>
+              </li>
+              <li><a href="curso-python.html">Programação Python</a></li>
+              <li><a href="curso-redes.html">Redes de Computadores</a></li>
+              <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+            </ul>
+          </div>
+
+          <!-- Coluna 3: Empresa -->
+          <div class="footer-column">
+            <h3 class="footer-title">Empresa</h3>
+            <ul class="footer-links">
+              <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+              <li><a href="index.html#creators-section">Nosso Time</a></li>
+              <li><a href="nossa-empresa.html#contato">Contato</a></li>
+              <li><a href="index.html#course-info-card">Certificados</a></li>
+            </ul>
+          </div>
+
+          <!-- Coluna 4: Suporte -->
+          <div class="footer-column">
+            <h3 class="footer-title">Suporte</h3>
+            <ul class="footer-links">
+              <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+              <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+              <li>
+                <a href="nossa-empresa.html#politica"
+                  >Política de Privacidade</a
+                >
+              </li>
+              <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+            </ul>
+          </div>
         </div>
-    </footer>
-</body>
 
+        <!-- Linha de copyright -->
+        <div class="footer-bottom">
+          <p>&copy; 2024 NavCode. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

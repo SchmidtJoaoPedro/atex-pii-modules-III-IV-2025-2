@@ -28,4 +28,3 @@ Esta pasta contém os arquivos PDF dos currículos de todos os criadores da NavC
 ## Links de download:
 
 Os links de download estão configurados nas páginas dos criadores na seção "Entre em Contato" e aparecerão automaticamente quando os arquivos PDF estiverem nesta pasta.
-

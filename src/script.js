@@ -69,15 +69,26 @@ class NavCodeCourseSystem {
           ],
           quiz: [
             {
-              question: "Qual componente é considerado o 'cérebro' do computador?",
-              options: ["Memória RAM", "Processador (CPU)", "Placa de vídeo", "HD/SSD"],
+              question:
+                "Qual componente é considerado o 'cérebro' do computador?",
+              options: [
+                "Memória RAM",
+                "Processador (CPU)",
+                "Placa de vídeo",
+                "HD/SSD",
+              ],
               correct: 1,
               explanation:
                 "O processador (CPU) é responsável por executar todas as instruções e cálculos, sendo considerado o 'cérebro' do computador.",
             },
             {
               question: "O que significa RAM?",
-              options: ["Random Access Memory", "Rapid Access Memory", "Read Access Memory", "Real Access Memory"],
+              options: [
+                "Random Access Memory",
+                "Rapid Access Memory",
+                "Read Access Memory",
+                "Real Access Memory",
+              ],
               correct: 0,
               explanation:
                 "RAM significa Random Access Memory (Memória de Acesso Aleatório), permitindo acesso direto a qualquer posição de memória.",
@@ -86,13 +97,15 @@ class NavCodeCourseSystem {
           exercises: [
             {
               title: "Identificação de Componentes",
-              description: "Liste os 5 componentes principais de um computador e suas funções básicas.",
+              description:
+                "Liste os 5 componentes principais de um computador e suas funções básicas.",
               points: 10,
               tips: "Pense nos componentes essenciais: processamento, memória, armazenamento, entrada e saída.",
             },
             {
               title: "Especificações Técnicas",
-              description: "Pesquise as especificações de um computador atual e explique cada componente.",
+              description:
+                "Pesquise as especificações de um computador atual e explique cada componente.",
               points: 15,
               tips: "Use sites de lojas online para encontrar especificações reais de computadores.",
             },
@@ -102,12 +115,14 @@ class NavCodeCourseSystem {
       {
         id: 2,
         title: "Sistemas Operacionais",
-        description: "Entenda como funcionam os sistemas operacionais, instalação, configuração e gerenciamento.",
+        description:
+          "Entenda como funcionam os sistemas operacionais, instalação, configuração e gerenciamento.",
         duration: "4h 15min",
         icon: "settings",
         completed: false,
         content: {
-          intro: "Explore o mundo dos sistemas operacionais e aprenda a gerenciar recursos do computador.",
+          intro:
+            "Explore o mundo dos sistemas operacionais e aprenda a gerenciar recursos do computador.",
           explanations: [
             {
               title: "O que é um Sistema Operacional",
@@ -138,7 +153,12 @@ class NavCodeCourseSystem {
           quiz: [
             {
               question: "Qual a principal função de um sistema operacional?",
-              options: ["Navegar na internet", "Gerenciar recursos do computador", "Editar textos", "Jogar games"],
+              options: [
+                "Navegar na internet",
+                "Gerenciar recursos do computador",
+                "Editar textos",
+                "Jogar games",
+              ],
               correct: 1,
               explanation:
                 "O sistema operacional gerencia todos os recursos do computador, incluindo memória, processador, dispositivos e arquivos.",
@@ -147,7 +167,8 @@ class NavCodeCourseSystem {
           exercises: [
             {
               title: "Comparação de Sistemas",
-              description: "Compare Windows, Linux e macOS listando vantagens e desvantagens de cada um.",
+              description:
+                "Compare Windows, Linux e macOS listando vantagens e desvantagens de cada um.",
               points: 20,
               tips: "Considere fatores como custo, facilidade de uso, segurança e compatibilidade.",
             },
@@ -157,12 +178,14 @@ class NavCodeCourseSystem {
       {
         id: 3,
         title: "Redes de Computadores",
-        description: "Conceitos de redes, protocolos, configuração e troubleshooting de conexões.",
+        description:
+          "Conceitos de redes, protocolos, configuração e troubleshooting de conexões.",
         duration: "3h 45min",
         icon: "wifi",
         completed: false,
         content: {
-          intro: "Descubra como os computadores se comunicam através de redes locais e da internet.",
+          intro:
+            "Descubra como os computadores se comunicam através de redes locais e da internet.",
           explanations: [
             {
               title: "Fundamentos de Redes",
@@ -193,7 +216,12 @@ class NavCodeCourseSystem {
           quiz: [
             {
               question: "O que significa LAN?",
-              options: ["Large Area Network", "Local Area Network", "Long Access Network", "Limited Area Network"],
+              options: [
+                "Large Area Network",
+                "Local Area Network",
+                "Long Access Network",
+                "Limited Area Network",
+              ],
               correct: 1,
               explanation:
                 "LAN significa Local Area Network, uma rede que conecta dispositivos em uma área geográfica limitada.",
@@ -202,7 +230,8 @@ class NavCodeCourseSystem {
           exercises: [
             {
               title: "Diagnóstico de Rede",
-              description: "Descreva os passos para diagnosticar problemas de conexão com a internet.",
+              description:
+                "Descreva os passos para diagnosticar problemas de conexão com a internet.",
               points: 15,
               tips: "Pense em verificações desde o cabo físico até configurações de software.",
             },
@@ -212,7 +241,8 @@ class NavCodeCourseSystem {
       {
         id: 4,
         title: "Segurança da Informação",
-        description: "Princípios de segurança, proteção contra malware, backup e recuperação de dados.",
+        description:
+          "Princípios de segurança, proteção contra malware, backup e recuperação de dados.",
         duration: "4h 00min",
         icon: "shield",
         completed: false,
@@ -267,7 +297,8 @@ class NavCodeCourseSystem {
           exercises: [
             {
               title: "Plano de Segurança",
-              description: "Crie um plano básico de segurança para um escritório pequeno.",
+              description:
+                "Crie um plano básico de segurança para um escritório pequeno.",
               points: 25,
               tips: "Inclua medidas preventivas, procedimentos de backup e plano de resposta a incidentes.",
             },
@@ -277,12 +308,14 @@ class NavCodeCourseSystem {
       {
         id: 5,
         title: "Manutenção e Troubleshooting",
-        description: "Técnicas de diagnóstico, resolução de problemas e manutenção preventiva.",
+        description:
+          "Técnicas de diagnóstico, resolução de problemas e manutenção preventiva.",
         duration: "3h 20min",
         icon: "tool",
         completed: false,
         content: {
-          intro: "Desenvolva habilidades para diagnosticar e resolver problemas técnicos.",
+          intro:
+            "Desenvolva habilidades para diagnosticar e resolver problemas técnicos.",
           explanations: [
             {
               title: "Metodologia de Troubleshooting",
@@ -317,7 +350,12 @@ class NavCodeCourseSystem {
           quiz: [
             {
               question: "Qual o primeiro passo no troubleshooting?",
-              options: ["Trocar componentes", "Identificar o problema", "Reinstalar sistema", "Verificar cabos"],
+              options: [
+                "Trocar componentes",
+                "Identificar o problema",
+                "Reinstalar sistema",
+                "Verificar cabos",
+              ],
               correct: 1,
               explanation:
                 "O primeiro passo é sempre identificar claramente qual é o problema antes de tentar soluções.",
@@ -326,7 +364,8 @@ class NavCodeCourseSystem {
           exercises: [
             {
               title: "Caso de Troubleshooting",
-              description: "Um computador não liga. Descreva o processo completo de diagnóstico.",
+              description:
+                "Um computador não liga. Descreva o processo completo de diagnóstico.",
               points: 20,
               tips: "Siga a metodologia sistemática, começando pelas causas mais simples.",
             },
@@ -336,12 +375,14 @@ class NavCodeCourseSystem {
       {
         id: 6,
         title: "Projeto Final e Certificação",
-        description: "Aplicação prática dos conhecimentos adquiridos em um projeto completo.",
+        description:
+          "Aplicação prática dos conhecimentos adquiridos em um projeto completo.",
         duration: "2h 30min",
         icon: "award",
         completed: false,
         content: {
-          intro: "Demonstre seus conhecimentos em um projeto prático que integra todos os conceitos aprendidos.",
+          intro:
+            "Demonstre seus conhecimentos em um projeto prático que integra todos os conceitos aprendidos.",
           explanations: [
             {
               title: "Projeto Integrador",
@@ -385,46 +426,48 @@ class NavCodeCourseSystem {
                 "Apenas código",
               ],
               correct: 1,
-              explanation: "Um relatório técnico completo deve incluir problema, metodologia, resultados e conclusões.",
+              explanation:
+                "Um relatório técnico completo deve incluir problema, metodologia, resultados e conclusões.",
             },
           ],
           exercises: [
             {
               title: "Projeto Final",
-              description: "Desenvolva um projeto que integre hardware, software, redes e segurança.",
+              description:
+                "Desenvolva um projeto que integre hardware, software, redes e segurança.",
               points: 50,
               tips: "Escolha um problema real e aplique todos os conceitos aprendidos no curso.",
             },
           ],
         },
       },
-    ]
+    ];
 
     // Estado atual do sistema
-    this.currentChapter = null
-    this.currentSection = "intro"
-    this.userProgress = this.loadProgress()
+    this.currentChapter = null;
+    this.currentSection = "intro";
+    this.userProgress = this.loadProgress();
 
     // Inicializar sistema
-    this.init()
+    this.init();
   }
 
   /**
    * Inicializa o sistema de cursos
    */
   init() {
-    console.log("[NavCode] Inicializando sistema de cursos...")
+    console.log("[NavCode] Inicializando sistema de cursos...");
 
     // Verificar se está na página principal
     if (document.getElementById("chapters-grid")) {
-      this.loadChapters()
-      this.updateProgress()
+      this.loadChapters();
+      this.updateProgress();
     }
 
     // Configurar event listeners
-    this.setupEventListeners()
+    this.setupEventListeners();
 
-    console.log("[NavCode] Sistema de cursos inicializado com sucesso!")
+    console.log("[NavCode] Sistema de cursos inicializado com sucesso!");
   }
 
   /**
@@ -432,28 +475,28 @@ class NavCodeCourseSystem {
    */
   setupEventListeners() {
     // Botão de voltar no modal
-    const backButton = document.getElementById("back-button")
+    const backButton = document.getElementById("back-button");
     if (backButton) {
-      backButton.addEventListener("click", () => this.closeChapter())
+      backButton.addEventListener("click", () => this.closeChapter());
     }
 
     // Navegação entre seções do capítulo
-    const navItems = document.querySelectorAll(".nav-item")
+    const navItems = document.querySelectorAll(".nav-item");
     navItems.forEach((item) => {
       item.addEventListener("click", (e) => {
-        const section = e.target.getAttribute("data-section")
-        this.showSection(section)
-      })
-    })
+        const section = e.target.getAttribute("data-section");
+        this.showSection(section);
+      });
+    });
 
     // Fechar modal ao clicar fora
-    const modal = document.getElementById("chapter-modal")
+    const modal = document.getElementById("chapter-modal");
     if (modal) {
       modal.addEventListener("click", (e) => {
         if (e.target === modal) {
-          this.closeChapter()
+          this.closeChapter();
         }
-      })
+      });
     }
   }
 
@@ -461,17 +504,17 @@ class NavCodeCourseSystem {
    * Carrega e exibe todos os capítulos
    */
   loadChapters() {
-    const chaptersGrid = document.getElementById("chapters-grid")
-    if (!chaptersGrid) return
+    const chaptersGrid = document.getElementById("chapters-grid");
+    if (!chaptersGrid) return;
 
-    chaptersGrid.innerHTML = ""
+    chaptersGrid.innerHTML = "";
 
     this.chapters.forEach((chapter) => {
-      const chapterCard = this.createChapterCard(chapter)
-      chaptersGrid.appendChild(chapterCard)
-    })
+      const chapterCard = this.createChapterCard(chapter);
+      chaptersGrid.appendChild(chapterCard);
+    });
 
-    console.log(`[NavCode] ${this.chapters.length} capítulos carregados`)
+    console.log(`[NavCode] ${this.chapters.length} capítulos carregados`);
   }
 
   /**
@@ -480,11 +523,13 @@ class NavCodeCourseSystem {
    * @returns {HTMLElement} - Elemento do cartão
    */
   createChapterCard(chapter) {
-    const card = document.createElement("div")
-    card.className = "chapter-card"
-    card.onclick = () => this.openChapter(chapter.id)
+    const card = document.createElement("div");
+    card.className = "chapter-card";
+    card.onclick = () => this.openChapter(chapter.id);
 
-    const isCompleted = this.userProgress.completedChapters.includes(chapter.id)
+    const isCompleted = this.userProgress.completedChapters.includes(
+      chapter.id,
+    );
     const completedBadge = isCompleted
       ? `<div class="completed-badge">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -493,7 +538,7 @@ class NavCodeCourseSystem {
                 </svg>
                 Concluído
             </div>`
-      : ""
+      : "";
 
     card.innerHTML = `
             <div class="chapter-header">
@@ -520,9 +565,9 @@ class NavCodeCourseSystem {
                     ${isCompleted ? "Revisar Capítulo" : "Iniciar Capítulo"}
                 </button>
             </div>
-        `
+        `;
 
-    return card
+    return card;
   }
 
   /**
@@ -563,9 +608,9 @@ class NavCodeCourseSystem {
                 <circle cx="12" cy="8" r="7"/>
                 <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
             </svg>`,
-    }
+    };
 
-    return icons[iconType] || icons.cpu
+    return icons[iconType] || icons.cpu;
   }
 
   /**
@@ -573,40 +618,41 @@ class NavCodeCourseSystem {
    * @param {number} chapterId - ID do capítulo
    */
   openChapter(chapterId) {
-    const chapter = this.chapters.find((c) => c.id === chapterId)
-    if (!chapter) return
+    const chapter = this.chapters.find((c) => c.id === chapterId);
+    if (!chapter) return;
 
-    this.currentChapter = chapter
-    this.currentSection = "intro"
+    this.currentChapter = chapter;
+    this.currentSection = "intro";
 
     // Atualizar informações do modal
-    document.getElementById("chapter-title").textContent = chapter.title
-    document.getElementById("chapter-description").textContent = chapter.description
+    document.getElementById("chapter-title").textContent = chapter.title;
+    document.getElementById("chapter-description").textContent =
+      chapter.description;
 
     // Atualizar ícone do capítulo
-    const chapterIcon = document.getElementById("chapter-icon")
-    chapterIcon.innerHTML = this.getChapterIcon(chapter.icon)
+    const chapterIcon = document.getElementById("chapter-icon");
+    chapterIcon.innerHTML = this.getChapterIcon(chapter.icon);
 
     // Mostrar badge de concluído se aplicável
-    const completedBadge = document.getElementById("completed-badge")
-    const isCompleted = this.userProgress.completedChapters.includes(chapterId)
-    completedBadge.style.display = isCompleted ? "flex" : "none"
+    const completedBadge = document.getElementById("completed-badge");
+    const isCompleted = this.userProgress.completedChapters.includes(chapterId);
+    completedBadge.style.display = isCompleted ? "flex" : "none";
 
     // Carregar conteúdo inicial
-    this.showSection("intro")
+    this.showSection("intro");
 
     // Mostrar modal
-    document.getElementById("chapter-modal").classList.add("active")
-    document.body.style.overflow = "hidden" // Prevenir scroll da página
+    document.getElementById("chapter-modal").classList.add("active");
+    document.body.style.overflow = "hidden"; // Prevenir scroll da página
   }
 
   /**
    * Fecha modal do capítulo
    */
   closeChapter() {
-    document.getElementById("chapter-modal").classList.remove("active")
-    document.body.style.overflow = "auto" // Restaurar scroll
-    this.currentChapter = null
+    document.getElementById("chapter-modal").classList.remove("active");
+    document.body.style.overflow = "auto"; // Restaurar scroll
+    this.currentChapter = null;
   }
 
   /**
@@ -614,22 +660,24 @@ class NavCodeCourseSystem {
    * @param {string} section - Nome da seção
    */
   showSection(section) {
-    if (!this.currentChapter) return
+    if (!this.currentChapter) return;
 
-    this.currentSection = section
+    this.currentSection = section;
 
     // Atualizar navegação ativa
     document.querySelectorAll(".nav-item").forEach((item) => {
-      item.classList.remove("active")
-    })
-    document.querySelector(`[data-section="${section}"]`).classList.add("active")
+      item.classList.remove("active");
+    });
+    document
+      .querySelector(`[data-section="${section}"]`)
+      .classList.add("active");
 
     // Carregar conteúdo da seção
-    const content = this.generateSectionContent(section)
-    document.getElementById("chapter-content").innerHTML = content
+    const content = this.generateSectionContent(section);
+    document.getElementById("chapter-content").innerHTML = content;
 
     // Configurar event listeners específicos da seção
-    this.setupSectionListeners(section)
+    this.setupSectionListeners(section);
   }
 
   /**
@@ -638,8 +686,8 @@ class NavCodeCourseSystem {
    * @returns {string} - HTML do conteúdo
    */
   generateSectionContent(section) {
-    const chapter = this.currentChapter
-    const content = chapter.content
+    const chapter = this.currentChapter;
+    const content = chapter.content;
 
     switch (section) {
       case "intro":
@@ -655,7 +703,7 @@ class NavCodeCourseSystem {
                             </div>
                         </div>
                     </div>
-                `
+                `;
 
       case "explanations":
         return `
@@ -684,7 +732,7 @@ class NavCodeCourseSystem {
                               .join("")}
                         </div>
                     </div>
-                `
+                `;
 
       case "content":
         return `
@@ -710,7 +758,7 @@ class NavCodeCourseSystem {
                             </div>
                         </div>
                     </div>
-                `
+                `;
 
       case "quiz":
         return `
@@ -750,7 +798,7 @@ class NavCodeCourseSystem {
                             </div>
                         </div>
                     </div>
-                `
+                `;
 
       case "exercises":
         return `
@@ -790,7 +838,7 @@ class NavCodeCourseSystem {
                             </div>
                         </div>
                     </div>
-                `
+                `;
 
       case "conclusion":
         return `
@@ -839,10 +887,10 @@ class NavCodeCourseSystem {
                             </div>
                         </div>
                     </div>
-                `
+                `;
 
       default:
-        return '<div class="container"><p>Seção não encontrada.</p></div>'
+        return '<div class="container"><p>Seção não encontrada.</p></div>';
     }
   }
 
@@ -861,21 +909,21 @@ class NavCodeCourseSystem {
    * Atualiza progresso do usuário
    */
   updateProgress() {
-    const completedCount = this.userProgress.completedChapters.length
-    const totalChapters = this.chapters.length
-    const percentage = Math.round((completedCount / totalChapters) * 100)
+    const completedCount = this.userProgress.completedChapters.length;
+    const totalChapters = this.chapters.length;
+    const percentage = Math.round((completedCount / totalChapters) * 100);
 
     // Atualizar elementos da interface
-    const completedCountEl = document.getElementById("completed-count")
-    const progressPercentageEl = document.getElementById("progress-percentage")
-    const progressFillEl = document.getElementById("progress-fill")
+    const completedCountEl = document.getElementById("completed-count");
+    const progressPercentageEl = document.getElementById("progress-percentage");
+    const progressFillEl = document.getElementById("progress-fill");
 
-    if (completedCountEl) completedCountEl.textContent = completedCount
-    if (progressPercentageEl) progressPercentageEl.textContent = percentage
+    if (completedCountEl) completedCountEl.textContent = completedCount;
+    if (progressPercentageEl) progressPercentageEl.textContent = percentage;
     if (progressFillEl) {
       setTimeout(() => {
-        progressFillEl.style.width = `${percentage}%`
-      }, 300)
+        progressFillEl.style.width = `${percentage}%`;
+      }, 300);
     }
   }
 
@@ -883,22 +931,24 @@ class NavCodeCourseSystem {
    * Marca capítulo como concluído
    */
   completeChapter() {
-    if (!this.currentChapter) return
+    if (!this.currentChapter) return;
 
-    const chapterId = this.currentChapter.id
+    const chapterId = this.currentChapter.id;
 
     if (!this.userProgress.completedChapters.includes(chapterId)) {
-      this.userProgress.completedChapters.push(chapterId)
-      this.saveProgress()
-      this.updateProgress()
+      this.userProgress.completedChapters.push(chapterId);
+      this.saveProgress();
+      this.updateProgress();
 
-      alert(`Parabéns! Capítulo "${this.currentChapter.title}" concluído com sucesso!`)
+      alert(
+        `Parabéns! Capítulo "${this.currentChapter.title}" concluído com sucesso!`,
+      );
 
       // Recarregar capítulos para atualizar visual
-      this.loadChapters()
+      this.loadChapters();
     }
 
-    this.closeChapter()
+    this.closeChapter();
   }
 
   /**
@@ -906,7 +956,7 @@ class NavCodeCourseSystem {
    * @returns {Object} - Dados do progresso
    */
   loadProgress() {
-    const saved = localStorage.getItem("navcode_progress")
+    const saved = localStorage.getItem("navcode_progress");
     return saved
       ? JSON.parse(saved)
       : {
@@ -914,14 +964,14 @@ class NavCodeCourseSystem {
           totalScore: 0,
           exercisesCompleted: 0,
           videosWatched: 0,
-        }
+        };
   }
 
   /**
    * Salva progresso no localStorage
    */
   saveProgress() {
-    localStorage.setItem("navcode_progress", JSON.stringify(this.userProgress))
+    localStorage.setItem("navcode_progress", JSON.stringify(this.userProgress));
   }
 }
 
@@ -932,7 +982,9 @@ class NavCodeCourseSystem {
  * @param {string} videoTitle - Título do vídeo
  */
 function playVideo(videoTitle) {
-  alert(`Reproduzindo: ${videoTitle}\n\nEm breve os vídeos estarão disponíveis na plataforma!`)
+  alert(
+    `Reproduzindo: ${videoTitle}\n\nEm breve os vídeos estarão disponíveis na plataforma!`,
+  );
 }
 
 /**
@@ -941,70 +993,81 @@ function playVideo(videoTitle) {
  * @param {number} optionIndex - Índice da opção
  */
 function selectOption(questionIndex, optionIndex) {
-  const question = courseSystem.currentChapter.content.quiz[questionIndex]
-  const explanationEl = document.getElementById(`explanation_${questionIndex}`)
-  const explanationStrong = explanationEl.querySelector("strong")
-  const explanationSpan = explanationEl.querySelector("span")
+  const question = courseSystem.currentChapter.content.quiz[questionIndex];
+  const explanationEl = document.getElementById(`explanation_${questionIndex}`);
+  const explanationStrong = explanationEl.querySelector("strong");
+  const explanationSpan = explanationEl.querySelector("span");
 
-  const isCorrect = optionIndex === question.correct
+  const isCorrect = optionIndex === question.correct;
 
   // Atualizar visual da opção selecionada
-  const questionEl = document.querySelector(`[data-question="${questionIndex}"]`)
-  questionEl.querySelectorAll(".quiz-option").forEach((opt) => opt.classList.remove("selected"))
-  questionEl.querySelectorAll(".quiz-option")[optionIndex].classList.add("selected")
+  const questionEl = document.querySelector(
+    `[data-question="${questionIndex}"]`,
+  );
+  questionEl
+    .querySelectorAll(".quiz-option")
+    .forEach((opt) => opt.classList.remove("selected"));
+  questionEl
+    .querySelectorAll(".quiz-option")
+    [optionIndex].classList.add("selected");
 
   // Mostrar explicação
-  explanationEl.style.display = "block"
-  explanationEl.className = `quiz-explanation ${isCorrect ? "correct" : "incorrect"}`
-  explanationStrong.textContent = isCorrect ? "Correto!" : "Incorreto!"
-  explanationSpan.textContent = question.explanation
+  explanationEl.style.display = "block";
+  explanationEl.className = `quiz-explanation ${isCorrect ? "correct" : "incorrect"}`;
+  explanationStrong.textContent = isCorrect ? "Correto!" : "Incorreto!";
+  explanationSpan.textContent = question.explanation;
 }
 
 /**
  * Submete quiz completo
  */
 function submitQuiz() {
-  const questions = courseSystem.currentChapter.content.quiz
-  let correctAnswers = 0
+  const questions = courseSystem.currentChapter.content.quiz;
+  let correctAnswers = 0;
 
   questions.forEach((question, index) => {
-    const selectedOption = document.querySelector(`input[name="question_${index}"]:checked`)
-    if (selectedOption && Number.parseInt(selectedOption.value) === question.correct) {
-      correctAnswers++
+    const selectedOption = document.querySelector(
+      `input[name="question_${index}"]:checked`,
+    );
+    if (
+      selectedOption &&
+      Number.parseInt(selectedOption.value) === question.correct
+    ) {
+      correctAnswers++;
     }
-  })
+  });
 
-  const percentage = Math.round((correctAnswers / questions.length) * 100)
-  const passed = percentage >= 70
+  const percentage = Math.round((correctAnswers / questions.length) * 100);
+  const passed = percentage >= 70;
 
   alert(
     `Quiz finalizado!\n\nAcertos: ${correctAnswers}/${questions.length}\nPorcentagem: ${percentage}%\n\n${passed ? "Parabéns! Você passou no quiz!" : "Continue estudando para melhorar sua pontuação."}`,
-  )
+  );
 }
 
 /**
  * Submete exercícios práticos
  */
 function submitExercises() {
-  const exercises = courseSystem.currentChapter.content.exercises
-  let completedExercises = 0
+  const exercises = courseSystem.currentChapter.content.exercises;
+  let completedExercises = 0;
 
   exercises.forEach((exercise, index) => {
-    const answer = document.getElementById(`exercise_${index}`).value.trim()
+    const answer = document.getElementById(`exercise_${index}`).value.trim();
     if (answer.length > 10) {
       // Resposta mínima
-      completedExercises++
+      completedExercises++;
     }
-  })
+  });
 
   if (completedExercises === exercises.length) {
     alert(
       `Exercícios enviados com sucesso!\n\nTodos os ${exercises.length} exercícios foram completados.\n\nEm breve você receberá feedback detalhado!`,
-    )
+    );
   } else {
     alert(
       `Atenção!\n\nApenas ${completedExercises} de ${exercises.length} exercícios foram completados.\n\nComplete todos os exercícios antes de enviar.`,
-    )
+    );
   }
 }
 
@@ -1012,17 +1075,17 @@ function submitExercises() {
  * Marca capítulo atual como concluído
  */
 function completeChapter() {
-  courseSystem.completeChapter()
+  courseSystem.completeChapter();
 }
 
 // ===== INICIALIZAÇÃO =====
 // Criar instância global do sistema de cursos
-let courseSystem
+let courseSystem;
 
 // Inicializar quando DOM estiver carregado
 document.addEventListener("DOMContentLoaded", () => {
-  courseSystem = new NavCodeCourseSystem()
-})
+  courseSystem = new NavCodeCourseSystem();
+});
 
 // Log de inicialização
-console.log("[NavCode] Script de cursos carregado")
+console.log("[NavCode] Script de cursos carregado");

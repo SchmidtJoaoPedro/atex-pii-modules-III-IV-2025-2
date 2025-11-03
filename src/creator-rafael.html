@@ -1,378 +1,539 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <!-- Configurações básicas da página do criador -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rafael Engel Serafin - NavCode</title>
 
     <!-- Importando estilos -->
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <!-- ===== BOTÃO DE ALTERNÂNCIA DE TEMA ===== -->
-    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5" />
-            <path
-                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-        </svg>
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      data-tooltip="Alternar Tema"
+      onclick="toggleTheme()"
+    >
+      <svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="5" />
+        <path
+          d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+        />
+      </svg>
     </button>
     <!-- ===== CABEÇALHO ===== -->
     <header class="creator-header">
-        <div class="container">
-            <!-- Botão de voltar -->
-            <button class="back-button" onclick="window.location.href='index.html'">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M19 12H5" />
-                    <path d="M12 19l-7-7 7-7" />
-                </svg>
-                Voltar para Home
-            </button>
+      <div class="container">
+        <!-- Botão de voltar -->
+        <button class="back-button" onclick="window.location.href='index.html'">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5" />
+            <path d="M12 19l-7-7 7-7" />
+          </svg>
+          Voltar para Home
+        </button>
 
-            <!-- Logo NavCode -->
-            <div class="brand-logo" onclick="window.location.href='index.html'">
-                <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
-                <span class="brand-name">NavCode</span>
-            </div>
+        <!-- Logo NavCode -->
+        <div class="brand-logo" onclick="window.location.href='index.html'">
+          <svg
+            class="brand-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+          <span class="brand-name">NavCode</span>
         </div>
+      </div>
     </header>
 
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <main class="creator-main">
-        <div class="container">
-            <!-- Perfil do criador -->
-            <div class="creator-profile">
-                <!-- Foto e informações básicas -->
-                <div class="profile-header">
-                    <div class="profile-image">
-                        <img src="../site/ft-engel.jpg" alt="Rafael Engel Serafin" class="creator-photo-large">
-                    </div>
-                    <div class="profile-info">
-                        <h1 class="creator-name-large">Rafael Engel Serafin</h1>
-                        <p class="creator-title">Universitário Estudante de Ciência da Computação</p>
-                        <p class="creator-bio">
-                            Desenvolvedor Full-Stack , JavaScript, React, Node.js
-                            e arquitetura de sistemas modernos. Apaixonado por ensinar e compartilhar conhecimento
-                            através de metodologias práticas e projetos reais.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Especialidades -->
-                <div class="profile-section">
-                    <h2 class="section-title">Especialidades</h2>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="16,18 22,12 16,6" />
-                                <polyline points="8,6 2,12 8,18" />
-                            </svg>
-                            <span>Desenvolvimento Web Front-End</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                <path d="M2 17l10 5 10-5" />
-                                <path d="M2 12l10 5 10-5" />
-                            </svg>
-                            <span>React & Node.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Corpo do C -->
-                                <path d="M16 4C13 2 7 2 4 6C2 9 2 15 4 18C7 22 13 22 16 20" />
-                            </svg>
-                            <span>Linguagem C/C++</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                                <line x1="8" y1="21" x2="16" y2="21" />
-                                <line x1="12" y1="17" x2="12" y2="21" />
-                            </svg>
-                            <span>Arquitetura de Sistemas</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <ellipse cx="12" cy="5" rx="9" ry="3" />
-                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-                                <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
-                                <path d="M3 19c0 1.66 4 3 9 3s9-1.34 9-3" />
-                            </svg>
-                            <span>SQL e Manipulação de Dados</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="4" y="3" width="16" height="18" rx="2" ry="2" />
-                                <line x1="4" y1="8" x2="20" y2="8" />
-                                <line x1="4" y1="13" x2="20" y2="13" />
-                                <line x1="4" y1="18" x2="20" y2="18" />
-                                <circle cx="18" cy="5.5" r="0.8" fill="currentColor" />
-                                <circle cx="18" cy="10.5" r="0.8" fill="currentColor" />
-                                <circle cx="18" cy="15.5" r="0.8" fill="currentColor" />
-                            </svg>
-                            <span>Desenvolvimento Web Back-End</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Soft Skills -->
-                <div class="profile-section">
-                    <h2 class="section-title">Soft Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
-                            <span>Trabalho em Equipe</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4" />
-                                <rect x="9" y="3" width="6" height="8" rx="1" />
-                            </svg>
-                            <span>Comunicação</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" />
-                            </svg>
-                            <span>Liderança</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                                <line x1="9" y1="9" x2="9.01" y2="9" />
-                                <line x1="15" y1="9" x2="15.01" y2="9" />
-                            </svg>
-                            <span>Resolução de Problemas</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3 4-3 9-3 9 1.34 9 3z" />
-                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-                            </svg>
-                            <span>Adaptabilidade</span>
-                        </div>
-                        <div class="skill-item">
-                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
-                            </svg>
-                            <span>Criatividade</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contatos -->
-                <div class="profile-section">
-                    <h2 class="section-title">Entre em Contato</h2>
-                    <div class="contact-grid">
-                        <!-- Email -->
-                        <a href="mailto:engelrafael03@gmail.com" class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,13 2,6" />
-                            </svg>
-                            <div class="contact-info">
-                                <span class="contact-label">Email</span>
-                                <span class="contact-value">engelrafael03@gmail.com</span>
-                            </div>
-                        </a>
-
-                        <!-- GitHub -->
-                        <a href="https://github.com/RafaelEngel10" target="_blank" class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                            </svg>
-                            <div class="contact-info">
-                                <span class="contact-label">GitHub</span>
-                                <span class="contact-value">@RafaelEngel10</span>
-                            </div>
-                        </a>
-
-                        <!-- LinkedIn -->
-                        <a href="https://www.linkedin.com/in/rafael-engel-serafin-33941b35a" target="_blank"
-                            class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                <rect x="2" y="9" width="4" height="12" />
-                                <circle cx="4" cy="4" r="2" />
-                            </svg>
-                            <div class="contact-info">
-                                <span class="contact-label">LinkedIn</span>
-                                <span class="contact-value">Rafael Engel Serafin</span>
-                            </div>
-                        </a>
-
-                        <!-- Instagram -->
-                        <a href="https://www.instagram.com/engel_depocas" target="_blank" class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                            </svg>
-                            <div class="contact-info">
-                                <span class="contact-label">Instagram</span>
-                                <span class="contact-value">@engel_depocas</span>
-                            </div>
-                        </a>
-
-                        <!-- Download Currículo -->
-                        <a href="curriculos/Currículo_rafael_engel.pdf" download class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                <polyline points="7,10 12,15 17,10" />
-                                <line x1="12" y1="15" x2="12" y2="3" />
-                            </svg>
-                            <div class="contact-info">
-                                <span class="contact-label">Currículo</span>
-                                <span class="contact-value">Baixar PDF</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Escolaridade -->
-                <div class="profile-section">
-                    <h2 class="section-title">Escolaridade e Cursos</h2>
-                    <div class="education-list">
-                        <div class="education-item">
-                            <h3>Bacharelado em Ciência da Computação</h3>
-                            <p class="institution">Universidade Professor Edson Antônio Velano • Em andamento</p>
-                            <p class="description">
-                                Cursando bacharelado em Ciência da Computação, desenvolvendo conhecimentos em
-                                programação, algoritmos, estruturas de dados e desenvolvimento de software.
-                            </p>
-                        </div>
-                        <div class="education-item">
-                            <h3>Desenvolvedor Full Stack junior</h3>
-                            <p class="institution">NavCode • 2025 - Presente</p>
-                            <p class="description">
-                                Especialista em desenvolvimento full stack, trabalhando com tecnologias frontend e
-                                backend para criar soluções web completas e inovadoras.
-                            </p>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <!-- Experiência -->
-                <div class="profile-section">
-                    <h2 class="section-title">Experiência Profissional</h2>
-                    <div class="experience-list">
-                        <div class="experience-item">
-                            <h3>...</h3>
-                            <p class="company">... • ... - Presente</p>
-                            <p class="description">
-                                ------------------
-                            </p>
-                        </div>
-                        <div class="experience-item">
-                            <h3>...</h3>
-                            <p class="company">... • ... - ...</p>
-                            <p class="description">
-                                ------------------
-                            </p>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <!-- Perfil do criador -->
+        <div class="creator-profile">
+          <!-- Foto e informações básicas -->
+          <div class="profile-header">
+            <div class="profile-image">
+              <img
+                src="../site/ft-engel.jpg"
+                alt="Rafael Engel Serafin"
+                class="creator-photo-large"
+              />
             </div>
+            <div class="profile-info">
+              <h1 class="creator-name-large">Rafael Engel Serafin</h1>
+              <p class="creator-title">
+                Universitário Estudante de Ciência da Computação
+              </p>
+              <p class="creator-bio">
+                Desenvolvedor Full-Stack , JavaScript, React, Node.js e
+                arquitetura de sistemas modernos. Apaixonado por ensinar e
+                compartilhar conhecimento através de metodologias práticas e
+                projetos reais.
+              </p>
+            </div>
+          </div>
+
+          <!-- Especialidades -->
+          <div class="profile-section">
+            <h2 class="section-title">Especialidades</h2>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="16,18 22,12 16,6" />
+                  <polyline points="8,6 2,12 8,18" />
+                </svg>
+                <span>Desenvolvimento Web Front-End</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+                <span>React & Node.js</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <!-- Corpo do C -->
+                  <path d="M16 4C13 2 7 2 4 6C2 9 2 15 4 18C7 22 13 22 16 20" />
+                </svg>
+                <span>Linguagem C/C++</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+                <span>Arquitetura de Sistemas</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <ellipse cx="12" cy="5" rx="9" ry="3" />
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                  <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+                  <path d="M3 19c0 1.66 4 3 9 3s9-1.34 9-3" />
+                </svg>
+                <span>SQL e Manipulação de Dados</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="4" y="3" width="16" height="18" rx="2" ry="2" />
+                  <line x1="4" y1="8" x2="20" y2="8" />
+                  <line x1="4" y1="13" x2="20" y2="13" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                  <circle cx="18" cy="5.5" r="0.8" fill="currentColor" />
+                  <circle cx="18" cy="10.5" r="0.8" fill="currentColor" />
+                  <circle cx="18" cy="15.5" r="0.8" fill="currentColor" />
+                </svg>
+                <span>Desenvolvimento Web Back-End</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soft Skills -->
+          <div class="profile-section">
+            <h2 class="section-title">Soft Skills</h2>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <span>Trabalho em Equipe</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"
+                  />
+                  <rect x="9" y="3" width="6" height="8" rx="1" />
+                </svg>
+                <span>Comunicação</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"
+                  />
+                </svg>
+                <span>Liderança</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                  <line x1="9" y1="9" x2="9.01" y2="9" />
+                  <line x1="15" y1="9" x2="15.01" y2="9" />
+                </svg>
+                <span>Resolução de Problemas</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3 4-3 9-3 9 1.34 9 3z"
+                  />
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                </svg>
+                <span>Adaptabilidade</span>
+              </div>
+              <div class="skill-item">
+                <svg
+                  class="skill-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+                </svg>
+                <span>Criatividade</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contatos -->
+          <div class="profile-section">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-grid">
+              <!-- Email -->
+              <a href="mailto:engelrafael03@gmail.com" class="contact-item">
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <div class="contact-info">
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">engelrafael03@gmail.com</span>
+                </div>
+              </a>
+
+              <!-- GitHub -->
+              <a
+                href="https://github.com/RafaelEngel10"
+                target="_blank"
+                class="contact-item"
+              >
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  />
+                </svg>
+                <div class="contact-info">
+                  <span class="contact-label">GitHub</span>
+                  <span class="contact-value">@RafaelEngel10</span>
+                </div>
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                href="https://www.linkedin.com/in/rafael-engel-serafin-33941b35a"
+                target="_blank"
+                class="contact-item"
+              >
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                <div class="contact-info">
+                  <span class="contact-label">LinkedIn</span>
+                  <span class="contact-value">Rafael Engel Serafin</span>
+                </div>
+              </a>
+
+              <!-- Instagram -->
+              <a
+                href="https://www.instagram.com/engel_depocas"
+                target="_blank"
+                class="contact-item"
+              >
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                <div class="contact-info">
+                  <span class="contact-label">Instagram</span>
+                  <span class="contact-value">@engel_depocas</span>
+                </div>
+              </a>
+
+              <!-- Download Currículo -->
+              <a
+                href="curriculos/Currículo_rafael_engel.pdf"
+                download
+                class="contact-item"
+              >
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7,10 12,15 17,10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <div class="contact-info">
+                  <span class="contact-label">Currículo</span>
+                  <span class="contact-value">Baixar PDF</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Escolaridade -->
+          <div class="profile-section">
+            <h2 class="section-title">Escolaridade e Cursos</h2>
+            <div class="education-list">
+              <div class="education-item">
+                <h3>Bacharelado em Ciência da Computação</h3>
+                <p class="institution">
+                  Universidade Professor Edson Antônio Velano • Em andamento
+                </p>
+                <p class="description">
+                  Cursando bacharelado em Ciência da Computação, desenvolvendo
+                  conhecimentos em programação, algoritmos, estruturas de dados
+                  e desenvolvimento de software.
+                </p>
+              </div>
+              <div class="education-item">
+                <h3>Desenvolvedor Full Stack junior</h3>
+                <p class="institution">NavCode • 2025 - Presente</p>
+                <p class="description">
+                  Especialista em desenvolvimento full stack, trabalhando com
+                  tecnologias frontend e backend para criar soluções web
+                  completas e inovadoras.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experiência -->
+          <div class="profile-section">
+            <h2 class="section-title">Experiência Profissional</h2>
+            <div class="experience-list">
+              <div class="experience-item">
+                <h3>...</h3>
+                <p class="company">... • ... - Presente</p>
+                <p class="description">------------------</p>
+              </div>
+              <div class="experience-item">
+                <h3>...</h3>
+                <p class="company">... • ... - ...</p>
+                <p class="description">------------------</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </main>
     <!-- Importando sistema de temas -->
     <script src="theme-system.js"></script>
 
     <!-- ===== RODAPÉ PADRONIZADO ===== -->
     <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Coluna 1: Logo e descrição -->
-                <div class="footer-column">
-                    <div class="footer-brand">
-                        <div class="brand-logo">
-                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                            </svg>
-                            <span class="brand-name">NavCode</span>
-                        </div>
-                        <p class="footer-description">
-                            Transformando carreiras através da educação em tecnologia da informação.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Coluna 2: Cursos -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Cursos</h3>
-                    <ul class="footer-links">
-                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
-                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
-                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
-                        <li><a href="curso-python.html">Programação Python</a></li>
-                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
-                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 3: Empresa -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Empresa</h3>
-                    <ul class="footer-links">
-                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
-                        <li><a href="index.html#creators-section">Nosso Time</a></li>
-                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
-                        <li><a href="index.html#course-info-card">Certificados</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 4: Suporte -->
-                <div class="footer-column">
-                    <h3 class="footer-title">Suporte</h3>
-                    <ul class="footer-links">
-                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
-                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
-                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
-                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
-                    </ul>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <!-- Coluna 1: Logo e descrição -->
+          <div class="footer-column">
+            <div class="footer-brand">
+              <div class="brand-logo">
+                <svg
+                  class="brand-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+                <span class="brand-name">NavCode</span>
+              </div>
+              <p class="footer-description">
+                Transformando carreiras através da educação em tecnologia da
+                informação.
+              </p>
             </div>
+          </div>
 
-            <!-- Linha de copyright -->
-            <div class="footer-bottom">
-                <p>&copy; 2025 NavCode. Todos os direitos reservados.</p>
-            </div>
+          <!-- Coluna 2: Cursos -->
+          <div class="footer-column">
+            <h3 class="footer-title">Cursos</h3>
+            <ul class="footer-links">
+              <li>
+                <a href="curso-informatica.html">Técnico em Informática</a>
+              </li>
+              <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+              <li>
+                <a href="curso-seguranca.html">Segurança da Informação</a>
+              </li>
+              <li><a href="curso-python.html">Programação Python</a></li>
+              <li><a href="curso-redes.html">Redes de Computadores</a></li>
+              <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+            </ul>
+          </div>
+
+          <!-- Coluna 3: Empresa -->
+          <div class="footer-column">
+            <h3 class="footer-title">Empresa</h3>
+            <ul class="footer-links">
+              <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+              <li><a href="index.html#creators-section">Nosso Time</a></li>
+              <li><a href="nossa-empresa.html#contato">Contato</a></li>
+              <li><a href="index.html#course-info-card">Certificados</a></li>
+            </ul>
+          </div>
+
+          <!-- Coluna 4: Suporte -->
+          <div class="footer-column">
+            <h3 class="footer-title">Suporte</h3>
+            <ul class="footer-links">
+              <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+              <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+              <li>
+                <a href="nossa-empresa.html#politica"
+                  >Política de Privacidade</a
+                >
+              </li>
+              <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+            </ul>
+          </div>
         </div>
-    </footer>
-</body>
 
+        <!-- Linha de copyright -->
+        <div class="footer-bottom">
+          <p>&copy; 2025 NavCode. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

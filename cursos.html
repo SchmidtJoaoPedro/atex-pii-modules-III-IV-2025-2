@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Configurações básicas da página -->
+    <meta charset="UTF-8">
+    <link rel="icon" href="../site/assets/icons/favicon.jpeg" type="image/jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavCode - Plataforma de Cursos Técnicos</title>
+
+    <!-- Importando estilos e fontes -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ===== BOTÃO DE ALTERNÂNCIA DE TEMA ===== -->
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+    </button>
+
+    <!-- ===== CABEÇALHO PRINCIPAL ===== -->
+    <!-- Seção superior com logo, título e informações do usuário -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Título principal com logo clicável -->
+                <div class="header-title">
+                    <!-- Logo NavCode clicável que leva ao login -->
+                    <div class="brand-logo" onclick="redirectToLogin()">
+                        <!-- Ícone da marca (raio representando velocidade/tecnologia) -->
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                        <span class="brand-name">NavCode</span>
+                    </div>
+
+                    <!-- Ícone de livro representando educação -->
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                    <h1>Plataforma de Cursos Técnicos</h1>
+                </div>
+
+                <!-- Área de informações do usuário (visível apenas quando logado) -->
+                <div class="user-info" id="user-info" style="display: none;">
+                    <div class="user-welcome">
+                        <span id="user-name">Carregando...</span>
+                        <small id="user-email"></small>
+                    </div>
+                    <!-- Botão de logout com ícone -->
+                    <button class="logout-btn" id="logout-btn" onclick="logoutUser()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16,17 21,12 16,7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
+                        </svg>
+                        Sair
+                    </button>
+                </div>
+
+                <!-- Descrição da plataforma -->
+                <p class="header-description">
+                    Desenvolva suas habilidades técnicas com os cursos completos da NavCode.
+                    Aprenda desde fundamentos de hardware até segurança da informação com metodologia profissional
+                    e conteúdo sempre atualizado.
+                </p>
+
+                <!-- Menu de navegação -->
+                <nav class="main-navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="home.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9,22 9,12 15,12 15,22" />
+                                </svg>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="professor.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                Professor
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="nossa-empresa.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 21h18" />
+                                    <path d="M5 21V7l8-4v18" />
+                                    <path d="M19 21V11l-6-4" />
+                                </svg>
+                                Empresa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="criadores.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                </svg>
+                                Criadores
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="avaliacoes.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                </svg>
+                                Avaliações
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- ===== SEÇÃO DE PROGRESSO (visível apenas quando logado) ===== -->
+            <div class="progress-card" id="progress-section" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <!-- Ícone de medalha para progresso -->
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="8" r="7" />
+                            <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88" />
+                        </svg>
+                        Seu Progresso NavCode
+                    </h2>
+                    <p class="card-description">
+                        <span id="completed-count">0</span> de <span id="total-courses">6</span> cursos iniciados
+                    </p>
+                </div>
+                <div class="card-content">
+                    <!-- Barra de progresso visual -->
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p class="progress-text"><span id="progress-percentage">0</span>% concluído</p>
+                </div>
+            </div>
+
+            <!-- ===== GRID DE CURSOS DISPONÍVEIS ===== -->
+            <div class="courses-grid" id="courses-grid">
+                <!-- Os cursos serão carregados dinamicamente pelo JavaScript -->
+            </div>
+
+
+            <!-- ===== INFORMAÇÕES GERAIS DA PLATAFORMA ===== -->
+            <div class="course-info-card">
+                <div class="card-header">
+                    <h2 class="card-title">Sobre a NavCode</h2>
+                </div>
+                <div class="card-content">
+                    <!-- Estatísticas da plataforma -->
+                    <div class="course-stats">
+                        <div class="stat">
+                            <div class="stat-number">50h+</div>
+                            <div class="stat-label">Conteúdo Total</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Cursos Disponíveis</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Exercícios</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">80+</div>
+                            <div class="stat-label">Videoaulas</div>
+                        </div>
+                    </div>
+
+                    <!-- Descrição da plataforma -->
+                    <p class="course-description">
+                        A NavCode é uma plataforma de educação técnica especializada em formar profissionais
+                        qualificados para o mercado de tecnologia. Nossos cursos são desenvolvidos com
+                        metodologia profissional, conteúdo sempre atualizado e foco na aplicação prática
+                        dos conhecimentos adquiridos.
+                    </p>
+
+                    <!-- Informações sobre conclusão -->
+                    <div class="certification-info">
+                        <h3>🏆 Conclusão de Cursos</h3>
+                        <p>
+                            Ao concluir nossos cursos, você terá desenvolvido habilidades práticas e
+                            conhecimentos técnicos essenciais para sua carreira. Seu progresso e conquistas
+                            ficarão registrados em sua conta NavCode para acompanhamento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- ===== RODAPÉ PRINCIPAL ===== -->
+    <!-- Rodapé com informações sobre a equipe NavCode -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1: Logo e descrição -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-logo">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                            <span class="brand-name">NavCode</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando carreiras através da educação em tecnologia da informação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Cursos -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Cursos &#8595;</h3>
+                    <ul class="footer-links">
+                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
+                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Empresa -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Empresa &#8595;</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="criadores.html">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="avaliacoes.html">Avaliações</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Suporte -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Suporte &#8595;</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Linha de copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 NavCode. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <!-- Importando sistema de autenticação -->
+    <script src="auth.js"></script>
+
+    <!-- Importando sistema de temas -->
+    <script src="theme-system.js"></script>
+
+    <!-- Script principal da página -->
+    <script>
+        // ===== VARIÁVEIS GLOBAIS =====
+        // Armazenando dados dos cursos disponíveis
+        const courses = [
+            {
+                id: 1,
+                title: "Curso Técnico de Informática",
+                description: "Curso completo cobrindo desde fundamentos de hardware até segurança da informação.",
+                duration: "20h",
+                chapters: 6,
+                exercises: 60,
+                videos: 30,
+                level: "Iniciante a Avançado",
+                category: "Informática Geral"
+            },
+            {
+                id: 2,
+                title: "Desenvolvimento Web Full-Stack",
+                description: "Aprenda a criar aplicações web completas do frontend ao backend.",
+                duration: "25h",
+                chapters: 8,
+                exercises: 80,
+                videos: 40,
+                level: "Intermediário",
+                category: "Programação"
+            },
+            {
+                id: 3,
+                title: "Segurança da Informação",
+                description: "Fundamentos e práticas avançadas de cybersecurity e proteção de dados.",
+                duration: "15h",
+                chapters: 5,
+                exercises: 40,
+                videos: 25,
+                level: "Intermediário a Avançado",
+                category: "Segurança"
+            },
+            {
+                id: 4,
+                title: "Programação Python",
+                description: "Aprenda Python do básico ao avançado com projetos práticos.",
+                duration: "20h",
+                chapters: 6,
+                exercises: 60,
+                videos: 30,
+                level: "Iniciante a Intermediário",
+                category: "Programação"
+            },
+            {
+                id: 5,
+                title: "Redes de Computadores",
+                description: "Fundamentos de redes, protocolos e infraestrutura de comunicação.",
+                duration: "18h",
+                chapters: 6,
+                exercises: 50,
+                videos: 25,
+                level: "Intermediário",
+                category: "Redes"
+            },
+            {
+                id: 6,
+                title: "Banco de Dados",
+                description: "Fundamentos de banco de dados, SQL e modelagem de dados.",
+                duration: "16h",
+                chapters: 6,
+                exercises: 45,
+                videos: 20,
+                level: "Intermediário",
+                category: "Banco de Dados"
+            }
+        ];
+
+
+        // ===== FUNÇÕES DE INICIALIZAÇÃO =====
+        /**
+         * Função executada quando a página carrega
+         * Verifica autenticação e carrega conteúdo apropriado
+         */
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('[NavCode] Inicializando página principal...');
+
+            // Verificar se usuário está logado
+            checkAuthenticationStatus();
+
+            // Carregar cursos disponíveis
+            loadCourses();
+
+
+            console.log('[NavCode] Página inicializada com sucesso!');
+        });
+
+        // ===== FUNÇÕES DE AUTENTICAÇÃO =====
+        /**
+         * Verifica status de autenticação e ajusta interface
+         */
+        function checkAuthenticationStatus() {
+            const isLoggedIn = localStorage.getItem('navcode_logged_in') === 'true';
+            const userInfo = document.getElementById('user-info');
+            const progressSection = document.getElementById('progress-section');
+            const reviewForm = document.getElementById('review-form');
+
+            if (isLoggedIn) {
+                // Usuário logado - mostrar informações pessoais
+                const currentUser = getCurrentUser();
+                if (currentUser) {
+                    document.getElementById('user-name').textContent = `Olá, ${currentUser.username}!`;
+                    document.getElementById('user-email').textContent = currentUser.email;
+                    userInfo.style.display = 'flex';
+                    progressSection.style.display = 'block';
+
+                    // Carregar progresso do usuário
+                    loadUserProgress();
+                }
+            } else {
+                // Usuário não logado - esconder seções pessoais
+                userInfo.style.display = 'none';
+                progressSection.style.display = 'none';
+            }
+        }
+
+        /**
+         * Redireciona para página de login quando logo é clicada
+         */
+        function redirectToLogin() {
+            console.log('[NavCode] Redirecionando para login...');
+            window.location.href = 'login.html';
+        }
+
+        // ===== FUNÇÕES DE CARREGAMENTO DE CURSOS =====
+        /**
+         * Carrega e exibe todos os cursos disponíveis
+         */
+        function loadCourses() {
+            const coursesGrid = document.getElementById('courses-grid');
+            coursesGrid.innerHTML = ''; // Limpar conteúdo existente
+
+            // Criar HTML para cada curso
+            courses.forEach(course => {
+                const courseCard = createCourseCard(course);
+                coursesGrid.appendChild(courseCard);
+            });
+
+            console.log(`[NavCode] ${courses.length} cursos carregados com sucesso`);
+        }
+
+        /**
+         * Cria elemento HTML para um cartão de curso
+         * @param {Object} course - Dados do curso
+         * @returns {HTMLElement} - Elemento do cartão
+         */
+        function createCourseCard(course) {
+            const card = document.createElement('div');
+            card.className = 'chapter-card'; // Reutilizando estilos existentes
+            card.onclick = () => accessCourse(course.id);
+
+            card.innerHTML = `
+                <div class="chapter-header">
+                    <div class="chapter-info">
+                        <div class="chapter-icon-wrapper">
+                            ${getCourseIcon(course.category)}
+                        </div>
+                        <div class="chapter-details">
+                            <h3>${course.title}</h3>
+                            <div class="chapter-duration">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                                ${course.duration} • ${course.level}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter-body">
+                    <p class="chapter-description">${course.description}</p>
+                    <div class="course-stats" style="grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem; font-size: 0.875rem;">
+                        <div class="stat">
+                            <div class="stat-number" style="font-size: 1.25rem;">${course.chapters}</div>
+                            <div class="stat-label">Capítulos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" style="font-size: 1.25rem;">${course.exercises}+</div>
+                            <div class="stat-label">Exercícios</div>
+                        </div>
+                    </div>
+                    <button class="chapter-button primary">
+                        ${isUserLoggedIn() ? 'Acessar Curso' : 'Fazer Login para Acessar'}
+                    </button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        /**
+         * Retorna ícone SVG baseado na categoria do curso
+         * @param {string} category - Categoria do curso
+         * @returns {string} - HTML do ícone SVG
+         */
+        function getCourseIcon(category) {
+            const icons = {
+                'Informática Geral': `
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                `,
+                'Programação': `
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16,18 22,12 16,6"/>
+                        <polyline points="8,6 2,12 8,18"/>
+                    </svg>
+                `,
+                'Segurança': `
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                `
+            };
+
+            return icons[category] || icons['Informática Geral'];
+        }
+
+        /**
+         * Função chamada quando usuário clica em um curso
+         * @param {number} courseId - ID do curso
+         */
+        function accessCourse(courseId) {
+            if (!isUserLoggedIn()) {
+                alert('Faça login para acessar os cursos NavCode!');
+                redirectToLogin();
+                return;
+            }
+
+            // Encontrar o curso selecionado
+            const course = courses.find(c => c.id === courseId);
+
+            // Verificar se existe um sistema de capítulos disponível
+            if (typeof NavCodeCourseSystem !== 'undefined') {
+                // Usar o sistema de capítulos existente
+                const courseSystem = new NavCodeCourseSystem();
+                courseSystem.init();
+                console.log(`[NavCode] Acessando curso: ${course.title}`);
+            } else {
+                // Fallback: redirecionar para página específica do curso
+                console.log(`[NavCode] Redirecionando para curso ${courseId}`);
+
+                // Redirecionar para o curso específico baseado no ID
+                const courseUrls = {
+                    1: 'curso-informatica.html',
+                    2: 'curso-web.html',
+                    3: 'curso-seguranca.html',
+                    4: 'curso-python.html',
+                    5: 'curso-redes.html',
+                    6: 'curso-banco-dados.html'
+                };
+                window.location.href = courseUrls[courseId] || 'curso-informatica.html';
+            }
+        }
+
+        // ===== FUNÇÕES DE PROGRESSO DO USUÁRIO =====
+        /**
+         * Carrega e exibe progresso do usuário logado
+         */
+        function loadUserProgress() {
+            // Simular dados de progresso (em produção, viria do backend)
+            const mockProgress = {
+                completedCourses: 1,
+                totalCourses: courses.length,
+                overallProgress: Math.round((1 / courses.length) * 100)
+            };
+
+            // Atualizar elementos da interface
+            document.getElementById('completed-count').textContent = mockProgress.completedCourses;
+            document.getElementById('total-courses').textContent = mockProgress.totalCourses;
+            document.getElementById('progress-percentage').textContent = mockProgress.overallProgress;
+
+            // Animar barra de progresso
+            const progressFill = document.getElementById('progress-fill');
+            setTimeout(() => {
+                progressFill.style.width = `${mockProgress.overallProgress}%`;
+            }, 500);
+        }
+
+
+        // ===== FUNÇÕES AUXILIARES =====
+        /**
+         * Verifica se usuário está logado
+         * @returns {boolean} - Status de login
+         */
+        function isUserLoggedIn() {
+            return localStorage.getItem('navcode_logged_in') === 'true';
+        }
+
+        /**
+         * Função global para logout (chamada pelo botão)
+         */
+        function logoutUser() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Limpar dados de sessão
+                localStorage.removeItem('navcode_logged_in');
+                localStorage.removeItem('navcode_user');
+                localStorage.removeItem('navcode_user_data');
+
+                // Recarregar página para atualizar interface
+                window.location.reload();
+            }
+        }
+
+        // ===== LOG DE INICIALIZAÇÃO =====
+        console.log('[NavCode] Sistema de cursos inicializado');
+        console.log('[NavCode] Cursos disponíveis:', courses.length);
+        console.log('[NavCode] Funcionalidades: Autenticação, Progresso, Avaliações, Cursos');
+    </script>
+</body>
+
+</html>

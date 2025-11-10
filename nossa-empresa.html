@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Configurações básicas da página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/icons/favicon.jpeg" type="image/jpeg">
+    <title>Nossa Empresa - NavCode</title>
+    
+    <!-- Importando estilos e fontes -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- ===== BOTÃO DE ALTERNÂNCIA DE TEMA ===== -->
+    <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+
+    <!-- ===== CABEÇALHO PRINCIPAL ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Título principal com logo clicável -->
+                <div class="header-title">
+                    <!-- Logo NavCode clicável que leva ao home -->
+                    <div class="brand-logo" onclick="window.location.href='index.html'">
+                        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                        <span class="brand-name">NavCode</span>
+                    </div>
+                    
+                    <!-- Ícone de empresa -->
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 21h18"/>
+                        <path d="M5 21V7l8-4v18"/>
+                        <path d="M19 21V11l-6-4"/>
+                    </svg>
+                    <h1>Nossa Empresa</h1>
+                </div>
+                
+                <!-- Descrição da empresa -->
+                <p class="header-description">
+                    Conheça a história, missão e valores da NavCode. Somos uma empresa dedicada 
+                    a transformar vidas através da educação em tecnologia da informação.
+                </p>
+
+                <!-- Menu de navegação -->
+                <nav class="main-navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="home.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9,22 9,12 15,12 15,22" />
+                                </svg>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" onclick="accessCourses(); return false;">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                                </svg>
+                                Cursos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="professor.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                Professor
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="criadores.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                </svg>
+                                Criadores
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="avaliacoes.html" class="nav-link">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                </svg>
+                                Avaliações
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- ===== SEÇÃO SOBRE A EMPRESA ===== -->
+            <section id="sobre" class="company-section">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                            Sobre a NavCode
+                        </h2>
+                        <p class="card-description">
+                            Nossa história e compromisso com a excelência em educação
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="company-story">
+                            <div class="story-text">
+                                <h3>Nossa História</h3>
+                                <p>
+                                    Fundada em 2025, a NavCode nasceu da paixão por tecnologia e educação. 
+                                    Começamos como um pequeno grupo de desenvolvedores e analistas de sistemas 
+                                    que acreditavam no poder transformador da educação técnica de qualidade.
+                                </p>
+                                <p>
+                                    Ao longo dos anos, expandimos nossa equipe e desenvolvemos uma metodologia 
+                                    única que combina teoria sólida com prática intensiva, preparando nossos 
+                                    alunos para os desafios reais do mercado de trabalho.
+                                </p>
+                            </div>
+                            <div class="story-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">5+</div>
+                                    <div class="stat-label">Anos de Experiência</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">50+</div>
+                                    <div class="stat-label">Alunos Formados</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">95%</div>
+                                    <div class="stat-label">Taxa de Satisfação</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== MISSÃO, VISÃO E VALORES ===== -->
+            <section class="company-section">
+                <div class="mvp-grid">
+                    <div class="mvp-card">
+                        <div class="mvp-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Missão</h3>
+                        <p>
+                            Democratizar o acesso à educação técnica de qualidade, formando profissionais 
+                            competentes e preparados para os desafios da era digital.
+                        </p>
+                    </div>
+                    
+                    <div class="mvp-card">
+                        <div class="mvp-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <h3>Visão</h3>
+                        <p>
+                            Ser a principal referência em educação técnica no Brasil, reconhecida pela 
+                            excelência de nossos cursos e pelo sucesso de nossos alunos.
+                        </p>
+                    </div>
+                    
+                    <div class="mvp-card">
+                        <div class="mvp-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Valores</h3>
+                        <ul>
+                            <li>Excelência acadêmica</li>
+                            <li>Inovação constante</li>
+                            <li>Compromisso com o aluno</li>
+                            <li>Transparência e ética</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== NOSSA EQUIPE ===== -->
+            <section id="equipe" class="company-section">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            Nossa Equipe
+                        </h2>
+                        <p class="card-description">
+                            Conheça os profissionais experientes que fazem a NavCode acontecer
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="team-description">
+                            <p>
+                                Nossa equipe é composta por profissionais altamente qualificados, 
+                                com vasta experiência no mercado de tecnologia. Cada membro traz 
+                                conhecimentos únicos que enriquecem nossa metodologia de ensino.
+                            </p>
+                        </div>
+                        <div class="team-link">
+                            <a href="criadores.html" class="btn btn-primary">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                Conhecer Nossa Equipe
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== CONTATO ===== -->
+            <section id="contato" class="company-section">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            Entre em Contato
+                        </h2>
+                        <p class="card-description">
+                            Estamos aqui para ajudar e responder suas dúvidas
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-info">
+                                    <h4>Email</h4>
+                                    <p>navecode.ldta@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-info">
+                                    <h4>Telefone</h4>
+                                    <p>(35) 99843-8970</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-info">
+                                    <h4>Endereço</h4>
+                                    <p>Alfenas, MG - Brasil</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SUPORTE ===== -->
+            <section id="suporte" class="company-section">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <path d="M12 17h.01"/>
+                            </svg>
+                            Central de Ajuda
+                        </h2>
+                        <p class="card-description">
+                            Encontre respostas para suas dúvidas mais comuns
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="help-grid">
+                            <div class="help-item">
+                                <h4>Como acessar os cursos?</h4>
+                                <p>Faça login na plataforma e acesse a seção de cursos disponíveis.</p>
+                            </div>
+                            <div class="help-item">
+                                <h4>Os certificados são válidos?</h4>
+                                <p>ainda não temos certificados, mas estamos trabalhando para isso.</p>
+                            </div>
+                            <div class="help-item">
+                                <h4>Posso estudar no meu ritmo?</h4>
+                                <p>Sim, todos os cursos são 100% online e flexíveis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== FAQ ===== -->
+            <section id="faq" class="company-section">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <path d="M12 17h.01"/>
+                            </svg>
+                            Perguntas Frequentes
+                        </h2>
+                        <p class="card-description">
+                            Respostas para as dúvidas mais comuns sobre nossos cursos
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <h4>Quanto tempo tenho para concluir um curso?</h4>
+                                <p>Você tem acesso vitalício aos cursos após a matrícula. Pode estudar no seu ritmo e revisar o conteúdo quantas vezes quiser.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Preciso ter conhecimento prévio em programação?</h4>
+                                <p>Não! Nossos cursos são estruturados para iniciantes, começando do básico e evoluindo gradualmente.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Como funciona o suporte aos alunos?</h4>
+                                <p>Oferecemos suporte via email, chat e fórum da comunidade. Nossa equipe responde em até 24 horas.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Os cursos são atualizados?</h4>
+                                <p>Sim! Mantemos todos os cursos atualizados com as últimas tecnologias e tendências do mercado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== POLÍTICA DE PRIVACIDADE ===== -->
+            <section id="politica" class="company-section">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                            Política de Privacidade
+                        </h2>
+                        <p class="card-description">
+                            Como protegemos e utilizamos seus dados pessoais
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="privacy-content">
+                            <h3>Coleta de Dados</h3>
+                            <p>Coletamos apenas os dados necessários para fornecer nossos serviços educacionais, incluindo nome, email e informações de progresso nos cursos.</p>
+                            
+                            <h3>Uso dos Dados</h3>
+                            <p>Utilizamos seus dados para personalizar sua experiência de aprendizado, enviar atualizações sobre cursos e melhorar nossos serviços.</p>
+                            
+                            <h3>Proteção</h3>
+                            <p>Implementamos medidas de segurança rigorosas para proteger seus dados contra acesso não autorizado, alteração ou divulgação.</p>
+                            
+                            <h3>Seus Direitos</h3>
+                            <p>Você tem o direito de acessar, corrigir ou excluir seus dados pessoais a qualquer momento através de nossa plataforma.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== TERMOS DE USO ===== -->
+            <section id="termos" class="company-section">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            Termos de Uso
+                        </h2>
+                        <p class="card-description">
+                            Condições de uso da plataforma NavCode
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="terms-content">
+                            <h3>1. Aceitação dos Termos</h3>
+                            <p>Ao utilizar nossa plataforma, você concorda com estes termos de uso.</p>
+                            
+                            <h3>2. Uso da Plataforma</h3>
+                            <p>Você pode usar nossa plataforma para fins educacionais e pessoais. É proibido o uso comercial sem autorização.</p>
+                            
+                            <h3>3. Propriedade Intelectual</h3>
+                            <p>Todo o conteúdo dos cursos é propriedade da NavCode e está protegido por direitos autorais.</p>
+                            
+                            <h3>4. Responsabilidades</h3>
+                            <p>Você é responsável por manter a confidencialidade de sua conta e por todas as atividades realizadas nela.</p>
+                            
+                            <h3>5. Modificações</h3>
+                            <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Coluna 1: Logo e descrição -->
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="brand-logo">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                            <span class="brand-name">NavCode</span>
+                        </div>
+                        <p class="footer-description">
+                            Transformando carreiras através da educação em tecnologia da informação.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Coluna 2: Cursos -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Cursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="curso-informatica.html">Técnico em Informática</a></li>
+                        <li><a href="curso-web.html">Desenvolvimento Web</a></li>
+                        <li><a href="curso-seguranca.html">Segurança da Informação</a></li>
+                        <li><a href="curso-python.html">Programação Python</a></li>
+                        <li><a href="curso-redes.html">Redes de Computadores</a></li>
+                        <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Coluna 3: Empresa -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Empresa</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html">Sobre Nós</a></li>
+                        <li><a href="criadores.html">Nosso Time</a></li>
+                        <li><a href="nossa-empresa.html#contato">Contato</a></li>
+                        <li><a href="avaliacoes.html">Avaliações</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Coluna 4: Suporte -->
+                <div class="footer-column">
+                    <h3 class="footer-title">Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="nossa-empresa.html#suporte">Central de Ajuda</a></li>
+                        <li><a href="nossa-empresa.html#faq">FAQ</a></li>
+                        <li><a href="nossa-empresa.html#politica">Política de Privacidade</a></li>
+                        <li><a href="nossa-empresa.html#termos">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Linha de copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 NavCode. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animação de entrada dos elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar todos os cards
+        document.querySelectorAll('.section-card, .mvp-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Função para verificar autenticação antes de acessar cursos
+        function accessCourses() {
+            const isLoggedIn = localStorage.getItem('navcode_logged_in') === 'true';
+            
+            if (!isLoggedIn) {
+                alert('Você precisa fazer login para acessar os cursos NavCode!');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Se estiver logado, redirecionar para página de cursos
+            window.location.href = 'cursos.html';
+        }
+    </script>
+    
+    <!-- Importando sistema de temas -->
+    <script src="theme-system.js"></script>
+
+</body>
+</html>
+

@@ -3084,6 +3084,7 @@ body::before {
 .main-navigation {
   display: flex;
   align-items: center;
+  margin-top: 5px;
 }
 
 .nav-list {
@@ -4973,6 +4974,7 @@ body::before {
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: space-between;
 }
 
 .course-stats .duration,

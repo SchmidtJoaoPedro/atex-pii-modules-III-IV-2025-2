@@ -5,7 +5,7 @@
     <!-- Configurações básicas da página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../site/assets/icons/favicon.jpeg" type="image/jpeg">
+    <link rel="icon" href="./assets/icons/favicon.jpeg" type="image/jpeg">
     <title>Avaliações - NavCode</title>
 
     <!-- Importando estilos e fontes -->
@@ -18,7 +18,8 @@
     <button class="theme-toggle" id="theme-toggle" data-tooltip="Alternar Tema" onclick="toggleTheme()">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5" />
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
         </svg>
     </button>
 
@@ -35,17 +36,19 @@
                         </svg>
                         <span class="brand-name">NavCode</span>
                     </div>
-                    
+
                     <!-- Ícone de estrela para avaliações -->
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                        <polygon
+                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                     </svg>
                     <h1>Avaliações dos Estudantes</h1>
                 </div>
-                
+
                 <!-- Descrição da página -->
                 <p class="header-description">
-                    Veja o que nossos alunos estão dizendo sobre os cursos NavCode e compartilhe sua própria experiência.
+                    Veja o que nossos alunos estão dizendo sobre os cursos NavCode e compartilhe sua própria
+                    experiência.
                 </p>
 
                 <!-- Menu de navegação -->
@@ -53,7 +56,8 @@
                     <ul class="nav-list">
                         <li class="nav-item">
                             <a href="home.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                                     <polyline points="9,22 9,12 15,12 15,22" />
                                 </svg>
@@ -62,7 +66,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link" onclick="accessCourses(); return false;">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
                                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                                 </svg>
@@ -71,7 +76,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="professor.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                     <circle cx="12" cy="7" r="4" />
                                 </svg>
@@ -80,7 +86,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="nossa-empresa.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M3 21h18" />
                                     <path d="M5 21V7l8-4v18" />
                                     <path d="M19 21V11l-6-4" />
@@ -90,7 +97,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="criadores.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                                     <circle cx="9" cy="7" r="4" />
                                     <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
@@ -108,14 +116,15 @@
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <main class="main-content">
         <div class="container">
-            
+
             <!-- ===== SEÇÃO DE AVALIAÇÕES EXISTENTES ===== -->
             <div class="reviews-card">
                 <div class="card-header">
                     <h2 class="card-title">
                         <!-- Ícone de estrela para avaliações -->
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                            <polygon
+                                points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                         </svg>
                         Avaliações dos Estudantes
                     </h2>
@@ -137,8 +146,8 @@
                     <h2 class="card-title">
                         <!-- Ícone de edição para nova avaliação -->
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                         </svg>
                         Deixe sua Avaliação
                     </h2>
@@ -155,19 +164,24 @@
                         <div class="star-rating" id="star-rating">
                             <!-- Estrelas clicáveis para avaliação -->
                             <svg class="star-input" data-rating="1" viewBox="0 0 24 24" onclick="setRating(1)">
-                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                <polygon
+                                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                             </svg>
                             <svg class="star-input" data-rating="2" viewBox="0 0 24 24" onclick="setRating(2)">
-                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                <polygon
+                                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                             </svg>
                             <svg class="star-input" data-rating="3" viewBox="0 0 24 24" onclick="setRating(3)">
-                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                <polygon
+                                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                             </svg>
                             <svg class="star-input" data-rating="4" viewBox="0 0 24 24" onclick="setRating(4)">
-                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                <polygon
+                                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                             </svg>
                             <svg class="star-input" data-rating="5" viewBox="0 0 24 24" onclick="setRating(5)">
-                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                <polygon
+                                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                             </svg>
                         </div>
 
@@ -186,17 +200,18 @@
                     <div class="login-required" id="login-required">
                         <div class="login-message">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                                <polyline points="10,17 15,12 10,7"/>
-                                <line x1="15" y1="12" x2="3" y2="12"/>
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                <polyline points="10,17 15,12 10,7" />
+                                <line x1="15" y1="12" x2="3" y2="12" />
                             </svg>
                             <h3>Faça Login para Avaliar</h3>
                             <p>Você precisa estar logado para deixar uma avaliação sobre nossos cursos.</p>
                             <a href="login.html" class="btn btn-primary">
-                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                                    <polyline points="10,17 15,12 10,7"/>
-                                    <line x1="15" y1="12" x2="3" y2="12"/>
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                    <polyline points="10,17 15,12 10,7" />
+                                    <line x1="15" y1="12" x2="3" y2="12" />
                                 </svg>
                                 Fazer Login
                             </a>
@@ -215,7 +230,8 @@
                 <div class="footer-column">
                     <div class="footer-brand">
                         <div class="brand-logo" onclick="window.location.href='home.html'">
-                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                             </svg>
                             <span class="brand-name">NavCode</span>
@@ -225,7 +241,7 @@
                         </p>
                     </div>
                 </div>
-                
+
                 <!-- Coluna 2: Cursos -->
                 <div class="footer-column">
                     <h3 class="footer-title">Cursos</h3>
@@ -238,7 +254,7 @@
                         <li><a href="curso-banco-dados.html">Banco de Dados</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Coluna 3: Empresa -->
                 <div class="footer-column">
                     <h3 class="footer-title">Empresa</h3>
@@ -249,7 +265,7 @@
                         <li><a href="avaliacoes.html">Avaliações</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Coluna 4: Suporte -->
                 <div class="footer-column">
                     <h3 class="footer-title">Suporte</h3>
@@ -261,7 +277,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <!-- Linha de copyright -->
             <div class="footer-bottom">
                 <p>&copy; 2025 NavCode. Todos os direitos reservados.</p>
@@ -504,13 +520,13 @@
         // Função para verificar autenticação antes de acessar cursos
         function accessCourses() {
             const isLoggedIn = localStorage.getItem('navcode_logged_in') === 'true';
-            
+
             if (!isLoggedIn) {
                 alert('Você precisa fazer login para acessar os cursos NavCode!');
                 window.location.href = 'login.html';
                 return;
             }
-            
+
             // Se estiver logado, redirecionar para página de cursos
             window.location.href = 'cursos.html';
         }

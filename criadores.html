@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" onclick="accessCourses(); return false;">
+                            <a href="#" class="nav-link" onclick="accessCourses()">
                                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
@@ -498,10 +498,10 @@
                     alert('Você precisa fazer login para acessar os cursos NavCode!');
                     window.location.href = 'login.html';
                     return;
-                }
+                } else
+                    window.location.href = 'cursos.html';
 
                 // Se estiver logado, redirecionar para página de cursos
-                window.location.href = 'cursos.html';
             }
         });
     </script>

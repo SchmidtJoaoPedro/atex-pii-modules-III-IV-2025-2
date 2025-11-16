@@ -16,7 +16,7 @@ Esta pasta contém os arquivos PDF dos currículos de todos os criadores da NavC
 
 1. Crie ou obtenha os arquivos PDF dos currículos de cada criador
 2. Renomeie os arquivos exatamente como especificado acima
-3. Coloque todos os arquivos nesta pasta `curriculos/`
+3. Coloque todos os arquivos nesta pasta `curriculum/`
 4. Os links de download nas páginas dos criadores funcionarão automaticamente
 
 ## Formato recomendado:

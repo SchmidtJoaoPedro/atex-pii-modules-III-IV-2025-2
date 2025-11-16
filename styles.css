@@ -432,7 +432,7 @@ body::before {
   grid-template-columns: repeat(3, 1fr); /* Grid 3 colunas */
   grid-template-rows: repeat(2, 1fr); /* Grid 2 linhas */
   margin-bottom: 2rem;
-  max-width: 1200px;
+  max-width: 1700px;
   margin-left: auto;
   margin-right: auto;
   padding: 15px;
@@ -4888,12 +4888,14 @@ body::before {
 }
 
 .courses-preview-action {
+  display:flex;
+  justify-content: center;
   text-align: center;
 }
 
 /* Estilos específicos para a nova seção de preview dos cursos */
 .courses-preview-section {
-  padding: 4rem 0;
+  padding: 4rem 1.5rem;
   margin: 2rem 0;
 }
 

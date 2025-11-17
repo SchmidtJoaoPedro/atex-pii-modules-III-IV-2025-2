@@ -5,7 +5,7 @@
     <!-- Configurações básicas da página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/icons/favicon.jpeg" type="image/jpeg">
+    <link rel="icon" href="./assets/icons/favicon.png" type="image/jpeg">
     <title>NavCode - Área do Professor</title>
 
     <!-- Importando estilos e fontes -->
@@ -36,7 +36,8 @@
                     <ul class="nav-list">
                         <li class="nav-item">
                             <a href="home.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                                     <polyline points="9,22 9,12 15,12 15,22" />
                                 </svg>
@@ -45,7 +46,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link" onclick="accessCourses(); return false;">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
                                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                                 </svg>
@@ -54,7 +56,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="nossa-empresa.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M3 21h18" />
                                     <path d="M5 21V7l8-4v18" />
                                     <path d="M19 21V11l-6-4" />
@@ -64,15 +67,18 @@
                         </li>
                         <li class="nav-item">
                             <a href="avaliacoes.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polygon
+                                        points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                                 </svg>
                                 Avaliações
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="criadores.html" class="nav-link">
-                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                                     <circle cx="9" cy="7" r="4" />
                                     <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
@@ -81,7 +87,7 @@
                                 Criadores
                             </a>
                         </li>
-                        
+
                     </ul>
                 </nav>
             </div>
@@ -107,26 +113,32 @@
                 <form class="login-form" id="professor-login-form">
                     <div class="form-group">
                         <label class="form-label">
-                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                 <circle cx="12" cy="7" r="4" />
                             </svg>
                             Usuário Professor
                         </label>
-                        <input type="text" class="form-input" id="professor-username" placeholder="Digite seu usuário de professor" required>
+                        <input type="text" class="form-input" id="professor-username"
+                            placeholder="Digite seu usuário de professor" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">
-                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                             </svg>
                             Senha
                         </label>
                         <div class="password-input-wrapper">
-                            <input type="password" class="form-input" id="professor-password" placeholder="Digite sua senha" required>
-                            <button type="button" class="password-toggle" onclick="togglePassword('professor-password')">
-                                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <input type="password" class="form-input" id="professor-password"
+                                placeholder="Digite sua senha" required>
+                            <button type="button" class="password-toggle"
+                                onclick="togglePassword('professor-password')">
+                                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                                     <circle cx="12" cy="12" r="3" />
                                 </svg>
@@ -157,9 +169,10 @@
                         <span>ou</span>
                     </div>
                     <p class="register-link">
-                        Não é professor? 
+                        Não é professor?
                         <a href="login.html" class="register-btn">
-                            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                                 <circle cx="9" cy="7" r="4" />
                                 <path d="M19 8v6m3-3h-6" />
@@ -169,7 +182,8 @@
                     </p>
                     <p class="register-link">
                         <a href="home.html" class="register-btn">
-                            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                             </svg>
                             Voltar ao Início
@@ -243,7 +257,7 @@
                 <div class="footer-brand">
                     <div class="brand-logo">
                         <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                         </svg>
                         <span class="brand-name">NavCode</span>
                     </div>
@@ -256,14 +270,14 @@
     <!-- ===== SCRIPTS ===== -->
     <!-- Importando sistema de temas -->
     <script src="theme-system.js"></script>
-    
+
     <script>
         // Função para alternar visibilidade da senha
         function togglePassword(inputId) {
             const input = document.getElementById(inputId);
             const toggle = input.nextElementSibling;
             const icon = toggle.querySelector('.eye-icon');
-            
+
             if (input.type === 'password') {
                 input.type = 'text';
                 icon.innerHTML = `
@@ -280,13 +294,13 @@
         }
 
         // Sistema de login para professores
-        document.getElementById('professor-login-form').addEventListener('submit', function(e) {
+        document.getElementById('professor-login-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const username = document.getElementById('professor-username').value;
             const password = document.getElementById('professor-password').value;
             const remember = document.getElementById('remember-professor').checked;
-            
+
             // Simulação de login (em produção, seria uma chamada para API)
             if (username && password) {
                 // Simular credenciais de professor
@@ -295,19 +309,19 @@
                     'admin': 'admin123',
                     'teacher': 'teacher123'
                 };
-                
+
                 if (professorCredentials[username.toLowerCase()] === password) {
                     // Salvar sessão do professor
                     localStorage.setItem('navcode_professor_logged_in', 'true');
                     localStorage.setItem('navcode_professor_user', username);
-                    
+
                     if (remember) {
                         localStorage.setItem('navcode_professor_remember', 'true');
                     }
-                    
+
                     // Mostrar mensagem de sucesso
                     showMessage('Login realizado com sucesso! Redirecionando...', 'success');
-                    
+
                     // Redirecionar para área do professor (simulada)
                     setTimeout(() => {
                         alert('Área do professor em desenvolvimento!\n\nFuncionalidades disponíveis em breve:\n• Gerenciar cursos\n• Acompanhar alunos\n• Material didático\n• Relatórios detalhados');
@@ -326,22 +340,22 @@
             // Remover mensagens existentes
             const existingMessages = document.querySelectorAll('.message');
             existingMessages.forEach(msg => msg.remove());
-            
+
             // Criar nova mensagem
             const messageEl = document.createElement('div');
             messageEl.className = `message ${type}`;
             messageEl.innerHTML = `
                 <div class="message-content">
                     <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        ${type === 'success' ? 
-                            '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/>' :
-                            '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'
-                        }
+                        ${type === 'success' ?
+                    '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/>' :
+                    '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'
+                }
                     </svg>
                     <span>${message}</span>
                 </div>
             `;
-            
+
             // Adicionar estilos
             messageEl.style.cssText = `
                 position: fixed;
@@ -355,14 +369,14 @@
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
                 backdrop-filter: blur(10px);
                 animation: slideIn 0.3s ease-out;
-                ${type === 'success' ? 
-                    'background: linear-gradient(135deg, #00ff88, #00d4ff);' : 
+                ${type === 'success' ?
+                    'background: linear-gradient(135deg, #00ff88, #00d4ff);' :
                     'background: linear-gradient(135deg, #ff4757, #ff6b6b);'
                 }
             `;
-            
+
             document.body.appendChild(messageEl);
-            
+
             // Remover após 3 segundos
             setTimeout(() => {
                 messageEl.style.animation = 'slideOut 0.3s ease-in';
@@ -395,7 +409,7 @@
         document.head.appendChild(style);
 
         // Verificar se já está logado como professor
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Inicializar sistema de temas
             if (typeof initThemeSystem === 'function') {
                 initThemeSystem();
@@ -412,7 +426,7 @@
             animatedElements.forEach((element, index) => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(30px)';
-                
+
                 setTimeout(() => {
                     element.style.transition = 'all 0.6s ease-out';
                     element.style.opacity = '1';
@@ -423,11 +437,11 @@
             // Efeito hover nos cards de informação
             const infoCards = document.querySelectorAll('.info-card');
             infoCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
+                card.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-5px) scale(1.02)';
                 });
-                
-                card.addEventListener('mouseleave', function() {
+
+                card.addEventListener('mouseleave', function () {
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
@@ -435,13 +449,13 @@
             // Função para verificar autenticação antes de acessar cursos
             function accessCourses() {
                 const isLoggedIn = localStorage.getItem('navcode_logged_in') === 'true';
-                
+
                 if (!isLoggedIn) {
                     alert('Você precisa fazer login para acessar os cursos NavCode!');
                     window.location.href = 'login.html';
                     return;
                 }
-                
+
                 // Se estiver logado, redirecionar para página de cursos
                 window.location.href = 'cursos.html';
             }

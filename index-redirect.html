@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/icons/favicon.jpeg" type="image/jpeg">
+    <link rel="icon" href="./assets/icons/favicon.png" type="image/jpeg">
     <title>NavCode - Redirecionando...</title>
     <style>
         body {
@@ -18,12 +19,12 @@
             min-height: 100vh;
             overflow: hidden;
         }
-        
+
         .loading-container {
             text-align: center;
             animation: fadeIn 1s ease-out;
         }
-        
+
         .logo {
             width: 80px;
             height: 80px;
@@ -36,13 +37,13 @@
             box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
             animation: pulse 2s ease-in-out infinite;
         }
-        
+
         .logo svg {
             width: 40px;
             height: 40px;
             color: white;
         }
-        
+
         h1 {
             font-size: 2rem;
             font-weight: 700;
@@ -52,13 +53,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         p {
             color: #94a3b8;
             font-size: 1.125rem;
             margin-bottom: 2rem;
         }
-        
+
         .spinner {
             width: 40px;
             height: 40px;
@@ -68,23 +69,43 @@
             animation: spin 1s linear infinite;
             margin: 0 auto;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="loading-container">
         <div class="logo">
@@ -104,4 +125,5 @@
         }, 2000);
     </script>
 </body>
+
 </html>

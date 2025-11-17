@@ -5,7 +5,7 @@
     <!-- Configurações básicas da página do curso -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/icons/favicon.jpeg" type="image/jpeg">
+    <link rel="icon" href="./assets/icons/favicon.png" type="image/jpeg">
     <title>Curso de Redes de Computadores - NavCode</title>
 
     <!-- Importando estilos e fontes -->
@@ -2269,129 +2269,129 @@ Router(config)# ip route 0.0.0.0 0.0.0.0 192.168.1.254
             },
             5: { // Segurança da Informação
                 quiz: [
-                        {
-                            question: "O que é roteamento?",
-                            options: ["Proteger dados contra ameaças", "Encaminhar pacotes entre redes diferentes", "Usar senhas fortes", "Fazer backup"],
-                            correct: 1,
-                            explanation: "Roteamento é o processo de encaminhar pacotes entre redes distintas para chegar ao destino correto."
-                        },
-                        {
-                            question: "O que é um switch?",
-                            options: ["Programa útil", "Equipamento que conecta dispositivos dentro da mesma rede", "Tipo de hardware de armazenamento", "Tipo de rede"],
-                            correct: 1,
-                            explanation: "Switch é um dispositivo usado para interconectar hosts dentro de uma LAN."
-                        },
-                        {
-                            question: "O que é broadcast em redes?",
-                            options: ["Tipo de vírus", "Envio de pacote para todos os dispositivos da rede", "Tipo de firewall", "Tipo de antivírus"],
-                            correct: 1,
-                            explanation: "Broadcast é quando um pacote é enviado para todos os dispositivos em um segmento de rede."
-                        },
-                        {
-                            question: "O que é uma VLAN?",
-                            options: ["Tipo de vírus", "Rede lógica criada dentro de um switch", "Tipo de firewall", "Tipo de antivírus"],
-                            correct: 1,
-                            explanation: "VLAN segmenta logicamente uma rede física, aumentando segurança e organização."
-                        },
-                        {
-                            question: "Para que serve uma tabela de roteamento?",
-                            options: ["Tipo de vírus", "Armazenar rotas para redes de destino", "Tipo de antivírus", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "A tabela de roteamento contém informações de caminhos possíveis para entregar pacotes."
-                        },
-                        {
-                            question: "O que é redundância em redes?",
-                            options: ["Tipo de vírus", "Duas ou mais rotas ou links para evitar falhas", "Tipo de firewall", "Tipo de antivírus"],
-                            correct: 1,
-                            explanation: "Redundância garante disponibilidade ao oferecer caminhos alternativos caso ocorra falha."
-                        },
-                        {
-                            question: "O que é autenticação em redes?",
-                            options: ["Tipo de vírus", "Verificar identidade de usuários ou dispositivos", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Autenticação garante que apenas usuários e dispositivos autorizados acessem a rede."
-                        },
-                        {
-                            question: "O que é autorização em redes empresariais?",
-                            options: ["Tipo de vírus", "Definir quais recursos um usuário pode acessar", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Autorização define privilégios e acessos dentro da rede."
-                        },
-                        {
-                            question: "O que é um pacote de dados?",
-                            options: ["Programa útil", "Unidade de envio de dados em redes", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Pacotes são as unidades básicas de transporte de informações na rede."
-                        },
-                        {
-                            question: "O que é atualização de firmware em dispositivos de rede?",
-                            options: ["Tipo de vírus", "Correção e melhoria de software interno do equipamento", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Atualizações de firmware corrigem falhas e melhoram desempenho de switches e roteadores."
-                        }
-                    ],
-                                    exam: [
-                        {
-                            question: "O que representa a tríade fundamental em redes LAN eficientes?",
-                            options: ["Tipo de vírus", "Segmentação, Redundância e Gerenciamento", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Redes LAN eficientes dependem de boa segmentação, redundância e gestão adequada."
-                        },
-                        {
-                            question: "O que é uma rota estática?",
-                            options: ["Tipo de vírus", "Rota configurada manualmente pelo administrador", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Rotas estáticas são definidas manualmente e não mudam automaticamente."
-                        },
-                        {
-                            question: "O que é engenharia de tráfego em roteamento?",
-                            options: ["Tipo de vírus", "Manipulação do caminho dos pacotes para otimizar desempenho", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Engenharia de tráfego controla o fluxo de pacotes para melhor eficiência."
-                        },
-                        {
-                            question: "O que caracteriza roteamento dinâmico?",
-                            options: ["Tipo de vírus", "Uso de protocolos que aprendem rotas automaticamente", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Roteamento dinâmico usa protocolos como OSPF, RIP ou BGP para atualizar rotas."
-                        },
-                        {
-                            question: "O que é trunking em switches?",
-                            options: ["Tipo de vírus", "Transporte de múltiplas VLANs em um único link", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Trunking permite que várias VLANs passem por um mesmo cabo entre switches."
-                        },
-                        {
-                            question: "O que é Spanning Tree Protocol (STP)?",
-                            options: ["Tipo de vírus", "Protocolo que evita loops em redes com switches", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "STP detecta e bloqueia caminhos redundantes que causariam loops."
-                        },
-                        {
-                            question: "O que é análise de tráfego em redes?",
-                            options: ["Tipo de vírus", "Processo de analisar pacotes e fluxos para identificar problemas", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "A análise de tráfego identifica gargalos, falhas e comportamentos anormais na rede."
-                        },
-                        {
-                            question: "O que é processo de convergência em protocolos de roteamento?",
-                            options: ["Tipo de vírus", "Tempo que leva para todos os roteadores atualizarem suas tabelas", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Convergência é o momento em que todos os roteadores têm informações atualizadas e consistentes."
-                        },
-                        {
-                            question: "O que é auditoria de rede?",
-                            options: ["Tipo de vírus", "Avaliação estruturada de configurações e desempenho de rede", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Auditorias verificam a saúde, eficiência e segurança da rede."
-                        },
-                        {
-                            question: "O que é gestão de redes?",
-                            options: ["Tipo de vírus", "Processo de monitorar, configurar e manter dispositivos de rede", "Tipo de firewall", "Tipo de backup"],
-                            correct: 1,
-                            explanation: "Gestão de redes garante desempenho, estabilidade e segurança de roteadores e switches."
-                        }
-                    ]
+                    {
+                        question: "O que é roteamento?",
+                        options: ["Proteger dados contra ameaças", "Encaminhar pacotes entre redes diferentes", "Usar senhas fortes", "Fazer backup"],
+                        correct: 1,
+                        explanation: "Roteamento é o processo de encaminhar pacotes entre redes distintas para chegar ao destino correto."
+                    },
+                    {
+                        question: "O que é um switch?",
+                        options: ["Programa útil", "Equipamento que conecta dispositivos dentro da mesma rede", "Tipo de hardware de armazenamento", "Tipo de rede"],
+                        correct: 1,
+                        explanation: "Switch é um dispositivo usado para interconectar hosts dentro de uma LAN."
+                    },
+                    {
+                        question: "O que é broadcast em redes?",
+                        options: ["Tipo de vírus", "Envio de pacote para todos os dispositivos da rede", "Tipo de firewall", "Tipo de antivírus"],
+                        correct: 1,
+                        explanation: "Broadcast é quando um pacote é enviado para todos os dispositivos em um segmento de rede."
+                    },
+                    {
+                        question: "O que é uma VLAN?",
+                        options: ["Tipo de vírus", "Rede lógica criada dentro de um switch", "Tipo de firewall", "Tipo de antivírus"],
+                        correct: 1,
+                        explanation: "VLAN segmenta logicamente uma rede física, aumentando segurança e organização."
+                    },
+                    {
+                        question: "Para que serve uma tabela de roteamento?",
+                        options: ["Tipo de vírus", "Armazenar rotas para redes de destino", "Tipo de antivírus", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "A tabela de roteamento contém informações de caminhos possíveis para entregar pacotes."
+                    },
+                    {
+                        question: "O que é redundância em redes?",
+                        options: ["Tipo de vírus", "Duas ou mais rotas ou links para evitar falhas", "Tipo de firewall", "Tipo de antivírus"],
+                        correct: 1,
+                        explanation: "Redundância garante disponibilidade ao oferecer caminhos alternativos caso ocorra falha."
+                    },
+                    {
+                        question: "O que é autenticação em redes?",
+                        options: ["Tipo de vírus", "Verificar identidade de usuários ou dispositivos", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Autenticação garante que apenas usuários e dispositivos autorizados acessem a rede."
+                    },
+                    {
+                        question: "O que é autorização em redes empresariais?",
+                        options: ["Tipo de vírus", "Definir quais recursos um usuário pode acessar", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Autorização define privilégios e acessos dentro da rede."
+                    },
+                    {
+                        question: "O que é um pacote de dados?",
+                        options: ["Programa útil", "Unidade de envio de dados em redes", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Pacotes são as unidades básicas de transporte de informações na rede."
+                    },
+                    {
+                        question: "O que é atualização de firmware em dispositivos de rede?",
+                        options: ["Tipo de vírus", "Correção e melhoria de software interno do equipamento", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Atualizações de firmware corrigem falhas e melhoram desempenho de switches e roteadores."
+                    }
+                ],
+                exam: [
+                    {
+                        question: "O que representa a tríade fundamental em redes LAN eficientes?",
+                        options: ["Tipo de vírus", "Segmentação, Redundância e Gerenciamento", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Redes LAN eficientes dependem de boa segmentação, redundância e gestão adequada."
+                    },
+                    {
+                        question: "O que é uma rota estática?",
+                        options: ["Tipo de vírus", "Rota configurada manualmente pelo administrador", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Rotas estáticas são definidas manualmente e não mudam automaticamente."
+                    },
+                    {
+                        question: "O que é engenharia de tráfego em roteamento?",
+                        options: ["Tipo de vírus", "Manipulação do caminho dos pacotes para otimizar desempenho", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Engenharia de tráfego controla o fluxo de pacotes para melhor eficiência."
+                    },
+                    {
+                        question: "O que caracteriza roteamento dinâmico?",
+                        options: ["Tipo de vírus", "Uso de protocolos que aprendem rotas automaticamente", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Roteamento dinâmico usa protocolos como OSPF, RIP ou BGP para atualizar rotas."
+                    },
+                    {
+                        question: "O que é trunking em switches?",
+                        options: ["Tipo de vírus", "Transporte de múltiplas VLANs em um único link", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Trunking permite que várias VLANs passem por um mesmo cabo entre switches."
+                    },
+                    {
+                        question: "O que é Spanning Tree Protocol (STP)?",
+                        options: ["Tipo de vírus", "Protocolo que evita loops em redes com switches", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "STP detecta e bloqueia caminhos redundantes que causariam loops."
+                    },
+                    {
+                        question: "O que é análise de tráfego em redes?",
+                        options: ["Tipo de vírus", "Processo de analisar pacotes e fluxos para identificar problemas", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "A análise de tráfego identifica gargalos, falhas e comportamentos anormais na rede."
+                    },
+                    {
+                        question: "O que é processo de convergência em protocolos de roteamento?",
+                        options: ["Tipo de vírus", "Tempo que leva para todos os roteadores atualizarem suas tabelas", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Convergência é o momento em que todos os roteadores têm informações atualizadas e consistentes."
+                    },
+                    {
+                        question: "O que é auditoria de rede?",
+                        options: ["Tipo de vírus", "Avaliação estruturada de configurações e desempenho de rede", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Auditorias verificam a saúde, eficiência e segurança da rede."
+                    },
+                    {
+                        question: "O que é gestão de redes?",
+                        options: ["Tipo de vírus", "Processo de monitorar, configurar e manter dispositivos de rede", "Tipo de firewall", "Tipo de backup"],
+                        correct: 1,
+                        explanation: "Gestão de redes garante desempenho, estabilidade e segurança de roteadores e switches."
+                    }
+                ]
             },
             6: { // Banco de Dados
                 quiz: [

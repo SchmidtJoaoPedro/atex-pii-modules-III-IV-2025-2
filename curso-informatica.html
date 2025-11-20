@@ -305,7 +305,7 @@
                     description: "Entenda como funcionam Windows, Linux e outros SOs",
                     duration: "4h 15min",
                     exercises: 36,
-                    videos: 10,
+                    videos: 5,
                     completed: false,
                     content: {
                         theory: `
@@ -2605,10 +2605,35 @@
         function generateVideosList(chapter) {
             let videosHTML = '';
             const index = document.getElementById("video-player");
-            
+            let videoType = '';
+            switch (chapter.id) {
+                case 1: 
+                    videoType = 'Fhardware';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 2: 
+                    videoType = 'SOs';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 3: 
+                    videoType = 'RedeCom';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 4: 
+                    videoType = 'SegInfo';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 5: 
+                    videoType = 'ManuCom';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 6: 
+                    videoType = 'Proj-F';       // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                default:
+                    throw "Erro inexplicável";
+                    break;
+            }
+
             for (let i = 1; i <= chapter.videos; i++) {
-                src = `./assets/videos/info-course/Fhardware${i}.mp4`;
-                setVideoDuration(src, `duracao${i}`);
+                console.log(videoType);
+                src = `./assets/videos/info-course/${videoType}${i}.mp4`;
+                chamadaDuracao(src, `duracao${i}`);
                 videosHTML += `
                     <div class="video-card" onclick="watchVideo('${src}')"> 
                         <div class="video-thumbnail">
@@ -2648,14 +2673,14 @@
 
             modal.style.display = "none";
         }
-        
-        async function setVideoDuration(path, id) {
-            const duration = await getVideoDuration(path);
+
+        async function chamadaDuracao(path, id) {
+            const duration = await capturaDuracao(path);
             if (!path) throw "Caminho relativo inexistente ou incorreto!!!!";
-            document.getElementById(id).textContent = formatDuration(duration);
+            document.getElementById(id).textContent = formatacao(duration);
         }
 
-        function getVideoDuration(path) {
+        function capturaDuracao(path) {
             return new Promise((resolve, reject) => {
                 const video = document.createElement('video');
                 video.preload = 'metadata';
@@ -2667,7 +2692,7 @@
             });
         }
 
-        function formatDuration(seconds) {
+        function formatacao(seconds) {
             const min = Math.floor(seconds / 60);
             const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
             return `${min}:${sec}`;

@@ -5161,3 +5161,42 @@ body::before {
   color: var(--navcode-text-muted);
   line-height: 1.6;
 }
+
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.video-wrapper video {
+  width: auto;
+  border-radius: 10px;
+  min-width: 500px;
+  max-height: 1000px;
+  height: 750px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  font-size: 32px;
+  cursor: pointer;
+  color: white;
+  user-select: none;
+}

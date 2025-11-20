@@ -35,7 +35,7 @@
                             <path d="M19 12H5" />
                             <path d="M12 19l-7-7 7-7" />
                         </svg>
-                        Voltar ao Início
+                        Voltar aos cursos
                     </button>
 
                     <!-- Logo NavCode -->
@@ -95,6 +95,12 @@
                 <!-- Conteúdo será carregado dinamicamente quando capítulo for selecionado -->
             </div>
         </div>
+        <div id="video-modal" class="video-modal">
+            <div class="video-wrapper">
+                <span class="close-btn" onclick="closeVideo()">✕</span>
+                <video id="video-player" controls></video>
+            </div>
+        </div>
     </main>
 
     <!-- ===== SCRIPTS ===== -->
@@ -122,7 +128,7 @@
                     description: "Aprenda sobre components básicos do computador",
                     duration: "3h 30min",
                     exercises: 36, // Aumentado de 12 para 36 exercícios (6 por capítulo)
-                    videos: 8,
+                    videos: 5,
                     completed: false,
                     content: {
                         theory: `
@@ -299,7 +305,7 @@
                     description: "Entenda como funcionam Windows, Linux e outros SOs",
                     duration: "4h 15min",
                     exercises: 36,
-                    videos: 10,
+                    videos: 5,
                     completed: false,
                     content: {
                         theory: `
@@ -2598,23 +2604,100 @@
          */
         function generateVideosList(chapter) {
             let videosHTML = '';
+            const index = document.getElementById("video-player");
+            let videoType = '';
+            switch (chapter.id) {
+                case 1: 
+                    videoType = 'Fhardware';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 2: 
+                    videoType = 'SOs';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 3: 
+                    videoType = 'RedeCom';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 4: 
+                    videoType = 'SegInfo';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 5: 
+                    videoType = 'ManuCom';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                case 6: 
+                    videoType = 'Proj-F';       // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
+                    break;
+                default:
+                    throw "Erro inexplicável";
+                    break;
+            }
+
             for (let i = 1; i <= chapter.videos; i++) {
+                console.log(videoType);
+                src = `./assets/videos/info-course/${videoType}${i}.mp4`;
+                chamadaDuracao(src, `duracao${i}`);
                 videosHTML += `
-                    <div class="video-card">
+                    <div class="video-card" onclick="watchVideo('${src}')"> 
                         <div class="video-thumbnail">
                             <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="5,3 19,12 5,21"/>
                             </svg>
                         </div>
                         <div class="video-info">
-                            <h4>Vídeo ${i}: ${chapter.title} - Parte ${i}</h4>
-                            <p>Duração: ${Math.floor(Math.random() * 15) + 5} minutos</p>
+                            <h4>${chapter.title} - Parte ${i}</h4>
+                            <p>Duração: <span id="duracao${i}"></span> minuto(s)</p>
                         </div>
                     </div>
                 `;
             }
             return videosHTML;
         }
+
+        function watchVideo(videosrc) {
+            const modal = document.getElementById("video-modal");
+            const player = document.getElementById("video-player");
+
+            if (!modal) throw "Erro ao achar modal...";
+
+            player.src = videosrc;
+            modal.style.display = "flex";
+            player.play();
+        }
+
+
+        function closeVideo() {
+            const modal = document.getElementById("video-modal");
+            const player = document.getElementById("video-player");
+
+            player.pause();
+            player.currentTime = 0;
+            player.src = "";
+
+            modal.style.display = "none";
+        }
+
+        async function chamadaDuracao(path, id) {
+            const duration = await capturaDuracao(path);
+            if (!path) throw "Caminho relativo inexistente ou incorreto!!!!";
+            document.getElementById(id).textContent = formatacao(duration);
+        }
+
+        function capturaDuracao(path) {
+            return new Promise((resolve, reject) => {
+                const video = document.createElement('video');
+                video.preload = 'metadata';
+
+                video.onloadedmetadata = () => resolve(video.duration);
+                video.onerror = () => reject("Erro ao carregar o vídeo.");
+
+                video.src = path;
+            });
+        }
+
+        function formatacao(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${min}:${sec}`;
+        }
+
 
         /**
          * Mostra aba específica do capítulo
@@ -3807,7 +3890,7 @@
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                                 <polyline points="9,22 9,12 15,12 15,22"/>
                             </svg>
-                            Voltar ao Início
+                            Voltar aos cursos
                         </button>
                         <button class="btn btn-secondary" onclick="window.location.href='cursos.html'">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/icons/favicon.png" type="image/jpeg">
-    <title>NavCode - Área do Professor</title>
+    <title>NavCode - Área do Professor</title>  
+    <script src="script.js"></script>
 
     <!-- Importando estilos e fontes -->
     <link rel="stylesheet" href="styles.css">
@@ -45,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" onclick="accessCourses(); return false;">
+                            <a href="#" class="nav-link" onclick="accessCourses()">
                                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
                                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
@@ -458,6 +459,7 @@
 
                 // Se estiver logado, redirecionar para página de cursos
                 window.location.href = 'cursos.html';
+                return true;
             }
         });
     </script>

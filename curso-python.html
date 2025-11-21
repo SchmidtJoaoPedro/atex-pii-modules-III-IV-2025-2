@@ -283,7 +283,7 @@
                 },
                 {
                     id: 2,
-                    title: "Introdução ao Python",
+                    title: "Aprendendo Python",
                     description: "Aprenda os fundamentos da linguagem Python, incluindo variáveis, tipos de dados, estruturas e operações básicas.",
                     duration: "3h",
                     exercises: 36,
@@ -294,7 +294,7 @@
             SEÇÃO DE TEORIA: PYTHON COMPLETA  
             Esta seção explica detalhadamente os fundamentos da linguagem de programação Python.
 
-            <h3>🐍 Introdução ao Python</h3>
+            <h3>🐍 Aprendendo Python</h3>
             <p>Python é uma linguagem de programação de alto nível, interpretada e de propósito geral, amplamente utilizada em ciência de dados, desenvolvimento web, automação, inteligência artificial e muito mais.</p>
 
             <h4>📖 O que é Python?</h4>
@@ -606,104 +606,263 @@ print(quadrados)
                     completed: false,
                     content: {
                         theory: `
-             SEÇÃO DE TEORIA: SEGURANÇA DA INFORMAÇÃO COMPLETA  
-             Esta seção aborda todos os aspectos fundamentais da segurança digital  
+             SEÇÃO DE TEORIA: FUNÇÕES E MÓDULOS EM PYTHON COMPLETA 
+             Esta seção aborda criação de funções reutilizáveis e organização com módulos 
 
-            <h3>🔒 Segurança da Informação: Protegendo o Mundo Digital</h3>
-            <p>A segurança da informação é a prática de proteger dados digitais contra acesso não autorizado, uso indevido, divulgação, destruição, modificação ou interrupção. É fundamental no mundo conectado atual.</p>
+            <h3>🐍 Funções e Módulos em Python</h3>
+            <p>Funções são blocos de código reutilizáveis que executam tarefas específicas, enquanto módulos organizam o código em arquivos separados, promovendo reutilização e manutenibilidade.</p>
 
-            <h4>📖 O que é Segurança da Informação?</h4>
-            <p>Segurança da informação é o conjunto de práticas, políticas e tecnologias criadas para proteger dados digitais e sistemas de computador contra ameaças internas e externas, abrangendo desde informações pessoais até dados corporativos e governamentais.</p>
+            <h4>📖 O que são Funções?</h4>
+            <p>Funções são conjuntos de instruções que realizam uma tarefa específica. Elas evitam repetição de código, melhoram legibilidade e permitem organizar lógica complexa em partes gerenciáveis.</p>
 
-            <h4>🛡️ Princípios Fundamentais da Segurança (Tríade CIA):</h4>
+            <h4>✨ Definindo Funções em Python:</h4>
+            
+            <h5>Sintaxe Básica:</h5>
+            <pre><code class="language-python">
+def saudacao(nome):
+    print(f"Olá, {nome}!")
+
+saudacao("Maria")
+            </code></pre>
+
+            <h5>Funções com Retorno:</h5>
+            <pre><code class="language-python">
+def soma(a, b):
+    resultado = a + b
+    return resultado
+
+total = soma(5, 3)
+print(total)  # Saída: 8
+            </code></pre>
+
+            <h5>Parâmetros Padrão:</h5>
+            <pre><code class="language-python">
+def cumprimento(nome, titulo="Sr."):
+    return f"{titulo} {nome}"
+
+print(cumprimento("Silva"))  # Sr. Silva
+print(cumprimento("Silva", "Dr."))  # Dr. Silva
+            </code></pre>
+
+            <h5>Argumentos *args (múltiplos):</h5>
+            <pre><code class="language-python">
+def somar_varios(*numeros):
+    return sum(numeros)
+
+print(somar_varios(1, 2, 3, 4, 5))  # 15
+            </code></pre>
+
+            <h5>Argumentos **kwargs (dicionário):</h5>
+            <pre><code class="language-python">
+def criar_perfil(**dados):
+    for chave, valor in dados.items():
+        print(f"{chave}: {valor}")
+
+criar_perfil(nome="Ana", idade=25, cidade="São Paulo")
+            </code></pre>
+
+            <h4>🎯 Conceitos Importantes de Funções:</h4>
+            
+            <h5>Escopo (Scope):</h5>
             <ul>
-                <li><strong>Confidencialidade:</strong> Garante que apenas pessoas autorizadas tenham acesso às informações.</li>
-                <li><strong>Integridade:</strong> Assegura que os dados não sejam alterados ou corrompidos sem autorização.</li>
-                <li><strong>Disponibilidade:</strong> Garante que os dados e sistemas estejam acessíveis sempre que necessário.</li>
+                <li><strong>Local:</strong> Variáveis dentro da função</li>
+                <li><strong>Global:</strong> Variáveis fora da função</li>
+                <li><strong>Keyword 'global':</strong> Modificar variável global dentro de função</li>
             </ul>
 
-            <h4>⚠️ Principais Ameaças à Segurança:</h4>
+            <h5>Exemplo de Escopo:</h5>
+            <pre><code class="language-python">
+contador = 0  # Global
+
+def incrementar():
+    global contador
+    contador += 1
+
+incrementar()
+print(contador)  # 1
+            </code></pre>
+
+            <h5>Docstrings:</h5>
+            <pre><code class="language-python">
+def calcular_media(notas):
+    """
+    Calcula a média aritmética de um conjunto de notas.
+    
+    Args:
+        notas (list): Lista de números
+    
+    Returns:
+        float: A média das notas
+    """
+    return sum(notas) / len(notas)
+            </code></pre>
+
+            <h5>Funções Lambda:</h5>
+            <pre><code class="language-python">
+quadrado = lambda x: x ** 2
+print(quadrado(5))  # 25
+
+numeros = [1, 2, 3, 4, 5]
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+print(pares)  # [2, 4]
+            </code></pre>
+
+            <h5>Decoradores:</h5>
+            <pre><code class="language-python">
+def meu_decorador(func):
+    def wrapper():
+        print("Antes da função")
+        func()
+        print("Depois da função")
+    return wrapper
+
+@meu_decorador
+def dizer_ola():
+    print("Olá!")
+
+dizer_ola()
+            </code></pre>
+
+            <h4>📦 O que são Módulos?</h4>
+            <p>Módulos são arquivos Python (.py) que contêm funções, classes e variáveis que podem ser importados e usados em outros programas.</p>
+
+            <h5>Criando um Módulo:</h5>
+            <pre><code class="language-python">
+# arquivo: calculadora.py
+def somar(a, b):
+    return a + b
+
+def subtrair(a, b):
+    return a - b
+
+def multiplicar(a, b):
+    return a * b
+            </code></pre>
+
+            <h5>Importando Módulos:</h5>
+            <pre><code class="language-python">
+import calculadora
+
+resultado = calculadora.somar(10, 5)
+print(resultado)  # 15
+            </code></pre>
+
+            <h5>Importação Seletiva:</h5>
+            <pre><code class="language-python">
+from calculadora import somar, subtrair
+
+print(somar(10, 5))  # 15
+print(subtrair(10, 5))  # 5
+            </code></pre>
+
+            <h5>Alias (Apelidos):</h5>
+            <pre><code class="language-python">
+import calculadora as calc
+from calculadora import somar as add
+
+print(calc.multiplicar(4, 3))  # 12
+print(add(10, 5))  # 15
+            </code></pre>
+
+            <h4>📚 Biblioteca Padrão do Python:</h4>
+            
+            <h5>Módulo 'math':</h5>
             <ul>
-                <li><strong>Malware:</strong> Programas maliciosos como vírus, worms, trojans, ransomware e spyware.</li>
-                <li><strong>Phishing:</strong> Tentativas fraudulentas de obter informações pessoais via e-mail ou sites falsos.</li>
-                <li><strong>Ataques de Rede:</strong> DDoS, Man-in-the-Middle, SQL Injection e outras formas de exploração de falhas.</li>
-                <li><strong>Engenharia Social:</strong> Manipulação psicológica de pessoas para obter acesso ou informações.</li>
+                <li><strong>math.sqrt(x):</strong> Raiz quadrada</li>
+                <li><strong>math.pow(x, y):</strong> Potência</li>
+                <li><strong>math.pi, math.e:</strong> Constantes</li>
+                <li><strong>math.ceil(), math.floor():</strong> Arredondamento</li>
             </ul>
 
-            <h4>🛡️ Medidas de Proteção Essenciais:</h4>
+            <h5>Módulo 'random':</h5>
+            <pre><code class="language-python">
+import random
+
+numero_aleatorio = random.randint(1, 100)
+escolha = random.choice([1, 2, 3, 4, 5])
+            </code></pre>
+
+            <h5>Módulo 'datetime':</h5>
+            <pre><code class="language-python">
+from datetime import datetime, timedelta
+
+agora = datetime.now()
+amanha = agora + timedelta(days=1)
+            </code></pre>
+
+            <h5>Módulo 'os' e 'sys':</h5>
             <ul>
-                <li><strong>Autenticação Forte:</strong> Senhas robustas, autenticação multifator (MFA) e controle de acesso baseado em funções.</li>
-                <li><strong>Criptografia:</strong> Uso de algoritmos como AES e RSA para proteger dados em trânsito e armazenados.</li>
-                <li><strong>Softwares de Segurança:</strong> Antivírus, firewall e antimalware para monitorar e bloquear ameaças.</li>
-                <li><strong>Backup Regular:</strong> Garantia de cópias de segurança usando a regra 3-2-1 (3 cópias, 2 mídias, 1 externa).</li>
+                <li><strong>os.listdir():</strong> Listar arquivos</li>
+                <li><strong>os.path.exists():</strong> Verificar se arquivo existe</li>
+                <li><strong>sys.argv:</strong> Argumentos da linha de comando</li>
             </ul>
 
-            <h4>🌐 Segurança em Redes:</h4>
-            <ul>
-                <li><strong>Protocolos Seguros:</strong> HTTPS, SSH, VPN e WPA3 para proteger conexões.</li>
-                <li><strong>Boas Práticas:</strong> Alterar senhas padrão, desabilitar WPS e manter firmware atualizado.</li>
-            </ul>
+            <h4>🌐 Gerenciando Dependências com pip:</h4>
+            
+            <h5>Instalando Pacotes:</h5>
+            <pre><code class="language-bash">
+pip install requests
+pip install numpy pandas
+            </code></pre>
 
-            <h4>📋 Conformidade e Regulamentações:</h4>
-            <ul>
-                <li><strong>LGPD (Brasil):</strong> Lei Geral de Proteção de Dados.</li>
-                <li><strong>GDPR (Europa):</strong> Regulamento Geral de Proteção de Dados.</li>
-                <li><strong>Outros:</strong> SOX, HIPAA, PCI-DSS (regulamentações setoriais).</li>
-            </ul>
+            <h5>Arquivo requirements.txt:</h5>
+            <pre><code class="language-bash">
+# requirements.txt
+requests==2.28.0
+numpy==1.24.0
+pandas==1.5.0
+            </code></pre>
 
-            <h4>🚀 Tendências em Segurança:</h4>
-            <ul>
-                <li>Zero Trust – “Nunca confie, sempre verifique”.</li>
-                <li>IA e Machine Learning na detecção de ameaças.</li>
-                <li>Segurança na Nuvem e em dispositivos IoT.</li>
-                <li>Criptografia Quântica e proteção contra ataques futuros.</li>
-            </ul>
+            <h5>Instalar de requirements:</h5>
+            <pre><code class="language-bash">
+pip install -r requirements.txt
+            </code></pre>
 
-            <h4>✅ Boas Práticas de Segurança Pessoal:</h4>
+            <h4>⚡ Boas Práticas:</h4>
             <ul>
-                <li>Manter sistemas e aplicativos atualizados.</li>
-                <li>Evitar clicar em links suspeitos.</li>
-                <li>Usar apenas softwares de fontes confiáveis.</li>
-                <li>Verificar URLs e certificados digitais.</li>
-                <li>Educar-se continuamente sobre novas ameaças.</li>
-            </ul>
-        `,
+                <li>Nomeie funções com verbos descritivos (calcular, processar, validar)</li>
+                <li>Mantenha funções pequenas e focadas em uma tarefa</li>
+                <li>Use docstrings para documentar funções</li>
+                <li>Organize código em módulos lógicos</li>
+                <li>Evite variáveis globais quando possível</li>
+                <li>Use type hints para clareza (Python 3.5+)</li>
+            </ul>`,
                         exercises: [
                             {
-                                question: "Quais são os três princípios básicos da segurança da informação?",
-                                options: ["Velocidade, Capacidade, Eficiência", "Confidencialidade, Integridade, Disponibilidade", "Hardware, Software, Rede", "Entrada, Processamento, Saída"],
-                                correct: 1,
-                                explanation: "Os três pilares são Confidencialidade, Integridade e Disponibilidade (CIA), fundamentais para proteger informações."
+                                question: "Qual palavra-chave é usada para criar uma função em Python?",
+                                options: ["function", "func", "def", "define"],
+                                correct: 2,
+                                explanation: "'def' é a palavra-chave usada para definir uma função em Python."
                             },
                             {
-                                question: "O que é phishing?",
-                                options: ["Tipo de vírus", "Tentativa de roubar informações pessoais", "Programa antivírus", "Tipo de firewall"],
+                                question: "O que a palavra-chave 'return' faz em uma função?",
+                                options: ["Reinicia a função", "Retorna um valor e encerra a função", "Nada", "Importa módulos"],
                                 correct: 1,
-                                explanation: "Phishing é uma técnica fraudulenta que tenta enganar usuários para revelar informações confidenciais como senhas."
+                                explanation: "'return' encerra a função e retorna um valor ao chamador."
                             },
                             {
-                                question: "Qual característica torna uma senha forte?",
-                                options: ["Apenas números", "Combinação de letras, números e símbolos", "Apenas o nome", "Data de nascimento"],
+                                question: "Como importar uma função específica de um módulo?",
+                                options: ["import modulo.funcao", "from modulo import funcao", "require modulo", "use modulo.funcao"],
                                 correct: 1,
-                                explanation: "Senhas fortes combinam letras maiúsculas e minúsculas, números e símbolos, sendo longas e únicas."
+                                explanation: "Use 'from modulo import funcao' para importar apenas a função desejada."
                             },
                             {
-                                question: "Para que serve um antivírus?",
-                                options: ["Acelerar o computador", "Detectar e remover malware", "Conectar à internet", "Criar backups"],
+                                question: "O que *args permite em uma função?",
+                                options: ["Argumentos com nome", "Múltiplos argumentos posicionais", "Apenas strings", "Nenhuma função"],
                                 correct: 1,
-                                explanation: "Antivírus detecta, previne e remove softwares maliciosos (malware) que podem danificar o sistema."
+                                explanation: "*args permite que a função aceite um número variável de argumentos posicionais."
                             },
                             {
-                                question: "O que é engenharia social em segurança?",
-                                options: ["Tipo de software", "Manipulação psicológica para obter informações", "Configuração de rede", "Tipo de backup"],
+                                question: "Para que servem **kwargs?",
+                                options: ["Múltiplos argumentos posicionais", "Argumentos nomeados em quantidade variável", "Apenas números", "Importar módulos"],
                                 correct: 1,
-                                explanation: "Engenharia social usa manipulação psicológica para enganar pessoas e obter acesso a informações confidenciais."
+                                explanation: "**kwargs permite passar argumentos nomeados em quantidade variável como um dicionário."
                             },
                             {
-                                question: "Por que fazer backup é importante?",
-                                options: ["Para acelerar o sistema", "Para recuperar dados em caso de perda", "Para conectar dispositivos", "Para navegar na internet"],
+                                question: "O que é uma função lambda?",
+                                options: ["Função com nome longo", "Função anônima (sem nome) em uma linha", "Tipo de módulo", "Comando de importação"],
                                 correct: 1,
-                                explanation: "Backup permite recuperar dados importantes em caso de falha, ataque ou perda acidental."
+                                explanation: "Lambda é uma função anônima definida em uma linha, útil para operações simples."
                             }
                         ]
                     }
@@ -718,164 +877,176 @@ print(quadrados)
                     completed: false,
                     content: {
                         theory: `
-            SEÇÃO DE TEORIA: MANUTENÇÃO DE COMPUTADORES COMPLETA 
-            Esta seção aborda todos os aspectos da manutenção preventiva e corretiva.
+                    SEÇÃO DE TEORIA: ESTRUTURA DE DADOS EM PYTHON
+                    Esta seção aborda os principais tipos de estruturas de dados, seus usos, características e boas práticas.
 
-            <h3>🔧 Manutenção de Computadores: Mantendo Sistemas Funcionando</h3>
-            <p>A manutenção de computadores é o conjunto de práticas e procedimentos voltados a garantir que o sistema opere de forma estável e eficiente, prevenindo falhas e resolvendo problemas quando surgem.</p>
+                    <h3>🐍 Estruturas de Dados em Python: Fundamentos Essenciais</h3>
+                    <p>Estruturas de dados são formas de armazenar e organizar informações para que possam ser acessadas e manipuladas de maneira eficiente. Em Python, elas são fundamentais para resolver problemas, criar algoritmos e construir aplicações.</p>
 
-            <h4>📖 Tipos de Manutenção</h4>
+                    <h4>📦 Tipos de Estruturas de Dados</h4>
 
-            <h5>1. Manutenção Preventiva</h5>
-            <ul>
-                <li><strong>Objetivo:</strong> Evitar falhas antes que ocorram.</li>
-                <li><strong>Características:</strong> Regular, planejada e de baixo custo a longo prazo.</li>
-                <li><strong>Atividades:</strong>
+                    <h5>1. Listas (list)</h5>
                     <ul>
-                        <li>Limpeza física interna e externa</li>
-                        <li>Atualização de software</li>
-                        <li>Monitoramento de temperatura</li>
-                        <li>Backup de dados</li>
+                        <li><strong>Objetivo:</strong> Armazenar coleções ordenadas e mutáveis de itens.</li>
+                        <li><strong>Características:</strong> Aceitam elementos de tipos diferentes, permitem alterações e possuem indexação.</li>
+                        <li><strong>Operações comuns:</strong>
+                            <ul>
+                                <li>append(), remove(), insert(), pop(), sort()</li>
+                                <li>Acesso por índice: lista[0]</li>
+                                <li>Fatiamento: lista[1:4]</li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
 
-            <h5>2. Manutenção Corretiva</h5>
-            <ul>
-                <li><strong>Objetivo:</strong> Corrigir falhas existentes.</li>
-                <li><strong>Tipos:</strong> Planejada e não planejada.</li>
-                <li><strong>Desvantagens:</strong> Maior custo e tempo de inatividade.</li>
-            </ul>
+                    <h5>2. Tuplas (tuple)</h5>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Armazenar coleções ordenadas e IMUTÁVEIS.</li>
+                        <li><strong>Características:</strong> Mais rápidas que listas; ideais para dados constantes.</li>
+                        <li><strong>Uso comum:</strong> Coordenadas, retornos múltiplos de funções, dados que não devem mudar.</li>
+                    </ul>
 
-            <h5>3. Manutenção Preditiva</h5>
-            <ul>
-                <li><strong>Objetivo:</strong> Antecipar falhas através de monitoramento constante.</li>
-                <li><strong>Ferramentas:</strong> Sensores, softwares de diagnóstico e análise de logs.</li>
-            </ul>
+                    <h5>3. Conjuntos (set)</h5>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Armazenar valores únicos sem ordem.</li>
+                        <li><strong>Características:</strong> Automatizam remoção de duplicatas.</li>
+                        <li><strong>Operações típicas:</strong> união, interseção, diferença.</li>
+                    </ul>
 
-            <h4>🧹 Manutenção Preventiva Detalhada</h4>
-            <h5>Limpeza Física</h5>
-            <ul>
-                <li><strong>Frequência:</strong> A cada 3 a 6 meses.</li>
-                <li><strong>Procedimentos:</strong> Desconectar energia, usar pulseira antiestática, limpar com ar comprimido e verificar conexões.</li>
-                <li><strong>Áreas críticas:</strong> Ventiladores, dissipadores, filtros de ar e conectores.</li>
-            </ul>
+                    <h5>4. Dicionários (dict)</h5>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Armazenar pares chave-valor.</li>
+                        <li><strong>Características:</strong> Rápido acesso a dados via chave.</li>
+                        <li><strong>Aplicações:</strong> Armazenamento estruturado, configurações, objetos simulados.</li>
+                    </ul>
 
-            <h5>Monitoramento de Temperatura</h5>
-            <ul>
-                <li><strong>Temperaturas ideais:</strong> CPU até 70°C, GPU até 80°C, HD até 45°C.</li>
-                <li><strong>Ferramentas:</strong> Core Temp, HWiNFO64, MSI Afterburner.</li>
-                <li><strong>Sintomas de superaquecimento:</strong> Lentidão, travamentos e desligamentos automáticos.</li>
-            </ul>
+                    <h4>🧠 Estruturas de Dados Avançadas (Python + Lógica)</h4>
 
-            <h5>Manutenção de Software</h5>
-            <ul>
-                <li><strong>Atualizações:</strong> Sistema, drivers e antivírus.</li>
-                <li><strong>Limpeza:</strong> Arquivos temporários, cache e logs antigos.</li>
-                <li><strong>Otimização:</strong> Desfragmentação e limpeza de registro.</li>
-            </ul>
+                    <h5>Pilhas (Stack)</h5>
+                    <ul>
+                        <li><strong>Princípio:</strong> LIFO — Last In, First Out.</li>
+                        <li><strong>Uso:</strong> desfazer ações, histórico de navegação, chamadas de funções.</li>
+                        <li><strong>Representação em Python:</strong> listas com append() e pop().</li>
+                    </ul>
 
-            <h4>🩺 Diagnóstico de Problemas</h4>
-            <ol>
-                <li><strong>Identificação:</strong> Coletar informações e reproduzir o problema.</li>
-                <li><strong>Análise:</strong> Verificar conexões e componentes básicos.</li>
-                <li><strong>Teste:</strong> Isolar e testar componentes individualmente.</li>
-                <li><strong>Solução:</strong> Aplicar correção e documentar.</li>
-            </ol>
+                    <h5>Filas (Queue)</h5>
+                    <ul>
+                        <li><strong>Princípio:</strong> FIFO — First In, First Out.</li>
+                        <li><strong>Uso:</strong> atendimento, buffers, sistemas assíncronos.</li>
+                        <li><strong>Representação:</strong> collections.deque para melhor desempenho.</li>
+                    </ul>
 
-            <h5>Problemas Comuns</h5>
-            <ul>
-                <li><strong>Computador não liga:</strong> Verifique fonte e conexões.</li>
-                <li><strong>Lentidão:</strong> Verifique uso de CPU/RAM e malware.</li>
-                <li><strong>Superaquecimento:</strong> Limpe ventiladores e troque pasta térmica.</li>
-                <li><strong>Tela azul (BSOD):</strong> Pode indicar falhas de driver ou hardware.</li>
-            </ul>
+                    <h5>Filas de Prioridade (Priority Queue)</h5>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Processar elementos conforme prioridade.</li>
+                        <li><strong>Ferramenta:</strong> heapq (min-heap).</li>
+                    </ul>
 
-            <h4>🛠️ Ferramentas Essenciais</h4>
-            <h5>Físicas:</h5>
-            <ul>
-                <li>Chaves Phillips</li>
-                <li>Pulseira antiestática</li>
-                <li>Multímetro</li>
-                <li>Ar comprimido</li>
-                <li>Pasta térmica</li>
-            </ul>
+                    <h5>Árvores</h5>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Organizar dados de forma hierárquica.</li>
+                        <li><strong>Tipos comuns:</strong> Árvores binárias, BST, AVL.</li>
+                        <li><strong>Aplicações:</strong> buscas eficientes, bancos de dados, indexação.</li>
+                    </ul>
 
-            <h5>Softwares:</h5>
-            <ul>
-                <li>MemTest86 (RAM)</li>
-                <li>CrystalDiskInfo (HD/SSD)</li>
-                <li>CCleaner (limpeza)</li>
-                <li>Malwarebytes (segurança)</li>
-            </ul>
+                    <h5>Grafos</h5>
+                    <ul>
+                        <li><strong>Objetivo:</strong> Representar redes e conexões.</li>
+                        <li><strong>Representação em Python:</strong> listas de adjacência ou dicionários.</li>
+                        <li><strong>Aplicações:</strong> rotas, redes sociais, inteligência artificial.</li>
+                    </ul>
 
-            <h4>⚡ Segurança Durante a Manutenção</h4>
-            <ul>
-                <li>Desconecte o computador da energia.</li>
-                <li>Use pulseira antiestática.</li>
-                <li>Evite ambientes úmidos.</li>
-                <li>Segure placas pelas bordas.</li>
-            </ul>
+                    <h4>🔍 Operações Fundamentais</h4>
+                    <ol>
+                        <li><strong>Acesso:</strong> localizar um elemento pelo índice ou chave.</li>
+                        <li><strong>Inserção:</strong> adicionar elementos de forma eficiente.</li>
+                        <li><strong>Remoção:</strong> excluir itens mantendo integridade.</li>
+                        <li><strong>Busca:</strong> localizar elementos por valor.</li>
+                    </ol>
 
-            <h4>📅 Planejamento de Manutenção</h4>
-            <ul>
-                <li><strong>Diário:</strong> Monitorar funcionamento e backups.</li>
-                <li><strong>Semanal:</strong> Atualizações e verificação de vírus.</li>
-                <li><strong>Mensal:</strong> Checar drivers e espaço em disco.</li>
-                <li><strong>Trimestral:</strong> Limpeza física completa.</li>
-            </ul>
+                    <h5>Complexidade (Big-O)</h5>
+                    <ul>
+                        <li><strong>Listas:</strong> acesso O(1), busca O(n).</li>
+                        <li><strong>Dicionários:</strong> acesso e inserção O(1) na média.</li>
+                        <li><strong>Sets:</strong> busca sem duplicatas em O(1).</li>
+                        <li><strong>Filas/Pilhas:</strong> O(1) para push/pop.</li>
+                    </ul>
 
-            <h4>📋 Documentação e Controle</h4>
-            <ul>
-                <li>Registrar data, tipo de manutenção e peças trocadas.</li>
-                <li>Manter inventário de equipamentos e histórico de problemas.</li>
-            </ul>
+                    <h4>🛠️ Ferramentas Úteis do Python</h4>
+                    <ul>
+                        <li>collections deque, Counter, defaultdict</li>
+                        <li>heapq para filas de prioridade</li>
+                        <li>itertools para combinações e permutações</li>
+                        <li>array para listas otimizadas de números</li>
+                    </ul>
 
-            <h4>🚀 Tendências em Manutenção</h4>
-            <ul>
-                <li>Manutenção remota e preditiva com IA</li>
-                <li>IoT para monitoramento em tempo real</li>
-                <li>Realidade aumentada para suporte técnico</li>
-            </ul>
-        `,
+                    <h4>⚡ Boas Práticas</h4>
+                    <ul>
+                        <li>Escolha a estrutura ideal para cada problema.</li>
+                        <li>Evite listas quando sets ou dicts oferecem melhor desempenho.</li>
+                        <li>Use comprehensions para operações simples e rápidas.</li>
+                        <li>Comente estruturas complexas como grafos e árvores.</li>
+                    </ul>
+
+                    <h4>📅 Planejamento e Organização do Código</h4>
+                    <ul>
+                        <li><strong>Nomeie estruturas claramente:</strong> listas_de_usuarios, fila_atendimento.</li>
+                        <li><strong>Evite misturar tipos:</strong> mantenha consistência nos dados.</li>
+                        <li><strong>Modularize:</strong> crie funções para manipular estruturas.</li>
+                    </ul>
+
+                    <h4>📋 Documentação e Controle</h4>
+                    <ul>
+                        <li>Descreva o propósito de cada estrutura usada.</li>
+                        <li>Organize código com docstrings e comentários.</li>
+                        <li>Mantenha exemplos de uso de cada estrutura em testes.</li>
+                    </ul>
+
+                    <h4>🚀 Tendências Modernas</h4>
+                    <ul>
+                        <li>Estruturas imutáveis com dataclasses e tuples</li>
+                        <li>Uso de tipagem estática com typing e generics</li>
+                        <li>Bibliotecas otimizadas como NumPy para vetores e matrizes</li>
+                        <li>Processamento paralelo com multiprocessing</li>
+                    </ul>
+                `,
                         exercises: [
-                            {
-                                question: "O que deve ser verificado primeiro quando um computador não liga?",
-                                options: ["Placa-mãe", "Fonte de alimentação e cabos", "Disco rígido", "Processador"],
-                                correct: 1,
-                                explanation: "Sempre verifique a fonte e as conexões antes de testar componentes internos."
-                            },
-                            {
-                                question: "Com que frequência é recomendada a limpeza interna do computador?",
-                                options: ["A cada 3 a 6 meses", "Uma vez por ano", "Toda semana", "A cada 5 anos"],
-                                correct: 0,
-                                explanation: "Limpezas periódicas de 3 a 6 meses evitam acúmulo de poeira e superaquecimento."
-                            },
-                            {
-                                question: "Qual é a função da pulseira antiestática?",
-                                options: ["Estética", "Evitar descargas elétricas em componentes", "Medir energia", "Limpar superfícies"],
-                                correct: 1,
-                                explanation: "Ela descarrega a eletricidade estática do corpo, protegendo os circuitos."
-                            },
-                            {
-                                question: "Qual é uma das causas mais comuns de superaquecimento?",
-                                options: ["HD fragmentado", "Ventiladores sujos ou defeituosos", "Pouca RAM", "Conexão de internet ruim"],
-                                correct: 1,
-                                explanation: "Ventiladores sujos ou com defeito impedem o resfriamento adequado do sistema."
-                            },
-                            {
-                                question: "Qual ferramenta é indispensável para abrir o gabinete de um PC?",
-                                options: ["Martelo", "Chave Phillips", "Alicate", "Tesoura"],
-                                correct: 1,
-                                explanation: "A chave Phillips é usada para parafusos e desmontagem de componentes."
-                            },
-                            {
-                                question: "O que significa uma tela azul (BSOD) no Windows?",
-                                options: ["Erro crítico do sistema", "Falha na internet", "Atualização pendente", "Problema com antivírus"],
-                                correct: 0,
-                                explanation: "A tela azul indica um erro grave de software ou hardware que interrompe o sistema."
-                            }
-                        ]
+    {
+        question: "Qual estrutura de dados é mais adequada para armazenar uma coleção ordenada e mutável em Python?",
+        options: ["tuple", "list", "set", "dict"],
+        correct: 1,
+        explanation: "Listas são ordenadas, mutáveis e aceitam elementos de diferentes tipos, sendo adequadas para coleções gerais."
+    },
+    {
+        question: "Qual opção representa uma característica de uma tupla em Python?",
+        options: ["Mutável", "Aceita valores duplicados", "Imutável", "Ordenação aleatória"],
+        correct: 2,
+        explanation: "Tuplas são imutáveis, ou seja, seus valores não podem ser alterados após a criação."
+    },
+    {
+        question: "Para que serve um dicionário (dict) em Python?",
+        options: ["Armazenar dados apenas numéricos", "Armazenar pares chave-valor", "Executar funções matemáticas", "Ordenar listas automaticamente"],
+        correct: 1,
+        explanation: "Dicionários armazenam dados no formato chave-valor, permitindo acesso rápido aos valores através das chaves."
+    },
+    {
+        question: "Qual estrutura remove duplicatas automaticamente?",
+        options: ["list", "tuple", "set", "dict"],
+        correct: 2,
+        explanation: "O tipo set armazena apenas valores únicos, removendo duplicatas automaticamente."
+    },
+    {
+        question: "Qual é a estrutura mais indicada para criar uma fila (Queue) eficiente em Python?",
+        options: ["list", "set", "deque", "tuple"],
+        correct: 2,
+        explanation: "deque, da biblioteca collections, permite inserções e remoções eficientes em ambas as extremidades."
+    },
+    {
+        question: "O que caracteriza uma pilha (Stack) em estruturas de dados?",
+        options: ["Primeiro a entrar, primeiro a sair (FIFO)", "Acesso aleatório obrigatório", "Último a entrar, primeiro a sair (LIFO)", "Dados sempre ordenados"],
+        correct: 2,
+        explanation: "Pilhas seguem o princípio LIFO — o último elemento inserido é o primeiro a ser removido."
+    }
+]
                     }
                 },
                 {
@@ -888,141 +1059,175 @@ print(quadrados)
                     completed: false,
                     content: {
                         theory: `
-            SEÇÃO DE TEORIA: PROJETO FINAL COMPLETO 
-            Esta seção integra todos os conhecimentos em um projeto prático.
+        SEÇÃO DE TEORIA: PROJETO FINAL EM ORIENTAÇÃO A OBJETOS  
+        Esta seção integra todos os conhecimentos em um projeto prático usando OOP em Python.
 
-            <h3>🎯 Projeto Final: Montagem e Configuração Completa de Sistema</h3>
-            <p>Este projeto final integra todos os conhecimentos adquiridos no curso para realizar a montagem completa, configuração e otimização de um sistema computacional profissional.</p>
+        <h3>🎯 Projeto Final: Sistema Completo Usando Orientação a Objetos em Python</h3>
+        <p>Este projeto final integra todos os conceitos de programação orientada a objetos para construir um sistema modular, organizado e escalável em Python.</p>
 
-            <h4>📖 Objetivos do Projeto Final</h4>
-            <h5>Objetivos Principais:</h5>
+        <h4>📖 Objetivos do Projeto Final</h4>
+        <h5>Objetivos Principais:</h5>
+        <ul>
+            <li><strong>Aplicação de OOP:</strong> Utilizar classes, objetos, encapsulamento, herança e polimorfismo.</li>
+            <li><strong>Estruturação de Software:</strong> Criar módulos bem organizados com responsabilidades claras.</li>
+            <li><strong>Resolução de Problemas:</strong> Implementar lógica real usando boas práticas de programação.</li>
+            <li><strong>Documentação:</strong> Criar código limpo, comentado e com documentação técnica.</li>
+            <li><strong>Profissionalização:</strong> Preparar o aluno para criar aplicações robustas no mercado.</li>
+        </ul>
+
+        <h5>Competências Desenvolvidas:</h5>
+        <ul>
+            <li>Planejamento e modelagem de classes.</li>
+            <li>Criação de hierarquias usando herança.</li>
+            <li>Uso correto de encapsulamento.</li>
+            <li>Aplicação de polimorfismo com métodos sobrescritos.</li>
+            <li>Manipulação de objetos e estados.</li>
+            <li>Organização de projetos em múltiplos arquivos.</li>
+        </ul>
+
+        <h4>📋 Fase 1: Modelagem do Sistema</h4>
+        <h5>1.1 Análise de Requisitos:</h5>
+        <ul>
+            <li><strong>Definição do Sistema:</strong> Loja virtual, sistema escolar, biblioteca, banco, etc.</li>
+            <li><strong>Atores do Sistema:</strong> Usuários, administradores, clientes, entidades.</li>
+            <li><strong>Objetos Principais:</strong> Classes que representarão elementos do mundo real.</li>
+        </ul>
+
+        <h5>1.2 Planejamento das Classes:</h5>
+        <ul>
+            <li>Identificar atributos e métodos de cada classe.</li>
+            <li>Definir relacionamentos: associação, herança e composição.</li>
+            <li>Planejar modularização (separar arquivos .py).</li>
+        </ul>
+
+        <h4>🔧 Fase 2: Implementação das Classes</h4>
+        <h5>2.1 Criação da Estrutura Base:</h5>
+        <ul>
+            <li>Implementar classes principais usando <code>__init__</code>.</li>
+            <li>Aplicar encapsulamento usando atributos privados.</li>
+        </ul>
+
+        <h5>2.2 Herança e Polimorfismo:</h5>
+        <ol>
+            <li>Criar classes derivadas especializadas.</li>
+            <li>Sobrescrever métodos para comportamentos diferentes.</li>
+            <li>Utilizar <code>super()</code> corretamente.</li>
+        </ol>
+
+        <h5>2.3 Composição e Relacionamentos:</h5>
+        <ul>
+            <li>Fazer objetos conterem outros objetos.</li>
+            <li>Gerenciar listas internas e interações entre classes.</li>
+        </ul>
+
+        <h4>💻 Fase 3: Implementação do Sistema</h4>
+        <ul>
+            <li><strong>Controladores:</strong> Criar classes que coordenam ações.</li>
+            <li><strong>Persistência:</strong> Armazenar dados em arquivos JSON, TXT ou CSV.</li>
+            <li><strong>Interface:</strong> Criar menus de texto e fluxos de interação.</li>
+        </ul>
+
+        <h4>🔒 Fase 4: Validações e Regras de Negócio</h4>
+        <ul>
+            <li>Aplicar verificações de tipos e valores.</li>
+            <li>Controlar acesso a atributos com getters e setters.</li>
+            <li>Garantir consistência do sistema entre objetos.</li>
+        </ul>
+
+        <h4>🧪 Fase 5: Testes do Sistema</h4>
+        <ul>
+            <li>Criar testes unitários com <code>unittest</code>.</li>
+            <li>Testar métodos individuais e interações entre objetos.</li>
+            <li>Simular cenários reais de uso.</li>
+        </ul>
+
+        <h4>📋 Fase 6: Documentação e Entrega</h4>
+        <ul>
+            <li>Comentar código e gerar documentação com docstrings.</li>
+            <li>Criar um README explicando a arquitetura e como executar o projeto.</li>
+            <li>Entregar o código organizado em módulos.</li>
+        </ul>
+
+        <div class="success-message">
+            <h4>🎉 Parabéns pela Conclusão!</h4>
+            <p>Você demonstrou domínio em todas as etapas da programação orientada a objetos em Python:</p>
             <ul>
-                <li><strong>Integração de Conhecimentos:</strong> Aplicar conceitos de hardware, software, redes e segurança.</li>
-                <li><strong>Experiência Prática:</strong> Desenvolver habilidades hands-on em montagem e configuração.</li>
-                <li><strong>Resolução de Problemas:</strong> Diagnosticar e solucionar problemas reais.</li>
-                <li><strong>Documentação:</strong> Criar documentação técnica profissional.</li>
-                <li><strong>Certificação:</strong> Demonstrar competência técnica para certificação.</li>
+                <li>✅ Modelagem de classes</li>
+                <li>✅ Encapsulamento</li>
+                <li>✅ Herança</li>
+                <li>✅ Polimorfismo</li>
+                <li>✅ Organização em módulos</li>
+                <li>✅ Testes e documentação</li>
             </ul>
-
-            <h5>Competências Desenvolvidas:</h5>
-            <ul>
-                <li>Planejamento e especificação de sistemas.</li>
-                <li>Montagem física de componentes.</li>
-                <li>Instalação e configuração de software.</li>
-                <li>Implementação de segurança.</li>
-                <li>Testes e validação.</li>
-                <li>Documentação técnica.</li>
-            </ul>
-
-            <h4>📋 Fase 1: Planejamento e Especificação</h4>
-            <h5>1.1 Análise de Requisitos:</h5>
-            <ul>
-                <li><strong>Definição de Uso:</strong> Escritório, jogos, workstation ou servidor.</li>
-                <li><strong>Orçamento:</strong> Básico, intermediário, avançado ou profissional.</li>
-                <li><strong>Requisitos:</strong> Performance, armazenamento, conectividade e expansão.</li>
-            </ul>
-
-            <h5>1.2 Seleção de Componentes:</h5>
-            <ul>
-                <li>CPU, placa-mãe, memória, armazenamento, GPU, fonte e gabinete.</li>
-                <li>Verificar compatibilidade entre componentes e eficiência energética.</li>
-            </ul>
-
-            <h4>🔧 Fase 2: Montagem Física do Sistema</h4>
-            <h5>2.1 Preparação do Ambiente:</h5>
-            <ul>
-                <li>Área limpa e iluminada.</li>
-                <li>Pulseira antiestática e ferramentas organizadas.</li>
-            </ul>
-
-            <h5>2.2 Sequência de Montagem:</h5>
-            <ol>
-                <li>Instalar CPU, pasta térmica, cooler e RAM na placa-mãe.</li>
-                <li>Preparar gabinete e instalar fonte.</li>
-                <li>Fixar placa-mãe e conectar cabos principais.</li>
-                <li>Adicionar drives, GPU e gerenciar cabos.</li>
-            </ol>
-
-            <h5>2.3 Verificação Pré-Boot:</h5>
-            <ul>
-                <li>Checar conexões e ligar sistema para acessar BIOS/UEFI.</li>
-            </ul>
-
-            <h4>💻 Fase 3: Instalação e Configuração de Software</h4>
-            <ul>
-                <li><strong>BIOS/UEFI:</strong> Configurar XMP, ordem de boot e segurança.</li>
-                <li><strong>Instalação do SO:</strong> Criar mídia, particionar disco e instalar sistema.</li>
-                <li><strong>Drivers:</strong> Instalar chipset, GPU, áudio, rede e periféricos.</li>
-            </ul>
-
-            <h4>🔒 Fase 4: Implementação de Segurança</h4>
-            <ul>
-                <li>Ativar antivírus e firewall.</li>
-                <li>Configurar atualizações automáticas.</li>
-                <li>Fazer backup e criar pontos de restauração.</li>
-            </ul>
-
-            <h4>🧪 Fase 5: Testes Completos do Sistema</h4>
-            <ul>
-                <li>Testar CPU, GPU, RAM e armazenamento com ferramentas como Prime95, FurMark e CrystalDiskInfo.</li>
-                <li>Verificar estabilidade e temperaturas.</li>
-            </ul>
-
-            <h4>📋 Fase 6: Documentação e Entrega</h4>
-            <ul>
-                <li>Registrar componentes, configurações e resultados de testes.</li>
-                <li>Treinar usuário e entregar documentação técnica.</li>
-            </ul>
-
-            <div class="success-message">
-                <h4>🎉 Parabéns pela Conclusão!</h4>
-                <p>Você demonstrou domínio em todas as etapas de montagem, configuração e manutenção de sistemas computacionais.</p>
-                <ul>
-                    <li>✅ Planejamento e especificação de sistemas</li>
-                    <li>✅ Montagem física</li>
-                    <li>✅ Configuração e segurança</li>
-                    <li>✅ Testes e validação</li>
-                    <li>✅ Documentação técnica profissional</li>
-                </ul>
-                <p><strong>Você está pronto para atuar como Técnico em Informática!</strong></p>
-            </div>
-        `,
+            <p><strong>Agora você está pronto para desenvolver projetos completos utilizando OOP!</strong></p>
+        </div>
+    `,
                         exercises: [
                             {
-                                question: "Qual é a primeira etapa de um projeto de montagem?",
-                                options: ["Instalar o SO", "Planejamento", "Comprar peças", "Montar tudo"],
+                                question: "O que é uma classe em Python?",
+                                options: [
+                                    "Um tipo especial de variável",
+                                    "Um molde para criar objetos",
+                                    "Uma função interna do Python",
+                                    "Um tipo de loop"
+                                ],
                                 correct: 1,
-                                explanation: "O planejamento define especificações, orçamento e compatibilidade antes da montagem."
+                                explanation: "Uma classe é um molde (ou blueprint) usado para criar objetos com atributos e métodos."
                             },
                             {
-                                question: "Ao montar um PC, qual componente deve ser instalado primeiro na placa-mãe?",
-                                options: ["Placa de vídeo", "Processador", "Memória RAM", "HD"],
+                                question: "O que é um objeto?",
+                                options: [
+                                    "Uma biblioteca Python",
+                                    "Uma instância de uma classe",
+                                    "Um tipo de dado primitivo",
+                                    "Um arquivo executável"
+                                ],
                                 correct: 1,
-                                explanation: "O processador é o primeiro componente instalado, seguido do cooler e da RAM."
+                                explanation: "Um objeto é uma instância criada a partir de uma classe, contendo seus próprios dados."
                             },
                             {
-                                question: "Após montar o hardware, qual é o próximo passo?",
-                                options: ["Usar imediatamente", "Instalar sistema operacional", "Jogar games", "Conectar na internet"],
-                                correct: 1,
-                                explanation: "Após a montagem física, o sistema precisa do SO para funcionar."
+                                question: "Qual é o nome do método responsável por inicializar objetos?",
+                                options: [
+                                    "__create__",
+                                    "__start__",
+                                    "__init__",
+                                    "init_class"
+                                ],
+                                correct: 2,
+                                explanation: "O método __init__ é o construtor usado para inicializar atributos do objeto."
                             },
                             {
-                                question: "Por que instalar drivers é importante?",
-                                options: ["Para decoração", "Para o hardware funcionar corretamente", "Para acelerar internet", "Para criar arquivos"],
+                                question: "O que são atributos?",
+                                options: [
+                                    "Funções dentro da classe",
+                                    "Variáveis que pertencem a objetos ou classes",
+                                    "Bibliotecas externas",
+                                    "Argumentos obrigatórios da classe"
+                                ],
                                 correct: 1,
-                                explanation: "Drivers permitem a comunicação correta entre o sistema operacional e o hardware."
+                                explanation: "Atributos são variáveis armazenadas dentro de um objeto ou classe."
                             },
                             {
-                                question: "Qual teste é essencial após montar um PC?",
-                                options: ["Teste de velocidade de digitação", "Teste de estabilidade e temperatura", "Teste de cor da tela", "Teste de som"],
-                                correct: 1,
-                                explanation: "Esses testes garantem que o sistema funcione estável e dentro das temperaturas ideais."
+                                question: "O que é encapsulamento?",
+                                options: [
+                                    "Ocultar partes internas da classe",
+                                    "Criar várias classes ao mesmo tempo",
+                                    "Transformar dados em objetos",
+                                    "Converter classes em funções"
+                                ],
+                                correct: 0,
+                                explanation: "Encapsulamento consiste em proteger e controlar o acesso aos dados internos da classe."
                             },
                             {
-                                question: "O que significa 'otimização' no contexto de um PC novo?",
-                                options: ["Quebrar o computador", "Configurar para melhor performance e segurança", "Pintar o gabinete", "Trocar peças"],
+                                question: "Qual é o principal benefício da herança?",
+                                options: [
+                                    "Aumentar a velocidade do código",
+                                    "Permitir que uma classe reutilize e expanda outra classe",
+                                    "Criar mais variáveis",
+                                    "Melhorar o design visual"
+                                ],
                                 correct: 1,
-                                explanation: "Otimização envolve ajustar o sistema para melhor desempenho e estabilidade."
+                                explanation: "Herança permite criar classes que reaproveitam código de outras, facilitando a expansão e manutenção."
                             }
                         ]
                     }

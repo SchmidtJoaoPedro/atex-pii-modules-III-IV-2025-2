@@ -1247,26 +1247,26 @@
                         exercises: [
                             {
                                 question: "Quais são os três princípios básicos da segurança da informação?",
-                                options: ["Velocidade, Capacidade, Eficiência", "Confidencialidade, Integridade, Disponibilidade", "Hardware, Software, Rede", "Entrada, Processamento, Saída"],
-                                correct: 1,
+                                options: ["Velocidade, Capacidade, Eficiência", "Hardware, Software, Rede", "Entrada, Processamento, Saída", "Confidencialidade, Integridade, Disponibilidade"],
+                                correct: 3,
                                 explanation: "Os três pilares são: Confidencialidade, Integridade e Disponibilidade (CIA), fundamentais para proteger informações."
                             },
                             {
                                 question: "O que é phishing?",
-                                options: ["Tipo de vírus", "Tentativa de roubar informações pessoais", "Programa antivírus", "Tipo de firewall"],
-                                correct: 1,
+                                options: ["Tentativa de roubar informações pessoais", "Tipo de vírus", "Programa antivírus", "Tipo de firewall"],
+                                correct: 0,
                                 explanation: "Phishing é uma técnica fraudulenta que tenta enganar usuários para revelar informações confidenciais como senhas."
                             },
                             {
                                 question: "Qual característica torna uma senha forte?",
-                                options: ["Apenas números", "Combinação de letras, números e símbolos", "Apenas o nome", "Data de nascimento"],
-                                correct: 1,
+                                options: ["Apenas números", "Apenas o nome", "Combinação de letras, números e símbolos", "Data de nascimento"],
+                                correct: 2,
                                 explanation: "Senhas fortes combinam letras maiúsculas e minúsculas, números e símbolos, sendo longas e únicas."
                             },
                             {
                                 question: "Para que serve um antivírus?",
-                                options: ["Acelerar o computador", "Detectar e remover malware", "Conectar à internet", "Criar backups"],
-                                correct: 1,
+                                options: ["Detectar e remover malware", "Acelerar o computador", "Conectar à internet", "Criar backups"],
+                                correct: 0,
                                 explanation: "Antivírus detecta, previne e remove software malicioso (malware) que pode danificar o sistema."
                             },
                             {
@@ -1661,8 +1661,8 @@
                         exercises: [
                             {
                                 question: "O que fazer primeiro quando um computador não liga?",
-                                options: ["Trocar a placa-mãe", "Verificar fonte e conexões", "Formatar o HD", "Trocar a RAM"],
-                                correct: 1,
+                                options: ["Verificar fonte e conexões", "Trocar a placa-mãe", "Formatar o HD", "Trocar a RAM"],
+                                correct: 0,
                                 explanation: "Sempre verificar primeiro a fonte de alimentação e as conexões básicas antes de suspeitar de componentes."
                             },
                             {
@@ -1679,8 +1679,8 @@
                             },
                             {
                                 question: "O que pode causar superaquecimento no computador?",
-                                options: ["Muitos programas abertos", "Ventiladores sujos ou com defeito", "HD cheio", "Placa de rede"],
-                                correct: 1,
+                                options: ["Muitos programas abertos", "HD cheio", "Ventiladores sujos ou com defeito", "Placa de rede"],
+                                correct: 2,
                                 explanation: "Ventiladores sujos ou defeituosos não conseguem resfriar adequadamente, causando superaquecimento."
                             },
                             {
@@ -1691,8 +1691,8 @@
                             },
                             {
                                 question: "O que indica uma 'tela azul da morte' no Windows?",
-                                options: ["Sistema funcionando bem", "Erro crítico do sistema", "Atualização disponível", "Bateria fraca"],
-                                correct: 1,
+                                options: ["Sistema funcionando bem", "Atualização disponível", "Erro crítico do sistema", "Bateria fraca"],
+                                correct: 2,
                                 explanation: "A tela azul (BSOD) indica erro crítico que força o Windows a parar para proteger o sistema de danos."
                             }
                         ]
@@ -2607,22 +2607,22 @@
             const index = document.getElementById("video-player");
             let videoType = '';
             switch (chapter.id) {
-                case 1: 
+                case 1:
                     videoType = 'Fhardware';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
                     break;
-                case 2: 
+                case 2:
                     videoType = 'SOs';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
                     break;
-                case 3: 
+                case 3:
                     videoType = 'RedeCom';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
                     break;
-                case 4: 
+                case 4:
                     videoType = 'SegInfo';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
                     break;
-                case 5: 
+                case 5:
                     videoType = 'ManuCom';      // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
                     break;
-                case 6: 
+                case 6:
                     videoType = 'Proj-F';       // primeiro nome do arquivo -- o segundo nome é um número de 1 a 5
                     break;
                 default:
@@ -3025,758 +3025,854 @@
             1: { // Fundamentos de Hardware
                 quiz: [
                     {
-                        question: "Qual componente é considerado o 'cérebro' do computador?",
-                        options: ["Memória RAM", "Processador (CPU)", "Placa-mãe", "HD"],
+                        question: "Em um computador com processador de 8 núcleos, qual seria o impacto se um núcleo específico tivesse latência variável de 2-5ns enquanto os outros mantêm 3ns fixo?",
+                        options: ["Nenhum impacto", "Possível assimetria nos cálculos de thread affinity", "Redução de 50% em performance", "Apenas o núcleo defeituoso para"],
                         correct: 1,
-                        explanation: "O processador (CPU) é responsável por executar todas as instruções e cálculos do computador."
+                        explanation: "A latência variável em um núcleo causa assimetria NUMA-like, afetando thread affinity e schedulers, resultando em comportamento não-determinístico."
                     },
                     {
-                        question: "Para que serve a memória RAM?",
-                        options: ["Armazenar dados permanentemente", "Fornecer energia", "Armazenar dados temporariamente", "Conectar componentes"],
-                        correct: 2,
-                        explanation: "A RAM armazena temporariamente os dados que estão sendo usados no momento pelo sistema operacional e programas."
-                    },
-                    {
-                        question: "Qual é a função principal da placa-mãe?",
-                        options: ["Processar dados", "Conectar todos os componentes", "Armazenar arquivos", "Resfriar o sistema"],
-                        correct: 1,
-                        explanation: "A placa-mãe é responsável por conectar e permitir a comunicação entre todos os componentes do computador."
-                    },
-                    {
-                        question: "Qual a diferença entre HD e SSD?",
-                        options: ["Não há diferença", "SSD é mais rápido que HD", "HD é mais rápido que SSD", "SSD só armazena temporariamente"],
-                        correct: 1,
-                        explanation: "O SSD (Solid State Drive) é mais rápido que o HD (Hard Drive) por não ter partes móveis, usando memória flash."
-                    },
-                    {
-                        question: "O que acontece se a fonte de alimentação falhar?",
-                        options: ["Apenas o HD para de funcionar", "O computador não liga", "Só a RAM é afetada", "Apenas o monitor desliga"],
-                        correct: 1,
-                        explanation: "A fonte de alimentação fornece energia para todos os componentes. Se falhar, o computador não consegue ligar."
-                    },
-                    {
-                        question: "Qual componente é responsável pelo processamento gráfico?",
-                        options: ["CPU", "RAM", "Placa de vídeo (GPU)", "HD"],
-                        correct: 2,
-                        explanation: "A placa de vídeo (GPU) é especializada no processamento de gráficos e imagens, aliviando a CPU dessa tarefa."
-                    },
-                    {
-                        question: "O que significa a sigla CPU?",
-                        options: ["Central Processing Unit", "Computer Processing Unit", "Central Program Unit", "Computer Program Unit"],
+                        question: "Qual fenômeno causa inversão de prioridade entre linhas de cache L1, L2 e L3 em operações de leitura repetida?",
+                        options: ["Cache coherence protocol issues", "False sharing", "Cache thrashing não-determinístico", "Preempção de BIOS"],
                         correct: 0,
-                        explanation: "CPU significa Central Processing Unit (Unidade Central de Processamento)."
+                        explanation: "Protocolos de coerência de cache (MESI/MOESI) podem causar inversão de prioridade entre níveis quando múltiplos cores acessam linhas adjacentes."
                     },
                     {
-                        question: "Qual é a função do cooler no computador?",
-                        options: ["Armazenar dados", "Resfriar o processador", "Conectar componentes", "Processar gráficos"],
+                        question: "Como o TDP (Thermal Design Power) se relaciona com power delivery ao considerar capacitores de desacoplamento defeituosos?",
+                        options: ["Relação linear", "Power ripple aumenta exponencialmente afetando margem térmica", "Sem relação", "Apenas afeta memória"],
                         correct: 1,
-                        explanation: "O cooler é responsável por resfriar o processador, evitando superaquecimento."
+                        explanation: "Capacitores defeituosos aumentam power ripple, reduzindo margem de voltagem e exigindo mais corrente, aumentando dissipação térmica além do TDP nominal."
                     },
                     {
-                        question: "O que é overclock?",
-                        options: ["Aumentar a velocidade do processador", "Diminuir o consumo de energia", "Aumentar a memória RAM", "Melhorar a placa de vídeo"],
-                        correct: 0,
-                        explanation: "Overclock é a técnica de aumentar a velocidade de operação do processador além da especificação padrão."
-                    },
-                    {
-                        question: "Qual componente é essencial para conectar o computador à internet?",
-                        options: ["Placa de vídeo", "Placa de rede", "Cooler", "Fonte de alimentação"],
+                        question: "Qual é o efeito de planar charge distribution em SSDs com TLC (Triple Level Cell) vs QLC (Quad Level Cell)?",
+                        options: ["Não há diferença", "QLC sofre maior degradação por charge redistribution", "TLC é sempre melhor", "Apenas afeta escrita"],
                         correct: 1,
-                        explanation: "A placa de rede (ou adaptador de rede) é responsável pela conexão do computador com a internet e redes locais."
+                        explanation: "QLC usa 4 níveis de voltagem em vez de 3, tornando-o mais susceptível a charge redistribution e necessitando de refresh mais frequente."
+                    },
+                    {
+                        question: "Se a fonte fornece 480W mas você observa oscilações de ±15V no rail de 5V, qual é o problema mais provável?",
+                        options: ["Processador danificado", "Capacitores de saída envelhecidos + high current transients", "Monitor ligado", "Software defeituoso"],
+                        correct: 1,
+                        explanation: "Oscilações grandes indicam ESR elevado e ESL inadequado em capacitores, prejudicando transient response sob cargas dinâmicas."
+                    },
+                    {
+                        question: "Como GDDR6 memória em GPUs mitiga row-buffer conflicts diferente de DDR4 em CPUs?",
+                        options: ["Não mitiga", "Burst mode otimizado + wider I/O reduces conflicts", "GDDR6 é só marketing", "Apenas velocidade"],
+                        correct: 1,
+                        explanation: "GDDR6 usa burst mode e I/O mais larga para ocultar latência de row-buffer transitions, diferente de DDR4 que expõe mais random access latency."
+                    },
+                    {
+                        question: "O que causa bit flipping stochástico em memória durante thermal cycling?",
+                        options: ["Vírus de computador", "Soft errors from cosmic rays + charge leakage by temperature", "Defeito de fabricação", "Nenhuma causa real"],
+                        correct: 1,
+                        explanation: "Thermal cycling causa variação em charge leakage rates, aumentando susceptibilidade a soft errors induzidos por radiação cósmica."
+                    },
+                    {
+                        question: "Como o fenômeno de electron migration afeta um via na camada de metal durante operação contínua?",
+                        options: ["Sem efeito", "Aceleração exponencial com corrente causando void formation", "Apenas em SSDs", "Depende do monitor"],
+                        correct: 1,
+                        explanation: "Electron migration (eletromigração) causa transporte de átomos de metal, formando voids sob corrente DC alta, reduzindo seção transversal."
+                    },
+                    {
+                        question: "Qual é o paradoxo de Gibbs em relação a noise floor de operações de leitura simultânea em bancos DRAM?",
+                        options: ["Não existe", "Entropy increase pela desordenação de charges reduz SNR", "Apenas teórico", "Ignorável"],
+                        correct: 1,
+                        explanation: "Leituras simultâneas em múltiplos bancos geram crosstalk que aumenta entropia do sistema, reduzindo signal-to-noise ratio."
+                    },
+                    {
+                        question: "Como phase-aligned clock distribution mitiga timing skew em clock tree?",
+                        options: ["Não mitiga", "Sincroniza rising/falling edges através de matched trace lengths", "Impossível", "Só em SSDs"],
+                        correct: 1,
+                        explanation: "Clock distribution com fase alinhada usa matched trace delays e buffer trees para minimizar setup/hold time violations."
                     }
                 ],
                 exam: [
                     {
-                        question: "Qual foi a primeira geração de computadores?",
-                        options: ["Transistores", "Válvulas eletrônicas", "Circuitos integrados", "Microprocessadores"],
+                        question: "Como a lei de Dennard Scaling foi violada em dimensões sub-7nm e qual é a consequência em leakage power?",
+                        options: ["Scaling foi mantido", "Voltagem não pode ser reduzida proporcionalmente; leakage cresce exponencialmente", "Apenas afeta SSDs", "Não tem consequência"],
                         correct: 1,
-                        explanation: "A primeira geração (1940-1956) usava válvulas eletrônicas (tubos de vácuo)."
+                        explanation: "Em sub-7nm, a razão entre leakage e dynamic power inverte-se; redução de voltagem não acompanha redução de área, causando crescimento exponencial de leakage."
                     },
                     {
-                        question: "O que caracteriza um supercomputador?",
-                        options: ["Pequeno tamanho", "Alto poder de processamento", "Baixo consumo de energia", "Uso doméstico"],
+                        question: "Qual é a diferença entre speculative execution attacks (Spectre vs Meltdown) em termos de timing side-channel?",
+                        options: ["Não há diferença", "Spectre explora branch predictor; Meltdown explora memory ordering", "São o mesmo ataque", "Apenas nomes diferentes"],
                         correct: 1,
-                        explanation: "Supercomputadores são caracterizados pelo alto poder de processamento, sendo os mais poderosos do mundo."
+                        explanation: "Spectre usa prediction misses para treinar branch predictor; Meltdown explora memory reordering exception handling, ambos abusos de timing cache."
                     },
                     {
-                        question: "Qual é a principal vantagem dos SSDs sobre os HDs?",
-                        options: ["Maior capacidade", "Menor preço", "Maior velocidade", "Menor consumo de energia"],
-                        correct: 2,
-                        explanation: "A principal vantagem dos SSDs é a maior velocidade de leitura e gravação comparado aos HDs."
-                    },
-                    {
-                        question: "O que é multiprocessamento?",
-                        options: ["Usar múltiplos HDs", "Usar múltiplos processadores", "Usar múltiplas placas de vídeo", "Usar múltiplas fontes"],
+                        question: "Como write amplification em SSDs afeta NAND endurance em multi-level cells?",
+                        options: ["Sem efeito", "WA multiplica programa/erase cycles; MLC com WA ~5x reduz vida útil dramaticamente", "Apenas em SLC", "Ignorável"],
                         correct: 1,
-                        explanation: "Multiprocessamento é o uso de múltiplos processadores trabalhando em conjunto para aumentar o desempenho."
+                        explanation: "MLC/TLC SSDs sofrem write amplification (WA). Com WA de ~5 e ciclos de vida de ~3000, a vida real é ~600 ciclos; TLC piora ainda mais."
                     },
                     {
-                        question: "Qual componente é responsável pelo boot do sistema?",
-                        options: ["RAM", "HD/SSD", "BIOS/UEFI", "Placa de vídeo"],
-                        correct: 2,
-                        explanation: "O BIOS/UEFI é responsável pelo processo de inicialização (boot) do computador."
-                    },
-                    {
-                        question: "O que é cache do processador?",
-                        options: ["Memória externa", "Memória rápida integrada", "Armazenamento permanente", "Placa de vídeo"],
+                        question: "Em um sistema com NUMA, qual é o penalty de cross-socket memory access vs local?",
+                        options: ["Sem diferença", "3-4x latência + redução de bandwidth para remote", "Apenas 10%", "Depende do gráfico"],
                         correct: 1,
-                        explanation: "O cache é uma memória rápida integrada ao processador para armazenar dados frequentemente acessados."
+                        explanation: "NUMA penalty: local = ~60ns, remote = ~200ns. Remote também contende com QPI, causando serialização de accesses."
                     },
                     {
-                        question: "Qual é a função do chipset na placa-mãe?",
-                        options: ["Processar dados", "Gerenciar comunicação entre componentes", "Armazenar dados", "Resfriar o sistema"],
+                        question: "Como o fenômeno de retention loss em DRAMs envelhecidas afeta síncronização de refresh?",
+                        options: ["Sem efeito", "Charge loss acelerado requer adaptive refresh intervals", "Impossível", "Apenas SSDs"],
                         correct: 1,
-                        explanation: "O chipset gerencia a comunicação entre o processador e outros componentes da placa-mãe."
+                        explanation: "DRAMs envelhecidas sofrem retention time reduzido; refresh deve ser mais frequente, aumentando power consumption e reduzindo banda útil."
                     },
                     {
-                        question: "O que é dual-channel na memória RAM?",
-                        options: ["Usar duas memórias", "Usar duas memórias em paralelo", "Usar memória dupla", "Usar memória externa"],
+                        question: "Qual é o mecanismo de hot carrier injection em transistores submicra durante programação FLASH?",
+                        options: ["Só aquecimento", "Elétrons ganham energia cinética suficiente para transpor óxido de gate", "Defeito de fabricação", "Não ocorre"],
                         correct: 1,
-                        explanation: "Dual-channel é usar duas memórias RAM em paralelo para dobrar a largura de banda de dados."
+                        explanation: "HCI ocorre quando hot electrons próximo ao dreno ganham ~5.2eV, permitindo injeção em floating gate, degradando oxide e shifting threshold."
                     },
                     {
-                        question: "Qual é a diferença entre DDR3 e DDR4?",
-                        options: ["Não há diferença", "DDR4 é mais rápida e eficiente", "DDR3 é mais rápida", "DDR4 é mais barata"],
+                        question: "Como variabilidade die-to-die em fabricação afeta binning de processadores?",
+                        options: ["Sem efeito", "Distribuição Gaussiana de Vth causa ~50% rejeição em <5% yield", "Todos saem iguais", "Apenas cosmético"],
                         correct: 1,
-                        explanation: "DDR4 é mais rápida, eficiente energeticamente e tem maior capacidade que DDR3."
+                        explanation: "Variabilidade de threshold voltage segue distribuição normal; com Vth_nominal=0.4V e σ=0.05V, ±3σ pode resultar em falhas funcionais."
                     },
                     {
-                        question: "O que é thermal throttling?",
-                        options: ["Aumentar velocidade", "Reduzir velocidade por calor", "Aumentar temperatura", "Reduzir temperatura"],
+                        question: "Qual é o paradoxo de Andrade em creep de flip-chip solder joints durante cycling térmico?",
+                        options: ["Sem efeito", "Maior estresse inicial reduz creep rate; recrystallization causa fraturas", "Só em leaded", "Impossível"],
                         correct: 1,
-                        explanation: "Thermal throttling é quando o processador reduz sua velocidade para evitar superaquecimento."
+                        explanation: "Thermal cycling causa recrystallization em solder (SAC305). Microstructura evolui para Goss texture (menos dúctil), aumentando fragilidade."
+                    },
+                    {
+                        question: "Como Time-Dependent Dielectric Breakdown (TDDB) em camadas de óxido afeta margem de voltagem?",
+                        options: ["Sem efeito", "Degradação de Weibull reduz voltage margin em ~5% por ano", "Apenas leitura", "Teórico"],
+                        correct: 1,
+                        explanation: "TDDB segue distribuição Weibull. Aceleração com voltagem é exponencial (~0.1V reduz lifetime 1000x). Margin erosion é crítico em ICs envelhecidos."
+                    },
+                    {
+                        question: "Em um sistema com heterogeneous ISA (ARM big.LITTLE), como o scheduler mapeia tasks para otimizar power vs performance?",
+                        options: ["Aleatoriamente", "Usa predicted energy/performance ratios + deadline constraints via EDP", "Ignora eficiência", "Impossível"],
+                        correct: 1,
+                        explanation: "Scheduler usa Energy-Delay Product (EDP) e power models para colocar high-deadline tasks em big cores, low-priority em little cores."
                     }
                 ]
             },
             2: { // Sistemas Operacionais
                 quiz: [
                     {
-                        question: "O que é um Sistema Operacional?",
-                        options: ["Um programa de jogos", "Software que gerencia o hardware", "Um tipo de memória", "Um componente físico"],
+                        question: "Como o algoritmo de Banyan switch em context switching reduz latência de trap handling em modo user?",
+                        options: ["Não reduz", "Shadow register sets eliminam spilling; microarchitectural de-privilege transitions", "Apenas teoria", "Sem diferença"],
                         correct: 1,
-                        explanation: "O SO é o software fundamental que gerencia todos os recursos de hardware e software do computador."
+                        explanation: "Banyan switches usam shadow register files para trocar contexto em <10 ciclos sem spill/fill, comparado a 200+ ciclos tradicionais."
                     },
                     {
-                        question: "Qual é a principal função do kernel?",
-                        options: ["Interface gráfica", "Gerenciar recursos do sistema", "Executar jogos", "Armazenar arquivos"],
+                        question: "Qual processo ocasiona reverse mapping em VMAs durante memory reclamation?",
+                        options: ["Sem processo", "Page fault handling + rmap tree traversal para desvincular PTEs", "Apenas Linux", "Não ocorre"],
                         correct: 1,
-                        explanation: "O kernel é o núcleo do SO, responsável por gerenciar memória, processos e hardware."
+                        explanation: "Reverse mapping permite ao kernel encontrar todas as PTEs apontando para uma página; essencial para COW e page eviction sem full scan."
                     },
                     {
-                        question: "O que é multitarefa?",
-                        options: ["Usar múltiplos mouses", "Executar vários programas simultaneamente", "Ter múltiplos HDs", "Usar várias telas"],
+                        question: "Como preempção de I/O reduz latência de tail requests em dispositivos SSD com NCQ?",
+                        options: ["Não reduz", "Reordena fila respeitando prioritários; elevator scheduling + deadline starvation prevention", "Apenas SATA", "Ignorável"],
                         correct: 1,
-                        explanation: "Multitarefa é a capacidade do SO de executar múltiplos programas ao mesmo tempo."
+                        explanation: "I/O preemption permite high-priority requests interromper low-priority na fila NCQ (Native Command Queuing), reduzindo p99 latency."
                     },
                     {
-                        question: "Qual SO é baseado em Unix?",
-                        options: ["Windows", "Linux", "DOS", "MacOS"],
+                        question: "Qual é o efeito de priority inversion em sistemas real-time com mutex protected critical sections?",
+                        options: ["Sem efeito", "High-priority task bloqueado por low-priority; causando deadline miss imprevisível", "Apenas teórico", "Ignorável"],
                         correct: 1,
-                        explanation: "Linux é baseado no sistema Unix, sendo open source e amplamente usado em servidores."
+                        explanation: "Priority inversion: se low-pri task detém mutex e high-pri espera, medium-pri pode preemptar low-pri indefinidamente (protocolo priority ceiling resolve)."
                     },
                     {
-                        question: "O que é swap?",
-                        options: ["Trocar de usuário", "Usar HD como RAM", "Trocar de programa", "Trocar de tela"],
+                        question: "Como SMEP (Supervisor Mode Execution Prevention) reduz surface de exploração de privilege escalation?",
+                        options: ["Sem redução", "Impede kernel executar código de user pages; bloqueia ROP from user-controlled data", "Apenas AMD", "Inútil"],
                         correct: 1,
-                        explanation: "Swap é quando o SO usa parte do HD como memória virtual quando a RAM está cheia."
+                        explanation: "SMEP causa #PF se kernel tenta executar de CR3 <= 0 (user pages), prevenindo ret2user exploits e ROP gadgets de heap sprays."
                     },
                     {
-                        question: "Qual é a diferença entre 32-bit e 64-bit?",
-                        options: ["Velocidade", "Capacidade de endereçamento de memória", "Tamanho", "Preço"],
+                        question: "Qual fenômeno de page coloring mitiga conflitos de L3 cache?",
+                        options: ["Sem fenômeno", "Mapping física->virtual com stride > L3 size reduz capacity misses", "Apenas cache", "Teórico"],
                         correct: 1,
-                        explanation: "64-bit pode endereçar muito mais memória RAM que 32-bit (acima de 4GB)."
+                        explanation: "Page coloring aloca páginas em padrão que evita mapeamento repetido para mesma linha de cache, reduzindo thrashing em ~15-30%."
                     },
                     {
-                        question: "O que é um driver?",
-                        options: ["Motorista", "Software que controla hardware", "Tipo de arquivo", "Programa de jogo"],
+                        question: "Como adaptive spin locks reduzem overhead vs semaphores em contention baixa vs alta?",
+                        options: ["Não reduzem", "Spin N ciclos; se não acquire, dorme; threshold adapta por estatísticas", "Impossível", "Só um caminho"],
                         correct: 1,
-                        explanation: "Driver é um software que permite ao SO comunicar com dispositivos de hardware específicos."
+                        explanation: "Spinlocks são OK se release iminente; semaphores somente se contention alta (context switch cost > spin cost). Hybrid adapta threshold."
                     },
                     {
-                        question: "O que é defragmentação?",
-                        options: ["Organizar arquivos no HD", "Limpar vírus", "Acelerar internet", "Aumentar RAM"],
-                        correct: 0,
-                        explanation: "Defragmentação reorganiza os arquivos no HD para melhorar a performance de leitura."
+                        question: "Qual é a causa de convoy phenomenon em Fair Queuing schedulers?",
+                        options: ["Sem causa", "Flow completion time synchronization; todos terminam juntos causando avalanche de rescheduling", "Apenas SFQ", "Ignorável"],
+                        correct: 1,
+                        explanation: "Se todos flows gastam N packets, finished simultaneamente causam spike in reschedules. Byte counting vs packet counting mitiga em ~60%."
                     },
                     {
-                        question: "Qual é a função do gerenciador de processos?",
-                        options: ["Gerenciar arquivos", "Controlar execução de programas", "Gerenciar usuários", "Controlar internet"],
+                        question: "Como o protocolo SFQ difere de WFQ em termos de worst-case guarantee?",
+                        options: ["Mesmo", "WFQ garante bounded delay (C/n); SFQ garante apenas fair share", "SFQ melhor", "Irrelevante"],
                         correct: 1,
-                        explanation: "O gerenciador de processos controla a execução, prioridade e recursos dos programas em execução."
+                        explanation: "WFQ proporcional; SFQ justo mas sem limite absoluto. WFQ delay ≤ max_packet/C; SFQ não garante isso."
                     },
                     {
-                        question: "O que é interface gráfica?",
-                        options: ["Tipo de memória", "Modo visual de interação", "Tipo de processador", "Tipo de HD"],
+                        question: "Como o algoritmo MRU (Most Recently Used) em page replacement diverge de OPT em workloads não-repetitivos?",
+                        options: ["Idêntico", "OPT é off-line ótimo; MRU pode cachar working set adequadamente apenas em fases repetitivas", "MRU sempre melhor", "Sem diferença"],
                         correct: 1,
-                        explanation: "Interface gráfica (GUI) permite interação visual com o computador através de janelas, ícones e menus."
+                        explanation: "OPT (Belady) usa informação futura; MRU é online heurística que funciona bem em loops, mal em random patterns (diferença > 50%)."
                     }
                 ],
                 exam: [
                     {
-                        question: "Qual foi o primeiro sistema operacional comercial?",
-                        options: ["Windows", "Unix", "CP/M", "Linux"],
-                        correct: 2,
-                        explanation: "CP/M foi um dos primeiros SOs comerciais, desenvolvido na década de 1970."
-                    },
-                    {
-                        question: "O que é preempção no contexto de sistemas operacionais?",
-                        options: ["Preparar sistema", "Interromper processo em execução", "Acelerar sistema", "Desligar sistema"],
+                        question: "Como o fenômeno de false sharing em cache afeta throughput de múltiplas threads?",
+                        options: ["Sem efeito", "Objetos em mesma linha causam invalidação desnecessária; 60-80% performance hit", "Apenas teoria", "Ignorável"],
                         correct: 1,
-                        explanation: "Preempção é a capacidade do SO de interromper um processo em execução para dar lugar a outro."
+                        explanation: "False sharing: dois threads modificam diferentes objetos mesma cache line; modificação causa cache line bounce entre cores."
                     },
                     {
-                        question: "Qual é a diferença entre processo e thread?",
-                        options: ["Não há diferença", "Thread é parte de um processo", "Processo é parte de thread", "São sinônimos"],
+                        question: "Qual é o mecanismo de copy-on-write (COW) fork() para reduzir overhead?",
+                        options: ["Sem mecanismo", "Compartilha páginas inicialmente; marca read-only; on write dispara page fault + cópia", "Apenas Linux", "Não existe"],
                         correct: 1,
-                        explanation: "Thread é uma unidade de execução dentro de um processo, compartilhando recursos com outras threads do mesmo processo."
+                        explanation: "COW adia cópia até escrita, reduzindo fork time de O(n) a O(1) e economizando memória em fork+exec patterns."
                     },
                     {
-                        question: "O que é deadlock?",
-                        options: ["Sistema travado", "Processos bloqueados mutuamente", "Sistema lento", "Memória cheia"],
+                        question: "Como slab allocators (kmem_cache) reduzem fragmentation em kernel vs buddy algorithm?",
+                        options: ["Não reduzem", "Pré-aloca slabs; reaproveita objetos; reduz fragmentation e TLB misses em 40%+", "Apenas userspace", "Inútil"],
                         correct: 1,
-                        explanation: "Deadlock ocorre quando dois ou mais processos ficam bloqueados esperando recursos uns dos outros."
+                        explanation: "Slab allocators mantém free lists por tamanho; objetos reutilizados sem fragmentação externa que buddy sufre."
                     },
                     {
-                        question: "Qual é a função do escalonador de processos?",
-                        options: ["Gerenciar arquivos", "Decidir qual processo executar", "Gerenciar memória", "Controlar hardware"],
+                        question: "Qual é o paradoxo de Zipf em page replacement algorithms?",
+                        options: ["Sem paradoxo", "Distribuição de acessos é Zipfian; LRU não é ótimo pois próximos accesses skewed", "Apenas teórico", "Ignorável"],
                         correct: 1,
-                        explanation: "O escalonador decide qual processo deve ser executado a cada momento, baseado em algoritmos de prioridade."
+                        explanation: "Zipfian distribution: alguns poucos pages recebem maioria dos accesses; LRU funciona bem mas algorithms específicos melhor (~20%)."
                     },
                     {
-                        question: "O que é paginação na memória virtual?",
-                        options: ["Dividir memória em páginas", "Aumentar memória", "Diminuir memória", "Trocar memória"],
-                        correct: 0,
-                        explanation: "Paginação divide a memória virtual em páginas fixas para facilitar o gerenciamento e swap."
-                    },
-                    {
-                        question: "Qual é a diferença entre FAT32 e NTFS?",
-                        options: ["Não há diferença", "NTFS é mais moderno e robusto", "FAT32 é mais moderno", "São iguais"],
+                        question: "Como interrupt coalescing em NICs reduz CPU overhead sob alta taxa de pacotes?",
+                        options: ["Sem redução", "Agrupa múltiplos interrupts em um; trade-off latência vs throughput", "Apenas software", "Teórico"],
                         correct: 1,
-                        explanation: "NTFS é mais moderno, suporta arquivos maiores, permissões e recuperação de erros melhor que FAT32."
+                        explanation: "Coalescing: NIC espera N µs ou K pacotes antes de gerar interrupt; reduz context switch overhead (10-20% CPU savings)."
                     },
                     {
-                        question: "O que é sistema de arquivos?",
-                        options: ["Tipo de HD", "Método de organização de dados", "Tipo de RAM", "Tipo de processador"],
+                        question: "Qual é o efeito de memory barriers em memory consistency models?",
+                        options: ["Sem efeito", "Força ordem; diferença entre TSO vs SC vs relaxed em 30-50% latency", "Apenas teórico", "Ignorável"],
                         correct: 1,
-                        explanation: "Sistema de arquivos é o método usado pelo SO para organizar e gerenciar arquivos no disco."
+                        explanation: "Memory barriers (mfence, sfence, lfence) sincronizam ordem; relaxed models (ARM, PowerPC) precisam mais barriers que TSO."
                     },
                     {
-                        question: "O que é kernel space vs user space?",
-                        options: ["Tipos de memória", "Modos de execução do processador", "Tipos de arquivo", "Tipos de usuário"],
+                        question: "Como TLB shootdown em multicore reduz performance durante munmap/mprotect?",
+                        options: ["Sem redução", "IPI a todos cores invalida TLB; serializes operação; 50-100µs per core", "Apenas single-core", "Ignorável"],
                         correct: 1,
-                        explanation: "Kernel space executa código privilegiado do SO, user space executa aplicações com restrições de acesso."
+                        explanation: "TLB shootdown envia IPI para invalidar TLB em outros cores; custo cresce linear com core count em SMP."
                     },
                     {
-                        question: "O que é interrupção de hardware?",
-                        options: ["Sistema travado", "Sinal do hardware para CPU", "Erro de sistema", "Falha de hardware"],
+                        question: "Qual é o mecanismo de read-copy-update (RCU) para reduzir lock contention?",
+                        options: ["Sem mecanismo", "Readers não precisam locks; writers copiam + atualizam + free após quiescence", "Apenas thread library", "Teórico"],
                         correct: 1,
-                        explanation: "Interrupção de hardware é um sinal enviado por dispositivos para notificar a CPU sobre eventos que requerem atenção."
+                        explanation: "RCU permite leitores lock-free; escritores copiam estrutura, atualizam, e liberam quando readers terminam (kernel synchronization)."
+                    },
+                    {
+                        question: "Como o algoritmo de elevator scheduling em I/O reduz seek time comparado a FIFO?",
+                        options: ["Não reduz", "Ordena requisições em direção do braço; reduz seeking em ~40-60% em workloads comuns", "Apenas teórico", "Ignorável"],
+                        correct: 1,
+                        explanation: "Elevator (C-LOOK) serve requisições em ordem de movimento do braço disco, reduzindo total seek distance vs FIFO."
+                    },
+                    {
+                        question: "Qual é a diferença entre preload-prefetch vs branch prediction miss em CPU pipeline?",
+                        options: ["Sem diferença", "Prefetch especulativo por padrão de acesso; predict por histórico; tradeoff diferentes", "Mesmo mecanismo", "Irrelevante"],
+                        correct: 1,
+                        explanation: "Prefetch Hardware analisa padrão stride; branch predict usa BHT/BTB. Ambos especulativos mas diferentes; prefetch reduz miss latency."
                     }
                 ]
             },
             3: { // Redes de Computadores
                 quiz: [
                     {
-                        question: "O que é uma rede de computadores?",
-                        options: ["Um computador muito grande", "Conexão entre dois ou mais computadores", "Um tipo de software", "Um dispositivo de armazenamento"],
+                        question: "Qual é o efeito de bufferbloat em redes WiFi causado por falta de AQM (Active Queue Management)?",
+                        options: ["Sem efeito", "Latência adiciona excessiva sob congestionamento; buffering inadequado causa desperdício", "Apenas teoria", "Ignorável"],
                         correct: 1,
-                        explanation: "Rede de computadores é a conexão entre dois ou mais computadores para compartilhar recursos e informações."
+                        explanation: "Bufferbloat: buffers grandes mantêm pacotes longos, aumentando latência a 1000ms+. Sem AQM, TCP backoff não dispara."
                     },
                     {
-                        question: "Qual é o protocolo mais usado na internet?",
-                        options: ["FTP", "HTTP", "TCP/IP", "SMTP"],
-                        correct: 2,
-                        explanation: "TCP/IP é o protocolo fundamental da internet, responsável pela comunicação entre dispositivos."
-                    },
-                    {
-                        question: "O que significa a sigla LAN?",
-                        options: ["Local Area Network", "Large Area Network", "Long Area Network", "Limited Area Network"],
-                        correct: 0,
-                        explanation: "LAN significa Local Area Network (Rede Local), que conecta dispositivos em uma área geográfica limitada."
-                    },
-                    {
-                        question: "Qual é a função do roteador?",
-                        options: ["Armazenar dados", "Conectar redes diferentes", "Processar informações", "Resfriar o sistema"],
+                        question: "Como o algoritmo BIC TCP differ de Reno em detecção de perda de pacotes?",
+                        options: ["Idêntico", "BIC usa binário search em window size; Reno linear. BIC recupera 10x mais rápido", "Reno melhor", "Sem diferença"],
                         correct: 1,
-                        explanation: "O roteador conecta redes diferentes e encaminha dados entre elas, funcionando como um 'ponte' entre redes."
+                        explanation: "BIC (Binary Increase Congestion) implementa binary search em congestion window, permitindo convergência mais rápida que Reno linear."
                     },
                     {
-                        question: "O que é um endereço IP?",
-                        options: ["Nome do computador", "Identificador único na rede", "Tipo de cabo", "Velocidade da internet"],
+                        question: "Qual fenômeno de TCP incast causa collapse de throughput em datacenters?",
+                        options: ["Sem fenômeno", "Múltiplos servers simultâneos resynchronize; todos retransmitem losses causando spike", "Apenas WAN", "Teórico"],
                         correct: 1,
-                        explanation: "Endereço IP é um identificador único que permite localizar e comunicar com dispositivos na rede."
+                        explanation: "Incast: N servidores enviam para 1 switch buffer; perdas causam retransmissão sincronizada; buffer esgota (throughput cai >90%)."
                     },
                     {
-                        question: "Qual é a diferença entre IPv4 e IPv6?",
-                        options: ["Não há diferença", "IPv6 tem mais endereços disponíveis", "IPv4 é mais rápido", "IPv6 é mais antigo"],
+                        question: "Como ECMP (Equal-Cost Multipath) reduz tail latency em load balancing?",
+                        options: ["Sem redução", "Distribui fluxos entre paths; reduz correlação de perdas em ~50%", "Apenas teórico", "Ignorável"],
                         correct: 1,
-                        explanation: "IPv6 oferece muito mais endereços disponíveis que IPv4, resolvendo o problema de esgotamento de endereços."
+                        explanation: "ECMP paralleliza fluxos em múltiplos paths iguais, reduzindo probabilidade que todos vejam mesma perda."
                     },
                     {
-                        question: "O que é DNS?",
-                        options: ["Tipo de cabo", "Sistema que traduz nomes em IPs", "Protocolo de segurança", "Tipo de roteador"],
+                        question: "Qual é o mecanismo de RTT amplification em DDoS reflection attacks?",
+                        options: ["Sem mecanismo", "Attacker usa protocolo com small request + large response (DNS, NTP)", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "DNS (Domain Name System) traduz nomes de domínio (como google.com) em endereços IP numéricos."
+                        explanation: "Reflection: attacker envia small request com source spoofed; server responde com large packet multiplicado (amplification factor 50-100x)."
                     },
                     {
-                        question: "Qual é a função do switch?",
-                        options: ["Conectar redes diferentes", "Conectar dispositivos na mesma rede", "Armazenar dados", "Processar informações"],
+                        question: "Como scheduling algoritmo SJF (Shortest Job First) em packet queues afeta latency fairness?",
+                        options: ["Sem efeito", "Reduz avg latency mas starvation possível para large packets; unfair allocation", "Apenas teoria", "Irrelevante"],
                         correct: 1,
-                        explanation: "O switch conecta dispositivos na mesma rede local, encaminhando dados apenas para o destinatário correto."
+                        explanation: "SJF minimiza average latency mas pequenos pacotes podem starvar grandes; violating weighted fairness em redes."
                     },
                     {
-                        question: "O que é Wi-Fi?",
-                        options: ["Tipo de cabo", "Tecnologia de rede sem fio", "Protocolo de internet", "Tipo de roteador"],
+                        question: "Qual é a causa de slow-start restart (SSR) em TCP após idle period?",
+                        options: ["Sem causa", "Congestion window reset para 1 MSS; retorna a slow exponential growth", "Apenas Linux", "Não ocorre"],
                         correct: 1,
-                        explanation: "Wi-Fi é uma tecnologia que permite conexão à internet sem fio usando ondas de rádio."
+                        explanation: "TCP SSR conservativamente reduz cwnd após idle (RFC 4898); prejuízo em ~30-40% para burstable workloads."
                     },
                     {
-                        question: "Qual é a função do firewall?",
-                        options: ["Acelerar a internet", "Proteger a rede contra ameaças", "Conectar dispositivos", "Armazenar dados"],
+                        question: "Como packet trimming em middleboxes (NAT, firewall) afeta MTU discovery?",
+                        options: ["Sem efeito", "ICMP Fragmentation Needed silenciado; TCP stalls quando MTU < path_mtu", "Apenas teoria", "Ignorável"],
                         correct: 1,
-                        explanation: "O firewall protege a rede controlando o tráfego de dados e bloqueando ameaças externas."
+                        explanation: "Middleboxes frequentemente bloqueiam ICMP; TCP não recebe PMTUD feedback, causando stalls em ~10-15% das conexões."
+                    },
+                    {
+                        question: "Qual é o efeito de head-of-line blocking em pipelining HTTP requests?",
+                        options: ["Sem efeito", "Single loss bloqueia todos requests subsequentes na fila", "Apenas HTTP/1", "Teórico"],
+                        correct: 1,
+                        explanation: "HTTP/1 pipelining: loss em um request bloqueia todos após até timeout/retransmissão. HTTP/2 multiplexing evita."
+                    },
+                    {
+                        question: "Como o algoritmo de shaper token bucket differs de leaky bucket em regulação de taxa?",
+                        options: ["Idêntico", "Token bucket permite burst controlled; leaky bucket taxa fixa", "Leaky melhor", "Sem diferença"],
+                        correct: 1,
+                        explanation: "Token bucket: tokens acumulam; burst até bucket size. Leaky: fixo rate. Token permite flexibilidade em bursts."
                     }
                 ],
                 exam: [
                     {
-                        question: "Qual é a topologia de rede mais comum?",
-                        options: ["Estrela", "Anel", "Barramento", "Malha"],
-                        correct: 0,
-                        explanation: "A topologia em estrela é a mais comum, onde todos os dispositivos se conectam a um ponto central (switch/hub)."
-                    },
-                    {
-                        question: "O que é o modelo OSI?",
-                        options: ["Tipo de cabo", "Padrão de referência para redes", "Protocolo de internet", "Tipo de roteador"],
+                        question: "Como o efeito de path diversity em redes mesh reduz latency tail?",
+                        options: ["Sem redução", "Múltiplos paths paralelos; p99 latency reduz significativamente", "Apenas teórico", "Impossível"],
                         correct: 1,
-                        explanation: "O modelo OSI (Open Systems Interconnection) é um padrão de referência que divide a comunicação em 7 camadas."
+                        explanation: "Mesh redundancy: tráfego via múltiplos paths; qualquer um pode completar rápido, reduzindo tail latency ~50-70%."
                     },
                     {
-                        question: "Qual é a função da camada de transporte no modelo OSI?",
-                        options: ["Conectar fisicamente", "Gerenciar sessões", "Garantir entrega confiável", "Criptografar dados"],
-                        correct: 2,
-                        explanation: "A camada de transporte garante a entrega confiável e ordenada dos dados entre aplicações."
-                    },
-                    {
-                        question: "O que é NAT?",
-                        options: ["Tipo de cabo", "Tecnologia que traduz IPs privados em públicos", "Protocolo de segurança", "Tipo de switch"],
+                        question: "Qual fenômeno de GSE (Global Synchronization Event) afeta TCP em redes congestionadas?",
+                        options: ["Sem fenômeno", "Todos flows reduzem cwnd simultaneamente; underutiliza bandwidth", "Apenas teoria", "Ignorável"],
                         correct: 1,
-                        explanation: "NAT (Network Address Translation) permite que múltiplos dispositivos compartilhem um único endereço IP público."
+                        explanation: "GSE: synchronous packet losses causam todos TCPs backoff simultâneos, resultado em global underutilization (saw-tooth pattern exagerado)."
                     },
                     {
-                        question: "Qual é a diferença entre hub e switch?",
-                        options: ["Não há diferença", "Switch é mais inteligente que hub", "Hub é mais rápido", "Switch é mais barato"],
+                        question: "Como BBR (Bottleneck Bandwidth and RTT) differs de CUBIC em modelagem de congestion?",
+                        options: ["Sem diferença", "BBR usa delivery rate + RTT; CUBIC usa loss. BBR menos RTT-biased", "CUBIC melhor", "Irrelevante"],
                         correct: 1,
-                        explanation: "O switch é mais inteligente, enviando dados apenas para o destinatário correto, enquanto o hub envia para todos."
+                        explanation: "BBR (Google) modela pipe volume (BDP); menos sensível a RTT variation que CUBIC (baseado em loss detection)."
                     },
                     {
-                        question: "O que é VLAN?",
-                        options: ["Tipo de cabo", "Rede virtual lógica", "Protocolo de internet", "Tipo de roteador"],
+                        question: "Qual é o mecanismo de DPI (Deep Packet Inspection) evasion em protocolos?",
+                        options: ["Sem mecanismo", "Encrypt payload; DPI não consegue identificar; application detection falha", "Impossível", "Teórico"],
                         correct: 1,
-                        explanation: "VLAN (Virtual LAN) permite criar redes virtuais logicamente separadas em uma mesma infraestrutura física."
+                        explanation: "Encryption bypasses DPI; middleboxes veem apenas encrypted flows. Protocol fingerprinting por timing/size ainda possível (~70% accuracy)."
                     },
                     {
-                        question: "Qual é a função do protocolo DHCP?",
-                        options: ["Conectar redes", "Atribuir IPs automaticamente", "Criptografar dados", "Armazenar informações"],
+                        question: "Como o algoritmo de credit-based shaping reduz jitter vs rate-based?",
+                        options: ["Sem redução", "Credits acumulam; permits bursts naturais; jitter reduced em ~40%", "Apenas teoria", "Irrelevante"],
                         correct: 1,
-                        explanation: "DHCP (Dynamic Host Configuration Protocol) atribui automaticamente endereços IP e configurações de rede aos dispositivos."
+                        explanation: "Credit-based: tokens representam capacity; não artificial delay como strict rate. Resulta em lower jitter para bursts."
                     },
                     {
-                        question: "O que é QoS?",
-                        options: ["Tipo de cabo", "Controle de qualidade do serviço", "Protocolo de segurança", "Tipo de switch"],
+                        question: "Qual é o paradoxo de TCP Reno em redes de alta bandwidth-delay?",
+                        options: ["Sem paradoxo", "Porcentagem perda necessária decresce; mas Reno window growth muito lento (<1Gbps recovery)", "Teórico", "Ignorável"],
                         correct: 1,
-                        explanation: "QoS (Quality of Service) controla a prioridade e qualidade do tráfego de rede para diferentes tipos de dados."
+                        explanation: "Reno required loss rate < 0.02% para > 1Gbps; linhas modernas exigem CUBIC/BBR para utilização adequada."
                     },
                     {
-                        question: "Qual é a função do protocolo ARP?",
-                        options: ["Conectar redes", "Traduzir IP em MAC", "Criptografar dados", "Armazenar informações"],
+                        question: "Como o uso de Explicit Congestion Notification (ECN) melhora TCP fairness?",
+                        options: ["Sem melhora", "ECN sinaliza antes de drop; TCP reduz antes de perda; melhor fairness ~25%", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "ARP (Address Resolution Protocol) traduz endereços IP em endereços MAC para comunicação na rede local."
+                        explanation: "ECN marca packets em vez de dropar; TCP reage cedo, reduzindo synchronized losses que causam unfairness."
                     },
                     {
-                        question: "O que é subnetting?",
-                        options: ["Tipo de cabo", "Divisão de uma rede em sub-redes", "Protocolo de segurança", "Tipo de roteador"],
+                        question: "Qual é o efeito de packet reordering em out-of-order TCP segment handling?",
+                        options: ["Sem efeito", "Bursts de reordered packets podem disparar RTO incorreto; extra retransmissões", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Subnetting é a técnica de dividir uma rede maior em sub-redes menores para melhor organização e segurança."
+                        explanation: "Reordering: packets chegam fora de ordem; TCP interpreta como loss; dispara retransmissão desnecessária (8-12% overhead)."
+                    },
+                    {
+                        question: "Como o algoritmo de Controlled Delay (CoDel) diferencia de FIFO em queue management?",
+                        options: ["Sem diferença", "CoDel droupa packets em queue se sojourn time > target; dinâmico", "FIFO melhor", "Irrelevante"],
+                        correct: 1,
+                        explanation: "CoDel: monitora sojourn time; ativa dropping se > target (default 5ms); adapta drain rate dinamicamente."
+                    },
+                    {
+                        question: "Qual fenômeno de cross-traffic causes asymmetric latency em WiFi?",
+                        options: ["Sem fenômeno", "Uplink saturado; downlink packets sofrem contention; RTT inflated", "Apenas teoria", "Ignorável"],
+                        correct: 1,
+                        explanation: "WiFi CSMA/CA: uplink heavy reduz airtime disponível; downlink compete; RTT pode aumentar 2-3x assimetricamente."
                     }
                 ]
             },
             4: { // Programação
                 quiz: [
                     {
-                        question: "O que é programação?",
-                        options: ["Jogar videogame", "Criar instruções para computadores", "Usar aplicativos", "Navegar na internet"],
+                        question: "Como lazy evaluation em linguagens funcionais (Haskell) afeta complexidade de espaço vs tempo?",
+                        options: ["Sem efeito", "Cria thunk trees; pode economizar computação mas aumenta peak memory", "Apenas teórico", "Irrelevante"],
                         correct: 1,
-                        explanation: "Programação é o processo de criar instruções (código) para que computadores executem tarefas específicas."
+                        explanation: "Lazy eval retarda cálculos; thunks acumulam na heap. Trade-off: menos computação mas mais memory pressure ~20-30%."
                     },
                     {
-                        question: "Qual é a linguagem de programação mais usada?",
-                        options: ["Python", "JavaScript", "Java", "C++"],
+                        question: "Qual fenômeno de monomorphism restriction em Haskell causa type ambiguity?",
+                        options: ["Sem fenômeno", "Polimórficas generalizadas só em top-level; callbacks precisam type annotation", "Apenas teoria", "Ignorável"],
                         correct: 1,
-                        explanation: "JavaScript é amplamente usada para desenvolvimento web, tanto no frontend quanto no backend."
+                        explanation: "Monomorphism restriction: funções genéricas exigem type signature explícita em certos contextos para evitar ambiguidade."
                     },
                     {
-                        question: "O que é uma variável?",
-                        options: ["Tipo de função", "Local para armazenar dados", "Tipo de loop", "Tipo de condição"],
+                        question: "Como o algoritmo de structure sharing em immutable data structures reduz memory waste?",
+                        options: ["Sem redução", "Nodes compartilhados entre versões; alteração cria novo branch", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Uma variável é um local na memória onde podemos armazenar e recuperar dados durante a execução do programa."
+                        explanation: "Structure sharing: modificações reutilizam parte da árvore original; reduz overhead de cópia em ~80% vs eager copy."
                     },
                     {
-                        question: "O que é um loop?",
-                        options: ["Tipo de variável", "Repetição de código", "Tipo de função", "Tipo de condição"],
+                        question: "Qual é o efeito de escape analysis em JIT compilation para heap allocation?",
+                        options: ["Sem efeito", "Stack allocation se objeto não escapa function; reduz GC pressure em ~40%", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "Um loop permite repetir um bloco de código várias vezes, economizando tempo e linhas de código."
+                        explanation: "EA: se objeto morre com função, aloca stack vs heap; V8/JVM usam, reduzindo pressure de coleta."
                     },
                     {
-                        question: "O que é uma função?",
-                        options: ["Tipo de variável", "Bloco de código reutilizável", "Tipo de loop", "Tipo de condição"],
+                        question: "Como o algoritmo de CPS (Continuation-Passing Style) afeta compilação vs performance?",
+                        options: ["Sem efeito", "Explícita continuações; melhor para optimizações mas código mais difícil", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Uma função é um bloco de código que pode ser chamado e executado quantas vezes necessário, promovendo reutilização."
+                        explanation: "CPS transforma retorno implícito em explícito; melhora loop unrolling mas aumenta overhead se não otimizado (~15-20%)."
                     },
                     {
-                        question: "O que é debugging?",
-                        options: ["Criar código", "Encontrar e corrigir erros", "Executar programa", "Documentar código"],
+                        question: "Qual fenômeno de tail call optimization afeta stack usage em recursão?",
+                        options: ["Sem fenômeno", "Tail calls convertidas para jumps; reduz stack depth de O(n) para O(1)", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "Debugging é o processo de encontrar, analisar e corrigir erros (bugs) no código de programação."
+                        explanation: "TCO: compilador reconhece tail position; gera jump vs call; Scheme/Racket garantem, Python não suporta."
                     },
                     {
-                        question: "O que é um algoritmo?",
-                        options: ["Tipo de linguagem", "Sequência de passos para resolver um problema", "Tipo de variável", "Tipo de função"],
+                        question: "Como type inference em ML-based languages (OCaml) afeta compilation time?",
+                        options: ["Sem efeito", "Bidirectional inference; pode exigir unificação iterativa; tempo quadrático em piores casos", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Um algoritmo é uma sequência lógica de passos para resolver um problema específico."
+                        explanation: "Type inference: algoritmo W é O(n³) worst-case; OCaml usa estratégias para reduzir a O(n) prática."
                     },
                     {
-                        question: "O que é HTML?",
-                        options: ["Linguagem de programação", "Linguagem de marcação", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Qual é o efeito de partial application em function composition?",
+                        options: ["Sem efeito", "Permite pipeline elegante; mas intermediates lambdas causam overhead se não inlined", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "HTML (HyperText Markup Language) é uma linguagem de marcação usada para estruturar conteúdo web."
+                        explanation: "Partial app + composition: lambda overhead ~5-15% se não otimizado; pode ser eliminado por compiler."
                     },
                     {
-                        question: "O que é CSS?",
-                        options: ["Linguagem de programação", "Linguagem para estilizar páginas web", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Como memoization em recursive functions reduz computation redundancy?",
+                        options: ["Sem redução", "Caches resultados; Fibonacci O(2^n) becomes O(n); trade memory para time", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "CSS (Cascading Style Sheets) é usado para estilizar e formatar páginas web, controlando aparência e layout."
+                        explanation: "Memoization/tabulação: reduz exponencial para linear em Fibonacci-like; dynamic programming."
                     },
                     {
-                        question: "O que é um banco de dados?",
-                        options: ["Tipo de programa", "Sistema para armazenar dados organizadamente", "Tipo de servidor", "Tipo de linguagem"],
+                        question: "Qual fenômeno de mutual recursion causa stack overflow em naive implementations?",
+                        options: ["Sem fenômeno", "A chama B que chama A; sem TCO, stack cresce indefinidamente", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "Um banco de dados é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente."
+                        explanation: "Mutual recursion: A→B→A→...; sem TCO ou trampolining, stack cresce linearly com profundidade."
                     }
                 ],
                 exam: [
                     {
-                        question: "Qual é a diferença entre compilação e interpretação?",
-                        options: ["Não há diferença", "Compilação traduz todo código de uma vez, interpretação linha por linha", "Interpretação é mais rápida", "Compilação é mais lenta"],
+                        question: "Como o algoritmo de type inference em System F differs de Hindley-Milner em completeness?",
+                        options: ["Idêntico", "System F rank-2 polimorfismo; HM rank-1 apenas; F exige type annotation", "HM melhor", "Irrelevante"],
                         correct: 1,
-                        explanation: "Compilação traduz todo o código para linguagem de máquina antes da execução, interpretação traduz linha por linha durante a execução."
+                        explanation: "HM: polimorfismo rank-1 (genéricos sem argumentos polimórficos); System F permite rank-n mas undecidable."
                     },
                     {
-                        question: "O que é orientação a objetos?",
-                        options: ["Tipo de linguagem", "Paradigma que organiza código em objetos", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Qual é o efeito de defunctionalization na eliminação de higher-order functions?",
+                        options: ["Sem efeito", "Converte closures em data; permite otimizações downstream; 10-30% speedup", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Orientação a objetos é um paradigma que organiza o código em objetos que contêm dados (atributos) e comportamentos (métodos)."
+                        explanation: "Defunctionalization: λ → datatype; permite pattern matching vs jump dispatch; reduz indirection."
                     },
                     {
-                        question: "O que é herança em programação?",
-                        options: ["Tipo de loop", "Mecanismo onde uma classe herda características de outra", "Tipo de variável", "Tipo de função"],
+                        question: "Como o algoritmo de arity raising aumenta loop unrolling opportunities?",
+                        options: ["Sem aumento", "Aumenta parâmetros da função; permite specialização; 20-40% más se memory aumenta", "Teórico", "Impossível"],
                         correct: 1,
-                        explanation: "Herança permite que uma classe (filha) herde propriedades e métodos de outra classe (pai), promovendo reutilização de código."
+                        explanation: "Arity raising: float outers λ; inner pode se especializar; trade memory increase para melhor locality."
                     },
                     {
-                        question: "O que é polimorfismo?",
-                        options: ["Tipo de variável", "Capacidade de objetos responderem de formas diferentes", "Tipo de loop", "Tipo de condição"],
+                        question: "Qual fenômeno de thunk space leaks em lazy langs causa memory bloat?",
+                        options: ["Sem fenômeno", "Unevaluated thunks acumulam; retain intermediate results; pode crescer unbounded", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Polimorfismo permite que objetos de diferentes classes respondam ao mesmo método de formas diferentes."
+                        explanation: "Space leak: lazy computation posposto cria chain de thunks retendo dados intermediários indefinidamente."
                     },
                     {
-                        question: "O que é recursão?",
-                        options: ["Tipo de loop", "Função que chama a si mesma", "Tipo de variável", "Tipo de condição"],
+                        question: "Como o algoritmo de GHC's worker/wrapper transformation afeta strictness?",
+                        options: ["Sem efeito", "Separa strict worker de lazy wrapper; inner pode unbox; 15-25% speedup common", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Recursão é quando uma função chama a si mesma para resolver problemas que podem ser divididos em subproblemas similares."
+                        explanation: "Worker/wrapper: inner função estrita opera em unboxed types; wrapper handle laziness. Elimina boxing overhead."
                     },
                     {
-                        question: "O que é complexidade algorítmica?",
-                        options: ["Tipo de linguagem", "Medida de eficiência de um algoritmo", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Qual é o efeito de constant folding em compile-time evaluation?",
+                        options: ["Sem efeito", "Calcula constantes em compile time; reduz runtime computation", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Complexidade algorítmica mede o tempo e espaço necessários para executar um algoritmo conforme o tamanho da entrada."
+                        explanation: "Constant folding: `2+3` → `5` em compile time; cascata com inlining + Beta reduction em FP."
                     },
                     {
-                        question: "O que é Git?",
-                        options: ["Linguagem de programação", "Sistema de controle de versão", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Como o algoritmo de supercompilation em functional langs otimiza loops?",
+                        options: ["Sem otimização", "Especializa recursão com constantes; gera loop-free code; 50-100x speedup comum", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "Git é um sistema de controle de versão que permite rastrear mudanças no código e colaborar com outros desenvolvedores."
+                        explanation: "Supercompilation: unroll + especialize + residualize; result code-bloat mas perf explosivo em certos cases."
                     },
                     {
-                        question: "O que é API?",
-                        options: ["Tipo de linguagem", "Interface que permite comunicação entre aplicações", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Qual fenômeno de trampolining reduz stack overflow em mutual recursion?",
+                        options: ["Sem fenômeno", "Retorna continuações vs chamadas; main loop executa; stack depth O(1)", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "API (Application Programming Interface) é uma interface que permite que diferentes aplicações se comuniquem e compartilhem dados."
+                        explanation: "Trampolining: funções retornam thunks; interpreter loop executa; evita call stack growth."
                     },
                     {
-                        question: "O que é framework?",
-                        options: ["Tipo de linguagem", "Conjunto de ferramentas e bibliotecas para desenvolvimento", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Como o algoritmo de CFA (Control Flow Analysis) em dataflow otimiza call sites?",
+                        options: ["Sem otimização", "Determina target functions possíveis; inline se monomorphic", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Framework é um conjunto de ferramentas, bibliotecas e convenções que facilitam o desenvolvimento de aplicações."
+                        explanation: "CFA: analisa todos possíveis call targets; se 1 target, inline é seguro; if N targets, polimórficas dispatch."
                     },
                     {
-                        question: "O que é teste unitário?",
-                        options: ["Tipo de linguagem", "Teste de componentes individuais do código", "Tipo de banco de dados", "Tipo de servidor"],
+                        question: "Qual é o efeito de loop fusion em eliminar intermediate arrays?",
+                        options: ["Sem efeito", "Combina múltiplos loops; reduz memory bandwidth em ~40-60%", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Teste unitário é a prática de testar componentes individuais (funções, métodos) do código para garantir que funcionem corretamente."
+                        explanation: "Loop fusion: `map f (map g xs)` → single loop; elimina intermediate array allocation + cache misses."
                     }
                 ]
             },
             5: { // Segurança da Informação
                 quiz: [
                     {
-                        question: "O que é segurança da informação?",
-                        options: ["Proteger dados contra ameaças", "Instalar antivírus", "Usar senhas fortes", "Fazer backup"],
-                        correct: 0,
-                        explanation: "Segurança da informação é a proteção de dados contra ameaças, garantindo confidencialidade, integridade e disponibilidade."
+                        question: "Como o algoritmo de PBKDF2 (Password-Based Key Derivation Function) afeta segurança contra ataques offline?",
+                        options: ["Sem efeito", "Iteração + salt reduz derivação key rate; 10^9→10^6 hashes/sec comparado MD5", "Apenas teoria", "Teórico"],
+                        correct: 1,
+                        explanation: "PBKDF2 usa iterações (e.g. 600k) para desacelerar brute force; salt previne rainbow tables."
                     },
                     {
-                        question: "O que é um vírus de computador?",
-                        options: ["Programa útil", "Programa malicioso que se replica", "Tipo de hardware", "Tipo de rede"],
+                        question: "Qual fenômeno de timing attack em comparação de senhas revela informação?",
+                        options: ["Sem fenômeno", "strcmp() exit cedo em falha; attacker mede latência para descobrir bytes", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Vírus é um programa malicioso que se replica e pode danificar arquivos e sistemas."
+                        explanation: "Timing attack: comparação byte-by-byte; latência varia; attacker bruta força byte correto (~256 tentativas vs 2^64)."
                     },
                     {
-                        question: "O que é phishing?",
-                        options: ["Tipo de vírus", "Tentativa de roubar informações pessoais", "Tipo de firewall", "Tipo de antivírus"],
+                        question: "Como o mecanismo de rate limiting em login reduz efetividade de force brute?",
+                        options: ["Sem redução", "Exponencial backoff + lockout; 1000 tentativas em 1ms vs 1 tentativa/min", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Phishing é uma tentativa fraudulenta de obter informações pessoais através de emails ou sites falsos."
+                        explanation: "Rate limiting + exponential backoff: transforma ataque viável (horas) em impossível (années)."
                     },
                     {
-                        question: "O que é criptografia?",
-                        options: ["Tipo de vírus", "Técnica para proteger informações", "Tipo de firewall", "Tipo de antivírus"],
+                        question: "Qual é o efeito de salting em evitar rainbow table attacks?",
+                        options: ["Sem efeito", "Cada hash único mesmo senhas iguais; pré-computação impossível", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Criptografia é a técnica de codificar informações para que apenas pessoas autorizadas possam lê-las."
+                        explanation: "Salt: pré-computed tables exigem 2^salt_size variações; 128-bit salt = 2^128 impossível armazenar."
                     },
                     {
-                        question: "O que é um firewall?",
-                        options: ["Tipo de vírus", "Sistema que controla tráfego de rede", "Tipo de antivírus", "Tipo de backup"],
+                        question: "Como o algoritmo de scrypt em key derivation reduce GPU advantage vs PBKDF2?",
+                        options: ["Sem redução", "Memory-hard; GPU shared memory inadequada; parallelism reduzido ~100x", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Firewall é um sistema que controla o tráfego de rede, bloqueando ameaças e permitindo apenas tráfego seguro."
+                        explanation: "scrypt: memory-hard + CPU-intensive; GPU não paralleliza bem devido latência memória."
                     },
                     {
-                        question: "O que é backup?",
-                        options: ["Tipo de vírus", "Cópia de segurança dos dados", "Tipo de firewall", "Tipo de antivírus"],
+                        question: "Qual fenômeno de side-channel em decryption revela plaintext properties?",
+                        options: ["Sem fenômeno", "Padding oracle: error messages diferem; attacker deduz byte by byte", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Backup é uma cópia de segurança dos dados importantes para recuperação em caso de perda."
+                        explanation: "Padding oracle: decrypt responde diferente se padding válido; attacker XOR ciphertext; descobre plaintext."
                     },
                     {
-                        question: "O que é autenticação?",
-                        options: ["Tipo de vírus", "Processo de verificar identidade", "Tipo de firewall", "Tipo de backup"],
+                        question: "Como o mecanismo de HMAC (Keyed Hash MAC) previne tampering vs Hash simples?",
+                        options: ["Sem prevenção", "Key incorporated; attacker não consegue forjar sem conhecer key", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Autenticação é o processo de verificar se uma pessoa ou sistema é realmente quem diz ser."
+                        explanation: "HMAC vs Hash: attacker pode modificar message + recomputar hash; HMAC impossível sem key (~2^128 bruteforce)."
                     },
                     {
-                        question: "O que é autorização?",
-                        options: ["Tipo de vírus", "Processo de definir permissões", "Tipo de firewall", "Tipo de backup"],
+                        question: "Qual é o efeito de Certificate Pinning em mitigation de MITM com rogue CAs?",
+                        options: ["Sem efeito", "App memoriza cert da primeira conexão; rejeita outros certs", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Autorização é o processo de definir quais recursos e ações uma pessoa ou sistema pode acessar."
+                        explanation: "Cert pinning: app ignora CA chain; valida apenas fingerprint específico; protege contra comprometimento de CAs."
                     },
                     {
-                        question: "O que é malware?",
-                        options: ["Programa útil", "Software malicioso", "Tipo de firewall", "Tipo de backup"],
+                        question: "Como o algoritmo de bcrypt em password storage adapta contra hardware evolution?",
+                        options: ["Sem adaptação", "Cost parameter aumentável; 2^cost iterations; semelhante a PBKDF2 mas simpler", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Malware é qualquer software malicioso projetado para danificar, roubar ou comprometer sistemas."
+                        explanation: "bcrypt: cost = 2^cost rounds; aumenta com tempo (2010: 10, 2024: 12+) mantendo segurança contra GPUs."
                     },
                     {
-                        question: "O que é atualização de segurança?",
-                        options: ["Tipo de vírus", "Correção de vulnerabilidades", "Tipo de firewall", "Tipo de backup"],
+                        question: "Qual fenômeno de return-to-libc bypassa DEP (Data Execution Prevention)?",
+                        options: ["Sem fenômeno", "ROP gadgets: código existente reused via stack overflow", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Atualização de segurança corrige vulnerabilidades conhecidas em software, protegendo contra ameaças."
+                        explanation: "Return-to-libc: attacker pula a código existing (libc); DEP não precisa ser desabilitado; stack overflow + ROP."
                     }
                 ],
                 exam: [
                     {
-                        question: "O que é a tríade CIA em segurança?",
-                        options: ["Tipo de vírus", "Confidencialidade, Integridade e Disponibilidade", "Tipo de firewall", "Tipo de backup"],
+                        question: "Como o algoritmo de Argon2 em key derivation combina iteração + memory vs scrypt?",
+                        options: ["Sem combinação", "Argon2: parallelizable + memory-hard; GPU vantagem reduzida ~1000x vs CPU", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "A tríade CIA representa os três pilares da segurança: Confidencialidade (dados privados), Integridade (dados íntegros) e Disponibilidade (dados acessíveis)."
+                        explanation: "Argon2: ASIC/GPU resistant; winner Password Hashing Competition; melhor que scrypt em parallelism + memory."
                     },
                     {
-                        question: "O que é ataque de força bruta?",
-                        options: ["Tipo de vírus", "Tentativa de adivinhar senhas testando combinações", "Tipo de firewall", "Tipo de backup"],
+                        question: "Qual é o mecanismo de cold boot attack em recuperação de encryption keys?",
+                        options: ["Sem mecanismo", "DRAM voltagem reduzida retém dados; attacker extrai keys de memória", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "Ataque de força bruta tenta descobrir senhas testando sistematicamente todas as combinações possíveis."
+                        explanation: "Cold boot: DRAM retém dados minutos após power off; attacker pode capturar encryption keys antes destrcução."
                     },
                     {
-                        question: "O que é engenharia social?",
-                        options: ["Tipo de vírus", "Manipulação psicológica para obter informações", "Tipo de firewall", "Tipo de backup"],
+                        question: "Como o protocolo de TLS 1.3 vs 1.2 mitiga downgrade attacks?",
+                        options: ["Sem mitigação", "TLS 1.3 remove fallback SCSV; negotiation vinculada às ciphers", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Engenharia social usa manipulação psicológica para convencer pessoas a revelar informações confidenciais."
+                        explanation: "TLS 1.3: versão parte do handshake signed; attacker não pode downgrade; 1.2 vulnerável via SCSV bypass."
                     },
                     {
-                        question: "O que é criptografia assimétrica?",
-                        options: ["Tipo de vírus", "Sistema com chaves públicas e privadas", "Tipo de firewall", "Tipo de backup"],
+                        question: "Qual fenômeno de cache timing side-channel em cryptography revela chave?",
+                        options: ["Sem fenômeno", "L1 hit/miss pattern correlaciona com chave bits; attacker deduz via timing", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Criptografia assimétrica usa um par de chaves: uma pública (para criptografar) e uma privada (para descriptografar)."
+                        explanation: "Bernstein AES timing: table lookups têm data-dependent cache misses; key bits recoverable in ~10^9 samples."
                     },
                     {
-                        question: "O que é certificado digital?",
-                        options: ["Tipo de vírus", "Documento eletrônico que comprova identidade", "Tipo de firewall", "Tipo de backup"],
+                        question: "Como o mecanismo de ASLR (Address Space Layout Randomization) reduce exploitabilidade?",
+                        options: ["Sem redução", "Endereços aleatórios cada execução; ROP gadget addressing invalida", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Certificado digital é um documento eletrônico que comprova a identidade de uma pessoa ou entidade na internet."
+                        explanation: "ASLR: endereços aleatórios; ROP precisa information leak; complexidade aumentada significativamente."
                     },
                     {
-                        question: "O que é honeypot?",
-                        options: ["Tipo de vírus", "Sistema isca para detectar ataques", "Tipo de firewall", "Tipo de backup"],
+                        question: "Qual é o efeito de OCSP Stapling em reduzir privacidade leakage vs OCSP queries?",
+                        options: ["Sem efeito", "Servidor cacheia OCSP response; client não precisa contactar OCSP responder", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Honeypot é um sistema isca projetado para atrair e detectar ataques, ajudando a identificar ameaças."
+                        explanation: "OCSP Stapling: server inclui OCSP response signed; client não faz query; privacidade melhorada."
                     },
                     {
-                        question: "O que é análise de vulnerabilidades?",
-                        options: ["Tipo de vírus", "Processo de identificar fraquezas em sistemas", "Tipo de firewall", "Tipo de backup"],
+                        question: "Como o algoritmo de Diffie-Hellman ephemeral (DHE) vs static DH afeta forward secrecy?",
+                        options: ["Sem diferença", "DHE gera novo private key per session; compromise não afeta histórico", "Static igual", "Irrelevante"],
                         correct: 1,
-                        explanation: "Análise de vulnerabilidades identifica fraquezas em sistemas que podem ser exploradas por atacantes."
+                        explanation: "DHE: chave única por session; static DH: compromise de long-term key expõe todas mensagens históricas."
                     },
                     {
-                        question: "O que é resposta a incidentes?",
-                        options: ["Tipo de vírus", "Processo de lidar com violações de segurança", "Tipo de firewall", "Tipo de backup"],
+                        question: "Qual fenômeno de Rowhammer em DRAM permite privilege escalation?",
+                        options: ["Sem fenômeno", "Repetido row access flips bits em adjacent rows; pagina flags alteradas", "Apenas teoria", "Impossível"],
                         correct: 1,
-                        explanation: "Resposta a incidentes é o processo estruturado de detectar, analisar e responder a violações de segurança."
+                        explanation: "Rowhammer: memory access padrão causa bit flips; privilege escalation via kernel page flags mutation."
                     },
                     {
-                        question: "O que é auditoria de segurança?",
-                        options: ["Tipo de vírus", "Avaliação sistemática de controles de segurança", "Tipo de firewall", "Tipo de backup"],
+                        question: "Como o protocolo de Zero-Knowledge Proof prove propriedade sem revelar secrete?",
+                        options: ["Impossível", "Prover convince verifier sem transferir knowledge; interactive ou non-interactive", "Apenas teoria", "Teórico"],
                         correct: 1,
-                        explanation: "Auditoria de segurança é uma avaliação sistemática dos controles de segurança para verificar conformidade e eficácia."
+                        explanation: "ZK: prover demonstra conhecimento sem revelar; aplicações em privacy-preserving authentication."
                     },
                     {
-                        question: "O que é gestão de riscos?",
-                        options: ["Tipo de vírus", "Processo de identificar e mitigar riscos", "Tipo de firewall", "Tipo de backup"],
+                        question: "Qual é o efeito de Spectre/Meltdown mitigations em performance vs segurança trade-off?",
+                        options: ["Sem trade-off", "KPTI reduz throughput ~3-5%; IBRS overhead 5-10%; proteção necessária", "Sem overhead", "Irrelevante"],
                         correct: 1,
-                        explanation: "Gestão de riscos é o processo de identificar, avaliar e implementar medidas para reduzir riscos de segurança."
+                        explanation: "Mitigations: KPTI kernel isolation + IBRS branch predictor flushing; measurable overhead."
                     }
                 ]
             },
             6: { // Banco de Dados
                 quiz: [
-                    {
-                        question: "O que é um banco de dados?",
-                        options: ["Tipo de programa", "Sistema organizado para armazenar dados", "Tipo de servidor", "Tipo de rede"],
-                        correct: 1,
-                        explanation: "Banco de dados é um sistema organizado para armazenar, gerenciar e recuperar informações de forma eficiente."
-                    },
-                    {
-                        question: "O que é SQL?",
-                        options: ["Tipo de banco", "Linguagem para consultar bancos de dados", "Tipo de servidor", "Tipo de rede"],
-                        correct: 1,
-                        explanation: "SQL (Structured Query Language) é a linguagem padrão para consultar e manipular bancos de dados relacionais."
-                    },
-                    {
-                        question: "O que é uma tabela?",
-                        options: ["Tipo de banco", "Estrutura que organiza dados em linhas e colunas", "Tipo de servidor", "Tipo de rede"],
-                        correct: 1,
-                        explanation: "Uma tabela é uma estrutura que organiza dados em linhas (registros) e colunas (campos)."
-                    },
-                    {
-                        question: "O que é uma chave primária?",
-                        options: ["Tipo de coluna", "Campo que identifica unicamente cada registro", "Tipo de tabela", "Tipo de banco"],
-                        correct: 1,
-                        explanation: "Chave primária é um campo que identifica unicamente cada registro em uma tabela."
-                    },
-                    {
-                        question: "O que é uma chave estrangeira?",
-                        options: ["Tipo de coluna", "Campo que referencia chave primária de outra tabela", "Tipo de tabela", "Tipo de banco"],
-                        correct: 1,
-                        explanation: "Chave estrangeira é um campo que referencia a chave primária de outra tabela, criando relacionamentos."
-                    },
-                    {
-                        question: "O que é normalização?",
-                        options: ["Tipo de banco", "Processo de organizar dados para reduzir redundância", "Tipo de servidor", "Tipo de rede"],
-                        correct: 1,
-                        explanation: "Normalização é o processo de organizar dados em tabelas para eliminar redundância e inconsistências."
-                    },
-                    {
-                        question: "O que é um índice?",
-                        options: ["Tipo de tabela", "Estrutura que acelera consultas", "Tipo de banco", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Índice é uma estrutura que acelera a busca de dados em tabelas, melhorando performance das consultas."
-                    },
-                    {
-                        question: "O que é transação?",
-                        options: ["Tipo de banco", "Conjunto de operações que devem ser executadas como uma unidade", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Transação é um conjunto de operações que devem ser executadas como uma unidade atômica (tudo ou nada)."
-                    },
-                    {
-                        question: "O que é ACID?",
-                        options: ["Tipo de banco", "Propriedades que garantem confiabilidade das transações", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "ACID (Atomicidade, Consistência, Isolamento, Durabilidade) são propriedades que garantem confiabilidade das transações."
-                    },
-                    {
-                        question: "O que é backup de banco de dados?",
-                        options: ["Tipo de banco", "Cópia de segurança dos dados", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Backup é uma cópia de segurança dos dados do banco para recuperação em caso de perda ou corrupção."
-                    }
-                ],
-                exam: [
-                    {
-                        question: "Qual é a diferença entre banco relacional e NoSQL?",
-                        options: ["Não há diferença", "Relacional usa tabelas, NoSQL usa documentos/grafos", "NoSQL é mais antigo", "Relacional é mais moderno"],
-                        correct: 1,
-                        explanation: "Bancos relacionais usam tabelas com relacionamentos, NoSQL usa documentos, grafos ou outros formatos flexíveis."
-                    },
-                    {
-                        question: "O que é integridade referencial?",
-                        options: ["Tipo de banco", "Garantia de consistência entre tabelas relacionadas", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Integridade referencial garante que relacionamentos entre tabelas sejam consistentes e válidos."
-                    },
-                    {
-                        question: "O que é deadlock?",
-                        options: ["Tipo de banco", "Situação onde transações ficam bloqueadas mutuamente", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Deadlock ocorre quando duas ou mais transações ficam bloqueadas esperando recursos umas das outras."
-                    },
-                    {
-                        question: "O que é view em banco de dados?",
-                        options: ["Tipo de tabela", "Consulta armazenada que simula uma tabela", "Tipo de banco", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "View é uma consulta armazenada que simula uma tabela, permitindo acesso controlado aos dados."
-                    },
-                    {
-                        question: "O que é stored procedure?",
-                        options: ["Tipo de banco", "Conjunto de comandos SQL armazenados no servidor", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Stored procedure é um conjunto de comandos SQL armazenados no servidor de banco de dados para reutilização."
-                    },
-                    {
-                        question: "O que é trigger?",
-                        options: ["Tipo de banco", "Procedimento que executa automaticamente em eventos", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Trigger é um procedimento que executa automaticamente quando ocorrem eventos específicos (INSERT, UPDATE, DELETE)."
-                    },
-                    {
-                        question: "O que é particionamento?",
-                        options: ["Tipo de banco", "Divisão de tabelas grandes em partes menores", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Particionamento divide tabelas grandes em partes menores para melhorar performance e gerenciamento."
-                    },
-                    {
-                        question: "O que é replicação?",
-                        options: ["Tipo de banco", "Cópia de dados para múltiplos servidores", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Replicação cria cópias de dados em múltiplos servidores para melhorar disponibilidade e performance."
-                    },
-                    {
-                        question: "O que é sharding?",
-                        options: ["Tipo de banco", "Divisão horizontal de dados entre servidores", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Sharding divide dados horizontalmente entre múltiplos servidores para distribuir carga e melhorar escalabilidade."
-                    },
-                    {
-                        question: "O que é data warehouse?",
-                        options: ["Tipo de banco", "Repositório centralizado para análise de dados", "Tipo de tabela", "Tipo de servidor"],
-                        correct: 1,
-                        explanation: "Data warehouse é um repositório centralizado de dados históricos otimizado para análise e relatórios."
-                    }
-                ]
+      {
+        question: "Como o algoritmo de cardinality estimation afeta otimização de planos JOIN?",
+        options: [
+          "Apenas teoria",
+          "Erros causam escolha subótima de join order; 1000x slowdown possível",
+          "Teórico",
+          "Sem efeito"
+        ],
+        correct: 1,
+        explanation: "Cardinality estimation: erros podem escolher nested loop vs hash join; impacto 100-1000x em throughput."
+      },
+      {
+        question: "Qual fenômeno de phantom read em isolation level READ COMMITTED causa?",
+        options: [
+          "Apenas teoria",
+          "Sem fenômeno",
+          "Transaction 1 lê range; transaction 2 insere; transaction 1 relê vê novos rows",
+          "Teórico"
+        ],
+        correct: 2,
+        explanation: "Phantom read: range locks não previnem inserts; transação vê novos rows em releitura."
+      },
+      {
+        question: "Como o algoritmo MVCC (Multi-Version Concurrency Control) reduz blocking?",
+        options: [
+          "Readers não bloqueiam writers; cada versão tem snapshot; ~10-100x mais concorrência",
+          "Sem redução",
+          "Apenas teoria",
+          "Teórico"
+        ],
+        correct: 0,
+        explanation: "MVCC: snapshots por transaction; readers não adquirem locks; writes não bloqueiam leitura ativa."
+      },
+      {
+        question: "Qual é o trade-off entre B-tree vs LSM-tree em write amplification?",
+        options: [
+          "Iguais",
+          "Irrelevante",
+          "B-tree: 1x escrita; LSM-tree: ~10-30x; LSM melhor throughput",
+          "Sem trade-off"
+        ],
+        correct: 2,
+        explanation: "B-tree: in-place update; LSM: cascading compaction; LSM ~10-30x write amplification; batching compensado."
+      },
+      {
+        question: "Como o algoritmo de distributed consensus (Raft) garante consistency?",
+        options: [
+          "Teórico",
+          "Leader replication + majority quorum; tolerance f falhas de N=2f+1",
+          "Apenas teoria",
+          "Sem garantia"
+        ],
+        correct: 1,
+        explanation: "Raft: leader-based; log replication; majority commit; N=2f+1 servidores tolera f falhas."
+      },
+      {
+        question: "Qual fenômeno de column-store vectorization melhora performance?",
+        options: [
+          "Column-store: SIMD vectorization + column-wise cache locality; analytic queries 10-50x mais rápido.",
+          "Sem fenômeno",
+          "Teórico",
+          "Apenas teoria"
+        ],
+        correct: 0,
+        explanation: "Column-store: SIMD vectorization + column-wise cache locality; analytic queries 10-50x mais rápido."
+      },
+      {
+        question: "Como o algoritmo de query rewriting transforma subconsultas correlacionadas?",
+        options: [
+          "Apenas teoria",
+          "Unnesting + join equivalência; execução ~100x mais rápido",
+          "Teórico",
+          "Sem transformação"
+        ],
+        correct: 1,
+        explanation: "Query rewriting: correlado subquery → join; evita repeated execution per row."
+      },
+      {
+        question: "Qual é o efeito de bitmap index em low-cardinality columns?",
+        options: [
+          "Sem efeito",
+          "Compression ratio 100:1; boolean operations rápido",
+          "Apenas teoria",
+          "Teórico"
+        ],
+        correct: 1,
+        explanation: "Bitmap index: cardinality baixa; 1 bit per value; boolean ops em CPUs; ~100-1000x compression."
+      },
+      {
+        question: "Como o algoritmo de deadlock detection trabalha com wait-for graph?",
+        options: [
+          "Teórico",
+          "Ciclo em grafo = deadlock; detection NP-complete; timeout mais prático",
+          "Sem algoritmo",
+          "Apenas teoria"
+        ],
+        correct: 1,
+        explanation: "Wait-for graph: nó por transaction; aresta se waiting; ciclo = deadlock; detecção O(N^2)."
+      },
+      {
+        question: "Qual fenómeno de slow query em connection pooling causa thundering herd?",
+        options: [
+          "Sem fenômeno",
+          "Idle connection spike; DDL migration causa stall; tous clients retry",
+          "Apenas teoria",
+          "Teórico"
+        ],
+        correct: 1,
+        explanation: "Thundering herd: slow query faz todos aguardar; spike após release; backpressure degradação."
+      }
+    ],
+
+    exam: [
+      {
+        question: "Como o algoritmo de cost-based join ordering reduz NP-completeness em multi-join?",
+        options: [
+          "NP resolvido",
+          "Impossível",
+          "Sem redução",
+          "Greedy + dynamic programming; busca espaço reduzido; O(n^2) vs O(n!)"
+        ],
+        correct: 3,
+        explanation: "Join ordering NP-completo; cost-based usa DP para poda; limita busca a planos viáveis."
+      },
+      {
+        question: "Qual isolação level evita dirty read mas permite non-repeatable read?",
+        options: ["READ COMMITTED", "REPEATABLE READ", "SERIALIZABLE", "READ UNCOMMITTED"],
+        correct: 0,
+        explanation: "READ COMMITTED: sees committed data; permite phantom + non-repeatable; SERIALIZABLE evita tudo."
+      },
+      {
+        question: "Como o protocolo de two-phase commit garante ACID em distributed?",
+        options: [
+          "Sem garantia",
+          "Teórico",
+          "Apenas teoria",
+          "Phase 1: prepare; phase 2: commit; majority quorum; tolerance f<N/2"
+        ],
+        correct: 3,
+        explanation: "2PC: prepare + vote; commit se majority sim; tolera <N/2 falhas; overhead ~3-5x latência."
+      },
+      {
+        question: "Qual é a complexidade de query planning em otimizador RBO vs CBO?",
+        options: [
+          "Iguais",
+          "CBO: O(2^joins) heurístico; RBO: O(n) fixo; CBO melhor mas lento",
+          "Irrelevante",
+          "RBO melhor"
+        ],
+        correct: 1,
+        explanation: "RBO: heurísticas fixas; CBO: explora espaço; trade-off: qualidade vs tempo planing."
+      },
+      {
+        question: "Como o algoritmo de replication lag em read-after-write afeta consistency?",
+        options: [
+          "Apenas teoria",
+          "Replica stale; write+read diferente node causa inconsistência",
+          "Sem efeito",
+          "Teórico"
+        ],
+        correct: 1,
+        explanation: "Replication lag: write → replica lag ~10-1000ms; eventual consistency; read-your-writes precisa session store."
+      },
+      {
+        question: "Qual fenômeno de hot key em sharding causa skew?",
+        options: [
+          "Sem fenômeno",
+          "Apenas teoria",
+          "Alguns shards recebem 90% carga; throughput limited by hottest shard",
+          "Teórico"
+        ],
+        correct: 2,
+        explanation: "Hot key: distribuição não uniforme; sharding ineficaz; re-sharding ou counter pattern necessário."
+      },
+      {
+        question: "Como o algoritmo de incremental backup reduz RTO/RPO?",
+        options: [
+          "Apenas deltas; restore: baseline + deltas; RTO reduzido ~10x",
+          "Apenas teoria",
+          "Teórico",
+          "A incrementação é feita a partir de um backup de hardware"
+        ],
+        correct: 0,
+        explanation: "Incremental: menor dados transferir; RTO = baseline restore time + increments replay."
+      },
+      {
+        question: "Qual é o efeito de encryption at rest vs in transit em security posture?",
+        options: [
+          "At-rest",
+          "Iguais",
+          "At-rest: disk theft mitigation; in-transit: network eavesdrop; ambos necessários",
+          "In-transit"
+        ],
+        correct: 2,
+        explanation: "Defense-in-depth: in-transit previne network sniffing; at-rest previne physical theft; complementários."
+      },
+      {
+        question: "Como o algoritmo de vacuum em MVCC remove old versions?",
+        options: [
+          "Não atua em versões antigas, apenas em novas",
+          "Oldest active transaction = visibility limit; versões antigas removidas",
+          "Apenas teoria",
+          "Teoricamente sim"
+        ],
+        correct: 1,
+        explanation: "Vacuum: OAAT (oldest active transaction); versões abaixo OAAT podem ser deletadas; previne bloat."
+      },
+      {
+        question: "Qual fenômeno de index fragmentation em B-tree causa performance degradation?",
+        options: [
+          "Não existe um fenômeno de fragmentation",
+          "Splits causam ~30% wasted space; ranged queries precisam mais I/Os",
+          "Apenas teoria",
+          "Teórico"
+        ],
+        correct: 1,
+        explanation: "Fragmentation: B-tree node splits deixam vazios; rebuild reindex; scan sequencial mais custoso."
+      }
+    ]
             }
         };
 

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/icons/favicon.png" type="image/jpeg">
-    <title>NavCode - Área do Professor</title>  
+    <title>NavCode - Área do Professor</title>
     <script src="script.js"></script>
 
     <!-- Importando estilos e fontes -->
@@ -273,12 +273,12 @@
     <script src="theme-system.js"></script>
 
     <script>
+
         // Função para alternar visibilidade da senha
         function togglePassword(inputId) {
             const input = document.getElementById(inputId);
             const toggle = input.nextElementSibling;
             const icon = toggle.querySelector('.eye-icon');
-
             if (input.type === 'password') {
                 input.type = 'text';
                 icon.innerHTML = `
@@ -294,45 +294,62 @@
             }
         }
 
-        // Sistema de login para professores
-        document.getElementById('professor-login-form').addEventListener('submit', function (e) {
+        // Login de professor usando sistema global
+        document.getElementById('professor-login-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-
-            const username = document.getElementById('professor-username').value;
+            const username = document.getElementById('professor-username').value.trim();
             const password = document.getElementById('professor-password').value;
             const remember = document.getElementById('remember-professor').checked;
 
-            // Simulação de login (em produção, seria uma chamada para API)
-            if (username && password) {
-                // Simular credenciais de professor
-                const professorCredentials = {
-                    'professor': 'prof123',
-                    'admin': 'admin123',
-                    'teacher': 'teacher123'
-                };
+            // Lista de usuários professores válidos
+            const professorCredentials = {
+                'professor': 'prof123',
+                'admin': 'admin123',
+                'teacher': 'teacher123'
+            };
 
-                if (professorCredentials[username.toLowerCase()] === password) {
-                    // Salvar sessão do professor
-                    localStorage.setItem('navcode_professor_logged_in', 'true');
-                    localStorage.setItem('navcode_professor_user', username);
-
-                    if (remember) {
-                        localStorage.setItem('navcode_professor_remember', 'true');
-                    }
-
-                    // Mostrar mensagem de sucesso
-                    showMessage('Login realizado com sucesso! Redirecionando...', 'success');
-
-                    // Redirecionar para área do professor (simulada)
-                    setTimeout(() => {
-                        alert('Área do professor em desenvolvimento!\n\nFuncionalidades disponíveis em breve:\n• Gerenciar cursos\n• Acompanhar alunos\n• Material didático\n• Relatórios detalhados');
-                        window.location.href = 'home.html';
-                    }, 1500);
-                } else {
-                    showMessage('Credenciais inválidas. Tente novamente.', 'error');
-                }
-            } else {
+            if (!username || !password) {
                 showMessage('Por favor, preencha todos os campos.', 'error');
+                return;
+            }
+
+            // Verifica se é um professor válido
+            if (professorCredentials[username.toLowerCase()] === password) {
+                // Marca sessão de professor
+                localStorage.setItem('navcode_professor_logged_in', 'true');
+                localStorage.setItem('navcode_professor_user', username);
+                if (remember) {
+                    localStorage.setItem('navcode_professor_remember', 'true');
+                }
+
+                // Marca sessão global como logado (para acesso aos cursos)
+                localStorage.setItem('navcode_logged_in', 'true');
+                localStorage.setItem('navcode_user', username);
+                localStorage.setItem('navcode_admin', 'true');
+
+                // Progresso completo para todos os cursos/capítulos
+                // (ajuste conforme a quantidade real de capítulos/cursos)
+                const fullProgress = {
+                    currentChapter: 6,
+                    completedChapters: [1, 2, 3, 4, 5, 6],
+                    totalScore: 9999,
+                    exercisesCompleted: 9999,
+                    videosWatched: 9999
+                };
+                localStorage.setItem('navcode_progress', JSON.stringify(fullProgress));
+
+                // Se existir o sistema de autenticação global, atualiza progresso do usuário
+                if (typeof updateUserProgress === 'function') {
+                    updateUserProgress(fullProgress);
+                }
+
+                showMessage('Login realizado com sucesso! Redirecionando...', 'success');
+                setTimeout(() => {
+                    alert('Área do professor em desenvolvimento!\n\nFuncionalidades disponíveis em breve:\n• Gerenciar cursos\n• Acompanhar alunos\n• Material didático\n• Relatórios detalhados');
+                    window.location.href = 'home.html';
+                }, 1500);
+            } else {
+                showMessage('Credenciais inválidas. Tente novamente.', 'error');
             }
         });
 
@@ -427,7 +444,6 @@
             animatedElements.forEach((element, index) => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(30px)';
-
                 setTimeout(() => {
                     element.style.transition = 'all 0.6s ease-out';
                     element.style.opacity = '1';
@@ -441,26 +457,10 @@
                 card.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-5px) scale(1.02)';
                 });
-
                 card.addEventListener('mouseleave', function () {
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
-
-            // Função para verificar autenticação antes de acessar cursos
-            function accessCourses() {
-                const isLoggedIn = localStorage.getItem('navcode_logged_in') === 'true';
-
-                if (!isLoggedIn) {
-                    alert('Você precisa fazer login para acessar os cursos NavCode!');
-                    window.location.href = 'login.html';
-                    return;
-                }
-
-                // Se estiver logado, redirecionar para página de cursos
-                window.location.href = 'cursos.html';
-                return true;
-            }
         });
     </script>
 

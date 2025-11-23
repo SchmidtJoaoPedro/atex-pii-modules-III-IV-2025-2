@@ -105,6 +105,7 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script src="auth.js"></script>
+    <script src="certificate-system.js"></script>
     <script>
         // ===== IDENTIFICADOR ÚNICO DO CURSOR =====
         const courseId = "cursor-informatica";
@@ -2339,9 +2340,13 @@
             }
 
             const isCompleted = userProgress.completedChapters.includes(chapter.id);
-            const isLocked = index > 0 && !userProgress.completedChapters.includes(courseData.chapters[index - 1].id);
+            // Verificar se é professor - professores têm acesso total
+            const currentUser = getCurrentUser();
+            const isProfessor = currentUser && currentUser.role === 'professor';
+            // Professores não têm capítulos bloqueados
+            const isLocked = !isProfessor && index > 0 && !userProgress.completedChapters.includes(courseData.chapters[index - 1].id);
 
-            console.log(`[NavCode] Capítulo ${chapter.id} - Concluído: ${isCompleted}, Bloqueado: ${isLocked}`);
+            console.log(`[NavCode] Capítulo ${chapter.id} - Concluído: ${isCompleted}, Bloqueado: ${isLocked}, Professor: ${isProfessor}`);
 
             const card = document.createElement('div');
             card.className = `chapter-card ${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}`;
@@ -2632,7 +2637,7 @@
 
             for (let i = 1; i <= chapter.videos; i++) {
                 console.log(videoType);
-                src = `./assets/videos/info-course/${videoType}${i}.mp4`;
+                src = `./assets/videos/it/${videoType}${i}.mp4`;
                 chamadaDuracao(src, `duracao${i}`);
                 videosHTML += `
                     <div class="video-card" onclick="watchVideo('${src}')"> 
@@ -3654,225 +3659,225 @@
             },
             6: { // Banco de Dados
                 quiz: [
-      {
-        question: "Como o algoritmo de cardinality estimation afeta otimização de planos JOIN?",
-        options: [
-          "Apenas teoria",
-          "Erros causam escolha subótima de join order; 1000x slowdown possível",
-          "Teórico",
-          "Sem efeito"
-        ],
-        correct: 1,
-        explanation: "Cardinality estimation: erros podem escolher nested loop vs hash join; impacto 100-1000x em throughput."
-      },
-      {
-        question: "Qual fenômeno de phantom read em isolation level READ COMMITTED causa?",
-        options: [
-          "Apenas teoria",
-          "Sem fenômeno",
-          "Transaction 1 lê range; transaction 2 insere; transaction 1 relê vê novos rows",
-          "Teórico"
-        ],
-        correct: 2,
-        explanation: "Phantom read: range locks não previnem inserts; transação vê novos rows em releitura."
-      },
-      {
-        question: "Como o algoritmo MVCC (Multi-Version Concurrency Control) reduz blocking?",
-        options: [
-          "Readers não bloqueiam writers; cada versão tem snapshot; ~10-100x mais concorrência",
-          "Sem redução",
-          "Apenas teoria",
-          "Teórico"
-        ],
-        correct: 0,
-        explanation: "MVCC: snapshots por transaction; readers não adquirem locks; writes não bloqueiam leitura ativa."
-      },
-      {
-        question: "Qual é o trade-off entre B-tree vs LSM-tree em write amplification?",
-        options: [
-          "Iguais",
-          "Irrelevante",
-          "B-tree: 1x escrita; LSM-tree: ~10-30x; LSM melhor throughput",
-          "Sem trade-off"
-        ],
-        correct: 2,
-        explanation: "B-tree: in-place update; LSM: cascading compaction; LSM ~10-30x write amplification; batching compensado."
-      },
-      {
-        question: "Como o algoritmo de distributed consensus (Raft) garante consistency?",
-        options: [
-          "Teórico",
-          "Leader replication + majority quorum; tolerance f falhas de N=2f+1",
-          "Apenas teoria",
-          "Sem garantia"
-        ],
-        correct: 1,
-        explanation: "Raft: leader-based; log replication; majority commit; N=2f+1 servidores tolera f falhas."
-      },
-      {
-        question: "Qual fenômeno de column-store vectorization melhora performance?",
-        options: [
-          "Column-store: SIMD vectorization + column-wise cache locality; analytic queries 10-50x mais rápido.",
-          "Sem fenômeno",
-          "Teórico",
-          "Apenas teoria"
-        ],
-        correct: 0,
-        explanation: "Column-store: SIMD vectorization + column-wise cache locality; analytic queries 10-50x mais rápido."
-      },
-      {
-        question: "Como o algoritmo de query rewriting transforma subconsultas correlacionadas?",
-        options: [
-          "Apenas teoria",
-          "Unnesting + join equivalência; execução ~100x mais rápido",
-          "Teórico",
-          "Sem transformação"
-        ],
-        correct: 1,
-        explanation: "Query rewriting: correlado subquery → join; evita repeated execution per row."
-      },
-      {
-        question: "Qual é o efeito de bitmap index em low-cardinality columns?",
-        options: [
-          "Sem efeito",
-          "Compression ratio 100:1; boolean operations rápido",
-          "Apenas teoria",
-          "Teórico"
-        ],
-        correct: 1,
-        explanation: "Bitmap index: cardinality baixa; 1 bit per value; boolean ops em CPUs; ~100-1000x compression."
-      },
-      {
-        question: "Como o algoritmo de deadlock detection trabalha com wait-for graph?",
-        options: [
-          "Teórico",
-          "Ciclo em grafo = deadlock; detection NP-complete; timeout mais prático",
-          "Sem algoritmo",
-          "Apenas teoria"
-        ],
-        correct: 1,
-        explanation: "Wait-for graph: nó por transaction; aresta se waiting; ciclo = deadlock; detecção O(N^2)."
-      },
-      {
-        question: "Qual fenómeno de slow query em connection pooling causa thundering herd?",
-        options: [
-          "Sem fenômeno",
-          "Idle connection spike; DDL migration causa stall; tous clients retry",
-          "Apenas teoria",
-          "Teórico"
-        ],
-        correct: 1,
-        explanation: "Thundering herd: slow query faz todos aguardar; spike após release; backpressure degradação."
-      }
-    ],
+                    {
+                        question: "Como o algoritmo de cardinality estimation afeta otimização de planos JOIN?",
+                        options: [
+                            "Apenas teoria",
+                            "Erros causam escolha subótima de join order; 1000x slowdown possível",
+                            "Teórico",
+                            "Sem efeito"
+                        ],
+                        correct: 1,
+                        explanation: "Cardinality estimation: erros podem escolher nested loop vs hash join; impacto 100-1000x em throughput."
+                    },
+                    {
+                        question: "Qual fenômeno de phantom read em isolation level READ COMMITTED causa?",
+                        options: [
+                            "Apenas teoria",
+                            "Sem fenômeno",
+                            "Transaction 1 lê range; transaction 2 insere; transaction 1 relê vê novos rows",
+                            "Teórico"
+                        ],
+                        correct: 2,
+                        explanation: "Phantom read: range locks não previnem inserts; transação vê novos rows em releitura."
+                    },
+                    {
+                        question: "Como o algoritmo MVCC (Multi-Version Concurrency Control) reduz blocking?",
+                        options: [
+                            "Readers não bloqueiam writers; cada versão tem snapshot; ~10-100x mais concorrência",
+                            "Sem redução",
+                            "Apenas teoria",
+                            "Teórico"
+                        ],
+                        correct: 0,
+                        explanation: "MVCC: snapshots por transaction; readers não adquirem locks; writes não bloqueiam leitura ativa."
+                    },
+                    {
+                        question: "Qual é o trade-off entre B-tree vs LSM-tree em write amplification?",
+                        options: [
+                            "Iguais",
+                            "Irrelevante",
+                            "B-tree: 1x escrita; LSM-tree: ~10-30x; LSM melhor throughput",
+                            "Sem trade-off"
+                        ],
+                        correct: 2,
+                        explanation: "B-tree: in-place update; LSM: cascading compaction; LSM ~10-30x write amplification; batching compensado."
+                    },
+                    {
+                        question: "Como o algoritmo de distributed consensus (Raft) garante consistency?",
+                        options: [
+                            "Teórico",
+                            "Leader replication + majority quorum; tolerance f falhas de N=2f+1",
+                            "Apenas teoria",
+                            "Sem garantia"
+                        ],
+                        correct: 1,
+                        explanation: "Raft: leader-based; log replication; majority commit; N=2f+1 servidores tolera f falhas."
+                    },
+                    {
+                        question: "Qual fenômeno de column-store vectorization melhora performance?",
+                        options: [
+                            "Column-store: SIMD vectorization + column-wise cache locality; analytic queries 10-50x mais rápido.",
+                            "Sem fenômeno",
+                            "Teórico",
+                            "Apenas teoria"
+                        ],
+                        correct: 0,
+                        explanation: "Column-store: SIMD vectorization + column-wise cache locality; analytic queries 10-50x mais rápido."
+                    },
+                    {
+                        question: "Como o algoritmo de query rewriting transforma subconsultas correlacionadas?",
+                        options: [
+                            "Apenas teoria",
+                            "Unnesting + join equivalência; execução ~100x mais rápido",
+                            "Teórico",
+                            "Sem transformação"
+                        ],
+                        correct: 1,
+                        explanation: "Query rewriting: correlado subquery → join; evita repeated execution per row."
+                    },
+                    {
+                        question: "Qual é o efeito de bitmap index em low-cardinality columns?",
+                        options: [
+                            "Sem efeito",
+                            "Compression ratio 100:1; boolean operations rápido",
+                            "Apenas teoria",
+                            "Teórico"
+                        ],
+                        correct: 1,
+                        explanation: "Bitmap index: cardinality baixa; 1 bit per value; boolean ops em CPUs; ~100-1000x compression."
+                    },
+                    {
+                        question: "Como o algoritmo de deadlock detection trabalha com wait-for graph?",
+                        options: [
+                            "Teórico",
+                            "Ciclo em grafo = deadlock; detection NP-complete; timeout mais prático",
+                            "Sem algoritmo",
+                            "Apenas teoria"
+                        ],
+                        correct: 1,
+                        explanation: "Wait-for graph: nó por transaction; aresta se waiting; ciclo = deadlock; detecção O(N^2)."
+                    },
+                    {
+                        question: "Qual fenómeno de slow query em connection pooling causa thundering herd?",
+                        options: [
+                            "Sem fenômeno",
+                            "Idle connection spike; DDL migration causa stall; tous clients retry",
+                            "Apenas teoria",
+                            "Teórico"
+                        ],
+                        correct: 1,
+                        explanation: "Thundering herd: slow query faz todos aguardar; spike após release; backpressure degradação."
+                    }
+                ],
 
-    exam: [
-      {
-        question: "Como o algoritmo de cost-based join ordering reduz NP-completeness em multi-join?",
-        options: [
-          "NP resolvido",
-          "Impossível",
-          "Sem redução",
-          "Greedy + dynamic programming; busca espaço reduzido; O(n^2) vs O(n!)"
-        ],
-        correct: 3,
-        explanation: "Join ordering NP-completo; cost-based usa DP para poda; limita busca a planos viáveis."
-      },
-      {
-        question: "Qual isolação level evita dirty read mas permite non-repeatable read?",
-        options: ["READ COMMITTED", "REPEATABLE READ", "SERIALIZABLE", "READ UNCOMMITTED"],
-        correct: 0,
-        explanation: "READ COMMITTED: sees committed data; permite phantom + non-repeatable; SERIALIZABLE evita tudo."
-      },
-      {
-        question: "Como o protocolo de two-phase commit garante ACID em distributed?",
-        options: [
-          "Sem garantia",
-          "Teórico",
-          "Apenas teoria",
-          "Phase 1: prepare; phase 2: commit; majority quorum; tolerance f<N/2"
-        ],
-        correct: 3,
-        explanation: "2PC: prepare + vote; commit se majority sim; tolera <N/2 falhas; overhead ~3-5x latência."
-      },
-      {
-        question: "Qual é a complexidade de query planning em otimizador RBO vs CBO?",
-        options: [
-          "Iguais",
-          "CBO: O(2^joins) heurístico; RBO: O(n) fixo; CBO melhor mas lento",
-          "Irrelevante",
-          "RBO melhor"
-        ],
-        correct: 1,
-        explanation: "RBO: heurísticas fixas; CBO: explora espaço; trade-off: qualidade vs tempo planing."
-      },
-      {
-        question: "Como o algoritmo de replication lag em read-after-write afeta consistency?",
-        options: [
-          "Apenas teoria",
-          "Replica stale; write+read diferente node causa inconsistência",
-          "Sem efeito",
-          "Teórico"
-        ],
-        correct: 1,
-        explanation: "Replication lag: write → replica lag ~10-1000ms; eventual consistency; read-your-writes precisa session store."
-      },
-      {
-        question: "Qual fenômeno de hot key em sharding causa skew?",
-        options: [
-          "Sem fenômeno",
-          "Apenas teoria",
-          "Alguns shards recebem 90% carga; throughput limited by hottest shard",
-          "Teórico"
-        ],
-        correct: 2,
-        explanation: "Hot key: distribuição não uniforme; sharding ineficaz; re-sharding ou counter pattern necessário."
-      },
-      {
-        question: "Como o algoritmo de incremental backup reduz RTO/RPO?",
-        options: [
-          "Apenas deltas; restore: baseline + deltas; RTO reduzido ~10x",
-          "Apenas teoria",
-          "Teórico",
-          "A incrementação é feita a partir de um backup de hardware"
-        ],
-        correct: 0,
-        explanation: "Incremental: menor dados transferir; RTO = baseline restore time + increments replay."
-      },
-      {
-        question: "Qual é o efeito de encryption at rest vs in transit em security posture?",
-        options: [
-          "At-rest",
-          "Iguais",
-          "At-rest: disk theft mitigation; in-transit: network eavesdrop; ambos necessários",
-          "In-transit"
-        ],
-        correct: 2,
-        explanation: "Defense-in-depth: in-transit previne network sniffing; at-rest previne physical theft; complementários."
-      },
-      {
-        question: "Como o algoritmo de vacuum em MVCC remove old versions?",
-        options: [
-          "Não atua em versões antigas, apenas em novas",
-          "Oldest active transaction = visibility limit; versões antigas removidas",
-          "Apenas teoria",
-          "Teoricamente sim"
-        ],
-        correct: 1,
-        explanation: "Vacuum: OAAT (oldest active transaction); versões abaixo OAAT podem ser deletadas; previne bloat."
-      },
-      {
-        question: "Qual fenômeno de index fragmentation em B-tree causa performance degradation?",
-        options: [
-          "Não existe um fenômeno de fragmentation",
-          "Splits causam ~30% wasted space; ranged queries precisam mais I/Os",
-          "Apenas teoria",
-          "Teórico"
-        ],
-        correct: 1,
-        explanation: "Fragmentation: B-tree node splits deixam vazios; rebuild reindex; scan sequencial mais custoso."
-      }
-    ]
+                exam: [
+                    {
+                        question: "Como o algoritmo de cost-based join ordering reduz NP-completeness em multi-join?",
+                        options: [
+                            "NP resolvido",
+                            "Impossível",
+                            "Sem redução",
+                            "Greedy + dynamic programming; busca espaço reduzido; O(n^2) vs O(n!)"
+                        ],
+                        correct: 3,
+                        explanation: "Join ordering NP-completo; cost-based usa DP para poda; limita busca a planos viáveis."
+                    },
+                    {
+                        question: "Qual isolação level evita dirty read mas permite non-repeatable read?",
+                        options: ["READ COMMITTED", "REPEATABLE READ", "SERIALIZABLE", "READ UNCOMMITTED"],
+                        correct: 0,
+                        explanation: "READ COMMITTED: sees committed data; permite phantom + non-repeatable; SERIALIZABLE evita tudo."
+                    },
+                    {
+                        question: "Como o protocolo de two-phase commit garante ACID em distributed?",
+                        options: [
+                            "Sem garantia",
+                            "Teórico",
+                            "Apenas teoria",
+                            "Phase 1: prepare; phase 2: commit; majority quorum; tolerance f<N/2"
+                        ],
+                        correct: 3,
+                        explanation: "2PC: prepare + vote; commit se majority sim; tolera <N/2 falhas; overhead ~3-5x latência."
+                    },
+                    {
+                        question: "Qual é a complexidade de query planning em otimizador RBO vs CBO?",
+                        options: [
+                            "Iguais",
+                            "CBO: O(2^joins) heurístico; RBO: O(n) fixo; CBO melhor mas lento",
+                            "Irrelevante",
+                            "RBO melhor"
+                        ],
+                        correct: 1,
+                        explanation: "RBO: heurísticas fixas; CBO: explora espaço; trade-off: qualidade vs tempo planing."
+                    },
+                    {
+                        question: "Como o algoritmo de replication lag em read-after-write afeta consistency?",
+                        options: [
+                            "Apenas teoria",
+                            "Replica stale; write+read diferente node causa inconsistência",
+                            "Sem efeito",
+                            "Teórico"
+                        ],
+                        correct: 1,
+                        explanation: "Replication lag: write → replica lag ~10-1000ms; eventual consistency; read-your-writes precisa session store."
+                    },
+                    {
+                        question: "Qual fenômeno de hot key em sharding causa skew?",
+                        options: [
+                            "Sem fenômeno",
+                            "Apenas teoria",
+                            "Alguns shards recebem 90% carga; throughput limited by hottest shard",
+                            "Teórico"
+                        ],
+                        correct: 2,
+                        explanation: "Hot key: distribuição não uniforme; sharding ineficaz; re-sharding ou counter pattern necessário."
+                    },
+                    {
+                        question: "Como o algoritmo de incremental backup reduz RTO/RPO?",
+                        options: [
+                            "Apenas deltas; restore: baseline + deltas; RTO reduzido ~10x",
+                            "Apenas teoria",
+                            "Teórico",
+                            "A incrementação é feita a partir de um backup de hardware"
+                        ],
+                        correct: 0,
+                        explanation: "Incremental: menor dados transferir; RTO = baseline restore time + increments replay."
+                    },
+                    {
+                        question: "Qual é o efeito de encryption at rest vs in transit em security posture?",
+                        options: [
+                            "At-rest",
+                            "Iguais",
+                            "At-rest: disk theft mitigation; in-transit: network eavesdrop; ambos necessários",
+                            "In-transit"
+                        ],
+                        correct: 2,
+                        explanation: "Defense-in-depth: in-transit previne network sniffing; at-rest previne physical theft; complementários."
+                    },
+                    {
+                        question: "Como o algoritmo de vacuum em MVCC remove old versions?",
+                        options: [
+                            "Não atua em versões antigas, apenas em novas",
+                            "Oldest active transaction = visibility limit; versões antigas removidas",
+                            "Apenas teoria",
+                            "Teoricamente sim"
+                        ],
+                        correct: 1,
+                        explanation: "Vacuum: OAAT (oldest active transaction); versões abaixo OAAT podem ser deletadas; previne bloat."
+                    },
+                    {
+                        question: "Qual fenômeno de index fragmentation em B-tree causa performance degradation?",
+                        options: [
+                            "Não existe um fenômeno de fragmentation",
+                            "Splits causam ~30% wasted space; ranged queries precisam mais I/Os",
+                            "Apenas teoria",
+                            "Teórico"
+                        ],
+                        correct: 1,
+                        explanation: "Fragmentation: B-tree node splits deixam vazios; rebuild reindex; scan sequencial mais custoso."
+                    }
+                ]
             }
         };
 
@@ -3951,9 +3956,29 @@
         }
 
         /**
+         * Mostra certificado do curso
+         */
+        function showCourseCertificate() {
+            const courseId = "cursor-informatica";
+            const courseName = "Técnico em Informática";
+            const currentUser = getCurrentUser();
+            const studentName = currentUser ? (currentUser.name || currentUser.username) : 'Aluno';
+            const completionDate = new Date().toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            showCertificate(courseId, courseName, studentName, completionDate);
+        }
+
+        /**
          * Mostra tela de conclusão do curso
          */
         function showCourseCompletion() {
+            // Verificar e gerar certificado
+            const certificateData = checkCourseCompletionAndGenerateCertificate("cursor-informatica");
+
             const content = document.getElementById('chapter-content');
             content.innerHTML = `
                 <div class="course-completion">
@@ -3981,7 +4006,17 @@
                         </div>
                     </div>
                     <div class="completion-actions">
-                        <button type="button" class="btn btn-primary" onclick="goHome()">
+                        <button type="button" class="btn btn-primary btn-certificate" onclick="showCourseCertificate()" style="background: linear-gradient(135deg, #059669, #10b981); margin-bottom: 1rem;">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            🏆 Ver Certificado
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="goHome()">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                                 <polyline points="9,22 9,12 15,12 15,22"/>

@@ -3,6 +3,7 @@ class AuthSystem {
   constructor() {
     this.users = this.loadUsers()
     this.initDefaultUser()
+    this.initProfessorUsers() // Inicializar usuários de professor
     this.emailConfig = {
       email: "navcode.ltda@gmail.com",
       password: "NAVCODE1234",
@@ -25,6 +26,63 @@ class AuthSystem {
   // Inicializar usuário padrão
   initDefaultUser() {
     // Não criar mais usuário demo automaticamente
+  }
+
+  // Inicializar usuários de professor
+  initProfessorUsers() {
+    const professors = [
+      { username: 'rafael', name: 'Rafael Engel Serafin', email: 'rafael@navcode.com' },
+      { username: 'marcos', name: 'Marcos Paulo Cassiano', email: 'marcos@navcode.com' },
+      { username: 'joao', name: 'João Pedro Schmidt', email: 'joao@navcode.com' },
+      { username: 'rebeca', name: 'Rebeca Costa', email: 'rebeca@navcode.com' },
+      { username: 'ryan', name: 'Ryan', email: 'ryan@navcode.com' },
+      { username: 'pedro', name: 'Pedro Lucas', email: 'pedro@navcode.com' }
+    ]
+
+    professors.forEach(prof => {
+      // Verificar se o usuário já existe
+      if (!this.users[prof.username]) {
+        this.users[prof.username] = {
+          email: prof.email,
+          username: prof.username,
+          password: `${prof.username}.navcode`, // Senha: nome.navcode
+          role: 'professor', // Role de professor
+          name: prof.name,
+          createdAt: new Date().toISOString(),
+          verified: true,
+          progress: {
+            currentChapter: 1,
+            completedChapters: [], // Professores têm acesso total, não precisam completar
+            totalScore: 0,
+            exercisesCompleted: 0,
+            videosWatched: 0,
+          },
+          // Professores têm acesso total a todos os cursos e capítulos
+          access: {
+            allCourses: true,
+            allChapters: true,
+            unlockedChapters: [] // Array vazio significa todos desbloqueados
+          }
+        }
+      } else {
+        // Atualizar usuário existente para ser professor
+        this.users[prof.username].role = 'professor'
+        this.users[prof.username].password = `${prof.username}.navcode`
+        if (!this.users[prof.username].access) {
+          this.users[prof.username].access = {
+            allCourses: true,
+            allChapters: true,
+            unlockedChapters: []
+          }
+        } else {
+          this.users[prof.username].access.allCourses = true
+          this.users[prof.username].access.allChapters = true
+        }
+      }
+    })
+
+    this.saveUsers()
+    console.log('[NavCode] Usuários de professor inicializados')
   }
 
   // Registrar novo usuário
@@ -91,7 +149,7 @@ class AuthSystem {
   }
 
   // Fazer login
-  login(username, password) {
+  login(username, password, isProfessorLogin = false) {
     const user = this.users[username]
 
     if (!user) {
@@ -102,10 +160,32 @@ class AuthSystem {
       return { success: false, message: "Senha incorreta" }
     }
 
+    // Verificar se é professor tentando fazer login na página de alunos
+    if (user.role === 'professor' && !isProfessorLogin) {
+      return { 
+        success: false, 
+        message: "Usuários professor devem fazer login na página de professor. Acesse professor.html" 
+      }
+    }
+
+    // Verificar se é aluno tentando fazer login na página de professor
+    if (user.role !== 'professor' && isProfessorLogin) {
+      return { 
+        success: false, 
+        message: "Apenas professores podem fazer login nesta página. Use login.html para alunos." 
+      }
+    }
+
     // Salvar sessão
     localStorage.setItem("navcode_logged_in", "true")
     localStorage.setItem("navcode_user", username)
     localStorage.setItem("navcode_user_data", JSON.stringify(user))
+
+    // Se for professor, marcar também como professor logado
+    if (user.role === 'professor') {
+      localStorage.setItem("navcode_professor_logged_in", "true")
+      localStorage.setItem("navcode_professor_user", username)
+    }
 
     return { success: true, message: "Login realizado com sucesso!" }
   }
@@ -285,8 +365,8 @@ async function registerUser(email, username, password, confirmPassword) {
   return await authSystem.register(email, username, password, confirmPassword)
 }
 
-function loginUser(username, password) {
-  return authSystem.login(username, password)
+function loginUser(username, password, isProfessorLogin = false) {
+  return authSystem.login(username, password, isProfessorLogin)
 }
 
 function logoutUser() {
@@ -307,6 +387,33 @@ function updateUserProgress(progressData) {
 function getUserStats() {
   const currentUser = localStorage.getItem("navcode_user")
   return currentUser ? authSystem.getUserStats(currentUser) : null
+}
+
+// Verificar se o usuário atual é professor
+function isProfessor() {
+  const currentUser = getCurrentUser()
+  return currentUser && currentUser.role === 'professor'
+}
+
+// Verificar se o usuário tem acesso a um capítulo específico
+function hasChapterAccess(chapterId, courseId) {
+  const currentUser = getCurrentUser()
+  if (!currentUser) return false
+  
+  // Professores têm acesso total
+  if (currentUser.role === 'professor' && currentUser.access && currentUser.access.allChapters) {
+    return true
+  }
+  
+  // Para outros usuários, verificar progresso normal
+  // Se não há sistema de bloqueio, retornar true se estiver logado
+  return true
+}
+
+// Verificar se o usuário tem acesso a todos os capítulos (professor)
+function hasFullAccess() {
+  const currentUser = getCurrentUser()
+  return currentUser && currentUser.role === 'professor' && currentUser.access && currentUser.access.allChapters
 }
 
 // Verificar autenticação em páginas protegidas

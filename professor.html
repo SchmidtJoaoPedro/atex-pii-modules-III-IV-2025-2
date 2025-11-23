@@ -269,6 +269,8 @@
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
+    <!-- Importando sistema de autenticação -->
+    <script src="auth.js"></script>
     <!-- Importando sistema de temas -->
     <script src="theme-system.js"></script>
 
@@ -301,55 +303,27 @@
             const password = document.getElementById('professor-password').value;
             const remember = document.getElementById('remember-professor').checked;
 
-            // Lista de usuários professores válidos
-            const professorCredentials = {
-                'professor': 'prof123',
-                'admin': 'admin123',
-                'teacher': 'teacher123'
-            };
-
             if (!username || !password) {
                 showMessage('Por favor, preencha todos os campos.', 'error');
                 return;
             }
 
-            // Verifica se é um professor válido
-            if (professorCredentials[username.toLowerCase()] === password) {
-                // Marca sessão de professor
-                localStorage.setItem('navcode_professor_logged_in', 'true');
-                localStorage.setItem('navcode_professor_user', username);
+            // Usar sistema de autenticação do auth.js (com flag de professor)
+            const result = loginUser(username, password, true);
+
+            if (result.success) {
+                // Salvar preferência de "lembrar"
                 if (remember) {
                     localStorage.setItem('navcode_professor_remember', 'true');
-                }
-
-                // Marca sessão global como logado (para acesso aos cursos)
-                localStorage.setItem('navcode_logged_in', 'true');
-                localStorage.setItem('navcode_user', username);
-                localStorage.setItem('navcode_admin', 'true');
-
-                // Progresso completo para todos os cursos/capítulos
-                // (ajuste conforme a quantidade real de capítulos/cursos)
-                const fullProgress = {
-                    currentChapter: 6,
-                    completedChapters: [1, 2, 3, 4, 5, 6],
-                    totalScore: 9999,
-                    exercisesCompleted: 9999,
-                    videosWatched: 9999
-                };
-                localStorage.setItem('navcode_progress', JSON.stringify(fullProgress));
-
-                // Se existir o sistema de autenticação global, atualiza progresso do usuário
-                if (typeof updateUserProgress === 'function') {
-                    updateUserProgress(fullProgress);
+                    localStorage.setItem('navcode_remember_user', username);
                 }
 
                 showMessage('Login realizado com sucesso! Redirecionando...', 'success');
                 setTimeout(() => {
-                    alert('Área do professor em desenvolvimento!\n\nFuncionalidades disponíveis em breve:\n• Gerenciar cursos\n• Acompanhar alunos\n• Material didático\n• Relatórios detalhados');
                     window.location.href = 'home.html';
                 }, 1500);
             } else {
-                showMessage('Credenciais inválidas. Tente novamente.', 'error');
+                showMessage(result.message || 'Credenciais inválidas. Tente novamente.', 'error');
             }
         });
 

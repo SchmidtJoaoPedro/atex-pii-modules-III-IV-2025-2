@@ -135,6 +135,24 @@
                     </a>
                 </p>
 
+                <!-- Link para login de professor -->
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <p class="register-link" style="margin: 0; text-align: center;">
+                        <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-right: 0.5rem;">É professor?</span>
+                        <a href="professor.html" class="register-btn" style="color: var(--navcode-primary, #059669); font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            Acessar como Professor
+                            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14" />
+                                <path d="M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </p>
+                </div>
+
                 <!-- Informações sobre a plataforma -->
                 <div class="platform-info">
                     <p>✨ Acesso a todos os cursos técnicos</p>
@@ -157,7 +175,7 @@
                 <!-- Estatísticas da plataforma -->
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-number">1000+</div>
+                        <div class="stat-number">50+</div>
                         <div class="stat-label">Alunos Ativos</div>
                     </div>
                     <div class="stat-item">
@@ -217,11 +235,21 @@
                 return;
             }
 
-            // Tentar fazer login usando sistema de autenticação
-            const result = loginUser(username, password);
+            // Tentar fazer login usando sistema de autenticação (página de alunos)
+            const result = loginUser(username, password, false);
 
             if (result.success) {
                 console.log('[NavCode] Login realizado com sucesso!');
+                
+                // Verificar se o usuário é professor (não deveria acontecer, mas por segurança)
+                const userData = JSON.parse(localStorage.getItem('navcode_user_data') || '{}');
+                if (userData.role === 'professor') {
+                    showError('Usuários professor devem fazer login na página de professor. Redirecionando...');
+                    setTimeout(() => {
+                        window.location.href = 'professor.html';
+                    }, 2000);
+                    return;
+                }
 
                 // Salvar preferência de "lembrar"
                 if (rememberMe) {
